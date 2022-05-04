@@ -1,5 +1,5 @@
 // styles
-import "./.scss"
+import "./account.scss"
 
 function Account() {
   return (

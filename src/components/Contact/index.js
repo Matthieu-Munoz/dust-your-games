@@ -1,9 +1,9 @@
 // styles
-import "./.scss"
+import "./contact.scss"
 
 function Contact() {
   return (
-    <div className="">
+    <div className="contact">
       contact
     </div>
   );

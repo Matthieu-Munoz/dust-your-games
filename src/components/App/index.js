@@ -1,9 +1,12 @@
+import ThemeToggle from '../ThemeToggle';
 import './app.scss';
 
 function App() {
   return (
-    <div className="App">
-
+    <div className="theme theme--dark">
+      <div className="app">
+        <ThemeToggle />
+      </div>
     </div>
   );
 }

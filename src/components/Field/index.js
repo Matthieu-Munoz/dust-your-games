@@ -1,10 +1,10 @@
 // styles
-import "./.scss"
+import "./field.scss"
 
 function Field() {
   return (
-    <div className="">
-      field
+    <div className="field">
+      
     </div>
   );
 }

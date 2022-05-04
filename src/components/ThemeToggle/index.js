@@ -1,10 +1,11 @@
 // styles
-import "./.scss"
+import { BsFillMoonStarsFill } from "react-icons/bs";
+import "./themetoggle.scss"
 
 function ThemeToggle() {
   return (
-    <div className="">
-      themetoggle
+    <div className="themetoggle">
+      <BsFillMoonStarsFill className="themetoggle__switch" />
     </div>
   );
 }

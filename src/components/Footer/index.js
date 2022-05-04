@@ -1,10 +1,10 @@
 // styles
-import "./.scss"
+import "./footer.scss"
 
 function Footer() {
   return (
-    <div className="">
-      footer
+    <div className="footer">
+      
     </div>
   );
 }

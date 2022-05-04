@@ -1,0 +1,27 @@
+@use '@/styles/vars';
+@use '@/styles/color-themes';
+
+.themetoggle {
+    width: 3.3em;
+    height: 2em;
+    border-radius: 1em;
+    display: flex;
+    align-items: center;
+    box-shadow: inset 2px 2px 4px 0px rgb(0 0 0 / 60%), rgba(0, 0, 0, 0.327) 0px 1px 4px;
+
+    // Mixin from _color-themes.sccs allow theme switching   
+    @include color-themes.themed() {
+        background-color: color-themes.ask('secondary-color');
+        flex-direction: color-themes.ask('theme-toggle');
+    }
+
+    &__switch {
+        width: 1.5em;
+        height: 1.5em;
+        border-radius: 1em;
+        padding: 0.12em;
+        color: vars.$off-white;
+        background-color: vars.$red;
+        margin: 0 0.15em
+    }
+}

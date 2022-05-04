@@ -1,10 +1,10 @@
 // styles
-import "./.scss"
+import "./gamesList.scss"
 
 function GamesList() {
   return (
-    <div className="">
-      gamesList
+    <div className="gamesList">
+      
     </div>
   );
 }
