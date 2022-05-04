@@ -1,0 +1,85 @@
+@use '@/styles/vars';
+@use '@/styles/color-themes';
+
+.userform {
+    width: 100%;
+    padding: 2em 4em;
+
+    @include color-themes.themed() {
+        background-color: color-themes.ask('secondary-color');
+    }
+
+    &__login {
+        height: 230px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+
+        &__link {
+            all: unset;
+            @include color-themes.themed() {
+                color: color-themes.ask('text-color');
+            }
+        }
+    }
+
+    .field {
+        display: flex;
+        align-items: center;
+        border: 1px solid vars.$red;
+        padding: 0.5em;
+        border-radius: 0.35em;
+
+        @include color-themes.themed() {
+            color: color-themes.ask('text-color');
+        }
+
+        &__icon {
+            width: 1em;
+            height: 1em;
+        }
+
+        &__input {
+            all: unset;
+            margin-left: 0.5em;
+
+            &::placeholder {
+                text-transform: uppercase;
+            }
+        }
+    }
+
+    &__btn {
+        color: white;
+        font-weight: bold;
+        text-transform: uppercase;
+        line-height: 2.6em;
+        border-radius: 0.35em;
+        border: none;
+        box-shadow: rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset, rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+
+        &--login {
+            width: 100%;
+            background-color: vars.$red;
+        }
+
+        &--register {
+            width: 70%;
+
+            @include color-themes.themed() {
+                background-color: color-themes.ask('main-color');
+                color: color-themes.ask('text-color');
+            }
+        }
+    }
+
+
+    &__seperator {
+        background-color: vars.$red;
+        width: 50%;
+        height: 1px;
+        border-radius: 1em;
+    }
+
+}

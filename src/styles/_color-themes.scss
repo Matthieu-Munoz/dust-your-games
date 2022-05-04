@@ -1,21 +1,24 @@
 @use '@/styles/vars';
 
+// Inside the variable $theme is stored the two theme states of our application : light and dark
 $themes: (
     light: (logo: url(""),
     main-color: vars.$beige,
     secondary-color: vars.$grey-blue,
     theme-toggle: row,
+    text-color: vars.$off-white
   ),
   dark: (
     logo: url(""),
     main-color: vars.$grey-blue,
     secondary-color: vars.$beige,
     theme-toggle: row-reverse,
+    text-color: vars.$grey-blue,
   ),
 );
 
 // Mixin and Function provided by https://medium.com/@katiemctigue/how-to-create-a-dark-mode-in-sass-609f131a3995
-// No modify
+// No need to be modify
 @mixin themed() {
 
   @each $theme,
