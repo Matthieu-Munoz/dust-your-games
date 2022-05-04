@@ -1,18 +1,20 @@
 @use '@/styles/vars';
 
 // Inside the variable $theme is stored the two theme states of our application : light and dark
-$themes: (
-    light: (logo: url(""),
+$themes: (light: (logo: url(""),
     primary-color: vars.$beige,
     secondary-color: vars.$grey-blue,
+    primary-alter-color: vars.$alter-beige,
+    secondary-alter-color: vars.$alter-grey-blue,
     theme-toggle: row,
     primary-text-color: vars.$off-white,
     secondary-text-color: vars.$grey-blue,
   ),
-  dark: (
-    logo: url(""),
+  dark: (logo: url(""),
     primary-color: vars.$grey-blue,
     secondary-color: vars.$beige,
+    primary-alter-color: vars.$alter-grey-blue,
+    secondary-alter-color: vars.$alter-beige,
     theme-toggle: row-reverse,
     primary-text-color: vars.$grey-blue,
     secondary-text-color: vars.$off-white,

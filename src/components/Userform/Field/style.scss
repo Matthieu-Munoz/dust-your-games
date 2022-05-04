@@ -1,0 +1,38 @@
+@use '@/styles/vars';
+@use '@/styles/color-themes';
+
+
+.field {
+  display: flex;
+  align-items: center;
+  border: 1px solid vars.$red;
+  padding: 0.7em 0.5em;
+  border-radius: 0.25em;
+  width: 100%;
+
+  @include color-themes.themed() {
+    color: color-themes.ask('primary-text-color');
+  }
+
+  &__icon {
+    width: 1.2em;
+    height: 1.2em;
+  }
+
+  &__input {
+    all: unset;
+    margin-left: 0.5em;
+    font-size: 0.8em;
+    width: 100%;
+
+    &::placeholder {
+      text-transform: uppercase;
+      transition: .1s ease-in-out;
+    }
+
+    &:focus::placeholder {
+      color: transparent;
+      transition: .2s ease-in-out;
+    }
+  }
+}
