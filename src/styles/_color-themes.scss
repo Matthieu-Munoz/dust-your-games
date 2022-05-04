@@ -3,17 +3,19 @@
 // Inside the variable $theme is stored the two theme states of our application : light and dark
 $themes: (
     light: (logo: url(""),
-    main-color: vars.$beige,
+    primary-color: vars.$beige,
     secondary-color: vars.$grey-blue,
     theme-toggle: row,
-    text-color: vars.$off-white
+    primary-text-color: vars.$off-white,
+    secondary-text-color: vars.$grey-blue,
   ),
   dark: (
     logo: url(""),
-    main-color: vars.$grey-blue,
+    primary-color: vars.$grey-blue,
     secondary-color: vars.$beige,
     theme-toggle: row-reverse,
-    text-color: vars.$grey-blue,
+    primary-text-color: vars.$grey-blue,
+    secondary-text-color: vars.$off-white,
   ),
 );
 

@@ -19,7 +19,7 @@
         &__link {
             all: unset;
             @include color-themes.themed() {
-                color: color-themes.ask('text-color');
+                color: color-themes.ask('primary-text-color');
             }
         }
     }
@@ -32,7 +32,7 @@
         border-radius: 0.35em;
 
         @include color-themes.themed() {
-            color: color-themes.ask('text-color');
+            color: color-themes.ask('primary-text-color');
         }
 
         &__icon {
@@ -68,8 +68,8 @@
             width: 70%;
 
             @include color-themes.themed() {
-                background-color: color-themes.ask('main-color');
-                color: color-themes.ask('text-color');
+                background-color: color-themes.ask('primary-color');
+                color: color-themes.ask('secondary-text-color');
             }
         }
     }
