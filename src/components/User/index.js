@@ -1,10 +1,10 @@
 // styles
-import "./.scss"
+import "./user.scss"
 
 function User() {
   return (
-    <div className="">
-      user
+    <div className="user">
+      
     </div>
   );
 }

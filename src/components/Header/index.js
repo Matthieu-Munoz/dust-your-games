@@ -1,10 +1,10 @@
 // styles
-import "./.scss"
+import "./header.scss"
 
 function Header() {
   return (
-    <div className="">
-      header
+    <div className="header">
+      
     </div>
   );
 }

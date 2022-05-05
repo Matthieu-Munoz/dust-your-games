@@ -1,0 +1,81 @@
+@use '@/styles/vars';
+@use '@/styles/color-themes';
+
+.userform {
+    width: 100%;
+    padding: 2em 4em;
+
+    @include color-themes.themed() {
+        background-color: color-themes.ask('secondary-color');
+    }
+
+    &__ctn {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+
+        &--login {
+            height: 250px;
+        }
+
+        &--register {
+            height: 320px;
+        }
+
+        &__link {
+            all: unset;
+            font-size: 0.8em;
+
+            @include color-themes.themed() {
+                color: color-themes.ask('primary-text-color');
+            }
+        }
+
+    }
+
+    &__btn {
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        padding: 0.7em 0;
+        border-color: transparent;
+        border-radius: 0.25em;
+        box-shadow: 0 1px 4px hsla(220, 90%, 37%, 0.25);
+        color: white;
+        text-transform: uppercase;
+        transition: .2s ease-in-out;
+
+        &--primary {
+            width: 100%;
+            background-color: vars.$red;
+
+            &:hover {
+                background-color: vars.$alter-red;
+            }
+        }
+
+        &--secondary {
+            width: 70%;
+
+            @include color-themes.themed() {
+                background-color: color-themes.ask('primary-color');
+                color: color-themes.ask('secondary-text-color');
+
+                &:hover {
+                    background-color: color-themes.ask('primary-alter-color');
+                }
+            }
+        }
+    }
+
+
+    &__seperator {
+        background-color: vars.$red;
+        width: 50%;
+        height: 1px;
+        border-radius: 1em;
+        margin: 0.25em 0;
+    }
+
+}

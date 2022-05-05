@@ -1,4 +1,17 @@
 @use '@/styles/vars';
+
+*,
+*::before,
+*::after {
+  font-size: 1em;
+  line-height: 1.2;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  border: none;
+  text-decoration: none;
+}
+
 body {
   margin: 0;
   font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -9,7 +22,6 @@ body {
 }
 
 #root {
-  background-color: vars.$grey-blue;
   height: 100vh;
   width: 100%;
 }

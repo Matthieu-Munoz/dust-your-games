@@ -1,9 +1,9 @@
 // styles
-import "./.scss"
+import "./error.scss"
 
 function Error() {
   return (
-    <div className="">
+    <div className="error">
       error
     </div>
   );

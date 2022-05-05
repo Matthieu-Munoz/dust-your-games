@@ -1,9 +1,9 @@
 // styles
-import "./.scss"
+import "./dashboard.scss"
 
 function Dashboard() {
   return (
-    <div className="">
+    <div className="dashboard">
       dashboard
     </div>
   );

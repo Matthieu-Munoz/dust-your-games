@@ -1,0 +1,47 @@
+@use '@/styles/vars';
+
+// Inside the variable $theme is stored the two theme states of our application : light and dark
+$themes: (light: (logo: url(""),
+    primary-color: vars.$beige,
+    secondary-color: vars.$grey-blue,
+    primary-alter-color: vars.$alter-beige,
+    secondary-alter-color: vars.$alter-grey-blue,
+    theme-toggle: toggleOff .2s normal forwards,
+    primary-text-color: vars.$off-white,
+    secondary-text-color: vars.$grey-blue,
+  ),
+  dark: (logo: url(""),
+    primary-color: vars.$grey-blue,
+    secondary-color: vars.$beige,
+    primary-alter-color: vars.$alter-grey-blue,
+    secondary-alter-color: vars.$alter-beige,
+    theme-toggle: toggleOn .2s normal forwards,
+    primary-text-color: vars.$grey-blue,
+    secondary-text-color: vars.$off-white,
+  ),
+);
+
+// Mixin and Function provided by https://medium.com/@katiemctigue/how-to-create-a-dark-mode-in-sass-609f131a3995
+// No need to be modify
+@mixin themed() {
+
+  @each $theme,
+  $map in $themes {
+    .theme--#{$theme} & {
+      $theme-map: () !global;
+
+      @each $key,
+      $submap in $map {
+        $value: map-get(map-get($themes, $theme), '#{$key}');
+        $theme-map: map-merge($theme-map, ($key: $value)) !global;
+      }
+
+      @content;
+      $theme-map: null !global;
+    }
+  }
+}
+
+@function ask($key) {
+  @return map-get($theme-map, $key);
+}

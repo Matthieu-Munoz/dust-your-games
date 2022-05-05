@@ -1,10 +1,10 @@
 // styles
-import "./.scss"
+import "./menu.scss"
 
 function Menu() {
   return (
-    <div className="">
-      menu
+    <div className="menu">
+      
     </div>
   );
 }
