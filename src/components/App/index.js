@@ -6,6 +6,8 @@ import Home from '../Home';
 import ThemeToggle from '../ThemeToggle';
 import './app.scss';
 
+import Modal from '../Modal';
+
 function App() {
   const dispatch = useDispatch();
   // Load the theme from localStorage when the app initialize
@@ -23,6 +25,7 @@ function App() {
   return (
     <div className={cssClass}>
       <div className="app">
+        <Modal />
         <ThemeToggle />
         <Home />
       </div>
