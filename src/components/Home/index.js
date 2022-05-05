@@ -1,15 +1,15 @@
 import Loginform from "./Loginform";
 import RegisterForm from "./Registerform";
 // styles
-import "./userform.scss"
+import "./home.scss"
 
-function Userform() {
+function Home() {
   return (
     <div className="userform">
-      {/* <Loginform /> */}
-      <RegisterForm />
+      <Loginform />
+      {/* <RegisterForm /> */}
     </div>
   );
 }
 
-export default Userform;
+export default Home;

@@ -24,7 +24,7 @@ function RegisterForm() {
         Icon={AiOutlineLock}
       />
       <Field
-        name="password"
+        name="confirmedpassword"
         type="password"
         placeholder="Confirmer le mot de passe"
         onChange={handleChangeField}

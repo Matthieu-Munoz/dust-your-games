@@ -14,10 +14,6 @@ function Field({
   Icon,
 }) {
   const handleChange = (evt) => {
-    // on observe que la fonction a passer au composant
-    // Field devra accepter 2 paramètres :
-    // - en 1 : la valeur à appliquer au champ,
-    // - en 2 : le nom du champ concerné par la mise à jour
     onChange(evt.target.value, name);
   };
 
@@ -45,7 +41,6 @@ Field.propTypes = {
   Icon: PropTypes.any.isRequired,
 };
 
-// Valeurs par défaut pour les props
 Field.defaultProps = {
   value: '',
   type: 'text',

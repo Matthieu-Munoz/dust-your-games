@@ -13,7 +13,7 @@ function ThemeToggle() {
   return (
     <div className="themetoggle" onClick={() => dispatch(toggleTheme(!currentTheme))}>
       {(currentTheme) ? <BsFillMoonStarsFill className="themetoggle__switch" /> : <BsFillSunFill className="themetoggle__switch" />}
-    </div >
+    </div>
   );
 }
 
