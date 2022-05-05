@@ -2,11 +2,12 @@ import { legacy_createStore as createStore, applyMiddleware, compose } from 'red
 
 import reducer from '@/reducers';
 import boardgameatlasApiMiddleWare from '../middlewares/boardgameatlasApi';
+import globalMiddleWare from '@/middlewares/global';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const enhancers = composeEnhancers(
-  applyMiddleware(boardgameatlasApiMiddleWare),
+  applyMiddleware(boardgameatlasApiMiddleWare, globalMiddleWare),
 );
 
 const store = createStore(reducer, enhancers);

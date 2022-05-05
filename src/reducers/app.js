@@ -1,5 +1,5 @@
 import {
-    TOGGLE_THEME,
+    TOGGLE_THEME, SAVE_THEME,
 } from '@/actions/app';
 
 export const initialState = {
@@ -9,6 +9,11 @@ export const initialState = {
 const reducer = (state = initialState, action = {}) => {
     switch (action.type) {
         case TOGGLE_THEME:
+            return {
+                ...state,
+                darkTheme: action.theme,
+            };
+        case SAVE_THEME:
             return {
                 ...state,
                 darkTheme: action.theme,
