@@ -10,10 +10,10 @@
     align-items: center;
     box-shadow: inset 2px 2px 4px 0px rgb(0 0 0 / 60%), rgba(0, 0, 0, 0.327) 0px 1px 4px;
 
+
     // Mixin from _color-themes.sccs allows theme switching   
     @include color-themes.themed() {
         background-color: color-themes.ask('secondary-color');
-        flex-direction: color-themes.ask('theme-toggle');
     }
 
     &__switch {
@@ -23,6 +23,31 @@
         padding: 0.25em;
         color: vars.$off-white;
         background-color: vars.$red;
-        margin: 0 0.25em
+        margin: 0 0.25em;
+
+        @include color-themes.themed() {
+            animation: color-themes.ask('theme-toggle');
+        }
+    }
+}
+
+
+@keyframes toggleOn {
+    from {
+        transform: translateX(0)
+    }
+
+    to {
+        transform: translateX(1.3em)
+    }
+}
+
+@keyframes toggleOff {
+    from {
+        transform: translateX(1.3em)
+    }
+
+    to {
+        transform: translateX(0)
     }
 }
