@@ -1,7 +1,9 @@
 import { legacy_createStore as createStore, applyMiddleware, compose } from 'redux';
-
 import reducer from '@/reducers';
+
+// Middleware for the API Board Game Atlas
 import boardgameatlasApiMiddleWare from '../middlewares/boardgameatlasApi';
+// Middleware with everything useful throught the entire app
 import globalMiddleWare from '@/middlewares/global';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

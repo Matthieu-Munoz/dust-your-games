@@ -6,8 +6,8 @@ import "./userform.scss"
 function Userform() {
   return (
     <div className="userform">
-      <Loginform />
-      {/* <RegisterForm /> */}
+      {/* <Loginform /> */}
+      <RegisterForm />
     </div>
   );
 }
