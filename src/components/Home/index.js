@@ -1,13 +1,15 @@
+import { useSelector } from 'react-redux';
 import Loginform from "./Loginform";
 import RegisterForm from "./Registerform";
 // styles
 import "./home.scss"
 
 function Home() {
+  const isLoginForm = useSelector((state) => state.home.isLoginForm);
+
   return (
     <div className="userform">
-      <Loginform />
-      {/* <RegisterForm /> */}
+      {(isLoginForm) ? <Loginform /> : <RegisterForm />}
     </div>
   );
 }

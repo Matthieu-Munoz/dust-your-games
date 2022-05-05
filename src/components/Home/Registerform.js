@@ -1,8 +1,12 @@
+import { useDispatch } from 'react-redux';
+import { toggleLoginForm } from '../../actions/home';
 import { BsPerson } from "react-icons/bs";
 import { AiOutlineLock, AiOutlineMail } from "react-icons/ai";
 import Field from "./Field";
 
 function RegisterForm() {
+  const dispatch = useDispatch();
+
   const handleChangeField = (value, name) => {
     console.log(value, name);
   };
@@ -41,7 +45,7 @@ function RegisterForm() {
       />
       <button className="userform__btn userform__btn--primary" type="submit">S'inscrire</button>
       <div className="userform__seperator" />
-      <button className="userform__btn userform__btn--secondary" type="button">Se connecter</button>
+      <button onClick={() => dispatch(toggleLoginForm(true))} className="userform__btn userform__btn--secondary" type="button">Se connecter</button>
     </form>
   );
 }
