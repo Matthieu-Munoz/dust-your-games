@@ -16,7 +16,7 @@ const reducer = (state = initialState, action = {}) => {
                 darkTheme: action.theme,
             };
         case SAVE_THEME:
-            // Fired when, on load, the is a theme in localStorage to save it in the state
+            // Fired on load when there is a theme in localStorage to save it in the state
             return {
                 ...state,
                 darkTheme: action.theme,

@@ -1,9 +1,12 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
+import { Routes, Route } from 'react-router-dom';
 import { loadTheme } from '@/actions/app';
 import classNames from 'classnames';
 import Home from '../Home';
-import ThemeToggle from '../ThemeToggle';
+import Account from '../Account';
+import Error from '../Error';
+
 import './app.scss';
 
 import Modal from '../Modal';
@@ -26,8 +29,11 @@ function App() {
     <div className={cssClass}>
       <div className="app">
         <Modal />
-        <ThemeToggle />
-        <Home />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/account" element={<Account/>} />
+          <Route path="*" element={<Error />} />
+        </Routes>
       </div>
     </div>
   );

@@ -2,7 +2,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import {
     toggleModal
 } from '@/actions/app';
-
 import { AiOutlineClose } from "react-icons/ai";
 import "./modal.scss"
 
@@ -27,3 +26,6 @@ function Modal() {
 }
 
 export default Modal;
+
+
+

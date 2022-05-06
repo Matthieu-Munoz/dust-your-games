@@ -4,7 +4,7 @@ import "./account.scss"
 function Account() {
   return (
     <div className="">
-      account
+      I love you !!!
     </div>
   );
 }

@@ -17,13 +17,13 @@
     }
 
     &__switch {
-        width: 1.5em;
-        height: 1.5em;
+        width: 1.6em;
+        height: 1.6em;
         border-radius: 1em;
         padding: 0.25em;
         color: vars.$off-white;
         background-color: vars.$red;
-        margin: 0 0.25em;
+        margin: 0 0.25em 0.05em;
 
         @include color-themes.themed() {
             animation: color-themes.ask('theme-toggle');
