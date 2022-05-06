@@ -2,6 +2,7 @@
 
 // Inside the variable $theme is stored the two theme states of our application : light and dark
 $themes: (light: (logo: url(""),
+    transparent-primary-color: vars.$beige-transparent,
     primary-color: vars.$beige,
     secondary-color: vars.$grey-blue,
     primary-alter-color: vars.$alter-beige,
@@ -11,6 +12,7 @@ $themes: (light: (logo: url(""),
     secondary-text-color: vars.$grey-blue,
   ),
   dark: (logo: url(""),
+    transparent-primary-color: vars.$grey-blue-transparent,
     primary-color: vars.$grey-blue,
     secondary-color: vars.$beige,
     primary-alter-color: vars.$alter-grey-blue,

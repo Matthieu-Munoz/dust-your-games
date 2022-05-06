@@ -1,15 +1,19 @@
+// Dependencies
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { loadTheme } from '@/actions/app';
 import classNames from 'classnames';
+// component
 import Home from '../Home';
 import Account from '../Account';
 import Error from '../Error';
-
+import Modal from '../Modal';
+import Header from '../Header';
+// Styles
 import './app.scss';
 
-import Modal from '../Modal';
+
 
 function App() {
   const dispatch = useDispatch();
@@ -29,9 +33,11 @@ function App() {
     <div className={cssClass}>
       <div className="app">
         <Modal />
+        <Header />
+
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/account" element={<Account/>} />
+          <Route path="/account" element={<Account />} />
           <Route path="*" element={<Error />} />
         </Routes>
       </div>
