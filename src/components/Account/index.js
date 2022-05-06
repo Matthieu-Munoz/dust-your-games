@@ -1,10 +1,13 @@
+import UserAccount from "./UserAccount";
+
 // styles
 import "./account.scss"
 
 function Account() {
   return (
     <div className="">
-      I love you !!!
+      <UserAccount />
+      
     </div>
   );
 }
