@@ -14,7 +14,7 @@ function Menu() {
   return (
     <>
       <div className="menu_toggle">
-        <div className={burgerCssClass} onClick={() => dispatch(toggleMenu())}>
+        <div className={burgerCssClass} onClick={() => dispatch(toggleMenu(!menuStatus))}>
           <div className="burger-lines"></div>
         </div>
       </div>

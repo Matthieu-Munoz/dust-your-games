@@ -11,11 +11,12 @@
     align-items: center;
     justify-content: space-between;
     padding-right: 5em;
+    z-index: 2;
 
     &__logo {
         background-repeat: no-repeat;
         background-position: center;
-        background-size: cover;
+        background-size: contain;
         width: 100px;
         height: 145px;
         margin-top: 1.5em;

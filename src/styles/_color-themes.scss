@@ -1,9 +1,8 @@
 @use '@/styles/vars';
 
 // Inside the variable $theme is stored the two theme states of our application : light and dark
-$themes: (light: (logo-full: url("../../assets/images/logo-light.png"),
-    logo-dice: url("../../assets/images/logo-dice-light.png"),
-    logo-text: url("../../assets/images/logo-phrase-light.png"),
+$themes: (light: (logo-full: url("../../assets/images/logo_dyg-light.png"),
+    logo-text: url("../../assets/images/logo_dyg_baseline-light.png"),
     transparent-primary-color: vars.$beige-transparent,
     primary-color: vars.$beige,
     secondary-color: vars.$grey-blue,
@@ -13,9 +12,8 @@ $themes: (light: (logo-full: url("../../assets/images/logo-light.png"),
     primary-text-color: vars.$off-white,
     secondary-text-color: vars.$grey-blue,
   ),
-  dark: (logo-full: url("../../assets/images/logo-dark.png"),
-    logo-dice: url("../../assets/images/logo-dice-dark.png"),
-    logo-text: url("../../assets/images/logo-phrase-dark.png"),
+  dark: (logo-full: url("../../assets/images/logo_dyg-dark.png"),
+    logo-text: url("../../assets/images/logo_dyg_baseline-dark.png"),
     transparent-primary-color: vars.$grey-blue-transparent,
     primary-color: vars.$grey-blue,
     secondary-color: vars.$beige,

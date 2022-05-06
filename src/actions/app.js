@@ -21,6 +21,7 @@ export const toggleModal = () => ({
 });
 
 export const TOGGLE_MENU = 'TOGGLE_MENU';
-export const toggleMenu = () => ({
+export const toggleMenu = (value) => ({
     type: TOGGLE_MENU,
+    value,
 });

@@ -5,9 +5,8 @@ import "./account.scss"
 
 function Account() {
   return (
-    <div className="">
+    <div className="account">
       <UserAccount />
-      
     </div>
   );
 }

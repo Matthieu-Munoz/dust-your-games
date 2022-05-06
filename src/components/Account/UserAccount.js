@@ -1,10 +1,8 @@
 // styles
 import "./account.scss"
-import hedgehog from 'assets/images/hedgehog.jpg';
+import hedgehog from '@/assets/images/hedgehog.jpg';
 import { FaChessPawn } from "react-icons/fa";
-import { RiUserHeartFill } from "react-icons/ri";
-
-
+import { BsPeopleFill } from "react-icons/bs";
 
 function UserAccount() {
   return (
@@ -24,18 +22,18 @@ function UserAccount() {
       <div className="useraccount__statistics__ctn">
         <div className="useraccount__statistics__gamenumber">
           <FaChessPawn className="useraccount__statistics__gamenumber__icon" />
-        <div className="useraccount_statistics__gamenumber__number">
-        42
-        </div>
+          <div className="useraccount_statistics__gamenumber__number">
+            42
+          </div>
         </div>
         <div className="useraccount__statistics__seperator" />
         <div className="useraccount__statistics__statistics__friendsnumber">
-        <RiUserHeartFill className="useraccount__statistics__friendsnumber__icon" />
-        <div className="useraccount_statistics__friendsnumber__number">
-        6
+          <BsPeopleFill className="useraccount__statistics__friendsnumber__icon" />
+          <div className="useraccount_statistics__friendsnumber__number">
+            6
+          </div>
         </div>
       </div>
-    </div>
     </div>
   );
 }

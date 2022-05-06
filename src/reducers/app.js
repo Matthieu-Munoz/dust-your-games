@@ -30,7 +30,7 @@ const reducer = (state = initialState, action = {}) => {
         case TOGGLE_MENU:
             return {
                 ...state,
-                menuOpened: !state.menuOpened,
+                menuOpened: action.value,
             };
         default:
             return state;

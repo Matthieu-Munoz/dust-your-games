@@ -1,8 +1,8 @@
 // Dependencies
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
-import { Routes, Route } from 'react-router-dom';
-import { loadTheme } from '@/actions/app';
+import { Routes, Route, useLocation } from 'react-router-dom';
+import { loadTheme, toggleMenu } from '@/actions/app';
 import classNames from 'classnames';
 // component
 import Home from '../Home';
@@ -12,7 +12,6 @@ import Modal from '../Modal';
 import Header from '../Header';
 // Styles
 import './app.scss';
-
 
 
 function App() {
@@ -25,16 +24,31 @@ function App() {
     [dispatch],
   );
 
+  const location = useLocation();
+  useEffect(
+    () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      dispatch(toggleMenu(false))
+    },
+    [location, dispatch],
+  );
   // Use the state to determine the current theme and apply the class accordingly
   const currentTheme = useSelector((state) => state.app.darkTheme);
   const cssClass = classNames('theme', { 'theme--dark': currentTheme }, { 'theme--light': !currentTheme });
 
+  const handleMenu = (evt) => {
+    const str = evt.target.className
+    const res = str.includes("menu") || str.includes("burger");
+    if (!res) {
+      dispatch(toggleMenu(false))
+    }
+  }
+
   return (
     <div className={cssClass}>
-      <div className="app">
+      <div className="app" onClick={(evt) => handleMenu(evt)}>
         <Modal />
         <Header />
-
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/account" element={<Account />} />
