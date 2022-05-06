@@ -7,9 +7,9 @@
 1. Create files
 
 ```
-├─ Component
-├── index.js
-└── component.scss
+  ├─ Component
+  ├── index.js
+  └── component.scss
 ```
 
 2. Setup the component in index.js
