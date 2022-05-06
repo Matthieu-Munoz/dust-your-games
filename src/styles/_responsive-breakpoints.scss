@@ -1,0 +1,24 @@
+// List of breakpoints used throughout the app
+$breakpoints: ('mobile' : (min-width: 480px),
+    'tablet' : (min-width: 768px),
+    'desktop' : (min-width: 1024px));
+
+// To apply a breakpoint use : @include responsive($device) { 'your style' }
+// Replacing $breakpoints by one of the string define here. (mobile, tablet, desktop)
+@mixin responsive($device) {
+
+    // If the key exists in the map
+    @if map-has-key($breakpoints, $device) {
+
+        // Prints a media query based on the value
+        @media #{inspect(map-get($breakpoints, $device))} {
+            @content;
+        }
+    }
+
+    // If the key doesn't exist in the map
+    @else {
+        @warn "Unfortunately, no value could be retrieved from `#{$breakpoint}`. "
+        +"Please make sure it is defined in `$breakpoints` map.";
+    }
+}

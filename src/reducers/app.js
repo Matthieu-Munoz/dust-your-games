@@ -1,10 +1,11 @@
 import {
-    TOGGLE_THEME, SAVE_THEME, TOGGLE_MODAL
+    TOGGLE_THEME, SAVE_THEME, TOGGLE_MODAL, TOGGLE_MENU
 } from '@/actions/app';
 
 export const initialState = {
     darkTheme: true,
     modalOpened: false,
+    menuOpened: false,
 };
 
 const reducer = (state = initialState, action = {}) => {
@@ -25,6 +26,11 @@ const reducer = (state = initialState, action = {}) => {
             return {
                 ...state,
                 modalOpened: !state.modalOpened,
+            };
+        case TOGGLE_MENU:
+            return {
+                ...state,
+                menuOpened: !state.menuOpened,
             };
         default:
             return state;
