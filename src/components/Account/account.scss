@@ -1,0 +1,132 @@
+@use '@/styles/vars';
+@use '@/styles/color-themes';
+
+
+.useraccount {
+    width: 100%;
+
+
+    @include color-themes.themed() {
+        background-color: color-themes.ask('secondary-color');
+    }
+
+    &__ctn {
+        @include color-themes.themed() {
+            background-color: color-themes.ask('secondary-color');
+        }
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        flex-wrap: nowrap;
+        border-radius: 1em;
+        width: 18em;
+    }
+
+    &__title {
+        font-size: 22px;
+        color: vars.$grey-blue;
+
+    }
+
+    &__email {
+        font-size: 0.8em;
+        color: vars.$grey-blue;
+        padding: 8px
+    }
+
+    &__btn {
+        text-transform: uppercase;
+        background: vars.$grey-blue;
+        color: white;
+        box-shadow: 0 1px 4px hsla(220, 90%, 37%, 0.25);
+        width: 80%;
+        height: 2.5em;
+        transition: .2s ease-in-out;
+        border-color: transparent;
+        border-radius: 0.25em;
+        margin: 32px;
+    }
+
+    &__picture {
+        display: flex;
+        justify-content: center;
+        position: relative;
+        bottom: 2.5em;
+
+        &__redcircle {
+            position: absolute;
+            width: 10em;
+            height: 10em;
+            border: 0.4em solid vars.$red;
+            border-radius: 50%;
+        }
+
+        &__yellowcircle {
+            position: absolute;
+            width: 10em;
+            height: 10em;
+            border: 0.15em solid vars.$gold;
+            border-radius: 50%;
+        }
+
+    }
+
+    &__statistics {
+        &__ctn {
+            display: flex;
+            align-items: center;
+            justify-content: space-evenly;
+            width: 100%;
+            height: 5em;
+            background-color: vars.$red;
+            border-radius: 0 0 1em 1em; 
+        }
+
+        &__gamenumber {
+            &__icon {
+                height: 2em;
+                width: 2em;
+                color: white;
+            }
+        }
+
+        &__friendsnumber {
+            &__icon {
+                height: 2em;
+                width: 2em;
+                color: white;
+            }
+
+        }
+    }
+}
+
+.useraccount_statistics__gamenumber__number {
+
+    color: white;
+    display: flex;
+    justify-content: center;
+}
+
+.useraccount_statistics__friendsnumber__number {
+
+    color: white;
+    display: flex;
+    justify-content: center;
+}
+
+.useraccount__statistics__seperator {
+    background-color: white;
+    width: 1px;
+    height: 50%;
+    border-radius: 1em;
+    margin: 0.25em 0;
+}
+
+img {
+    width: 10em;
+    height: 10em;
+    border-radius: 50%;
+    box-shadow: 0 1px 4px hsla(220, 90%, 37%, 0.25);
+}
