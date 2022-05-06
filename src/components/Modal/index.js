@@ -1,8 +1,11 @@
+// Dependencies
 import { useSelector, useDispatch } from 'react-redux';
+import { AiOutlineClose } from "react-icons/ai";
+// React-Redux
 import {
     toggleModal
 } from '@/actions/app';
-import { AiOutlineClose } from "react-icons/ai";
+// Styles
 import "./modal.scss"
 
 function Modal() {

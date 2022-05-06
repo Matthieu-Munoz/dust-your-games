@@ -1,10 +1,9 @@
-// == Import : npm
+// Dependencies
 import PropTypes from 'prop-types';
-
-// == Import : local
+// React-Redux
+// Styles
 import './style.scss';
 
-// == Composant
 function Field({
   value,
   type,
@@ -16,7 +15,6 @@ function Field({
   const handleChange = (evt) => {
     onChange(evt.target.value, name);
   };
-
 
   return (
     <div className="field">
@@ -46,5 +44,4 @@ Field.defaultProps = {
   type: 'text',
 };
 
-// == Export
 export default Field;

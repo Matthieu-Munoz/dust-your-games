@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import { loadTheme, toggleMenu } from '@/actions/app';
 import classNames from 'classnames';
-// component
+// React-Redux
 import Home from '../Home';
 import Account from '../Account';
 import Error from '../Error';
@@ -15,7 +15,9 @@ import './app.scss';
 
 
 function App() {
+  // To dispatch action to the store
   const dispatch = useDispatch();
+
   // Load the theme from localStorage when the app initialize
   useEffect(
     () => {
@@ -24,6 +26,7 @@ function App() {
     [dispatch],
   );
 
+  // On location change, scroll the windows to the top and close the menu
   const location = useLocation();
   useEffect(
     () => {
@@ -32,10 +35,15 @@ function App() {
     },
     [location, dispatch],
   );
+
   // Use the state to determine the current theme and apply the class accordingly
   const currentTheme = useSelector((state) => state.app.darkTheme);
   const cssClass = classNames('theme', { 'theme--dark': currentTheme }, { 'theme--light': !currentTheme });
 
+  /**
+   * Close the menu when anything BUT the menu/burgerIcon is clicked
+   * @param {*} evt 
+   */
   const handleMenu = (evt) => {
     const str = evt.target.className
     const res = str.includes("menu") || str.includes("burger");

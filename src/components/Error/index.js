@@ -1,4 +1,8 @@
-// styles
+// Dependencies
+
+// React-Redux
+
+// Styles
 import "./error.scss"
 
 function Error() {

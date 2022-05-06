@@ -1,9 +1,12 @@
+// Dependencies
 import { useSelector, useDispatch } from 'react-redux';
-import { toggleMenu } from '@/actions/app';
-import classNames from 'classnames';
-import ThemeToggle from '../ThemeToggle';
-import "./menu.scss"
 import { NavLink } from 'react-router-dom';
+import classNames from 'classnames';
+// React-Redux
+import { toggleMenu } from '@/actions/app';
+import ThemeToggle from '../ThemeToggle';
+// Styles
+import "./menu.scss"
 
 function Menu() {
   const dispatch = useDispatch();

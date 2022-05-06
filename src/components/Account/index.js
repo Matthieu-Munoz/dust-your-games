@@ -1,6 +1,8 @@
-import UserAccount from "./UserAccount";
+// Dependencies
 
-// styles
+// React-Redux
+import UserAccount from "./UserAccount";
+// Styles
 import "./account.scss"
 
 function Account() {

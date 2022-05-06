@@ -1,4 +1,8 @@
-// styles
+// Dependencies
+
+// React-Redux
+
+// Styles
 import "./dashboard.scss"
 
 function Dashboard() {

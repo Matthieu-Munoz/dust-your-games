@@ -1,8 +1,12 @@
-// styles
-import "./account.scss"
-import hedgehog from '@/assets/images/hedgehog.jpg';
-import { FaChessPawn } from "react-icons/fa";
+// Dependencies
 import { BsPeopleFill } from "react-icons/bs";
+import { FaChessPawn } from "react-icons/fa";
+// React-Redux
+
+// Styles
+import "./account.scss"
+// Locals
+import hedgehog from '@/assets/images/hedgehog.jpg';
 
 function UserAccount() {
   return (

@@ -1,10 +1,13 @@
+// Dependencies
 import { useSelector } from 'react-redux';
+// React-Redux
 import Loginform from "./Loginform";
 import RegisterForm from "./Registerform";
-// styles
+// Styles
 import "./home.scss"
 
 function Home() {
+  // Control if the loginForm or the registerForm is displayed
   const isLoginForm = useSelector((state) => state.home.isLoginForm);
 
   return (

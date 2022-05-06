@@ -1,8 +1,11 @@
+// Dependencies
 import { useDispatch } from 'react-redux';
 import { toggleLoginForm } from '../../actions/home';
 import { BsPerson } from "react-icons/bs";
 import { AiOutlineLock, AiOutlineMail } from "react-icons/ai";
+// React-Redux
 import Field from "./Field";
+// Styles
 
 function RegisterForm() {
   const dispatch = useDispatch();

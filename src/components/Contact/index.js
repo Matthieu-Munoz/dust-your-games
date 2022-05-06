@@ -1,4 +1,8 @@
-// styles
+// Dependencies
+
+// React-Redux
+
+// Styles
 import "./contact.scss"
 
 function Contact() {
@@ -9,4 +13,4 @@ function Contact() {
   );
 }
 
-export default Contact ;
+export default Contact;

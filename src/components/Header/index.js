@@ -1,6 +1,8 @@
-// styles
+// Dependencies
+// React-Redux
 import Menu from "../Menu";
 import ThemeToggle from "../ThemeToggle";
+// Styles
 import "./header.scss"
 
 function Header() {

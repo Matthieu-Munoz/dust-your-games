@@ -1,8 +1,11 @@
-// styles
+// Dependencies
 import { useDispatch, useSelector } from 'react-redux';
-import { toggleTheme } from '../../actions/app';
 import { BsFillMoonStarsFill, BsFillSunFill } from "react-icons/bs";
+// React-Redux
+import { toggleTheme } from '../../actions/app';
+// Styles
 import "./themetoggle.scss"
+
 /** 
  * A React component used to switch between light and dark themes. 
  */
