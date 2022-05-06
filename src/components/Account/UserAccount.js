@@ -18,19 +18,24 @@ function UserAccount() {
         <h1>Bonjour Debbie</h1>
       </div>
       <div className="useraccount__email">
-        <p>debbie.baker@example.com</p>
+        debbie.baker@example.com
       </div>
       <button className="useraccount__btn" type="button">gérer mon compte</button>
       <div className="useraccount__statistics__ctn">
         <div className="useraccount__statistics__gamenumber">
           <FaChessPawn className="useraccount__statistics__gamenumber__icon" />
-          <p>42</p>
+        <div className="useraccount_statistics__gamenumber__number">
+        42
+        </div>
         </div>
         <div className="useraccount__statistics__seperator" />
-        <div className="useraccount__statistics__statistics__friendsnumber"></div>
+        <div className="useraccount__statistics__statistics__friendsnumber">
         <RiUserHeartFill className="useraccount__statistics__friendsnumber__icon" />
-        <p>6</p>
+        <div className="useraccount_statistics__friendsnumber__number">
+        6
+        </div>
       </div>
+    </div>
     </div>
   );
 }
