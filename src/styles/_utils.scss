@@ -1,0 +1,8 @@
+@mixin hover($color: none, $scale: 1, $border: none, $bordercolor: "") {
+  background-color: $color;
+  transform: scale($scale);
+  transition: all 0.2s ease-in-out;
+  @if ($border != none) {
+    border: $border solid $bordercolor;
+  }
+}

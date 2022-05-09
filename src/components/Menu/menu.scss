@@ -1,215 +1,217 @@
-@use '@/styles/vars';
-@use '@/styles/color-themes';
-@use '@/styles/responsive-breakpoints'as media;
+@use "@/styles/vars";
+@use "@/styles/color-themes";
+@use "@/styles/utils";
+@use "@/styles/responsive-breakpoints" as media;
 
 .menu {
-    position: fixed;
-    top: 0;
-    right: 0;
-    padding: 1.5em;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  position: fixed;
+  top: 0;
+  right: 0;
+  padding: 1.5em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: auto;
+  width: 100%;
+  height: 100%;
+  transform: translateY(-105%);
+  transition: transform 0.2s ease-in-out;
+
+  &__btn {
+    display: inline-flex;
     justify-content: center;
-    height: auto;
-    width: 100%;
-    height: 100%;
-    transform: translateY(-105%);
-    transition: transform .2s ease-in-out;
+    align-items: center;
+    padding: 0.65em 0 0.55em;
+    border-color: transparent;
+    border-radius: 0.25em;
+    box-shadow: 0 1px 4px hsla(220, 90%, 37%, 0.25);
+    color: white;
+    text-transform: uppercase;
+    width: 160px;
+    margin-top: 1em;
+    background-color: vars.$red;
+    transition: background-color 0.2s ease-in-out;
 
-    &__btn {
-        display: inline-flex;
-        justify-content: center;
-        align-items: center;
-        padding: 0.65em 0 0.55em;
-        border-color: transparent;
-        border-radius: 0.25em;
-        box-shadow: 0 1px 4px hsla(220, 90%, 37%, 0.25);
-        color: white;
-        text-transform: uppercase;
-        width: 160px;
-        margin-top: 1em;
-        background-color: vars.$red;
-        transition: background-color .2s ease-in-out;
+    &:hover {
+      @include utils.hover(vars.$alter-red, 1.01);
+    }
+  }
 
-        &:hover {
-            background-color: vars.$alter-red;
-        }
+  .themetoggle {
+    position: absolute;
+    margin: 0;
+    top: 1.5em;
+    align-self: start;
+    opacity: 0;
+    transition: opacity 0.2s ease-in-out;
+  }
+
+  &.open {
+    transform: translateY(0);
+    transition: transform 0.2s ease-in-out;
+
+    @include color-themes.themed() {
+      background-color: color-themes.ask("primary-color");
     }
 
     .themetoggle {
-        position: absolute;
-        margin: 0;
-        top: 1.5em;
-        align-self: start;
-        opacity: 0;
-        transition: opacity 0.2s ease-in-out;
+      opacity: 1;
+      transition: opacity 0.2s 0.1s ease-in-out;
+    }
+  }
+
+  &__link {
+    all: unset;
+    margin-bottom: 0.5em;
+    font-size: 1.5em;
+    transform: scale(1);
+    transition: 0.1s ease-in-out;
+    cursor: pointer;
+
+    @include color-themes.themed() {
+      color: color-themes.ask("secondary-text-color");
+    }
+
+    &:hover {
+      @include utils.hover(none, 1.05);
+    }
+
+    &--active {
+      font-weight: 600;
+    }
+  }
+}
+
+@include media.responsive("tablet") {
+  .menu {
+    height: 100%;
+    width: 310px;
+    transform: translateX(240px);
+
+    @include color-themes.themed() {
+      box-shadow: 10px 0px 8px 1px color-themes.ask("transparent-primary-color")
+        inset;
     }
 
     &.open {
-        transform: translateY(0);
-        transition: transform .2s ease-in-out;
-
-        @include color-themes.themed() {
-            background-color: color-themes.ask('primary-color');
-        }
-
-        .themetoggle {
-            opacity: 1;
-            transition: opacity 0.2s 0.1s ease-in-out;
-        }
+      transform: translateX(0);
     }
-
-    &__link {
-        all: unset;
-        margin-bottom: 0.5em;
-        font-size: 1.5em;
-        transform: scale(1);
-        transition: 0.1s ease-in-out;
-
-        @include color-themes.themed() {
-            color: color-themes.ask('secondary-text-color');
-        }
-
-        &:hover {
-            transform: scale(1.1);
-            transition: 0.1s ease-in-out;
-        }
-
-        &--active {
-            font-weight: 600;
-        }
-    }
-}
-
-@include media.responsive('tablet') {
-    .menu {
-        height: 100%;
-        width: 310px;
-        transform: translateX(240px);
-
-        @include color-themes.themed() {
-            box-shadow: 10px 0px 8px 1px color-themes.ask('transparent-primary-color') inset;
-        }
-
-        &.open {
-            transform: translateX(0);
-        }
-    }
+  }
 }
 
 .menu_toggle {
-    position: fixed;
-    top: 0;
-    right: 0;
-    padding: 1em;
-    z-index: 10;
+  position: fixed;
+  top: 0;
+  right: 0;
+  padding: 1em;
+  z-index: 10;
 }
 
 // Burger Icon by https://march08.github.io/animated-burgers/
 .burger {
-    align-self: end;
-    height: 3em;
-    width: 3em;
-    position: relative;
-    font-size: 12px;
-    cursor: pointer;
-    transition: .2s all;
+  align-self: end;
+  height: 3em;
+  width: 3em;
+  position: relative;
+  font-size: 12px;
+  cursor: pointer;
+  transition: 0.2s all;
 
-    .burger-lines:after {
-        left: 0;
-        top: -1em;
-    }
+  .burger-lines:after {
+    left: 0;
+    top: -1em;
+  }
 
-    .burger-lines:before {
-        left: 1em;
-        top: 1em;
+  .burger-lines:before {
+    left: 1em;
+    top: 1em;
+  }
+
+  &:after {
+    content: "";
+    display: block;
+    position: absolute;
+    height: 150%;
+    width: 150%;
+    top: -25%;
+    left: -25%;
+  }
+
+  .burger-lines {
+    top: 50%;
+    margin-top: -0.125em;
+
+    &,
+    &:after,
+    &:before {
+      pointer-events: none;
+      display: block;
+      content: "";
+      width: 100%;
+      border-radius: 0.25em;
+      height: 0.25em;
+      position: absolute;
+      transform: rotate(0);
+
+      @include color-themes.themed() {
+        background-color: color-themes.ask("secondary-text-color");
+      }
     }
 
     &:after {
-        content: '';
-        display: block;
-        position: absolute;
-        height: 150%;
-        width: 150%;
-        top: -25%;
-        left: -25%;
+      left: 0;
+      top: -1em;
     }
 
-    .burger-lines {
-        top: 50%;
-        margin-top: -0.125em;
-
-        &,
-        &:after,
-        &:before {
-            pointer-events: none;
-            display: block;
-            content: '';
-            width: 100%;
-            border-radius: 0.25em;
-            height: 0.25em;
-            position: absolute;
-            transform: rotate(0);
-
-            @include color-themes.themed() {
-                background-color: color-themes.ask('secondary-text-color');
-            }
-        }
-
-        &:after {
-            left: 0;
-            top: -1em;
-        }
-
-        &:before {
-            left: 1em;
-            top: 1em;
-        }
+    &:before {
+      left: 1em;
+      top: 1em;
     }
+  }
 }
 
 .burger.burger-squeeze {
+  .burger-lines {
+    &,
+    &:after,
+    &:before {
+      transition: 0.2s top 0.2s, 0.1s left, 0.2s transform,
+        0.4s background-color 0.2s;
+    }
+
+    &:after,
+    &:before {
+      width: 2em;
+    }
+  }
+
+  &.open {
     .burger-lines {
+      &,
+      &:after,
+      &:before {
+        transition: 0.2s background-color, 0.2s top, 0.2s left,
+          0.2s transform 0.15s;
+      }
 
-        &,
-        &:after,
-        &:before {
-            transition: .2s top .2s, .1s left, .2s transform, .4s background-color .2s;
-        }
+      & {
+        background-color: transparent;
+      }
 
-        &:after,
-        &:before {
-            width: 2em;
-        }
+      &:before,
+      &:after {
+        left: 0.5em;
+        top: 0px;
+      }
+
+      &:before {
+        transform: rotate(-45deg);
+      }
+
+      &:after {
+        transform: rotate(45deg);
+      }
     }
-
-    &.open {
-        .burger-lines {
-
-            &,
-            &:after,
-            &:before {
-                transition: .2s background-color, .2s top, .2s left, .2s transform .15s;
-            }
-
-            & {
-                background-color: transparent;
-            }
-
-            &:before,
-            &:after {
-                left: 0.5em;
-                top: 0px;
-            }
-
-            &:before {
-                transform: rotate(-45deg);
-            }
-
-            &:after {
-                transform: rotate(45deg);
-            }
-        }
-    }
+  }
 }
