@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { BsPeopleFill } from "react-icons/bs";
 import { FaChessPawn } from "react-icons/fa";
 // React-Redux
-import { toggleUserAccount } from '@/actions/account';
+import { toggleEditAccount } from '@/actions/account';
 // Styles
 import "./account.scss"
 // Locals
@@ -23,7 +23,7 @@ function UserAccount() {
       <div className="useraccount__email">
         debbie.baker@example.com
       </div>
-      <button onClick={() => dispatch(toggleUserAccount(true))} className="useraccount__btn" type="button">gérer mon compte</button>
+      <button onClick={() => dispatch(toggleEditAccount(true))} className="useraccount__btn" type="button">gérer mon compte</button>
       <div className="useraccount__statistics">
         <div className="useraccount__statistics__gamenumber">
           <FaChessPawn className="useraccount__statistics__gamenumber__icon" />

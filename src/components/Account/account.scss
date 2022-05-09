@@ -136,8 +136,8 @@
         
         &__close {
         position: absolute;
-        width: 2em;
-        height: 2em;
+        width: 2.5em;
+        height: 2.5em;
         right: 1.5em;
         @include color-themes.themed() {
             color: color-themes.ask('primary-text-color');

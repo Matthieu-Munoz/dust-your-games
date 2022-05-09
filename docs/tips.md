@@ -15,14 +15,14 @@
 2. Setup the component in index.js
 3. Code the JSX
 4. Apply style
-5. Adding functionalities
+5. Adding functionalities :
 
 To add functionalities that imply a change in state, we need to prepare a corresponding state.
 
 - Create the reducers and add necessary variables in initialState
 - Create corresponding actions
 - Apply them in the switch cases of the reducer
-- Use them in the component : useSelector to get a variable from state and useDisptach to apply changes
+- Use them in the component : useSelector to get a variable from state and useDispatch to apply changes
 
 ### [Conditional Rendering :](https://reactjs.org/docs/conditional-rendering.html)
 

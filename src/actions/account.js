@@ -1,5 +1,5 @@
-export const TOGGLE_USER_ACCOUNT = 'TOGGLE_USER_ACCOUNT';
-export const toggleUserAccount = (isEdit) => ({
-    type: TOGGLE_USER_ACCOUNT,
+export const TOGGLE_EDIT_ACCOUNT = 'TOGGLE_EDIT_ACCOUNT';
+export const toggleEditAccount = (isEdit) => ({
+    type: TOGGLE_EDIT_ACCOUNT,
     isEdit,
 });

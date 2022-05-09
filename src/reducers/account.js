@@ -1,5 +1,5 @@
 import {
-    TOGGLE_USER_ACCOUNT,
+    TOGGLE_EDIT_ACCOUNT,
 } from '@/actions/account';
 
 export const initialState = {
@@ -8,7 +8,7 @@ export const initialState = {
 
 const reducer = (state = initialState, action = {}) => {
     switch (action.type) {
-        case TOGGLE_USER_ACCOUNT:
+        case TOGGLE_EDIT_ACCOUNT:
             return {
                 ...state,
                 isEdit: action.isEdit,

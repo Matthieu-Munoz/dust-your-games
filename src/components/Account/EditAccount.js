@@ -1,9 +1,11 @@
 // Dependencies
+import { useDispatch } from 'react-redux';
 import { BsPerson } from "react-icons/bs";
 import { IoClose } from "react-icons/io5";
 import { AiOutlineLock, AiOutlineMail, AiOutlineEdit } from "react-icons/ai";
 // React-Redux
 import Field from "@/components/Field";
+import { toggleEditAccount } from '@/actions/account';
 // styles
 import "./account.scss"
 
@@ -11,9 +13,11 @@ import "./account.scss"
 import hedgehog from '@/assets/images/hedgehog.jpg';
 
 function EditAccount() {
+  const dispatch = useDispatch();
+  
   return (
     <form className="useraccount useraccount--register">
-      <IoClose className="useraccount__close"/>
+      <IoClose className="useraccount__close" onClick={() => dispatch(toggleEditAccount(false))}/>
       <div className="useraccount__picture">
         <div className="useraccount__picture__redcircle" />
         <div className="useraccount__picture__yellowcircle" />
@@ -28,11 +32,11 @@ function EditAccount() {
           value={''}
           Icon={BsPerson}
         />
-        <div className="description_input"> Mon adresse mail </div>
+        <div className="description_input"> Mon adresse e-mail </div>
         <Field
           name="email"
           type="email"
-          placeholder="Modifier mon Email"
+          placeholder="Modifier mon E-mail"
           //onChange={handleChangeField}
           value={''}
           Icon={AiOutlineMail}
@@ -50,7 +54,7 @@ function EditAccount() {
         <Field
           name="confirmedpassword"
           type="password"
-          placeholder="Confirmer le mot de passe"
+          placeholder="Confirmer mon mot de passe"
           //onChange={handleChangeField}
           value={''}
           Icon={AiOutlineLock}
