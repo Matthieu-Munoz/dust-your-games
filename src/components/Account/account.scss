@@ -1,6 +1,6 @@
 @use '@/styles/vars';
 @use '@/styles/color-themes';
-
+@use '@/styles/responsive-breakpoints'as media;
 
 .useraccount {
     display: flex;
@@ -139,9 +139,17 @@
         width: 2.5em;
         height: 2.5em;
         right: 1.5em;
+        transform: scale(1);
+        transition: transform .1s ease-in-out;
         @include color-themes.themed() {
             color: color-themes.ask('primary-text-color');
         }
+
+
+            &:hover {
+                transform: scale(1.2);
+                transition: transform .2s ease-in-out;
+            }
         }
 
         &__picture {
@@ -157,6 +165,12 @@
                 height: 2em;
                 bottom: 0.5em;
                 right: 0.5em;
+                transform: scale(1);
+                transition: transform .1s ease-in-out;
+                &:hover {
+                    transform: scale(1.2);
+                    transition: transform .1s ease-in-out;
+                }
             }
         }
     }

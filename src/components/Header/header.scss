@@ -1,6 +1,6 @@
 @use '@/styles/vars';
 @use '@/styles/color-themes';
-@use '@/styles/responsive-breakpoints'as media;
+@use '@/styles/responsive-breakpoints' as media;
 
 .header {
     position: fixed;
@@ -17,12 +17,23 @@
         background-repeat: no-repeat;
         background-position: center;
         background-size: contain;
-        width: 100px;
-        height: 145px;
-        margin-top: 1.5em;
+        width: 150px;
+        height: 150px;
 
         @include color-themes.themed() {
-            background-image: color-themes.ask('logo-full');
+            background-image: color-themes.ask('logo-text');
         }
+    }
+}
+
+// Style when on tablette and bigger
+@include media.responsive('tablet') {
+    .header__logo{
+        width: 120px;
+        height: 120px;
+        margin-top: 2em;
+        @include color-themes.themed() {
+            background-image: color-themes.ask('logo-full');
+        } 
     }
 }
