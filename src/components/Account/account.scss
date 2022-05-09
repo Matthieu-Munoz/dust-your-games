@@ -3,40 +3,38 @@
 
 
 .useraccount {
-    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-wrap: nowrap;
+    border-radius: 1em;
+    width: 18em;
 
     @include color-themes.themed() {
         background-color: color-themes.ask('secondary-color');
     }
 
-    &__ctn {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        flex-wrap: nowrap;
-        border-radius: 1em;
-        width: 18em;
-
-        @include color-themes.themed() {
-            background-color: color-themes.ask('secondary-color');
-        }
-    }
-
     &__title {
         font-size: 22px;
-        color: vars.$grey-blue;
+        @include color-themes.themed() {
+            color: color-themes.ask('primary-text-color');
+        }
     }
 
     &__email {
         font-size: 0.8em;
-        color: vars.$grey-blue;
-        padding: 8px
+        padding: 8px;
+        @include color-themes.themed() {
+            color: color-themes.ask('primary-text-color');
+        }
     }
 
     &__btn {
+        @include color-themes.themed() {
+            background-color: color-themes.ask('primary-color');
+            color: color-themes.ask('secondary-color');
+        }
         text-transform: uppercase;
-        background: vars.$grey-blue;
-        color: vars.$off-white;
         box-shadow: 0 1px 4px hsla(220, 90%, 37%, 0.25);
         width: 80%;
         height: 2.5em;
@@ -68,18 +66,22 @@
             border-radius: 50%;
         }
 
+        &__img {
+            width: 10em;
+            height: 10em;
+            border-radius: 50%;
+            box-shadow: 0 1px 4px hsla(220, 90%, 37%, 0.25);
+        }
     }
 
     &__statistics {
-        &__ctn {
-            display: flex;
-            align-items: center;
-            justify-content: space-evenly;
-            width: 100%;
-            height: 5em;
-            background-color: vars.$red;
-            border-radius: 0 0 1em 1em;
-        }
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+        width: 100%;
+        height: 5em;
+        background-color: vars.$red;
+        border-radius: 0 0 1em 1em;
 
         &__gamenumber {
             &__icon {
@@ -87,6 +89,19 @@
                 width: 2em;
                 color: vars.$off-white;
             }
+            &__number {
+                color: vars.$off-white;
+                display: flex;
+                justify-content: center;
+            }
+        }
+
+        &__seperator {
+            background-color: vars.$off-white;
+            width: 1px;
+            height: 50%;
+            border-radius: 1em;
+            margin: 0.25em 0;
         }
 
         &__friendsnumber {
@@ -96,35 +111,11 @@
                 color: vars.$off-white;
             }
 
+            &__number {
+                color: vars.$off-white;
+                display: flex;
+                justify-content: center;
+            }
         }
     }
-}
-
-.useraccount_statistics__gamenumber__number {
-
-    color: vars.$off-white;
-    display: flex;
-    justify-content: center;
-}
-
-.useraccount_statistics__friendsnumber__number {
-
-    color: vars.$off-white;
-    display: flex;
-    justify-content: center;
-}
-
-.useraccount__statistics__seperator {
-    background-color: vars.$off-white;
-    width: 1px;
-    height: 50%;
-    border-radius: 1em;
-    margin: 0.25em 0;
-}
-
-img {
-    width: 10em;
-    height: 10em;
-    border-radius: 50%;
-    box-shadow: 0 1px 4px hsla(220, 90%, 37%, 0.25);
 }
