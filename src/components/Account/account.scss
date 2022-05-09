@@ -16,6 +16,7 @@
 
     &__title {
         font-size: 22px;
+
         @include color-themes.themed() {
             color: color-themes.ask('primary-text-color');
         }
@@ -24,6 +25,7 @@
     &__email {
         font-size: 0.8em;
         padding: 8px;
+
         @include color-themes.themed() {
             color: color-themes.ask('primary-text-color');
         }
@@ -34,6 +36,7 @@
             background-color: color-themes.ask('primary-color');
             color: color-themes.ask('secondary-color');
         }
+
         text-transform: uppercase;
         box-shadow: 0 1px 4px hsla(220, 90%, 37%, 0.25);
         width: 80%;
@@ -53,9 +56,7 @@
         &__redcircle {
             position: absolute;
             width: 10em;
-            height: 10em;
-            border: 0.4em solid vars.$red;
-            border-radius: 50%;
+            width: 200%;
         }
 
         &__yellowcircle {
@@ -74,6 +75,7 @@
         }
     }
 
+
     &__statistics {
         display: flex;
         align-items: center;
@@ -89,6 +91,7 @@
                 width: 2em;
                 color: vars.$off-white;
             }
+
             &__number {
                 color: vars.$off-white;
                 display: flex;
@@ -118,4 +121,30 @@
             }
         }
     }
+}
+
+
+.useraccount--register {
+    padding: 1em;
+    display: flex;
+
+    .useraccount {
+        &__picture {
+            bottom: 0;
+        }
+    }
+}
+
+.description_input{
+
+    font-size: 10px;
+    font-weight: 500;
+    align-self: start;
+    padding-top: 1em;
+}
+
+.userform__btn {
+    margin-top: 1em;
+    margin-bottom: 1em;
+    width: 90%;
 }

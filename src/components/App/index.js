@@ -46,7 +46,7 @@ function App() {
    * @param {*} evt 
    */
   const handleMenu = (evt, menuOpen) => {
-    const str = evt.target.className
+    const str = JSON.stringify(evt.target.className);
     const res = str.includes("menu") || str.includes("burger");
     if (!res && menuOpen) {
       dispatch(toggleMenu(false))

@@ -1,11 +1,61 @@
+// Dependencies
+import { BsPerson } from "react-icons/bs";
+import { AiOutlineLock, AiOutlineMail } from "react-icons/ai";
+// React-Redux
+import Field from "@/components/Field";
 // styles
 import "./account.scss"
 
+// Locals
+import hedgehog from '@/assets/images/hedgehog.jpg';
+
 function EditAccount() {
   return (
-    <div className="editaccount">
-      hello !! ^^
-    </div>
+    <form className="useraccount useraccount--register">
+      <div className="useraccount__picture">
+        <div className="useraccount__picture__redcircle" />
+        <div className="useraccount__picture__yellowcircle" />
+        <img className="useraccount__picture__img" src={hedgehog} alt="avatar" />
+      </div>
+        <div className="description_input"> Mon pseudo </div>
+        <Field
+          name="pseudo"
+          placeholder="Modifier mon pseudo"
+          //onChange={handleChangeField}
+          value={''}
+          Icon={BsPerson}
+        />
+        <div className="description_input"> Mon adresse mail </div>
+        <Field
+          name="email"
+          type="email"
+          placeholder="Modifier mon Email"
+          //onChange={handleChangeField}
+          value={''}
+          Icon={AiOutlineMail}
+        />
+        <div className="description_input"> Mon mot de passe </div>
+        <Field
+          name="password"
+          type="password"
+          placeholder="Modifier mon Mot de passe"
+          //onChange={handleChangeField}
+          value={''}
+          Icon={AiOutlineLock}
+        />
+        <div className="description_input"> Confirmer mon mot de passe </div>
+        <Field
+          name="confirmedpassword"
+          type="password"
+          placeholder="Confirmer le mot de passe"
+          //onChange={handleChangeField}
+          value={''}
+          Icon={AiOutlineLock}
+        />
+        
+        <button className="userform__btn userform__btn--secondary" type="submit">Valider les modifications</button>
+        <button className="userform__btn userform__btn--primary" type="button">Supprimer mon compte</button>
+    </form>
   );
 }
 
