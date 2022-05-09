@@ -1,15 +1,17 @@
 // Dependencies
 import { useSelector, useDispatch } from 'react-redux';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 import classNames from 'classnames';
 // React-Redux
 import { toggleMenu } from '@/actions/app';
 import ThemeToggle from '../ThemeToggle';
+import { logout } from '@/actions/user';
 // Styles
 import "./menu.scss"
 
 function Menu() {
   const dispatch = useDispatch();
+  const isLoggedIn = useSelector((state) => state.user.logged);
   const menuStatus = useSelector((state) => state.app.menuOpened);
   const menuCssClass = classNames('menu', { 'open': menuStatus });
   const burgerCssClass = classNames('burger burger-squeeze', { 'open': menuStatus });
@@ -23,23 +25,67 @@ function Menu() {
       </div>
       <div className={menuCssClass}>
         <ThemeToggle className="menu__theme_toggle" />
-        <NavLink
-          className={
-            ({ isActive }) => (isActive ? 'menu__link menu__link--active' : 'menu__link')
-          }
-          to="/"
-        >
-          Accueil
-        </NavLink>
-        <NavLink
-          className={
-            ({ isActive }) => (isActive ? 'menu__link menu__link--active' : 'menu__link')
-          }
-          to="/account"
-        >
-          Compte
-        </NavLink>
-        <button className="menu__btn" type="button">Se connecter</button>
+        {
+          (isLoggedIn) ?
+            (
+              <>
+                <NavLink
+                  className={
+                    ({ isActive }) => (isActive ? 'menu__link menu__link--active' : 'menu__link')
+                  }
+                  to="/"
+                >
+                  Tableau de bord
+                </NavLink>
+                <NavLink
+                  className={
+                    ({ isActive }) => (isActive ? 'menu__link menu__link--active' : 'menu__link')
+                  }
+                  to="/"
+                >
+                  Liste de jeux
+                </NavLink>
+                <NavLink
+                  className={
+                    ({ isActive }) => (isActive ? 'menu__link menu__link--active' : 'menu__link')
+                  }
+                  to="/account"
+                >
+                  Mon compte
+                </NavLink>
+                <NavLink
+                  className={
+                    ({ isActive }) => (isActive ? 'menu__link menu__link--active' : 'menu__link')
+                  }
+                  to="/"
+                >
+                  Contact
+                </NavLink>
+                <button onClick={() => dispatch(logout())} className="menu__btn" type="button">Se déconnécter</button>
+              </>
+            ) : (
+              <>
+                <NavLink
+                  className={
+                    ({ isActive }) => (isActive ? 'menu__link menu__link--active' : 'menu__link')
+                  }
+                  to="/"
+                >
+                  Accueil
+                </NavLink>
+                <NavLink
+                  className={
+                    ({ isActive }) => (isActive ? 'menu__link menu__link--active' : 'menu__link')
+                  }
+                  to="/"
+                >
+                  Contact
+                </NavLink>
+                <Link to="/" className="menu__btn">Se connecter</Link>
+              </>
+            )
+        }
+
       </div>
     </>
   );

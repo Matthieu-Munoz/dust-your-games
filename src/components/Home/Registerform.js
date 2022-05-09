@@ -1,25 +1,29 @@
 // Dependencies
-import { useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { toggleLoginForm } from '../../actions/home';
 import { BsPerson } from "react-icons/bs";
 import { AiOutlineLock, AiOutlineMail } from "react-icons/ai";
 // React-Redux
 import Field from "@/components/Field";
+import { changeUserField } from '@/actions/user';
 // Styles
 
 function RegisterForm() {
   const dispatch = useDispatch();
 
+  const email = useSelector((state) => state.user.email);
+  const password = useSelector((state) => state.user.password);
+
   const handleChangeField = (value, name) => {
-    console.log(value, name);
+    dispatch(changeUserField(value, name));
   };
   return (
     <form className="userform__ctn userform__ctn--register">
       <Field
-        name="pseudo"
+        name="email"
         placeholder="Identifiant"
         onChange={handleChangeField}
-        value={''}
+        value={email}
         Icon={BsPerson}
       />
       <Field
@@ -27,7 +31,7 @@ function RegisterForm() {
         type="password"
         placeholder="Mot de passe"
         onChange={handleChangeField}
-        value={''}
+        value={password}
         Icon={AiOutlineLock}
       />
       <Field
