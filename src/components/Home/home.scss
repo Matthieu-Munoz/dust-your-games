@@ -11,120 +11,126 @@
   margin-top: 10vh;
   flex-direction: column;
   overflow: auto;
+}
+.userform {
+  width: 100%;
+  padding: 2em 4em;
 
-  .userform {
+  @include color-themes.themed() {
+    background-color: color-themes.ask("secondary-color");
+  }
+
+  &__ctn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
     width: 100%;
-    padding: 2em 4em;
 
+    &--login {
+      height: 250px;
+    }
+
+    &--register {
+      height: 320px;
+    }
+
+    &__link {
+      all: unset;
+      font-size: 0.8em;
+
+      @include color-themes.themed() {
+        color: color-themes.ask("primary-text-color");
+      }
+    }
+  }
+
+  &__seperator {
+    background-color: vars.$red;
+    width: 50%;
+    height: 1px;
+    border-radius: 1em;
+    margin: 0.25em 0;
+  }
+}
+
+.presentation {
+  width: 100%;
+  height: 50%;
+  padding: 2em;
+  margin: auto;
+  text-align: center;
+  color: vars.$off-white;
+
+  &__logo {
+    width: 300px;
+    height: 300px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
     @include color-themes.themed() {
-      background-color: color-themes.ask("secondary-color");
+      background-image: color-themes.ask("logo-full");
     }
-
-    &__ctn {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: space-between;
-      width: 100%;
-
-      &--login {
-        height: 250px;
-      }
-
-      &--register {
-        height: 320px;
-      }
-
-      &__link {
-        all: unset;
-        font-size: 0.8em;
-
-        @include color-themes.themed() {
-          color: color-themes.ask("primary-text-color");
-        }
-      }
-    }
-
-    &__btn {
-      display: inline-flex;
-      justify-content: center;
-      align-items: center;
-      padding: 0.7em 0;
-      border-color: transparent;
-      border-radius: 0.25em;
-      box-shadow: 0 1px 4px hsla(220, 90%, 37%, 0.25);
-      color: white;
-      text-transform: uppercase;
-      transition: 0.2s ease-in-out;
-
-      &--primary {
-        width: 100%;
-        background-color: vars.$red;
-
-        &:hover {
-          @include utils.hover(vars.$alter-red, 1.01);
-        }
-      }
-
-      &--secondary {
-        width: 70%;
-
-        @include color-themes.themed() {
-          background-color: color-themes.ask("primary-color");
-          color: color-themes.ask("secondary-text-color");
-
-          &:hover {
-            @include utils.hover(color-themes.ask("primary-alter-color"), 1.01);
-          }
-        }
-      }
-    }
-
-    &__seperator {
-      background-color: vars.$red;
-      width: 50%;
-      height: 1px;
-      border-radius: 1em;
-      margin: 0.25em 0;
+    &--desktop {
+      display: none;
     }
   }
 
-  .presentation {
-    width: 100%;
-    height: 50%;
-    padding: 2em;
-    text-align: center;
+  &__text {
+    &__title {
+      font-weight: 700;
+      padding: 0.1em;
+    }
+    &__first {
+      margin-top: 0.5em;
+    }
+    &__second {
+      margin-top: 0.5em;
+      font-weight: 700;
+    }
   }
+}
 
-  // Style when on tablette and bigger
-  @include media.responsive("tablet") {
+// Style when on tablette and bigger
+@include media.responsive("tablet") {
+  .home {
     flex-direction: row;
     align-items: center;
     justify-content: flex-start;
     margin-top: 0;
-
-    .userform {
-      width: 50%;
-      height: 100%;
-      align-self: start;
-      display: flex;
-      align-items: center;
-      z-index: 5;
-    }
-    .presentation {
-      width: 50%;
-      height: 100%;
-      padding: 0 5em 0 2em;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
   }
 
-  // Style when on desktop
-  @include media.responsive("desktop") {
-    .userform {
-      width: 512px;
+  .userform {
+    width: 50%;
+    height: 100%;
+    align-self: start;
+    display: flex;
+    align-items: center;
+    z-index: 5;
+  }
+  .presentation {
+    max-width: 60%;
+    height: 100%;
+    padding: 0 5em 0 2em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    &__logo--mobile {
+      display: none;
     }
+    &__logo--desktop {
+      display: block;
+    }
+    &__text {
+      width: 80%;
+    }
+  }
+}
+
+// Style when on desktop
+@include media.responsive("desktop") {
+  .userform {
+    width: 512px;
   }
 }

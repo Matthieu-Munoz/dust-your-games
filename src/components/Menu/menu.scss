@@ -18,26 +18,6 @@
   transform: translateY(-105%);
   transition: transform 0.2s ease-in-out;
 
-  &__btn {
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    padding: 0.65em 0 0.55em;
-    border-color: transparent;
-    border-radius: 0.25em;
-    box-shadow: 0 1px 4px hsla(220, 90%, 37%, 0.25);
-    color: white;
-    text-transform: uppercase;
-    width: 160px;
-    margin-top: 1em;
-    background-color: vars.$red;
-    transition: background-color 0.2s ease-in-out;
-
-    &:hover {
-      @include utils.hover(vars.$alter-red, 1.01);
-    }
-  }
-
   .themetoggle {
     position: absolute;
     margin: 0;

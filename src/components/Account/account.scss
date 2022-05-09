@@ -32,25 +32,6 @@
     }
   }
 
-  &__btn {
-    @include color-themes.themed() {
-      background-color: color-themes.ask("primary-color");
-      color: color-themes.ask("secondary-color");
-      &:hover {
-        @include utils.hover(color-themes.ask("primary-alter-color"), 1.01);
-      }
-    }
-
-    text-transform: uppercase;
-    box-shadow: 0 1px 4px hsla(220, 90%, 37%, 0.25);
-    width: 80%;
-    height: 2.5em;
-    transition: 0.2s ease-in-out;
-    border-color: transparent;
-    border-radius: 0.25em;
-    margin: 32px;
-  }
-
   &__picture {
     display: flex;
     justify-content: center;
@@ -183,18 +164,6 @@
 
     @include color-themes.themed() {
       color: color-themes.ask("primary-text-color");
-    }
-  }
-
-  .userform__btn {
-    margin-top: 1em;
-    font-size: 0.8em;
-
-    &--primary {
-      width: 70%;
-    }
-    &--secondary {
-      width: 78%;
     }
   }
 }

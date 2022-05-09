@@ -6,6 +6,7 @@ import { AiOutlineLock, AiOutlineMail } from "react-icons/ai";
 // React-Redux
 import Field from "@/components/Field";
 import { changeUserField } from '@/actions/user';
+import Button from '../Button';
 // Styles
 
 function RegisterForm() {
@@ -50,9 +51,18 @@ function RegisterForm() {
         value={''}
         Icon={AiOutlineMail}
       />
-      <button className="userform__btn userform__btn--primary" type="submit">S'inscrire</button>
+      <Button
+        name="S'inscrire"
+        type="submit"
+        classname="primary"
+      />
       <div className="userform__seperator" />
-      <button onClick={() => dispatch(toggleLoginForm(true))} className="userform__btn userform__btn--secondary" type="button">Se connecter</button>
+      <Button
+        name="Se connecter"
+        classname="secondary"
+        style={{ width: '70%' }}
+        onclick={() => dispatch(toggleLoginForm(true))}
+      />
     </form>
   );
 }

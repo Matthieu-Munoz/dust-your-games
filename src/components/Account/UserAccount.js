@@ -4,6 +4,7 @@ import { BsPeopleFill } from "react-icons/bs";
 import { FaChessPawn } from "react-icons/fa";
 // React-Redux
 import { toggleEditAccount } from '@/actions/account';
+import Button from '../Button';
 // Styles
 import "./account.scss"
 // Locals
@@ -23,7 +24,12 @@ function UserAccount() {
       <div className="useraccount__email">
         debbie.baker@example.com
       </div>
-      <button onClick={() => dispatch(toggleEditAccount(true))} className="useraccount__btn" type="button">gérer mon compte</button>
+      <Button
+        name="gérer mon compte"
+        classname="secondary"
+        style={{ width: '80%', margin: '2em' }}
+        onclick={() => dispatch(toggleEditAccount(true))}
+      />
       <div className="useraccount__statistics">
         <div className="useraccount__statistics__gamenumber">
           <FaChessPawn className="useraccount__statistics__gamenumber__icon" />

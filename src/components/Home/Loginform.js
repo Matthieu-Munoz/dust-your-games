@@ -6,6 +6,7 @@ import { AiOutlineLock } from "react-icons/ai";
 import Field from "@/components/Field";
 import { toggleLoginForm } from '@/actions/home';
 import { changeUserField, login } from '@/actions/user';
+import Button from '../Button';
 // Styles
 
 function Loginform() {
@@ -41,9 +42,19 @@ function Loginform() {
                 Icon={AiOutlineLock}
             />
             <a className="userform__ctn__link" href="lien">Mot de passe oublié ?</a>
-            <button onClick={handleLogin} className="userform__btn userform__btn--primary" type="submit">Se connecter</button>
+            <Button
+                name="Se connecter"
+                type="submit"
+                classname="primary"
+                onclick={handleLogin}
+            />
             <div className="userform__seperator" />
-            <button onClick={() => dispatch(toggleLoginForm(false))} className="userform__btn userform__btn--secondary" type="button">S'inscrire</button>
+            <Button
+                name="S'inscrire"
+                classname="secondary"
+                style={{ width: '70%' }}
+                onclick={() => dispatch(toggleLoginForm(false))}
+            />
         </form>
     );
 

@@ -1,0 +1,37 @@
+@use "@/styles/vars";
+@use "@/styles/color-themes";
+@use "@/styles/utils";
+@use "@/styles/responsive-breakpoints" as media;
+
+.appButton {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.7em 0;
+  border-color: transparent;
+  border-radius: 0.25em;
+  box-shadow: 0 1px 4px hsla(220, 90%, 37%, 0.25);
+  color: white;
+  text-transform: uppercase;
+  transition: 0.2s ease-in-out;
+  width: 100%;
+
+  &--primary {
+    background-color: vars.$red;
+
+    &:hover {
+      @include utils.hover(vars.$alter-red, 1.01);
+    }
+  }
+
+  &--secondary {
+    @include color-themes.themed() {
+      background-color: color-themes.ask("primary-color");
+      color: color-themes.ask("secondary-text-color");
+
+      &:hover {
+        @include utils.hover(color-themes.ask("primary-alter-color"), 1.01);
+      }
+    }
+  }
+}

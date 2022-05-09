@@ -1,39 +1,46 @@
-@use '@/styles/vars';
-@use '@/styles/color-themes';
-@use '@/styles/responsive-breakpoints' as media;
+@use "@/styles/vars";
+@use "@/styles/color-themes";
+@use "@/styles/responsive-breakpoints" as media;
 
 .header {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    height: 70px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding-right: 5em;
-    z-index: 2;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-right: 5em;
+  z-index: 2;
 
-    &__logo {
-        background-repeat: no-repeat;
-        background-position: center;
-        background-size: contain;
-        width: 150px;
-        height: 150px;
+  &__logo {
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    width: 150px;
+    height: 150px;
 
-        @include color-themes.themed() {
-            background-image: color-themes.ask('logo-text');
-        }
+    @include color-themes.themed() {
+      background-image: color-themes.ask("logo-text");
     }
+  }
 }
 
 // Style when on tablette and bigger
-@include media.responsive('tablet') {
-    .header__logo{
-        width: 120px;
-        height: 120px;
-        margin-top: 2em;
-        @include color-themes.themed() {
-            background-image: color-themes.ask('logo-full');
-        } 
+@include media.responsive("tablet") {
+  .header__logo {
+    width: 120px;
+    height: 120px;
+    margin-top: 2em;
+    @include color-themes.themed() {
+      background-image: color-themes.ask("logo-full");
     }
+  }
+}
+
+.app--login {
+  .header__logo {
+    opacity: 0;
+    pointer-events: none;
+  }
 }

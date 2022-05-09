@@ -1,11 +1,12 @@
 // Dependencies
 import { useSelector, useDispatch } from 'react-redux';
-import { NavLink, Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import classNames from 'classnames';
 // React-Redux
 import { toggleMenu } from '@/actions/app';
 import ThemeToggle from '../ThemeToggle';
 import { logout } from '@/actions/user';
+import Button from '../Button';
 // Styles
 import "./menu.scss"
 
@@ -61,7 +62,12 @@ function Menu() {
                 >
                   Contact
                 </NavLink>
-                <button onClick={() => dispatch(logout())} className="menu__btn" type="button">Se déconnécter</button>
+                <Button
+                  name="Se déconnécter"
+                  classname="primary"
+                  style={{ width: '160px', marginTop: '1em' }}
+                  onclick={() => dispatch(logout())}
+                />
               </>
             ) : (
               <>
@@ -81,7 +87,11 @@ function Menu() {
                 >
                   Contact
                 </NavLink>
-                <Link to="/" className="menu__btn">Se connecter</Link>
+                <Button
+                  name="Se Connecter"
+                  classname="primary"
+                  style={{ width: '160px', marginTop: '1em' }}
+                />
               </>
             )
         }
