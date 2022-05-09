@@ -56,7 +56,9 @@
         &__redcircle {
             position: absolute;
             width: 10em;
-            width: 200%;
+            height: 10em;
+            border: 0.3em solid vars.$red;
+            border-radius: 50%;
         }
 
         &__yellowcircle {
@@ -125,26 +127,66 @@
 
 
 .useraccount--register {
-    padding: 1em;
+    padding: 1.5em;
     display: flex;
+    width: 22em;
+    position: relative;
 
     .useraccount {
+        
+        &__close {
+        position: absolute;
+        width: 2em;
+        height: 2em;
+        right: 1.5em;
+        @include color-themes.themed() {
+            color: color-themes.ask('primary-text-color');
+        }
+        }
+
         &__picture {
             bottom: 0;
+            
+            &__edit {
+                position: absolute;
+                background-color: vars.$red;
+                color: vars.$off-white;
+                border-radius: 1em;
+                padding: 0.2em;
+                width: 2em;
+                height: 2em;
+                bottom: 0.5em;
+                right: 0.5em;
+            }
         }
     }
+
+    .description_input{
+        margin-left: 1em;
+        padding: 0.8em 0 0.2em;
+        align-self: start;
+        text-transform: uppercase;
+        font-size: 10px;
+
+        @include color-themes.themed() {
+            color: color-themes.ask('primary-text-color');
+        }
+    }
+
+    .userform__btn {
+        margin-top: 1em;
+        font-size: 0.8em;
+
+
+        &--primary {
+            width: 70%;
+        }
+        &--secondary {
+            width: 78%;
+        }
+    }
+    
 }
 
-.description_input{
 
-    font-size: 10px;
-    font-weight: 500;
-    align-self: start;
-    padding-top: 1em;
-}
 
-.userform__btn {
-    margin-top: 1em;
-    margin-bottom: 1em;
-    width: 90%;
-}

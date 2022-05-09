@@ -1,6 +1,7 @@
 // Dependencies
 import { BsPerson } from "react-icons/bs";
-import { AiOutlineLock, AiOutlineMail } from "react-icons/ai";
+import { IoClose } from "react-icons/io5";
+import { AiOutlineLock, AiOutlineMail, AiOutlineEdit } from "react-icons/ai";
 // React-Redux
 import Field from "@/components/Field";
 // styles
@@ -12,10 +13,12 @@ import hedgehog from '@/assets/images/hedgehog.jpg';
 function EditAccount() {
   return (
     <form className="useraccount useraccount--register">
+      <IoClose className="useraccount__close"/>
       <div className="useraccount__picture">
         <div className="useraccount__picture__redcircle" />
         <div className="useraccount__picture__yellowcircle" />
         <img className="useraccount__picture__img" src={hedgehog} alt="avatar" />
+        <AiOutlineEdit className="useraccount__picture__edit" />
       </div>
         <div className="description_input"> Mon pseudo </div>
         <Field
