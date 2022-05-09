@@ -1,39 +1,40 @@
 // Dependencies
+import { useDispatch } from 'react-redux';
 import { BsPeopleFill } from "react-icons/bs";
 import { FaChessPawn } from "react-icons/fa";
 // React-Redux
-
+import { toggleUserAccount } from '@/actions/account';
 // Styles
 import "./account.scss"
 // Locals
 import hedgehog from '@/assets/images/hedgehog.jpg';
 
 function UserAccount() {
+  const dispatch = useDispatch();
+
   return (
-    <div className="useraccount__ctn">
+    <div className="useraccount">
       <div className="useraccount__picture">
-        <div className="useraccount__picture__redcircle"></div>
-        <div className="useraccount__picture__yellowcircle"></div>
-        <img src={hedgehog} alt="avatar" />
+        <div className="useraccount__picture__redcircle" />
+        <div className="useraccount__picture__yellowcircle" />
+        <img className="useraccount__picture__img" src={hedgehog} alt="avatar" />
       </div>
-      <div className="useraccount__title">
-        <h1>Bonjour Debbie</h1>
-      </div>
+      <h2 className="useraccount__title">Bonjour Debbie</h2>
       <div className="useraccount__email">
         debbie.baker@example.com
       </div>
-      <button className="useraccount__btn" type="button">gérer mon compte</button>
-      <div className="useraccount__statistics__ctn">
+      <button onClick={() => dispatch(toggleUserAccount(true))} className="useraccount__btn" type="button">gérer mon compte</button>
+      <div className="useraccount__statistics">
         <div className="useraccount__statistics__gamenumber">
           <FaChessPawn className="useraccount__statistics__gamenumber__icon" />
-          <div className="useraccount_statistics__gamenumber__number">
+          <div className="useraccount__statistics__gamenumber__number">
             42
           </div>
         </div>
         <div className="useraccount__statistics__seperator" />
-        <div className="useraccount__statistics__statistics__friendsnumber">
+        <div className="useraccount__statistics__friendsnumber">
           <BsPeopleFill className="useraccount__statistics__friendsnumber__icon" />
-          <div className="useraccount_statistics__friendsnumber__number">
+          <div className="useraccount__statistics__friendsnumber__number">
             6
           </div>
         </div>
@@ -43,5 +44,3 @@ function UserAccount() {
 }
 
 export default UserAccount;
-
-

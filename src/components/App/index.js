@@ -35,26 +35,27 @@ function App() {
     },
     [location, dispatch],
   );
-
+  
   // Use the state to determine the current theme and apply the class accordingly
   const currentTheme = useSelector((state) => state.app.darkTheme);
   const cssClass = classNames('theme', { 'theme--dark': currentTheme }, { 'theme--light': !currentTheme });
-
+  
+  const menuOpen = useSelector((state) => state.app.menuOpened)
   /**
    * Close the menu when anything BUT the menu/burgerIcon is clicked
    * @param {*} evt 
    */
-  const handleMenu = (evt) => {
-    const str = evt.target.className
+  const handleMenu = (evt, menuOpen) => {
+    const str = JSON.stringify(evt.target.className);
     const res = str.includes("menu") || str.includes("burger");
-    if (!res) {
+    if (!res && menuOpen) {
       dispatch(toggleMenu(false))
     }
   }
 
   return (
     <div className={cssClass}>
-      <div className="app" onClick={(evt) => handleMenu(evt)}>
+      <div className="app" onClick={(evt) => handleMenu(evt, menuOpen)}>
         <Modal />
         <Header />
         <Routes>
