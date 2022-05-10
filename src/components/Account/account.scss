@@ -20,6 +20,7 @@
     flex-direction: column;
     align-items: center;
     width: 100%;
+
     .appbutton {
       width: 80%;
       margin: 1.5em;
@@ -127,23 +128,24 @@
     flex-direction: row;
     width: 30em;
 
-  &__picture {
-    position: absolute;
-    top: -140%;
-    bottom: 0;
-    pointer-events: none;
+    &__picture {
+      position: absolute;
+      top: -140%;
+      bottom: 0;
+      pointer-events: none;
 
-    &__redcircle,
-    &__yellowcircle,
-    &__img {
-      width: 13em;
-      height: 13em;
+      &__redcircle,
+      &__yellowcircle,
+      &__img {
+        width: 13em;
+        height: 13em;
+      }
     }
-  }
 
     &__info {
       position: relative;
       align-self: flex-end;
+
       .appbutton {
         width: 60%;
       }
@@ -249,6 +251,17 @@
         }
       }
     }
+
+    &__info__edit {
+      width: 100%;
+    }
+    
+    &__buttons {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+    }
   }
 
   .description_input {
@@ -260,6 +273,70 @@
 
     @include color-themes.themed() {
       color: color-themes.ask("primary-text-color");
+    }
+  }
+
+  .appbutton {
+    margin-top: 1em;
+    font-size: 0.8em;
+
+    &--primary {
+      width: 70%;
+    }
+
+    &--secondary {
+      width: 78%;
+    }
+  }
+}
+
+// Style when on tablet and bigger
+@include media.responsive("tablet") {
+  .useraccount--register {
+    flex-direction: row;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    width: 38em;
+    height: 22em;
+    padding: 2em;
+
+    .useraccount {
+      &__close {
+        position: absolute;
+        top: 0.6em;
+      }
+
+      &__picture {
+        position: absolute;
+        top: 2em;
+        left: 5em;
+
+        &__redcircle,
+        &__yellowcircle,
+        &__img {
+          width: 10em;
+          height: 10em;
+        }
+        &__edit{
+          right: 0;
+          top: 1em;
+          pointer-events: visible;
+        }
+      }
+
+      &__info__edit {
+        display: flex;
+        flex-direction: column;
+        width: 50%;
+      }
+      &__buttons {
+        position: absolute;
+        width: 50%;
+        left: 0;
+        bottom: 2.7em;
+      }
+  
     }
   }
 }
