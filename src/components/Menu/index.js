@@ -42,7 +42,7 @@ function Menu() {
                   className={
                     ({ isActive }) => (isActive ? 'menu__link menu__link--active' : 'menu__link')
                   }
-                  to="/"
+                  to="/games"
                 >
                   Liste de jeux
                 </NavLink>
@@ -58,7 +58,7 @@ function Menu() {
                   className={
                     ({ isActive }) => (isActive ? 'menu__link menu__link--active' : 'menu__link')
                   }
-                  to="/"
+                  to="/contact"
                 >
                   Contact
                 </NavLink>
@@ -83,7 +83,7 @@ function Menu() {
                   className={
                     ({ isActive }) => (isActive ? 'menu__link menu__link--active' : 'menu__link')
                   }
-                  to="/"
+                  to="/contact"
                 >
                   Contact
                 </NavLink>

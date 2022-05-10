@@ -1,6 +1,7 @@
-@use '@/styles/vars';
-@use '@/styles/color-themes';
-
+@use "@/styles/vars";
+@use "@/styles/color-themes";
+@use "@/styles/utils";
+@use "@/styles/responsive-breakpoints" as media;
 
 .field {
   display: flex;
@@ -11,7 +12,7 @@
   width: 100%;
 
   @include color-themes.themed() {
-    color: color-themes.ask('primary-text-color');
+    color: color-themes.ask("primary-text-color");
   }
 
   &__icon {
@@ -27,12 +28,12 @@
 
     &::placeholder {
       text-transform: uppercase;
-      transition: .1s ease-in-out;
+      transition: 0.1s ease-in-out;
     }
 
     &:focus::placeholder {
       color: transparent;
-      transition: .2s ease-in-out;
+      transition: 0.2s ease-in-out;
     }
   }
 }

@@ -3,7 +3,7 @@
 // React-Redux
 
 // Styles
-import "./gamesList.scss"
+import "./gameslist.scss"
 
 function GamesList() {
   return (

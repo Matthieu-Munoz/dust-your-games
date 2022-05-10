@@ -6,12 +6,16 @@ import { loadTheme, toggleMenu } from '@/actions/app';
 import classNames from 'classnames';
 // React-Redux
 import Home from '../Home';
+import Dashboard from '../Dashboard';
 import Account from '../Account';
+import Contact from '../Contact';
+import GamesList from '../GamesList';
 import Error from '../Error';
 import Modal from '../Modal';
 import Header from '../Header';
 // Styles
 import './app.scss';
+import Footer from '../Footer';
 
 
 function App() {
@@ -61,10 +65,13 @@ function App() {
         <Modal />
         <Header />
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={(!userLoggedIn) ? <Home /> : <Dashboard />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/games" element={<GamesList />} />
           <Route path="/account" element={<Account />} />
           <Route path="*" element={<Error />} />
         </Routes>
+        <Footer />
       </div>
     </div>
   );

@@ -8,13 +8,18 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 10vh;
   flex-direction: column;
+  margin-top: 10vh;
+  margin-bottom: 5vh;
   overflow: auto;
 }
 .userform {
   width: 100%;
-  padding: 2em 4em;
+  height: 50%;
+  padding: 2em 3em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   @include color-themes.themed() {
     background-color: color-themes.ask("secondary-color");
@@ -25,7 +30,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    width: 100%;
+    width: 300px;
 
     &--login {
       height: 250px;
@@ -56,15 +61,17 @@
 
 .presentation {
   width: 100%;
-  height: 50%;
-  padding: 2em;
+  height: 30%;
+  padding: 1.5em;
   margin: auto;
-  text-align: center;
-  color: vars.$off-white;
+  margin-bottom: 2em;
+  @include color-themes.themed() {
+    color: color-themes.ask("secondary-text-color");
+  }
 
   &__logo {
     width: 300px;
-    height: 300px;
+    height: 20%;
     background-repeat: no-repeat;
     background-position: center;
     background-size: contain;
@@ -77,6 +84,7 @@
   }
 
   &__text {
+    text-align: justify;
     &__title {
       font-weight: 700;
       padding: 0.1em;
@@ -97,7 +105,8 @@
     flex-direction: row;
     align-items: center;
     justify-content: flex-start;
-    margin-top: 0;
+    margin: 0;
+    overflow: hidden;
   }
 
   .userform {
@@ -107,6 +116,7 @@
     display: flex;
     align-items: center;
     z-index: 5;
+    padding: 2em;
   }
   .presentation {
     max-width: 60%;
@@ -124,6 +134,7 @@
     }
     &__text {
       width: 80%;
+      text-align: center;
     }
   }
 }
@@ -132,5 +143,6 @@
 @include media.responsive("desktop") {
   .userform {
     width: 512px;
+    padding: 4em;
   }
 }
