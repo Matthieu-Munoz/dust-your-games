@@ -39,7 +39,7 @@ function UserAccount() {
             42
           </div>
         </div>
-        <div className="useraccount__statistics__seperator" />
+        <div className="useraccount__statistics__separator" />
         <div className="useraccount__statistics__friendsnumber">
           <BsPeopleFill className="useraccount__statistics__friendsnumber__icon" />
           <div className="useraccount__statistics__friendsnumber__number">

@@ -92,7 +92,7 @@
       }
     }
 
-    &__seperator {
+    &__separator {
       background-color: vars.$off-white;
       width: 1px;
       height: 50%;
@@ -121,8 +121,61 @@
 @include media.responsive("tablet") {
   .useraccount {
     flex-direction: row;
-  }
+    width: 30em;
 
+    &__title {
+      font-size: 30px;
+  
+      @include color-themes.themed() {
+        color: color-themes.ask("primary-text-color");
+      }
+    }
+  
+    &__email {
+      font-size: 1em;
+      padding: 8px;
+  
+      @include color-themes.themed() {
+        color: color-themes.ask("primary-text-color");
+      }
+    }
+
+    &__statistics {
+      flex-direction: column-reverse;
+      height: 22em;
+      width: 10em;
+      border-radius: 0 1em 1em 0;
+
+      &__friendsnumber {
+        &__icon {
+          height: 3.5em;
+          width: 3.5em;
+        }
+
+        &__number {
+          font-size: 1.5em;
+          padding-top: 0.1em;
+        }
+      }
+
+      &__gamenumber {
+        &__icon {
+          height: 3.5em;
+          width: 3.5em;
+        }
+
+        &__number {
+          font-size: 1.5em;
+          padding-top: 0.3em;
+        }
+      }
+
+      &__separator {
+        width: 50%;
+        height: 1px;
+      }
+    }
+  }
 }
 
 .useraccount--register {
