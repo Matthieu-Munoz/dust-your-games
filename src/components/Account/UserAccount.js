@@ -15,21 +15,23 @@ function UserAccount() {
 
   return (
     <div className="useraccount">
-      <div className="useraccount__picture">
-        <div className="useraccount__picture__redcircle" />
-        <div className="useraccount__picture__yellowcircle" />
-        <img className="useraccount__picture__img" src={hedgehog} alt="avatar" />
+      <div className="useraccount__info">
+        <div className="useraccount__picture">
+          <div className="useraccount__picture__redcircle" />
+          <div className="useraccount__picture__yellowcircle" />
+          <img className="useraccount__picture__img" src={hedgehog} alt="avatar" />
+        </div>
+        <h2 className="useraccount__title">Bonjour Debbie</h2>
+        <div className="useraccount__email">
+          debbie.baker@example.com
+        </div>
+        <Button
+          name="gérer mon compte"
+          classname="secondary"
+          style={{ width: '80%', margin: '2em' }}
+          onclick={() => dispatch(toggleEditAccount(true))}
+        />
       </div>
-      <h2 className="useraccount__title">Bonjour Debbie</h2>
-      <div className="useraccount__email">
-        debbie.baker@example.com
-      </div>
-      <Button
-        name="gérer mon compte"
-        classname="secondary"
-        style={{ width: '80%', margin: '2em' }}
-        onclick={() => dispatch(toggleEditAccount(true))}
-      />
       <div className="useraccount__statistics">
         <div className="useraccount__statistics__gamenumber">
           <FaChessPawn className="useraccount__statistics__gamenumber__icon" />

@@ -1,7 +1,7 @@
 @use "@/styles/vars";
 @use "@/styles/color-themes";
 @use "@/styles/utils";
-@use "@/styles/responsive-breakpoints" as media;
+@use "@/styles/responsive-breakpoints"as media;
 
 .useraccount {
   display: flex;
@@ -13,6 +13,13 @@
 
   @include color-themes.themed() {
     background-color: color-themes.ask("secondary-color");
+  }
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
   }
 
   &__title {
@@ -109,6 +116,15 @@
   }
 }
 
+
+// Style when on tablet and bigger
+@include media.responsive("tablet") {
+  .useraccount {
+    flex-direction: row;
+  }
+
+}
+
 .useraccount--register {
   padding: 1.5em;
   display: flex;
@@ -148,6 +164,7 @@
         right: 0.5em;
         transform: scale(1);
         transition: transform 0.1s ease-in-out;
+
         &:hover {
           @include utils.hover(vars.$alter-red, 1.05);
         }
