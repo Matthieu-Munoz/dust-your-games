@@ -13,9 +13,9 @@ function Button({
     onclick
 }) {
     const cssClass = classNames(
-        'appButton',
-        { 'appButton--primary': (classname === 'primary') },
-        { 'appButton--secondary': (classname === 'secondary') }
+        'appbutton',
+        { 'appbutton--primary': (classname === 'primary') },
+        { 'appbutton--secondary': (classname === 'secondary') }
     );
     return (
         <button onClick={onclick} className={cssClass} type={type} style={style} >{name}</button>

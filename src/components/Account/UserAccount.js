@@ -25,12 +25,11 @@ function UserAccount() {
         <div className="useraccount__email">
           debbie.baker@example.com
         </div>
-        <Button
-          name="gérer mon compte"
-          classname="secondary"
-          style={{ width: '80%', margin: '2em' }}
-          onclick={() => dispatch(toggleEditAccount(true))}
-        />
+          <Button
+            name="gérer mon compte"
+            classname="secondary"
+            onclick={() => dispatch(toggleEditAccount(true))}
+          />
       </div>
       <div className="useraccount__statistics">
         <div className="useraccount__statistics__gamenumber">

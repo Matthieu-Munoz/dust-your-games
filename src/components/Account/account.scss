@@ -20,6 +20,10 @@
     flex-direction: column;
     align-items: center;
     width: 100%;
+    .appbutton {
+      width: 80%;
+      margin: 1.5em;
+    }
   }
 
   &__title {
@@ -123,18 +127,40 @@
     flex-direction: row;
     width: 30em;
 
+  &__picture {
+    position: absolute;
+    top: -140%;
+    bottom: 0;
+    pointer-events: none;
+
+    &__redcircle,
+    &__yellowcircle,
+    &__img {
+      width: 13em;
+      height: 13em;
+    }
+  }
+
+    &__info {
+      position: relative;
+      align-self: flex-end;
+      .appbutton {
+        width: 60%;
+      }
+    }
+
     &__title {
       font-size: 30px;
-  
+
       @include color-themes.themed() {
         color: color-themes.ask("primary-text-color");
       }
     }
-  
+
     &__email {
-      font-size: 1em;
+      font-size: 1.1em;
       padding: 8px;
-  
+
       @include color-themes.themed() {
         color: color-themes.ask("primary-text-color");
       }
