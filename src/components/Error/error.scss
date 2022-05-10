@@ -1,0 +1,91 @@
+@use "@/styles/vars";
+@use "@/styles/color-themes";
+@use "@/styles/utils";
+@use "@/styles/responsive-breakpoints" as media;
+
+.error {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  &__ctn {
+    width: 350px;
+    text-align: center;
+    @include color-themes.themed() {
+      color: color-themes.ask("secondary-text-color");
+    }
+  }
+  &__404 {
+    font-size: 7em;
+    font-weight: 300;
+  }
+  &__message {
+    font-size: 1em;
+    margin-bottom: 1em;
+  }
+  &__picture {
+    position: absolute;
+
+    &--pugs {
+      bottom: 0;
+      left: 0;
+      width: 10em;
+      height: 7em;
+      transform: rotate(19deg) translate(-39px, 0px);
+      transition: transform 0.2s ease-in-out;
+    }
+
+    &--left {
+      bottom: 0;
+      left: 0;
+      width: 12em;
+      height: 12em;
+      z-index: 2;
+      &:hover + .error__picture--pugs {
+        transform: rotate(25deg) translate(-66px, -95px);
+        transition: transform 0.2s ease-in-out;
+      }
+    }
+    &--right {
+      bottom: 0;
+      right: 0;
+      z-index: 2;
+      width: 9em;
+      height: 9em;
+    }
+  }
+}
+
+// Style when on tablette and bigger
+@include media.responsive("tablet") {
+  .error {
+    &__404 {
+      font-size: 9em;
+      font-weight: 300;
+    }
+    &__message {
+      font-size: 1.2em;
+      margin-bottom: 1em;
+    }
+    &__picture {
+      &--pugs {
+        width: 13em;
+        height: 10em;
+      }
+
+      &--left {
+        width: 15em;
+        height: 15em;
+        &:hover + .error__picture--pugs {
+          transform: rotate(25deg) translate(-58px, -118px);
+        }
+      }
+      &--right {
+        width: 12em;
+        height: 12em;
+      }
+    }
+  }
+}
