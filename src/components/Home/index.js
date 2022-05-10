@@ -1,8 +1,8 @@
 // Dependencies
 import { useSelector } from 'react-redux';
 // React-Redux
-import Loginform from "./Loginform";
-import RegisterForm from "./Registerform";
+import LoginForm from "./LoginForm";
+import RegisterForm from "./RegisterForm";
 // Styles
 import "./home.scss"
 
@@ -14,7 +14,7 @@ function Home() {
     <div className="home">
       <div className='presentation__logo presentation__logo--mobile' />
       <div className="userform">
-        {(isLoginForm) ? <Loginform /> : <RegisterForm />}
+        {(isLoginForm) ? <LoginForm /> : <RegisterForm />}
       </div>
       <div className="presentation">
         <div className='presentation__logo presentation__logo--desktop' />

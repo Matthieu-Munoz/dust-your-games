@@ -9,7 +9,7 @@ import { changeUserField, login } from '@/actions/user';
 import Button from '../Button';
 // Styles
 
-function Loginform() {
+function LoginForm() {
     const dispatch = useDispatch();
 
     const email = useSelector((state) => state.user.email);
@@ -48,7 +48,11 @@ function Loginform() {
                 classname="primary"
                 onclick={handleLogin}
             />
-            <div className="userform__seperator" />
+            <div className="userform__seperator">
+                <div className="userform__seperator__lign" />
+                ou
+                <div className="userform__seperator__lign" />
+            </div>
             <Button
                 name="S'inscrire"
                 classname="secondary"
@@ -60,4 +64,4 @@ function Loginform() {
 
 }
 
-export default Loginform;
+export default LoginForm;

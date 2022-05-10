@@ -56,7 +56,11 @@ function RegisterForm() {
         type="submit"
         classname="primary"
       />
-      <div className="userform__seperator" />
+      <div className="userform__seperator">
+        <div className="userform__seperator__lign" />
+        ou
+        <div className="userform__seperator__lign" />
+      </div>
       <Button
         name="Se connecter"
         classname="secondary"

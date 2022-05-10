@@ -3,14 +3,14 @@
 @use "@/styles/utils";
 @use "@/styles/responsive-breakpoints" as media;
 
-.appButton {
+.appbutton {
   display: inline-flex;
   justify-content: center;
   align-items: center;
   padding: 0.7em 0;
   border-color: transparent;
   border-radius: 0.25em;
-  box-shadow: 0 1px 4px hsla(220, 90%, 37%, 0.25);
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.3);
   color: white;
   text-transform: uppercase;
   transition: 0.2s ease-in-out;

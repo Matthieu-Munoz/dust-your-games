@@ -51,11 +51,20 @@
   }
 
   &__seperator {
-    background-color: vars.$red;
-    width: 50%;
-    height: 1px;
-    border-radius: 1em;
-    margin: 0.25em 0;
+    display: flex;
+    width: 60%;
+    align-items: center;
+    @include color-themes.themed() {
+      color: color-themes.ask("primary-text-color");
+    }
+
+    &__lign {
+      background-color: vars.$red;
+      width: 40%;
+      height: 1px;
+      border-radius: 1em;
+      margin: 0.25em 0.5em;
+    }
   }
 }
 
