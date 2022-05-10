@@ -1,7 +1,7 @@
 @use "@/styles/vars";
 @use "@/styles/color-themes";
 @use "@/styles/utils";
-@use "@/styles/responsive-breakpoints" as media;
+@use "@/styles/responsive-breakpoints"as media;
 
 .useraccount {
   display: flex;
@@ -13,6 +13,18 @@
 
   @include color-themes.themed() {
     background-color: color-themes.ask("secondary-color");
+  }
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+
+    .appbutton {
+      width: 80%;
+      margin: 1.5em;
+    }
   }
 
   &__title {
@@ -85,7 +97,7 @@
       }
     }
 
-    &__seperator {
+    &__separator {
       background-color: vars.$off-white;
       width: 1px;
       height: 50%;
@@ -104,6 +116,91 @@
         color: vars.$off-white;
         display: flex;
         justify-content: center;
+      }
+    }
+  }
+}
+
+
+// Style when on tablet and bigger
+@include media.responsive("tablet") {
+  .useraccount {
+    flex-direction: row;
+    width: 30em;
+
+    &__picture {
+      position: absolute;
+      top: -140%;
+      bottom: 0;
+      pointer-events: none;
+
+      &__redcircle,
+      &__yellowcircle,
+      &__img {
+        width: 13em;
+        height: 13em;
+      }
+    }
+
+    &__info {
+      position: relative;
+      align-self: flex-end;
+
+      .appbutton {
+        width: 60%;
+      }
+    }
+
+    &__title {
+      font-size: 30px;
+
+      @include color-themes.themed() {
+        color: color-themes.ask("primary-text-color");
+      }
+    }
+
+    &__email {
+      font-size: 1.1em;
+      padding: 8px;
+
+      @include color-themes.themed() {
+        color: color-themes.ask("primary-text-color");
+      }
+    }
+
+    &__statistics {
+      flex-direction: column-reverse;
+      height: 22em;
+      width: 10em;
+      border-radius: 0 1em 1em 0;
+
+      &__friendsnumber {
+        &__icon {
+          height: 3.5em;
+          width: 3.5em;
+        }
+
+        &__number {
+          font-size: 1.5em;
+          padding-top: 0.1em;
+        }
+      }
+
+      &__gamenumber {
+        &__icon {
+          height: 3.5em;
+          width: 3.5em;
+        }
+
+        &__number {
+          font-size: 1.5em;
+          padding-top: 0.3em;
+        }
+      }
+
+      &__separator {
+        width: 50%;
+        height: 1px;
       }
     }
   }
@@ -148,10 +245,22 @@
         right: 0.5em;
         transform: scale(1);
         transition: transform 0.1s ease-in-out;
+
         &:hover {
           @include utils.hover(vars.$alter-red, 1.05);
         }
       }
+    }
+
+    &__info__edit {
+      width: 100%;
+    }
+    
+    &__buttons {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
     }
   }
 
@@ -164,6 +273,70 @@
 
     @include color-themes.themed() {
       color: color-themes.ask("primary-text-color");
+    }
+  }
+
+  .appbutton {
+    margin-top: 1em;
+    font-size: 0.8em;
+
+    &--primary {
+      width: 70%;
+    }
+
+    &--secondary {
+      width: 78%;
+    }
+  }
+}
+
+// Style when on tablet and bigger
+@include media.responsive("tablet") {
+  .useraccount--register {
+    flex-direction: row;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    width: 38em;
+    height: 22em;
+    padding: 2em;
+
+    .useraccount {
+      &__close {
+        position: absolute;
+        top: 0.6em;
+      }
+
+      &__picture {
+        position: absolute;
+        top: 2em;
+        left: 5em;
+
+        &__redcircle,
+        &__yellowcircle,
+        &__img {
+          width: 10em;
+          height: 10em;
+        }
+        &__edit{
+          right: 0;
+          top: 1em;
+          pointer-events: visible;
+        }
+      }
+
+      &__info__edit {
+        display: flex;
+        flex-direction: column;
+        width: 50%;
+      }
+      &__buttons {
+        position: absolute;
+        width: 50%;
+        left: 0;
+        bottom: 2.7em;
+      }
+  
     }
   }
 }

@@ -24,6 +24,7 @@ function EditAccount() {
         <img className="useraccount__picture__img" src={hedgehog} alt="avatar" />
         <AiOutlineEdit className="useraccount__picture__edit" />
       </div>
+      <div className="useraccount__info__edit">
       <div className="description_input"> Mon pseudo </div>
       <Field
         name="pseudo"
@@ -59,17 +60,20 @@ function EditAccount() {
         value={''}
         Icon={AiOutlineLock}
       />
-      <Button
-        name="Valider les modifications"
-        classname="secondary"
-        type="submit"
-        style={{ width: '78%', marginTop: '1em', fontSize: '0.8em' }}
-      />
-      <Button
-        name="Supprimer mon compte"
-        classname="primary"
-        style={{ width: '70%', marginTop: '1em', fontSize: '0.8em' }}
-      />
+      </div>
+      <div className="useraccount__buttons">
+        <Button
+          name="Valider les modifications"
+          classname="secondary"
+          type="submit"
+          style={{ width: '78%', marginTop: '1em', fontSize: '0.8em' }}
+        />
+        <Button
+          name="Supprimer mon compte"
+          classname="primary"
+          style={{ width: '70%', marginTop: '1em', fontSize: '0.8em' }}
+        />
+      </div>
     </form>
   );
 }
