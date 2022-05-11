@@ -5,8 +5,8 @@ import { FaLinkedin } from "react-icons/fa";
 import { BsQuestionCircle } from "react-icons/bs";
 import { AiOutlineMail } from "react-icons/ai";
 import { BsPerson } from "react-icons/bs";
-import { RiMessage2Line } from "react-icons/ri"
 import { HiOutlineSelector } from "react-icons/hi"
+import TextareaAutosize from 'react-autosize-textarea';
 
 // React-Redux
 import Field from "@/components/Field";
@@ -134,7 +134,12 @@ function Contact() {
             Icon={BsQuestionCircle}
             SecondIcon={HiOutlineSelector}
           />
-          <input className="message" rows="5" cols="33" placeholder="votre message..." Icon={RiMessage2Line} />
+          <TextareaAutosize
+            placeholder="Votre message..."
+            className="contact__form__section__message"
+            style={{ minHeight: 50, maxHeight: 100 }}
+          />
+
           <Button
             name="envoyer"
             classname="primary"

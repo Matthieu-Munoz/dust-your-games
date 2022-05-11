@@ -6,10 +6,6 @@
 .contact {
     width: 100%;
     height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
     margin-top: 70px;
     overflow: auto;
 
@@ -23,18 +19,14 @@
         height: 1px;
         margin: auto;
     }
-    
-    // Team part:
 
+    // Team part:
     &__team {
-        padding-top: 33em;
-        padding-left: 0.5em;
-        padding-right: 0.5em;
 
         &__title {
             text-align: center;
             font-size: 22px;
-            padding-bottom: 1.5em;
+            margin: 1.5em 0;
 
             @include color-themes.themed() {
                 color: color-themes.ask("secondary-text-color");
@@ -55,7 +47,7 @@
             width: 10em;
             height: 12em;
             border-radius: 1em;
-            margin-bottom: 3.5em;
+            margin-bottom: 3em;
 
             @include color-themes.themed() {
                 background-color: color-themes.ask("secondary-color");
@@ -66,7 +58,6 @@
             display: flex;
             flex-wrap: wrap;
             justify-content: space-around;
-            padding-bottom: 2em;
         }
 
         &__picture {
@@ -122,7 +113,7 @@
         &__title {
             text-align: center;
             font-size: 22px;
-            padding-bottom: 1.5em;
+            margin: 1.5em 0;
 
             @include color-themes.themed() {
                 color: color-themes.ask("secondary-text-color");
@@ -133,6 +124,7 @@
             border-radius: 1em;
             padding-top: 1em;
             margin-bottom: 1em;
+            padding-bottom: 1em;
 
             @include color-themes.themed() {
                 background-color: color-themes.ask("secondary-color");
@@ -145,29 +137,32 @@
                 display: flex;
                 align-items: center;
             }
+
+            &__message {
+                border: solid 1px vars.$red;
+                border-radius: 0.5em;
+                width: 90%;
+                margin-left: 1.3em;
+                margin-bottom: 1em;
+                padding-top: 0.5em;
+                padding-left: 0.5em;
+                text-transform: uppercase;
+                outline: none;
+                resize: none;
+
+                @include color-themes.themed() {
+                    background-color: color-themes.ask("secondary-color");
+                    color: color-themes.ask("primary-text-color");
+                }
+            }
+
+            .field {
+                width: 90%;
+                margin: auto;
+                border-radius: 0.5em;
+                margin-bottom: 0.8em;
+            }
         }
     }
 
-    .field {
-        width: 90%;
-        margin: auto;
-        border-radius: 0.5em;
-        margin-bottom: 0.8em;
-    }
-
-    .message {
-        border: solid 1px vars.$red;
-        border-radius: 0.5em;
-        width: 90%;
-        margin-left: 1.3em;
-        margin-bottom: 1em;
-        padding-top: 0.5em;
-        padding-left: 0.5em;
-        text-transform: uppercase;
-
-        @include color-themes.themed() {
-            background-color: color-themes.ask("secondary-color");
-        }
-
-    }
 }
