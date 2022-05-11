@@ -1,6 +1,6 @@
 // Dependencies
 import { useSelector, useDispatch } from 'react-redux';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import classNames from 'classnames';
 // React-Redux
 import { toggleMenu } from '@/actions/app';
@@ -12,6 +12,7 @@ import "./menu.scss"
 
 function Menu() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const isLoggedIn = useSelector((state) => state.user.logged);
   const menuStatus = useSelector((state) => state.app.menuOpened);
   const menuCssClass = classNames('menu', { 'open': menuStatus });
@@ -65,8 +66,11 @@ function Menu() {
                 <Button
                   name="Se déconnécter"
                   classname="primary"
-                  style={{ width: '160px', marginTop: '1em' }}
-                  onclick={() => dispatch(logout())}
+                  style={{ width: '170px', marginTop: '1em' }}
+                  onclick={() => {
+                    navigate('../', { replace: true });
+                    dispatch(logout());
+                  }}
                 />
               </>
             ) : (
@@ -90,7 +94,10 @@ function Menu() {
                 <Button
                   name="Se Connecter"
                   classname="primary"
-                  style={{ width: '160px', marginTop: '1em' }}
+                  style={{ width: '170px', marginTop: '1em' }}
+                  onclick={() => {
+                    navigate('../', { replace: true });
+                  }}
                 />
               </>
             )

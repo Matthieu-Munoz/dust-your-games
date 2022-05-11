@@ -6,7 +6,6 @@ import { BsQuestionCircle } from "react-icons/bs";
 import { AiOutlineMail } from "react-icons/ai";
 import { BsPerson } from "react-icons/bs";
 import { HiOutlineSelector } from "react-icons/hi"
-import TextareaAutosize from 'react-autosize-textarea';
 
 // React-Redux
 import Field from "@/components/Field";
@@ -23,6 +22,9 @@ import mehdi from '@/assets/images/mehdi.png';
 import matthieu from '@/assets/images/matthieu.png';
 
 function Contact() {
+  const handleChangeField = (value, name) => {
+    console.log(value, name);
+  };
   return (
     <div className="contact">
       <div className="contact__team">
@@ -113,7 +115,7 @@ function Contact() {
             name="pseudo"
             type="text"
             placeholder="pseudo"
-            //onChange={handleChangeField}
+            onChange={handleChangeField}
             value={''}
             Icon={BsPerson}
           />
@@ -121,29 +123,34 @@ function Contact() {
             name="email"
             type="email"
             placeholder="e-mail"
-            //onChange={handleChangeField}
+            onChange={handleChangeField}
             value={''}
             Icon={AiOutlineMail}
           />
           <Field
             name="objet"
-            type="select"
-            placeholder="au sujet de"
-            //onChange={handleChangeField}
+            onChange={handleChangeField}
             value={''}
             Icon={BsQuestionCircle}
             SecondIcon={HiOutlineSelector}
+            options={[
+              { value: "", text: "AU SUJET DE..." },
+              { value: "1", text: "Choisir une option" },
+              { value: "2", text: "Choisir une option" },
+            ]}
+            field="select"
           />
-          <TextareaAutosize
+          <Field
+            name="message"
             placeholder="Votre message..."
-            className="contact__form__section__message"
-            style={{ minHeight: 50, maxHeight: 100 }}
+            field="textarea"
+            onChange={handleChangeField}
           />
-
           <Button
             name="envoyer"
             classname="primary"
             type="submit"
+            onclick={() => console.log}
           />
           {/*<div className="information">
         N'hésitez pas à nous envoyer un message.

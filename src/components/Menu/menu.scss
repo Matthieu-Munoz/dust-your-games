@@ -27,21 +27,8 @@
     transition: opacity 0.2s ease-in-out;
   }
 
-  &.open {
-    transform: translateY(0);
-    transition: transform 0.2s ease-in-out;
-
-    @include color-themes.themed() {
-      background-color: color-themes.ask("primary-color");
-    }
-
-    .themetoggle {
-      opacity: 1;
-      transition: opacity 0.2s 0.1s ease-in-out;
-    }
-  }
-
   &__link {
+    opacity: 0;
     margin-bottom: 0.5em;
     font-size: 1.5em;
     transform: scale(1);
@@ -58,6 +45,24 @@
 
     &--active {
       font-weight: 600;
+    }
+  }
+
+  &.open {
+    transform: translateY(0);
+    transition: transform 0.2s ease-in-out;
+
+    @include color-themes.themed() {
+      background-color: color-themes.ask("primary-color");
+    }
+
+    .themetoggle {
+      opacity: 1;
+      transition: opacity 0.2s 0.1s ease-in-out;
+    }
+
+    .menu__link {
+      opacity: 1;
     }
   }
 }

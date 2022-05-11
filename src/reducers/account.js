@@ -3,7 +3,7 @@ import {
 } from '@/actions/account';
 
 export const initialState = {
-    isEdit: true,
+    isEdit: false,
 };
 
 const reducer = (state = initialState, action = {}) => {

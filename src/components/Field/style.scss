@@ -4,10 +4,10 @@
 @use "@/styles/responsive-breakpoints" as media;
 
 .field {
+  position: relative;
   display: flex;
   align-items: center;
   border: 1px solid vars.$red;
-  padding: 0.7em 0.5em;
   border-radius: 0.25em;
   width: 100%;
 
@@ -16,20 +16,25 @@
   }
 
   &__icon {
+    position: absolute;
+    left: 0.3em;
     width: 1.2em;
     height: 1.2em;
 
     &--second {
-
+      right: 0.25em;
+      left: auto;
     }
   }
 
   &__input {
     background: none;
     outline: none;
-    margin-left: 0.5em;
     font-size: 0.8em;
     width: 100%;
+    height: 100%;
+    text-indent: 1.7em;
+    padding: 0.7em 0.5em;
     @include color-themes.themed() {
       color: color-themes.ask("primary-text-color");
     }
@@ -45,6 +50,47 @@
     &:focus::placeholder {
       color: transparent;
       transition: 0.2s ease-in-out;
+    }
+  }
+
+  &__textarea {
+    width: 100%;
+    height: 100%;
+    padding: 0.5em;
+    outline: none;
+    background: none;
+
+    @include color-themes.themed() {
+      color: color-themes.ask("primary-text-color");
+    }
+
+    &::placeholder {
+      text-transform: uppercase;
+      transition: 0.1s ease-in-out;
+      @include color-themes.themed() {
+        color: color-themes.ask("primary-text-color");
+      }
+    }
+
+    &:focus::placeholder {
+      color: transparent;
+      transition: 0.2s ease-in-out;
+    }
+  }
+
+  &__select {
+    width: 100%;
+    height: 100%;
+    padding: 0.5em;
+    text-indent: 1.7em;
+    font-size: 0.8em;
+    outline: none;
+    background: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+
+    @include color-themes.themed() {
+      color: color-themes.ask("primary-text-color");
     }
   }
 }

@@ -11,25 +11,26 @@ const axiosInstance = axios.create({
 const dygApiMiddleWare = (store) => (next) => (action) => {
   switch (action.type) {
     case LOGIN: {
-      const { user: { email, password } } = store.getState();
+      // const { user: { email, password } } = store.getState();
 
-      axiosInstance
-        .post(
-          'login',
-          {
-            email,
-            password,
-          },
-        )
-        .then((response) => {
-          const { data: user } = response;
-          axiosInstance.defaults.headers.common.Authorization = `Bearer ${user.token}`;
-          console.log(user);
-          store.dispatch(saveUser(user));
-        })
-        .catch(() => {
-          console.log('oups...');
-        });
+      // axiosInstance
+      //   .post(
+      //     'login',
+      //     {
+      //       email,
+      //       password,
+      //     },
+      //   )
+      //   .then((response) => {
+      //     const { data: user } = response;
+      //     axiosInstance.defaults.headers.common.Authorization = `Bearer ${user.token}`;
+      //     console.log(user);
+      //     store.dispatch(saveUser(user));
+      //   })
+      //   .catch(() => {
+      //     console.log('oups...');
+      //   });
+      store.dispatch(saveUser({ logged: true }));
       next(action);
       break;
     }
