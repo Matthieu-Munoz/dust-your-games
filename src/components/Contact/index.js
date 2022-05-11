@@ -6,7 +6,7 @@ import { BsQuestionCircle } from "react-icons/bs";
 import { AiOutlineMail } from "react-icons/ai";
 import { BsPerson } from "react-icons/bs";
 import { TiMessageTyping } from "react-icons/ti"
-import { HiChevronDoubleDown } from "react-icons/hi"
+import { HiOutlineSelector } from "react-icons/hi"
 
 // React-Redux
 import Field from "@/components/Field";
@@ -28,10 +28,24 @@ function Contact() {
       <div className="contact__team">
         <h2 className="contact__team__title">L'équipe</h2>
         <div className="contact__team__ctn">
-          <div className="contact__team__alice">
+        <div className="contact__team_">
             <div className="contact__team__picture">
-              <div className="contact__team__picture__redcircle" />
-              <div className="contact__team__picture__yellowcircle" />
+              <div className="contact__team__picture__border" />
+              <img className="contact__team__picture__img" src={matthieu} alt="matthieu" />
+            </div>
+            <div className="contact__team__description">
+              Matthieu M. <br />
+              Développeuse React.js
+            </div>
+            <div className="contact__team__links">
+              <GoMail className="contact__team__links__mail" />
+              <FaGithub className="contact__team__links__github" />
+              <FaLinkedin className="contact__team__links__linkedin" />
+            </div>
+          </div>
+          <div className="contact__team">
+            <div className="contact__team__picture">
+              <div className="contact__team__picture__border" />
               <img className="contact__team__picture__img" src={alice} alt="alice" />
             </div>
             <div className="contact__team__description">
@@ -43,69 +57,50 @@ function Contact() {
               <FaGithub className="contact__team__links__github" />
               <FaLinkedin className="contact__team__links__linkedin" />
             </div>
-            <div className="contact__team__manu">
-              <div className="contact__team__picture">
-                <div className="contact__team__picture__redcircle" />
-                <div className="contact__team__picture__yellowcircle" />
-                <img className="contact__team__picture__img" src={manu} alt="manu" />
-              </div>
-              <div className="contact__team__description">
-                Manu S. <br />
-                Développeur React.js
-              </div>
-              <div className="contact__team__links">
-                <GoMail className="contact__team__links__mail" />
-                <FaGithub className="contact__team__links__github" />
-                <FaLinkedin className="contact__team__links__linkedin" />
-              </div>
+          </div>
+          <div className="contact__team">
+            <div className="contact__team__picture">
+              <div className="contact__team__picture__border" />
+              <img className="contact__team__picture__img" src={manu} alt="manu" />
             </div>
-            <div className="contact__team__medhy">
-              <div className="contact__team__picture">
-                <div className="contact__team__picture__redcircle" />
-                <div className="contact__team__picture__yellowcircle" />
-                <img className="contact__team__picture__img" src={medhy} alt="medhy" />
-              </div>
-              <div className="contact__team__description">
-                Medhy D. <br />
-                Développeur Symfony
-              </div>
-              <div className="contact__team__links">
-                <GoMail className="contact__team__links__mail" />
-                <FaGithub className="contact__team__links__github" />
-                <FaLinkedin className="contact__team__links__linkedin" />
-              </div>
+            <div className="contact__team__description">
+              Manu S. <br />
+              Développeur React.js
             </div>
-            <div className="contact__team__mehdi">
-              <div className="contact__team__picture">
-                <div className="contact__team__picture__redcircle" />
-                <div className="contact__team__picture__yellowcircle" />
-                <img className="contact__team__picture__img" src={mehdi} alt="mehdi" />
-              </div>
-              <div className="contact__team__description">
-                Mehdi B. <br />
-                Développeur Symfony
-              </div>
-              <div className="contact__team__links">
-                <GoMail className="contact__team__links__mail" />
-                <FaGithub className="contact__team__links__github" />
-                <FaLinkedin className="contact__team__links__linkedin" />
-              </div>
+            <div className="contact__team__links">
+              <GoMail className="contact__team__links__mail" />
+              <FaGithub className="contact__team__links__github" />
+              <FaLinkedin className="contact__team__links__linkedin" />
             </div>
-            <div className="contact__team__matthieu">
-              <div className="contact__team__picture">
-                <div className="contact__team__picture__redcircle" />
-                <div className="contact__team__picture__yellowcircle" />
-                <img className="contact__team__picture__img" src={matthieu} alt="matthieu" />
-              </div>
-              <div className="contact__team__description">
-                Matthieu M. <br />
-                Développeuse React.js
-              </div>
-              <div className="contact__team__links">
-                <GoMail className="contact__team__links__mail" />
-                <FaGithub className="contact__team__links__github" />
-                <FaLinkedin className="contact__team__links__linkedin" />
-              </div>
+          </div>
+          <div className="contact__team">
+            <div className="contact__team__picture">
+              <div className="contact__team__picture__border" />
+              <img className="contact__team__picture__img" src={medhy} alt="medhy" />
+            </div>
+            <div className="contact__team__description">
+              Medhy D. <br />
+              Développeur Symfony
+            </div>
+            <div className="contact__team__links">
+              <GoMail className="contact__team__links__mail" />
+              <FaGithub className="contact__team__links__github" />
+              <FaLinkedin className="contact__team__links__linkedin" />
+            </div>
+          </div>
+          <div className="contact__team">
+            <div className="contact__team__picture">
+              <div className="contact__team__picture__border" />
+              <img className="contact__team__picture__img" src={mehdi} alt="mehdi" />
+            </div>
+            <div className="contact__team__description">
+              Mehdi B. <br />
+              Développeur Symfony
+            </div>
+            <div className="contact__team__links">
+              <GoMail className="contact__team__links__mail" />
+              <FaGithub className="contact__team__links__github" />
+              <FaLinkedin className="contact__team__links__linkedin" />
             </div>
           </div>
         </div>
@@ -137,21 +132,22 @@ function Contact() {
             //onChange={handleChangeField}
             value={''}
             Icon={BsQuestionCircle}
-            SecondIcon={HiChevronDoubleDown}
+            SecondIcon={HiOutlineSelector}
           />
-          <input className="message" type="text" placeholder="votre message..." Icon={TiMessageTyping} />
+          <textarea className="message" rows="5" cols="33" placeholder="votre message..." Icon={TiMessageTyping} />
           <Button
             name="envoyer"
             classname="primary"
             type="submit"
             style={{ width: '78%', marginTop: '1em', fontSize: '0.8em' }}
           />
-        </form>
-      </div>
-      <div className="information">
+          {/*<div className="information">
         N'hésitez pas à nous envoyer un message.
         Pour nous laisser une note :
+      </div> */}
+        </form>
       </div>
+
     </div>
   );
 }
