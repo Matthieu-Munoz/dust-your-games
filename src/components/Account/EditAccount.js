@@ -37,7 +37,7 @@ function EditAccount() {
       <Field
         name="email"
         type="email"
-        placeholder="Modifier mon E-mail"
+        placeholder="modifier mon e-mail"
         //onChange={handleChangeField}
         value={''}
         Icon={AiOutlineMail}
@@ -46,7 +46,7 @@ function EditAccount() {
       <Field
         name="password"
         type="password"
-        placeholder="Modifier mon Mot de passe"
+        placeholder="modifier mon mot de passe"
         //onChange={handleChangeField}
         value={''}
         Icon={AiOutlineLock}
@@ -55,7 +55,7 @@ function EditAccount() {
       <Field
         name="confirmedpassword"
         type="password"
-        placeholder="Confirmer mon mot de passe"
+        placeholder="confirmer mon mot de passe"
         //onChange={handleChangeField}
         value={''}
         Icon={AiOutlineLock}
