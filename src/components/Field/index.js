@@ -11,6 +11,7 @@ function Field({
   placeholder,
   onChange,
   Icon,
+  SecondIcon,
 }) {
   const handleChange = (evt) => {
     onChange(evt.target.value, name);
@@ -26,6 +27,7 @@ function Field({
         placeholder={placeholder}
         value={value}
         onChange={handleChange} />
+      {(SecondIcon !== null) && <SecondIcon className="field__icon field__icon--second" />}
     </div>
   );
 }
@@ -37,11 +39,13 @@ Field.propTypes = {
   placeholder: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
   Icon: PropTypes.any.isRequired,
+  SecondIcon: PropTypes.any,
 };
 
 Field.defaultProps = {
   value: '',
   type: 'text',
+  SecondIcon: null,
 };
 
 export default Field;

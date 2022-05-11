@@ -13,9 +13,9 @@ import GamesList from '../GamesList';
 import Error from '../Error';
 import Modal from '../Modal';
 import Header from '../Header';
+// import Footer from '../Footer';
 // Styles
 import './app.scss';
-import Footer from '../Footer';
 
 
 function App() {
@@ -71,7 +71,7 @@ function App() {
           <Route path="/account" element={<Account />} />
           <Route path="*" element={<Error />} />
         </Routes>
-        <Footer />
+        {/* <Footer /> */}
       </div>
     </div>
   );
