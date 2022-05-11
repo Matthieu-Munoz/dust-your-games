@@ -1,5 +1,5 @@
 // Dependencies
-import { GoMail } from "react-icons/go";
+import { GrMail } from "react-icons/gr";
 import { FaGithub } from "react-icons/fa";
 import { FaLinkedin } from "react-icons/fa";
 import { BsQuestionCircle } from "react-icons/bs";
@@ -28,22 +28,22 @@ function Contact() {
       <div className="contact__team">
         <h2 className="contact__team__title">L'équipe</h2>
         <div className="contact__team__ctn">
-        <div className="contact__team_">
+          <div className="contact__team__card">
             <div className="contact__team__picture">
               <div className="contact__team__picture__border" />
               <img className="contact__team__picture__img" src={matthieu} alt="matthieu" />
             </div>
             <div className="contact__team__description">
               Matthieu M. <br />
-              Développeuse React.js
+              Développeur React.js
             </div>
             <div className="contact__team__links">
-              <GoMail className="contact__team__links__mail" />
+              <GrMail className="contact__team__links__mail" />
               <FaGithub className="contact__team__links__github" />
               <FaLinkedin className="contact__team__links__linkedin" />
             </div>
           </div>
-          <div className="contact__team">
+          <div className="contact__team__card">
             <div className="contact__team__picture">
               <div className="contact__team__picture__border" />
               <img className="contact__team__picture__img" src={alice} alt="alice" />
@@ -53,12 +53,12 @@ function Contact() {
               Développeuse React.js
             </div>
             <div className="contact__team__links">
-              <GoMail className="contact__team__links__mail" />
+              <GrMail className="contact__team__links__mail" />
               <FaGithub className="contact__team__links__github" />
               <FaLinkedin className="contact__team__links__linkedin" />
             </div>
           </div>
-          <div className="contact__team">
+          <div className="contact__team__card">
             <div className="contact__team__picture">
               <div className="contact__team__picture__border" />
               <img className="contact__team__picture__img" src={manu} alt="manu" />
@@ -68,12 +68,12 @@ function Contact() {
               Développeur React.js
             </div>
             <div className="contact__team__links">
-              <GoMail className="contact__team__links__mail" />
+              <GrMail className="contact__team__links__mail" />
               <FaGithub className="contact__team__links__github" />
               <FaLinkedin className="contact__team__links__linkedin" />
             </div>
           </div>
-          <div className="contact__team">
+          <div className="contact__team__card">
             <div className="contact__team__picture">
               <div className="contact__team__picture__border" />
               <img className="contact__team__picture__img" src={medhy} alt="medhy" />
@@ -83,12 +83,12 @@ function Contact() {
               Développeur Symfony
             </div>
             <div className="contact__team__links">
-              <GoMail className="contact__team__links__mail" />
+              <GrMail className="contact__team__links__mail" />
               <FaGithub className="contact__team__links__github" />
               <FaLinkedin className="contact__team__links__linkedin" />
             </div>
           </div>
-          <div className="contact__team">
+          <div className="contact__team__card">
             <div className="contact__team__picture">
               <div className="contact__team__picture__border" />
               <img className="contact__team__picture__img" src={mehdi} alt="mehdi" />
@@ -98,7 +98,7 @@ function Contact() {
               Développeur Symfony
             </div>
             <div className="contact__team__links">
-              <GoMail className="contact__team__links__mail" />
+              <GrMail className="contact__team__links__mail" />
               <FaGithub className="contact__team__links__github" />
               <FaLinkedin className="contact__team__links__linkedin" />
             </div>

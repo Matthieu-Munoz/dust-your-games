@@ -1,4 +1,104 @@
 @use "@/styles/vars";
 @use "@/styles/color-themes";
 @use "@/styles/utils";
-@use "@/styles/responsive-breakpoints" as media;
+@use "@/styles/responsive-breakpoints"as media;
+
+.contact {
+    display: flex;
+    flex-direction: column;
+
+    &__team {
+        padding-top: 28em;
+        padding-left: 0.5em;
+        padding-right: 0.5em;
+
+        &__title {
+            text-align: center;
+            font-size: 22px;
+            padding-bottom: 1.5em;
+
+            @include color-themes.themed() {
+                color: color-themes.ask("secondary-text-color");
+            }
+        }
+
+        &__description {
+            text-align: center;
+            font-size: 12px;
+            padding: 10px;
+
+            @include color-themes.themed() {
+                color: color-themes.ask("primary-text-color");
+            }
+        }
+
+        &__card {
+            width: 10em;
+            height: 12em;
+            border-radius: 1em;
+            margin-bottom: 3.5em;
+
+            @include color-themes.themed() {
+                background-color: color-themes.ask("secondary-color");
+            }
+        }
+
+        &__ctn {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            padding-bottom: 2em;
+        }
+
+        &__picture {
+            display: flex;
+            justify-content: center;
+
+            &__border {
+                width: 7em;
+                height: 7em;
+                border-radius: 50%;
+                border: 0.1em solid vars.$gold;
+                position: absolute;
+            }
+
+            &__img {
+                width: 7em;
+                height: 7em;
+                border-radius: 50%;
+                border: 0.2em solid vars.$red;
+                background-color: white;
+                box-shadow: 0 1px 4px hsla(220, 90%, 37%, 0.25);
+            }
+        }
+
+        &__links {
+            display: flex;
+            align-items: center;
+            justify-content: space-evenly;
+            width: 100%;
+            height: 2.5em;
+            background-color: vars.$red;
+            border-radius: 0 0 1em 1em;
+            color: white;
+
+
+            &__mail,
+            &__github,
+            &__linkedin {
+                height: 1.2em;
+                width: 1.2em;
+            }
+        }
+    }
+
+    &__separator {
+        background-color: vars.$red;
+        width: 50%;
+        height: 1px;
+        margin: auto;
+    }
+
+
+
+}

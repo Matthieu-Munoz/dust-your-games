@@ -3,7 +3,7 @@
 @use "@/styles/responsive-breakpoints" as media;
 
 .header {
-  position: fixed;
+  position: absolute;
   top: 0;
   width: 100%;
   height: 70px;

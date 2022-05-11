@@ -4,7 +4,7 @@
 @use "@/styles/responsive-breakpoints" as media;
 
 .menu {
-  position: fixed;
+  position: absolute;
   top: 0;
   right: 0;
   padding: 1.5em;
@@ -19,7 +19,7 @@
   transition: transform 0.2s ease-in-out;
 
   .themetoggle {
-    position: absolute;
+    position: fixed;
     margin: 0;
     top: 1.5em;
     align-self: start;
@@ -81,7 +81,7 @@
 }
 
 .menu_toggle {
-  position: fixed;
+  position: absolute;
   top: 0;
   right: 0;
   padding: 1em;
