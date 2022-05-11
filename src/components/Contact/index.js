@@ -5,7 +5,7 @@ import { FaLinkedin } from "react-icons/fa";
 import { BsQuestionCircle } from "react-icons/bs";
 import { AiOutlineMail } from "react-icons/ai";
 import { BsPerson } from "react-icons/bs";
-import { TiMessageTyping } from "react-icons/ti"
+import { RiMessage2Line } from "react-icons/ri"
 import { HiOutlineSelector } from "react-icons/hi"
 
 // React-Redux
@@ -106,7 +106,7 @@ function Contact() {
         </div>
       </div>
       <div className="contact__separator" />
-      <div className="contact__form__ctn">
+      <div className="contact__form">
         <h2 className="contact__form__title">Nous contacter</h2>
         <form className="contact__form__section">
           <Field
@@ -134,12 +134,11 @@ function Contact() {
             Icon={BsQuestionCircle}
             SecondIcon={HiOutlineSelector}
           />
-          <textarea className="message" rows="5" cols="33" placeholder="votre message..." Icon={TiMessageTyping} />
+          <input className="message" rows="5" cols="33" placeholder="votre message..." Icon={RiMessage2Line} />
           <Button
             name="envoyer"
             classname="primary"
             type="submit"
-            style={{ width: '78%', marginTop: '1em', fontSize: '0.8em' }}
           />
           {/*<div className="information">
         N'hésitez pas à nous envoyer un message.

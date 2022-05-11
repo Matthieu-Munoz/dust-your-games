@@ -4,11 +4,30 @@
 @use "@/styles/responsive-breakpoints"as media;
 
 .contact {
+    width: 100%;
+    height: 100%;
     display: flex;
+    align-items: center;
+    justify-content: center;
     flex-direction: column;
+    margin-top: 70px;
+    overflow: auto;
+
+    @include color-themes.themed() {
+        background-color: color-themes.ask("primary-color");
+    }
+
+    &__separator {
+        background-color: vars.$red;
+        width: 50%;
+        height: 1px;
+        margin: auto;
+    }
+    
+    // Team part:
 
     &__team {
-        padding-top: 28em;
+        padding-top: 33em;
         padding-left: 0.5em;
         padding-right: 0.5em;
 
@@ -53,6 +72,7 @@
         &__picture {
             display: flex;
             justify-content: center;
+            position: relative;
 
             &__border {
                 width: 7em;
@@ -92,13 +112,62 @@
         }
     }
 
-    &__separator {
-        background-color: vars.$red;
-        width: 50%;
-        height: 1px;
+
+
+    // Form part:
+    &__form {
+        width: 90%;
         margin: auto;
+
+        &__title {
+            text-align: center;
+            font-size: 22px;
+            padding-bottom: 1.5em;
+
+            @include color-themes.themed() {
+                color: color-themes.ask("secondary-text-color");
+            }
+        }
+
+        &__section {
+            border-radius: 1em;
+            padding-top: 1em;
+            margin-bottom: 1em;
+
+            @include color-themes.themed() {
+                background-color: color-themes.ask("secondary-color");
+            }
+
+            .appbutton {
+                width: 40%;
+                height: 1.8em;
+                margin: auto;
+                display: flex;
+                align-items: center;
+            }
+        }
     }
 
+    .field {
+        width: 90%;
+        margin: auto;
+        border-radius: 0.5em;
+        margin-bottom: 0.8em;
+    }
 
+    .message {
+        border: solid 1px vars.$red;
+        border-radius: 0.5em;
+        width: 90%;
+        margin-left: 1.3em;
+        margin-bottom: 1em;
+        padding-top: 0.5em;
+        padding-left: 0.5em;
+        text-transform: uppercase;
 
+        @include color-themes.themed() {
+            background-color: color-themes.ask("secondary-color");
+        }
+
+    }
 }

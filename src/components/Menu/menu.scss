@@ -4,7 +4,7 @@
 @use "@/styles/responsive-breakpoints" as media;
 
 .menu {
-  position: absolute;
+  position: fixed;
   top: 0;
   right: 0;
   padding: 1.5em;
