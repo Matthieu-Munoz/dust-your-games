@@ -25,14 +25,21 @@
   }
 
   &__input {
-    all: unset;
+    background: none;
+    outline: none;
     margin-left: 0.5em;
     font-size: 0.8em;
     width: 100%;
+    @include color-themes.themed() {
+      color: color-themes.ask("primary-text-color");
+    }
 
     &::placeholder {
       text-transform: uppercase;
       transition: 0.1s ease-in-out;
+      @include color-themes.themed() {
+        color: color-themes.ask("primary-text-color");
+      }
     }
 
     &:focus::placeholder {

@@ -4,6 +4,8 @@ import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 import store from '@/store';
 import App from '@/components/App';
+import '@/assets/fonts/Montserrat-VariableFont_wght.ttf';
+import '@/assets/fonts/Montserrat-Italic-VariableFont_wght.ttf';
 import '@/styles/index.scss';
 import reportWebVitals from './reportWebVitals';
 
