@@ -64,7 +64,7 @@ function Menu() {
                   Contact
                 </NavLink>
                 <Button
-                  name="Se déconnécter"
+                  name="Se déconnecter"
                   classname="primary"
                   style={{ width: '170px', marginTop: '1em' }}
                   onclick={() => {
