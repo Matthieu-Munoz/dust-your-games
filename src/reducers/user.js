@@ -8,7 +8,7 @@ export const initialState = {
     // user password
     password: 'jennifer',
     // is the user logged in
-    logged: false,
+    logged: true,
     // token to use in request
     token: null,
     // user pseudo
