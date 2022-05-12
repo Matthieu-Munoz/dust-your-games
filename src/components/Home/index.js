@@ -1,5 +1,6 @@
 // Dependencies
 import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 // React-Redux
 import LoginForm from "./LoginForm";
 import RegisterForm from "./RegisterForm";
@@ -12,7 +13,7 @@ function Home() {
 
   return (
     <div className="home">
-      <div className='presentation__logo presentation__logo--mobile' />
+      <Link to="/" className='presentation__logo presentation__logo--mobile' />
       <div className="userform">
         {(isLoginForm) ? <LoginForm /> : <RegisterForm />}
       </div>

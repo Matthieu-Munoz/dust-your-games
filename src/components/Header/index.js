@@ -1,4 +1,5 @@
 // Dependencies
+import { Link } from 'react-router-dom';
 // React-Redux
 import Menu from "../Menu";
 import ThemeToggle from "../ThemeToggle";
@@ -8,7 +9,7 @@ import "./header.scss"
 function Header() {
   return (
     <div className="header">
-      <div className="header__logo" />
+      <Link className="header__logo" to="/" />
       <ThemeToggle />
       <Menu />
     </div>

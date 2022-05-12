@@ -43,6 +43,10 @@
     }
 
     &__card {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
       width: 10em;
       height: 12em;
       border-radius: 1em;
@@ -60,24 +64,40 @@
     }
 
     &__picture {
+      position: absolute;
       display: flex;
       justify-content: center;
-      position: relative;
+      top: -1.2em;
+      left: 50%;
+      transform: translate(-50%, -50%);
 
       &__border {
-        width: 7em;
-        height: 7em;
+        width: 8em;
+        height: 8em;
         border-radius: 50%;
-        border: 0.1em solid vars.$gold;
+        background-color: white;
+        border: 0.25em solid vars.$red;
         position: absolute;
+        &::after {
+          content: " ";
+          position: absolute;
+          border-radius: 5em;
+          width: 8.15em;
+          height: 8.15em;
+          top: -0.35em;
+          left: -0.3em;
+          border: 2px solid vars.$gold;
+        }
       }
 
       &__img {
-        width: 7em;
-        height: 7em;
+        position: absolute;
+        top: -13px;
+        left: -69px;
+        width: 8.7em;
+        height: 8.8em;
         border-radius: 50%;
-        border: 0.2em solid vars.$red;
-        background-color: white;
+        clip-path: ellipse(45% 48% at 50% 50%);
         box-shadow: 0 1px 4px hsla(220, 90%, 37%, 0.25);
       }
     }
@@ -132,24 +152,6 @@
         margin: auto;
         display: flex;
         align-items: center;
-      }
-
-      &__message {
-        border: solid 1px vars.$red;
-        border-radius: 0.5em;
-        width: 90%;
-        margin-left: 1.3em;
-        margin-bottom: 1em;
-        padding-top: 0.5em;
-        padding-left: 0.5em;
-        text-transform: uppercase;
-        outline: none;
-        resize: none;
-
-        @include color-themes.themed() {
-          background-color: color-themes.ask("secondary-color");
-          color: color-themes.ask("primary-text-color");
-        }
       }
 
       .field {
