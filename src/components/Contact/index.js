@@ -40,9 +40,15 @@ function Contact() {
               Développeur React.js
             </div>
             <div className="contact__team__links">
-              <GrMail className="contact__team__links__mail" />
-              <FaGithub className="contact__team__links__github" />
-              <FaLinkedin className="contact__team__links__linkedin" />
+              <a href="/" className="contact__team__link">
+                <GrMail className="contact__team__link" />
+              </a>
+              <a href="/" className="contact__team__link">
+                <FaGithub className="contact__team__link" />
+              </a>
+              <a href="/" className="contact__team__link">
+                <FaLinkedin className="contact__team__link" />
+              </a>
             </div>
           </div>
           <div className="contact__team__card">
@@ -55,9 +61,15 @@ function Contact() {
               Développeuse React.js
             </div>
             <div className="contact__team__links">
-              <GrMail className="contact__team__links__mail" />
-              <FaGithub className="contact__team__links__github" />
-              <FaLinkedin className="contact__team__links__linkedin" />
+              <a href="/" className="contact__team__link">
+                <GrMail className="contact__team__link" />
+              </a>
+              <a href="/" className="contact__team__link">
+                <FaGithub className="contact__team__link" />
+              </a>
+              <a href="/" className="contact__team__link">
+                <FaLinkedin className="contact__team__link" />
+              </a>
             </div>
           </div>
           <div className="contact__team__card">
@@ -70,9 +82,15 @@ function Contact() {
               Développeur React.js
             </div>
             <div className="contact__team__links">
-              <GrMail className="contact__team__links__mail" />
-              <FaGithub className="contact__team__links__github" />
-              <FaLinkedin className="contact__team__links__linkedin" />
+              <a href="/" className="contact__team__link">
+                <GrMail className="contact__team__link" />
+              </a>
+              <a href="/" className="contact__team__link">
+                <FaGithub className="contact__team__link" />
+              </a>
+              <a href="/" className="contact__team__link">
+                <FaLinkedin className="contact__team__link" />
+              </a>
             </div>
           </div>
           <div className="contact__team__card">
@@ -85,9 +103,15 @@ function Contact() {
               Développeur Symfony
             </div>
             <div className="contact__team__links">
-              <GrMail className="contact__team__links__mail" />
-              <FaGithub className="contact__team__links__github" />
-              <FaLinkedin className="contact__team__links__linkedin" />
+              <a href="/" className="contact__team__link">
+                <GrMail className="contact__team__link" />
+              </a>
+              <a href="/" className="contact__team__link">
+                <FaGithub className="contact__team__link" />
+              </a>
+              <a href="/" className="contact__team__link">
+                <FaLinkedin className="contact__team__link" />
+              </a>
             </div>
           </div>
           <div className="contact__team__card">
@@ -100,9 +124,15 @@ function Contact() {
               Développeur Symfony
             </div>
             <div className="contact__team__links">
-              <GrMail className="contact__team__links__mail" />
-              <FaGithub className="contact__team__links__github" />
-              <FaLinkedin className="contact__team__links__linkedin" />
+              <a href="/" className="contact__team__link">
+                <GrMail className="contact__team__link" />
+              </a>
+              <a href="/" className="contact__team__link">
+                <FaGithub className="contact__team__link" />
+              </a>
+              <a href="/" className="contact__team__link">
+                <FaLinkedin className="contact__team__link" />
+              </a>
             </div>
           </div>
         </div>

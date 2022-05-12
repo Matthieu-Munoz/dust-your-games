@@ -1,6 +1,7 @@
 // List of breakpoints used throughout the app
 $breakpoints: ('mobile' : (min-width: 480px),
-    'tablet' : (min-width: 768px),
+    '550px' : (min-width: 550px),
+    'tablet' : (min-width: 730px),
     'desktop' : (min-width: 1024px));
 
 // To apply a breakpoint use : @include responsive($device) { 'your style' }

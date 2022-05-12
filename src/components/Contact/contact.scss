@@ -1,7 +1,7 @@
 @use "@/styles/vars";
 @use "@/styles/color-themes";
 @use "@/styles/utils";
-@use "@/styles/responsive-breakpoints" as media;
+@use "@/styles/responsive-breakpoints"as media;
 
 .contact {
   width: 100%;
@@ -22,14 +22,26 @@
 
   // Team part:
   &__team {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
     &__title {
       text-align: center;
       font-size: 22px;
-      margin: 1.5em 0;
+      margin: 2em 0;
 
       @include color-themes.themed() {
         color: color-themes.ask("secondary-text-color");
       }
+    }
+
+    &__ctn {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      width: 100%;
+      padding: 0 1em;
     }
 
     &__description {
@@ -43,24 +55,18 @@
     }
 
     &__card {
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-      width: 10em;
-      height: 12em;
-      border-radius: 1em;
-      margin-bottom: 3em;
-
-      @include color-themes.themed() {
-        background-color: color-themes.ask("secondary-color");
-      }
-    }
-
-    &__ctn {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-around;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        width: 10em;
+        height: 12em;
+        border-radius: 1em;
+        margin-bottom: 3em;
+  
+        @include color-themes.themed() {
+          background-color: color-themes.ask("secondary-color");
+        }
     }
 
     &__picture {
@@ -78,6 +84,7 @@
         background-color: white;
         border: 0.25em solid vars.$red;
         position: absolute;
+
         &::after {
           content: " ";
           position: absolute;
@@ -92,7 +99,7 @@
 
       &__img {
         position: absolute;
-        top: -13px;
+        top: -14px;
         left: -69px;
         width: 8.7em;
         height: 8.8em;
@@ -110,16 +117,20 @@
       height: 2.5em;
       background-color: vars.$red;
       border-radius: 0 0 1em 1em;
+      
+      
+    }
+    &__link{
       color: white;
-
-      &__mail,
-      &__github,
-      &__linkedin {
-        height: 1.2em;
-        width: 1.2em;
+      height: 1.2em;
+      width: 1.2em;
+      &:hover {
+        @include utils.hover(none, 1.1)
       }
     }
   }
+
+
 
   // Form part:
   &__form {
@@ -129,7 +140,7 @@
     &__title {
       text-align: center;
       font-size: 22px;
-      margin: 1.5em 0;
+      margin: 1em 0;
 
       @include color-themes.themed() {
         color: color-themes.ask("secondary-text-color");
@@ -137,10 +148,15 @@
     }
 
     &__section {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      height: 16em;
       border-radius: 1em;
-      padding-top: 1em;
+      padding: 1em;
       margin-bottom: 1em;
-      padding-bottom: 1em;
+
 
       @include color-themes.themed() {
         background-color: color-themes.ask("secondary-color");
@@ -149,16 +165,74 @@
       .appbutton {
         width: 40%;
         height: 1.8em;
-        margin: auto;
-        display: flex;
-        align-items: center;
       }
 
-      .field {
-        width: 90%;
-        margin: auto;
-        margin-bottom: 0.8em;
+      .field__textarea {
+        min-height: 60px;
       }
     }
   }
+
+}
+
+
+// Style when on tablet and bigger
+@include media.responsive("550px") {
+  .contact {
+    &__team {
+      margin: auto;
+
+      &__ctn {
+        justify-content: center;
+      }
+
+      &__card {
+        margin: 1.5em 0.5em;
+      }
+    }
+
+    &__form {
+        width: 500px;
+  }
+
+}}
+
+// Style when on tablet and bigger
+@include media.responsive("tablet") {
+    .contact {
+        &__team {
+
+    
+          &__ctn {
+            width: 700px;
+          }
+    
+          &__card {
+            margin: 2em 1.5em;
+            transform: scale(1.1);
+          }
+        }
+        &__separator{
+            width: 10%;
+            margin: 2em auto;
+        }
+
+        &__form {
+            width: 590px;
+            &__section{ 
+            height: 20em;
+            .field__textarea {
+                min-height: 100px;
+            }
+        }
+        }
+    }
+
+}
+
+// Style when on tablet and bigger
+@include media.responsive("desktop") {
+    .contact__form {
+        width: 700px;
+    }
 }

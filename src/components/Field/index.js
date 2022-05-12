@@ -42,7 +42,7 @@ function Field({
             name={name}
             placeholder={placeholder}
             className="field__textarea"
-            style={{ minHeight: 50, maxHeight: 100, resize: 'none' }}
+            style={{ maxHeight: 100, resize: 'none' }}
           />
           {(SecondIcon !== null) && <SecondIcon className="field__icon field__icon--second" />}
         </div>
