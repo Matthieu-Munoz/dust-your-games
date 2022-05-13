@@ -1,8 +1,8 @@
-export const CHANGE_USER_FIELD = 'CHANGE_USER_FIELD';
-export const changeUserField = (value, name) => ({
-    type: CHANGE_USER_FIELD,
-    value,
-    name,
+export const CHANGE_HOME_FIELD = 'CHANGE_HOME_FIELD';
+export const changeHomeField = (value, field) => ({
+  type: CHANGE_HOME_FIELD,
+  value,
+  field,
 });
 
 export const LOGIN = 'LOGIN';
@@ -20,3 +20,4 @@ export const saveUser = (user) => ({
     type: SAVE_USER,
     user,
 });
+

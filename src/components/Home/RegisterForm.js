@@ -1,60 +1,61 @@
 // Dependencies
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { toggleLoginForm } from '../../actions/home';
 import { BsPerson } from "react-icons/bs";
 import { AiOutlineLock, AiOutlineMail } from "react-icons/ai";
 // React-Redux
 import Field from "@/components/Field";
-import { changeUserField } from '@/actions/user';
 import Button from '../Button';
+import { changeHomeField } from '@/actions/user';
 // Styles
 
 function RegisterForm() {
   const dispatch = useDispatch();
 
-  const email = useSelector((state) => state.user.email);
-  const password = useSelector((state) => state.user.password);
+  const { pseudo, email, password, confirmedpassword } = useSelector((state) => state.user);
+  
+  const handleChange = (value, field) => {
+    dispatch(changeHomeField(value, field));
+  }
 
-  const handleChangeField = (value, name) => {
-    dispatch(changeUserField(value, name));
-  };
   return (
     <form className="userform__ctn userform__ctn--register">
       <Field
-        name="email"
+        name="pseudo"
         placeholder="Identifiant"
-        onChange={handleChangeField}
-        value={email}
         Icon={BsPerson}
-      />
-      <Field
-        name="password"
-        type="password"
-        placeholder="Mot de passe"
-        onChange={handleChangeField}
-        value={password}
-        Icon={AiOutlineLock}
-      />
-      <Field
-        name="confirmedpassword"
-        type="password"
-        placeholder="Confirmer le mot de passe"
-        onChange={handleChangeField}
-        value={''}
-        Icon={AiOutlineLock}
+        value={pseudo}
+        onChange={handleChange}
       />
       <Field
         name="email"
         type="email"
         placeholder="Email"
-        onChange={handleChangeField}
-        value={''}
         Icon={AiOutlineMail}
+        value={email}
+        onChange={handleChange}
+      />
+      <Field
+        name="password"
+        type="password"
+        placeholder="Mot de passe"
+        Icon={AiOutlineLock}
+        value={password}
+        onChange={handleChange}
+      />
+      <Field
+        name="confirmedpassword"
+        type="password"
+        placeholder="Confirmer le mot de passe"
+        Icon={AiOutlineLock}
+        value={confirmedpassword}
+        onChange={handleChange}
       />
       <Button
         name="S'inscrire"
         type="submit"
         classname="primary"
+        onclick={() => console.log('register')}
       />
       <div className="userform__seperator">
         <div className="userform__seperator__lign" />
