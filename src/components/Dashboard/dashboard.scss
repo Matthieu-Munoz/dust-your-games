@@ -1,7 +1,7 @@
 @use "@/styles/vars";
 @use "@/styles/color-themes";
 @use "@/styles/utils";
-@use "@/styles/responsive-breakpoints" as media;
+@use "@/styles/responsive-breakpoints"as media;
 
 .dashboard {
   width: 100%;
@@ -10,6 +10,7 @@
   flex-direction: column;
   align-items: center;
   margin-top: 70px;
+  padding-top: 1.5em;
   overflow: auto;
 
   &__title {
@@ -25,31 +26,133 @@
     background-color: vars.$red;
     width: 30%;
     height: 1px;
+    margin: 1em 0;
+    padding: 1px;
   }
 
   &__cards {
-    width: 60%;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     flex-wrap: wrap;
   }
 
   &__card {
+    position: relative;
     width: 10em;
-    height: 12em;
+    height: 12.5em;
+    margin: 0.5em;
     background-color: vars.$grey-blue;
-    border: 2px solid vars.$red;
     border-radius: 0.5em;
+    // Linked to the background-image : Size to control the size of the image, repeat to control how many times it repeats inside the div
+    background-size: cover;
+    background-repeat: no-repeat;
 
     &--dust {
+      // Move the div position inside a flex container
+      order: 3;
+      background-image: url('../../assets/images/dashboard_dust.png');
+      border: 2px solid vars.$gold;
+    }
+
+    &--games {
+      order: 1;
+      background-image: url('../../assets/images/dashboard_games.png');
+      border: 2px solid vars.$red;
+    }
+
+    &--friends {
       order: 2;
+      background-image: url('../../assets/images/dashboard_friends.png');
+      border: 2px solid vars.$red;
+    }
+
+    &__title {
+      position: absolute;
+      bottom: 2.5em;
+      width: 100%;
+      height: 2.8em;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: vars.$beige;
+      font-size: 0.8em;
+      text-transform: uppercase;
+      color: vars.$grey-blue;
+      box-shadow: inset 0px 0px 6px 3px rgba(0, 0, 0, 0.25);
     }
   }
 
   &__widget {
+    position: relative;
     display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 16.5em;
+
+    @include color-themes.themed() {
+      background-color: color-themes.ask("secondary-color");
+    }
+    
+
+    &__title {
+      font-size: 1.5em;
+      font-weight: 400;
+      margin-top: 0.8em;
+      @include color-themes.themed() {
+        color: color-themes.ask("primary-text-color");
+      }
+
+    }
+
+    &__scrollctn{
+      display: flex;
+      width: 100%;
+      height: 13em;
+      overflow-x: auto;
+      overflow-y: hidden;
+    }
+
     &__games {
       display: flex;
+      margin: auto;
+      height: 100%;
+      align-items: flex-end;
+    }
+
+    &__game {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-end;
+      width: 11em;
+      height: 11em;
+      padding: 1em;
+      margin: 0.5em;
+      border-radius: 0.5em;
+      @include color-themes.themed() {
+        background-color: color-themes.ask("primary-color");
+        color: color-themes.ask("secondary-text-color");
+      }
+
+      &__img {
+        position: absolute;
+        width: 9em;
+        height: 9em;
+        border-radius: 5em;
+        border: 3px solid vars.$red;
+        top: -1em;
+      }
     }
   }
+}
+
+
+// Style when on tablet and bigger
+@include media.responsive("528px") {
+  .dashboard__card--dust {
+    order: 2;
+  }
+
 }
