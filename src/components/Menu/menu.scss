@@ -17,6 +17,9 @@
   height: 100%;
   transform: translateY(-105%);
   transition: transform 0.2s ease-in-out;
+  @include color-themes.themed() {
+    background-color: color-themes.ask("primary-color");
+  }
 
   .themetoggle {
     position: fixed;
