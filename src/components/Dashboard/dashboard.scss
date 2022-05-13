@@ -1,7 +1,7 @@
 @use "@/styles/vars";
 @use "@/styles/color-themes";
 @use "@/styles/utils";
-@use "@/styles/responsive-breakpoints"as media;
+@use "@/styles/responsive-breakpoints" as media;
 
 .dashboard {
   width: 100%;
@@ -51,19 +51,19 @@
     &--dust {
       // Move the div position inside a flex container
       order: 3;
-      background-image: url('../../assets/images/dashboard_dust.png');
+      background-image: url("../../assets/images/dashboard_dust.png");
       border: 2px solid vars.$gold;
     }
 
     &--games {
       order: 1;
-      background-image: url('../../assets/images/dashboard_games.png');
+      background-image: url("../../assets/images/dashboard_games.png");
       border: 2px solid vars.$red;
     }
 
     &--friends {
       order: 2;
-      background-image: url('../../assets/images/dashboard_friends.png');
+      background-image: url("../../assets/images/dashboard_friends.png");
       border: 2px solid vars.$red;
     }
 
@@ -96,7 +96,6 @@
       background-color: color-themes.ask("secondary-color");
     }
 
-
     &__title {
       font-size: 1.5em;
       font-weight: 400;
@@ -105,7 +104,6 @@
       @include color-themes.themed() {
         color: color-themes.ask("primary-text-color");
       }
-
     }
 
     &__scrollctn {
@@ -147,18 +145,17 @@
         border-radius: 5em;
         border: 3px solid vars.$red;
         top: -1em;
+        background-color: vars.$off-white;
       }
     }
   }
 }
-
 
 // Style when on tablet and bigger
 @include media.responsive("528px") {
   .dashboard__card--dust {
     order: 2;
   }
-
 }
 
 // Style when on tablet and bigger
@@ -171,7 +168,6 @@
     &__card {
       width: 11em;
       height: 15.4em;
-      
     }
 
     &__widget {
@@ -198,7 +194,7 @@
     &__card {
       width: 15.5em;
       height: 19.9em;
-    
+
       &__title {
         bottom: 3em;
         font-size: 1em;

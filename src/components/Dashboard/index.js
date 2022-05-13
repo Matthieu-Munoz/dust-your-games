@@ -1,15 +1,27 @@
 // Dependencies
-
+import { useEffect, useRef } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 // React-Redux
-
+import {
+  fetchTopGames,
+} from '@/actions/dashboard';
 // Styles
 import "./dashboard.scss";
 // Locals
-import dashboard_top1 from '@/assets/images/dashboard_top1.png';
-import dashboard_top2 from '@/assets/images/dashboard_top2.png';
-import dashboard_top3 from '@/assets/images/dashboard_top3.png';
-
 function Dashboard() {
+  const dispatch = useDispatch();
+
+  const didMount = useRef(false);
+  useEffect(() => {
+    if (didMount.current) {
+      dispatch(fetchTopGames());
+    }
+    else didMount.current = true;
+  }, [dispatch]);
+
+
+  const topGames = useSelector((state) => state.dashboard.games);
+
   return (
     <div className="dashboard">
       <h2 className="dashboard__title">Tableau de bord</h2>
@@ -30,18 +42,12 @@ function Dashboard() {
         <h3 className="dashboard__widget__title">Top 3</h3>
         <div className="dashboard__widget__scrollctn">
           <div className="dashboard__widget__games">
-            <div className="dashboard__widget__game">
-              <img src={dashboard_top1} alt="" className="dashboard__widget__game__img" />
-              <div className="dashboard__widget__game__name">Nom du jeu</div>
-            </div>
-            <div className="dashboard__widget__game">
-              <img src={dashboard_top2} alt="" className="dashboard__widget__game__img" />
-              <div className="dashboard__widget__game__name">Nom du jeu</div>
-            </div>
-            <div className="dashboard__widget__game">
-              <img src={dashboard_top3} alt="" className="dashboard__widget__game__img" />
-              <div className="dashboard__widget__game__name">Nom du jeu</div>
-            </div>
+            {topGames && topGames.map((topGame) => (
+              <div key={topGame.id} className="dashboard__widget__game">
+                <img src={topGame.image_url} alt="" className="dashboard__widget__game__img" />
+                <div className="dashboard__widget__game__name">{topGame.name}</div>
+              </div>
+            ))}
           </div>
         </div>
       </div>
