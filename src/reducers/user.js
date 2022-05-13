@@ -1,26 +1,28 @@
 import {
-    CHANGE_USER_FIELD, LOGOUT, SAVE_USER,
+    CHANGE_HOME_FIELD, LOGOUT, SAVE_USER,
 } from '@/actions/user';
 
 export const initialState = {
+    // user pseudo
+    pseudo: '',
     // user email
-    email: 'bouclierman@herocorp.io',
+    email: '',
     // user password
-    password: 'jennifer',
+    password: '',
+    // user confirmedpassword
+    confirmedpassword: '',
     // is the user logged in
-    logged: true,
+    logged: false,
     // token to use in request
     token: null,
-    // user pseudo
-    pseudo: null,
 };
 
 const reducer = (state = initialState, action = {}) => {
     switch (action.type) {
-        case CHANGE_USER_FIELD:
+        case CHANGE_HOME_FIELD:
             return {
                 ...state,
-                [action.name]: action.value,
+                [action.field]: action.value,
             };
         case SAVE_USER:
             return {

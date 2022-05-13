@@ -5,23 +5,27 @@ import { AiOutlineLock } from "react-icons/ai";
 // React-Redux
 import Field from "@/components/Field";
 import { toggleLoginForm } from '@/actions/home';
-import { changeUserField, login } from '@/actions/user';
+import { changeHomeField, login } from '@/actions/user';
 import Button from '../Button';
 // Styles
 
 function LoginForm() {
     const dispatch = useDispatch();
+    // We select and save Email and Password from the user state 
+    // This is the only two properties which are needed in this component
+    const { email, password } = useSelector((state) => state.user);
+    // can also be written as:
+    // const email = useSelector((state) => state.user.email);
+    // const password = useSelector((state) => state.user.password);
+      
+    const handleChange = (value, field) => {
+        dispatch(changeHomeField(value, field));
+    }
 
-    const email = useSelector((state) => state.user.email);
-    const password = useSelector((state) => state.user.password);
-
-    const handleChangeField = (value, name) => {
-        dispatch(changeUserField(value, name));
-    };
-
+    // Handle when the user click the login button
     const handleLogin = (evt) => {
         evt.preventDefault();
-        dispatch(login())
+        dispatch(login(changeHomeField))
     }
 
     return (
@@ -29,17 +33,17 @@ function LoginForm() {
             <Field
                 name="email"
                 placeholder="Identifiant"
-                onChange={handleChangeField}
-                value={email}
                 Icon={BsPerson}
+                value={email}
+                onChange={handleChange}
             />
             <Field
                 name="password"
                 type="password"
                 placeholder="Mot de passe"
-                onChange={handleChangeField}
-                value={password}
                 Icon={AiOutlineLock}
+                value={password}
+                onChange={handleChange}
             />
             <a className="userform__ctn__link" href="lien">Mot de passe oublié ?</a>
             <Button
