@@ -15,11 +15,11 @@ import Button from '../Button';
 import "./contact.scss"
 
 // Locals
-import alice from '@/assets/images/alice.png';
-import manu from '@/assets/images/manu.png';
-import medhy from '@/assets/images/medhy.png';
-import mehdi from '@/assets/images/mehdi.png';
-import matthieu from '@/assets/images/matthieu.png';
+import alicePicture from '@/assets/images/alice.png';
+import manuPicture from '@/assets/images/manu.png';
+import medhyPicture from '@/assets/images/medhy.png';
+import mehdiPicture from '@/assets/images/mehdi.png';
+import matthieuPicture from '@/assets/images/matthieu.png';
 
 function Contact() {
   const handleChangeField = (value, name) => {
@@ -33,7 +33,7 @@ function Contact() {
           <div className="contact__team__card">
             <div className="contact__team__picture">
               <div className="contact__team__picture__border" />
-              <img className="contact__team__picture__img" src={matthieu} alt="matthieu" />
+              <img className="contact__team__picture__img" src={matthieuPicture} alt="matthieu" />
             </div>
             <div className="contact__team__description">
               Matthieu M. <br />
@@ -54,7 +54,7 @@ function Contact() {
           <div className="contact__team__card">
             <div className="contact__team__picture">
               <div className="contact__team__picture__border" />
-              <img className="contact__team__picture__img" src={alice} alt="alice" />
+              <img className="contact__team__picture__img" src={alicePicture} alt="alice" />
             </div>
             <div className="contact__team__description">
               Alice C. <br />
@@ -75,7 +75,7 @@ function Contact() {
           <div className="contact__team__card">
             <div className="contact__team__picture">
               <div className="contact__team__picture__border" />
-              <img className="contact__team__picture__img" src={manu} alt="manu" />
+              <img className="contact__team__picture__img" src={manuPicture} alt="manu" />
             </div>
             <div className="contact__team__description">
               Manu S. <br />
@@ -96,7 +96,7 @@ function Contact() {
           <div className="contact__team__card">
             <div className="contact__team__picture">
               <div className="contact__team__picture__border" />
-              <img className="contact__team__picture__img" src={medhy} alt="medhy" />
+              <img className="contact__team__picture__img" src={medhyPicture} alt="medhy" />
             </div>
             <div className="contact__team__description">
               Medhy D. <br />
@@ -117,7 +117,7 @@ function Contact() {
           <div className="contact__team__card">
             <div className="contact__team__picture">
               <div className="contact__team__picture__border" />
-              <img className="contact__team__picture__img" src={mehdi} alt="mehdi" />
+              <img className="contact__team__picture__img" src={mehdiPicture} alt="mehdi" />
             </div>
             <div className="contact__team__description">
               Mehdi B. <br />

@@ -29,7 +29,6 @@ const boardgameatlasApiMiddleWare = (store) => (next) => (action) => {
             console.log('oups...');
           });
       };
-
       next(action);
       break;
     }
