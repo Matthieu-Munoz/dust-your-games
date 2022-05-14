@@ -45,25 +45,25 @@
     background-color: vars.$grey-blue;
     border-radius: 0.5em;
     // Linked to the background-image : Size to control the size of the image, repeat to control how many times it repeats inside the div
-    background-size: cover;
-    background-repeat: no-repeat;
+
+    &__img {
+      width: 100%;
+      height: 100%;
+    }
 
     &--dust {
       // Move the div position inside a flex container
       order: 3;
-      background-image: url("../../assets/images/dashboard_dust.png");
       border: 2px solid vars.$gold;
     }
 
     &--games {
       order: 1;
-      background-image: url("../../assets/images/dashboard_games.png");
       border: 2px solid vars.$red;
     }
 
     &--friends {
       order: 2;
-      background-image: url("../../assets/images/dashboard_friends.png");
       border: 2px solid vars.$red;
     }
 
@@ -167,7 +167,7 @@
 
     &__card {
       width: 11em;
-      height: 15.4em;
+      height: 14.4em;
     }
 
     &__widget {

@@ -4,6 +4,8 @@ import { useEffect } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import { loadTheme, toggleMenu } from '@/actions/app';
 import classNames from 'classnames';
+import { IKContext } from 'imagekitio-react'
+
 // React-Redux
 import Home from '../Home';
 import Dashboard from '../Dashboard';
@@ -60,20 +62,25 @@ function App() {
   }
 
   return (
-    <div className={themeClass}>
-      <div className={appClass} onClick={(evt) => handleMenu(evt, menuOpen)}>
-        <Modal />
-        <Header />
-        <Routes>
-          <Route path="/" element={(!userLoggedIn) ? <Home /> : <Dashboard />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/games" element={<GamesList />} />
-          <Route path="/account" element={<Account />} />
-          <Route path="*" element={<Error />} />
-        </Routes>
-        {/* <Footer /> */}
+    <IKContext
+      publicKey="public_CAF7lBDAUMEpXNYqxIUWftdypv8="
+      urlEndpoint="https://ik.imagekit.io/apcx85c0g"
+    >
+      <div className={themeClass}>
+        <div className={appClass} onClick={(evt) => handleMenu(evt, menuOpen)}>
+          <Modal />
+          <Header />
+          <Routes>
+            <Route path="/" element={(!userLoggedIn) ? <Home /> : <Dashboard />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/games" element={<GamesList />} />
+            <Route path="/account" element={<Account />} />
+            <Route path="*" element={<Error />} />
+          </Routes>
+          {/* <Footer /> */}
+        </div>
       </div>
-    </div>
+    </IKContext>
   );
 }
 
