@@ -9,4 +9,3 @@ export const saveTopGames = (games) => ({
     type: SAVE_TOP_GAMES,
     games,
 });
-

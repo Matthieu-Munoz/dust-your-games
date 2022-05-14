@@ -13,7 +13,6 @@ const boardgameatlasApiMiddleWare = (store) => (next) => (action) => {
     case FETCH_TOP_GAMES: {
       let storageGames = localStorage.getItem("topgames");
       if (storageGames != null) {
-        console.log('from storage');
         store.dispatch(saveTopGames(JSON.parse(storageGames)));
       } else {
         axiosInstance
@@ -21,7 +20,6 @@ const boardgameatlasApiMiddleWare = (store) => (next) => (action) => {
             'order_by=rank&limit=3&pretty=true'
           )
           .then((response) => {
-            console.log('from api');
             localStorage.setItem("topgames", JSON.stringify(response.data.games));
             store.dispatch(saveTopGames(response.data.games));
           })

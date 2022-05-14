@@ -1,5 +1,5 @@
 // Dependencies
-import { useEffect, useRef } from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 // React-Redux
 import Loader from '@/components/Loader'
@@ -13,14 +13,9 @@ import "./dashboard.scss";
 function Dashboard() {
   const dispatch = useDispatch();
 
-  const didMount = useRef(false);
   useEffect(() => {
-    if (didMount.current) {
-      dispatch(fetchTopGames());
-    }
-    else didMount.current = true;
+    dispatch(fetchTopGames());
   }, [dispatch]);
-
 
   const topGames = useSelector((state) => state.dashboard.games);
   const loading = useSelector((state) => state.dashboard.loading);
