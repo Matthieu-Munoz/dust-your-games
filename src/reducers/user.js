@@ -5,6 +5,8 @@ import {
 export const initialState = {
     // user pseudo
     pseudo: '',
+    // user birthday
+    birthday: '',
     // user email
     email: '',
     // user password

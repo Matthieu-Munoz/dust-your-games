@@ -17,7 +17,7 @@ function LoginForm() {
     // can also be written as:
     // const email = useSelector((state) => state.user.email);
     // const password = useSelector((state) => state.user.password);
-      
+
     const handleChange = (value, field) => {
         dispatch(changeHomeField(value, field));
     }
@@ -25,7 +25,7 @@ function LoginForm() {
     // Handle when the user click the login button
     const handleLogin = (evt) => {
         evt.preventDefault();
-        dispatch(login(changeHomeField))
+        dispatch(login())
     }
 
     return (
@@ -42,6 +42,7 @@ function LoginForm() {
                 type="password"
                 placeholder="Mot de passe"
                 Icon={AiOutlineLock}
+                field="password"
                 value={password}
                 onChange={handleChange}
             />

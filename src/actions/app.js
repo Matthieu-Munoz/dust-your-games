@@ -25,3 +25,8 @@ export const toggleMenu = (value) => ({
     type: TOGGLE_MENU,
     value,
 });
+
+export const TOGGLE_PASSWORD = 'TOGGLE_PASSWORD';
+export const togglePassword = () => ({
+    type: TOGGLE_PASSWORD,
+});

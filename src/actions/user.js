@@ -1,8 +1,8 @@
 export const CHANGE_HOME_FIELD = 'CHANGE_HOME_FIELD';
 export const changeHomeField = (value, field) => ({
-  type: CHANGE_HOME_FIELD,
-  value,
-  field,
+    type: CHANGE_HOME_FIELD,
+    value,
+    field,
 });
 
 export const LOGIN = 'LOGIN';
@@ -19,5 +19,10 @@ export const SAVE_USER = 'SAVE_USER';
 export const saveUser = (user) => ({
     type: SAVE_USER,
     user,
+});
+
+export const REGISTER = 'REGISTER';
+export const register = () => ({
+    type: REGISTER,
 });
 

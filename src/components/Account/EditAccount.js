@@ -48,6 +48,7 @@ function EditAccount() {
           type="password"
           placeholder="modifier mon mot de passe"
           //onChange={handleChangeField}
+          field="password"
           value={''}
           Icon={AiOutlineLock}
         />
@@ -57,6 +58,7 @@ function EditAccount() {
           type="password"
           placeholder="confirmer mon mot de passe"
           //onChange={handleChangeField}
+          field="password"
           value={''}
           Icon={AiOutlineLock}
         />

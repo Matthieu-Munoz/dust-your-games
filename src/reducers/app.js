@@ -1,11 +1,12 @@
 import {
-    TOGGLE_THEME, SAVE_THEME, TOGGLE_MODAL, TOGGLE_MENU
+    TOGGLE_THEME, SAVE_THEME, TOGGLE_MODAL, TOGGLE_MENU, TOGGLE_PASSWORD
 } from '@/actions/app';
 
 export const initialState = {
     darkTheme: true,
     modalOpened: false,
     menuOpened: false,
+    passwordVisible: false,
 };
 
 const reducer = (state = initialState, action = {}) => {
@@ -32,6 +33,11 @@ const reducer = (state = initialState, action = {}) => {
                 ...state,
                 menuOpened: action.value,
             };
+        case TOGGLE_PASSWORD:
+            return {
+                ...state,
+                passwordVisible: !state.passwordVisible,
+            }
         default:
             return state;
     }

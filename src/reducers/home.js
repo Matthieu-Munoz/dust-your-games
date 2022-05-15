@@ -1,5 +1,5 @@
 import {
-    TOGGLE_LOGIN_FORM,
+    TOGGLE_LOGIN_FORM
 } from '@/actions/home';
 
 export const initialState = {
