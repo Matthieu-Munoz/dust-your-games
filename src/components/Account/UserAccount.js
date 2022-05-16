@@ -1,10 +1,11 @@
 // Dependencies
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { BsPeopleFill } from "react-icons/bs";
 import { FaChessPawn } from "react-icons/fa";
 // React-Redux
 import { toggleEditAccount } from '@/actions/account';
 import Button from '../Button';
+
 // Styles
 import "./account.scss"
 // Locals
@@ -12,6 +13,8 @@ import hedgehog from '@/assets/images/hedgehog.jpg';
 
 function UserAccount() {
   const dispatch = useDispatch();
+  const { pseudo, email } = useSelector((state) => state.account);
+
 
   return (
     <div className="useraccount">
@@ -21,9 +24,9 @@ function UserAccount() {
           <div className="useraccount__picture__yellowcircle" />
           <img className="useraccount__picture__img" src={hedgehog} alt="avatar" />
         </div>
-        <h2 className="useraccount__title">Bonjour Debbie</h2>
+        <h2 className="useraccount__title">Bonjour {pseudo}</h2>
         <div className="useraccount__email">
-          debbie.baker@example.com
+          { email }
         </div>
           <Button
             name="gérer mon compte"
@@ -42,7 +45,7 @@ function UserAccount() {
         <div className="useraccount__statistics__friendsnumber">
           <BsPeopleFill className="useraccount__statistics__friendsnumber__icon" />
           <div className="useraccount__statistics__friendsnumber__number">
-            6
+            0
           </div>
         </div>
       </div>

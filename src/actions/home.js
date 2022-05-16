@@ -4,4 +4,12 @@ export const toggleLoginForm = (isLoginForm) => ({
     isLoginForm,
 });
 
+export const CHANGE_HOME_FIELD = 'CHANGE_HOME_FIELD';
+export const changeHomeField = (value, field) => ({
+    type: CHANGE_HOME_FIELD,
+    value,
+    field,
+});
+
+
 
