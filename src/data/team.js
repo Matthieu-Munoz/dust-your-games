@@ -22,7 +22,7 @@ const team = [
         job: 'Développeuse React.js',
         picture: alicePicture,
         socials: {
-            mail: "",
+            mail: "choukroun.alice@gmail.com",
             github: "https://github.com/AliceCkn",
             Linkedin: "https://www.linkedin.com/in/alice-c-929b2bb2/",
         },
@@ -33,7 +33,7 @@ const team = [
         job: 'Développeur React.js',
         picture: manuPicture,
         socials: {
-            mail: "",
+            mail: "manu85874@gmail.com",
             github: "https://github.com/Manus76110",
             Linkedin: "https://www.linkedin.com/in/manuel-sanchez-119337235/",
         },
