@@ -5,6 +5,7 @@ import { FaGithub, FaLinkedin, FaTeamspeak } from "react-icons/fa";
 import { BsQuestionCircle, BsPerson } from "react-icons/bs";
 import { AiOutlineMail } from "react-icons/ai";
 import { HiOutlineSelector } from "react-icons/hi"
+import { Image, Transformation } from 'cloudinary-react';
 // React-Redux
 import Field from "@/components/Field";
 import Button from '../Button';
@@ -32,11 +33,13 @@ function Contact() {
       <div className="contact__team">
         <h2 className="contact__team__title">L'équipe</h2>
         <div className="contact__team__ctn">
-          {team.map((item) => (  
+          {team.map((item) => (
             <div className="contact__team__card" key={item.id}>
-              <div className="contact__team__picture"> 
+              <div className="contact__team__picture">
                 <div className="contact__team__picture__border" />
-                <img className="contact__team__picture__img" src={item.picture} alt={item.name} />
+                <Image cloudName="dyg" publicId={item.picture} className="contact__team__picture__img" >
+                  <Transformation quality="80" width="140" crop="scale" />
+                </Image>
               </div>
               <div className="contact__team__description">
                 {item.name} <br />
