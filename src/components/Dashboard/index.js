@@ -1,7 +1,7 @@
 // Dependencies
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { IKImage } from 'imagekitio-react'
+import { Image, Transformation } from 'cloudinary-react';
 // React-Redux
 import Loader from '@/components/Loader'
 import {
@@ -29,30 +29,21 @@ function Dashboard() {
         <div className="dashboard__separator" />
         <div className="dashboard__cards">
           <div className="dashboard__card dashboard__card--games">
-            <IKImage
-              className="dashboard__card__img"
-              path="dashboard_games_QUyTODpGw.png"
-              transformation={[{ quality: 80 }]}
-              lqip={{ active: true, quality: 20 }}
-            />
+            <Image cloudName="dyg" publicId="dashboard_games_ku2j4f.png" className="dashboard__card__img" >
+              <Transformation quality="80" width="800" crop="scale" />
+            </Image>
             <h3 className="dashboard__card__title">Liste de jeux</h3>
           </div>
           <div className="dashboard__card dashboard__card--dust">
-            <IKImage
-              className="dashboard__card__img"
-              path="dashboard_dust_gSj4rOw0A.png"
-              transformation={[{ quality: 80 }]}
-              lqip={{ active: true, quality: 20 }}
-            />
+            <Image cloudName="dyg" publicId="dashboard_dust_ljmzor.png" className="dashboard__card__img" >
+              <Transformation quality="80" width="800" crop="scale" />
+            </Image>
             <h3 className="dashboard__card__title">Dépoussiérage</h3>
           </div>
           <div className="dashboard__card dashboard__card--friends">
-            <IKImage
-              className="dashboard__card__img"
-              path="dashboard_friends_bPAmSxxrJ.png"
-              transformation={[{ quality: 80 }]}
-              lqip={{ active: true, quality: 20 }}
-            />
+            <Image cloudName="dyg" publicId="dashboard_friends_dyriwm.png" className="dashboard__card__img" >
+              <Transformation quality="80" width="800" crop="scale" />
+            </Image>
             <h3 className="dashboard__card__title">Liste d'amis</h3>
           </div>
         </div>
@@ -63,11 +54,10 @@ function Dashboard() {
             <div className="dashboard__widget__games">
               {topGames && topGames.map((topGame) => (
                 <div key={topGame.id} className="dashboard__widget__game">
-                  <IKImage
+                  <img
                     className="dashboard__widget__game__img"
-                    src={topGame.image_url}
-                    transformation={[{ quality: 80 }]}
-                    lqip={{ active: true, quality: 20 }}
+                    src={`https://res.cloudinary.com/dyg/image/fetch/c_scale,h_150,q_60,w_150/${topGame.image_url}`}
+                    alt={topGame.name}
                   />
                   <div className="dashboard__widget__game__name">{topGame.name}</div>
                 </div>
