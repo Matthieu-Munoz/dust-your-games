@@ -1,18 +1,18 @@
 // Dependencies
 import { useDispatch, useSelector } from 'react-redux';
-import { toggleLoginForm } from '../../actions/home';
 import { BsPerson, BsCalendarDate } from "react-icons/bs";
 import { AiOutlineLock, AiOutlineMail } from "react-icons/ai";
 // React-Redux
 import Field from "@/components/Field";
 import Button from '../Button';
-import { changeHomeField, register } from '@/actions/user';
+import { toggleLoginForm, changeHomeField } from '../../actions/home';
+import { register } from '@/actions/user';
 // Styles
 
 function RegisterForm() {
   const dispatch = useDispatch();
 
-  const { pseudo, birthday, email, password, confirmedpassword } = useSelector((state) => state.user);
+  const { pseudo, birthday, email, password, confirmedpassword } = useSelector((state) => state.home);
 
   const handleChange = (value, field) => {
     dispatch(changeHomeField(value, field));

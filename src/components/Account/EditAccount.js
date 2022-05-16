@@ -1,11 +1,11 @@
 // Dependencies
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { BsPerson } from "react-icons/bs";
 import { IoClose } from "react-icons/io5";
 import { AiOutlineLock, AiOutlineMail, AiOutlineEdit } from "react-icons/ai";
 // React-Redux
 import Field from "@/components/Field";
-import { toggleEditAccount } from '@/actions/account';
+import { toggleEditAccount, changeField } from '@/actions/account';
 import Button from '../Button';
 // styles
 import "./account.scss"
@@ -14,6 +14,11 @@ import hedgehog from '@/assets/images/hedgehog.jpg';
 
 function EditAccount() {
   const dispatch = useDispatch();
+  const { pseudo, email, password, confirmedpassword } = useSelector((state) => state.account);
+
+  const handleChange = (value, field) => {
+    dispatch(changeField(value, field));
+  }
 
   return (
     <form className="useraccount useraccount--register">
@@ -29,8 +34,8 @@ function EditAccount() {
         <Field
           name="pseudo"
           placeholder="Modifier mon pseudo"
-          //onChange={handleChangeField}
-          value={''}
+          onChange={handleChange}
+          value={pseudo}
           Icon={BsPerson}
         />
         <div className="description_input"> Mon adresse e-mail </div>
@@ -38,8 +43,8 @@ function EditAccount() {
           name="email"
           type="email"
           placeholder="modifier mon e-mail"
-          //onChange={handleChangeField}
-          value={''}
+          onChange={handleChange}
+          value={email}
           Icon={AiOutlineMail}
         />
         <div className="description_input"> Mon mot de passe </div>
@@ -47,9 +52,9 @@ function EditAccount() {
           name="password"
           type="password"
           placeholder="modifier mon mot de passe"
-          //onChange={handleChangeField}
+          onChange={handleChange}
           field="password"
-          value={''}
+          value={password}
           Icon={AiOutlineLock}
         />
         <div className="description_input"> Confirmer mon mot de passe </div>
@@ -57,9 +62,9 @@ function EditAccount() {
           name="confirmedpassword"
           type="password"
           placeholder="confirmer mon mot de passe"
-          //onChange={handleChangeField}
+          onChange={handleChange}
           field="password"
-          value={''}
+          value={confirmedpassword}
           Icon={AiOutlineLock}
         />
       </div>

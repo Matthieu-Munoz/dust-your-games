@@ -4,8 +4,8 @@ import { BsPerson } from "react-icons/bs";
 import { AiOutlineLock } from "react-icons/ai";
 // React-Redux
 import Field from "@/components/Field";
-import { toggleLoginForm } from '@/actions/home';
-import { changeHomeField, login } from '@/actions/user';
+import { toggleLoginForm, changeHomeField } from '@/actions/home';
+import { login } from '@/actions/user';
 import Button from '../Button';
 // Styles
 
@@ -13,7 +13,7 @@ function LoginForm() {
     const dispatch = useDispatch();
     // We select and save Email and Password from the user state 
     // This is the only two properties which are needed in this component
-    const { email, password } = useSelector((state) => state.user);
+    const { email, password } = useSelector((state) => state.home);
     // can also be written as:
     // const email = useSelector((state) => state.user.email);
     // const password = useSelector((state) => state.user.password);
