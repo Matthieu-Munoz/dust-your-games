@@ -12,7 +12,7 @@ import { register } from '@/actions/user';
 function RegisterForm() {
   const dispatch = useDispatch();
 
-  const { pseudo, birthday, email, password, confirmedpassword } = useSelector((state) => state.home);
+  const { pseudo_name, birthday, email, password, confirmedpassword } = useSelector((state) => state.home);
 
   const handleChange = (value, field) => {
     dispatch(changeHomeField(value, field));
@@ -39,10 +39,10 @@ function RegisterForm() {
   return (
     <form className="userform__ctn userform__ctn--register">
       <Field
-        name="pseudo"
+        name="pseudo_name"
         placeholder="Identifiant"
         Icon={BsPerson}
-        value={pseudo}
+        value={pseudo_name}
         onChange={handleChange}
       />
       <div className="field">

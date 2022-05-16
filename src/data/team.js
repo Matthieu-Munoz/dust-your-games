@@ -1,15 +1,9 @@
-import alicePicture from '@/assets/images/alice.png';
-import manuPicture from '@/assets/images/manu.png';
-import medhyPicture from '@/assets/images/medhy.png';
-import mehdiPicture from '@/assets/images/mehdi.png';
-import matthieuPicture from '@/assets/images/matthieu.png';
-
 const team = [
     {
         id: 1,
         name: 'Matthieu M.',
         job: 'Développeur React.js',
-        picture: matthieuPicture,
+        picture: "matthieu_ijeydc.png",
         socials: {
             mail: "mailto:matthieu.munoz.pro@gmail.com",
             github: "https://github.com/Matthieu-Munoz",
@@ -20,7 +14,7 @@ const team = [
         id: 2,
         name: 'Alice C.',
         job: 'Développeuse React.js',
-        picture: alicePicture,
+        picture: "alice_x4zonq.png",
         socials: {
             mail: "mailto:choukroun.alice@gmail.com",
             github: "https://github.com/AliceCkn",
@@ -31,7 +25,7 @@ const team = [
         id: 3,
         name: 'Manu S.',
         job: 'Développeur React.js',
-        picture: manuPicture,
+        picture: "manu_jiyakr.png",
         socials: {
             mail: "mailto:manu85874@gmail.com",
             github: "https://github.com/Manus76110",
@@ -42,7 +36,7 @@ const team = [
         id: 4,
         name: 'Medhy D.',
         job: 'Développeur Symfony',
-        picture: medhyPicture,
+        picture: "medhy_xq4fms.png",
         socials: {
             mail: "mailto:mr.medhy.daas@gmail.com",
             github: "https://github.com/Med57",
@@ -53,7 +47,7 @@ const team = [
         id: 5,
         name: 'Mehdi B.',
         job: 'Développeur Symfony',
-        picture: mehdiPicture,
+        picture: "mehdi_q4xj5o.png",
         socials: {
             mail: "mailto:mehdi.bourdin@hotmail.fr",
             github: "https://github.com/MehdiBourdin",

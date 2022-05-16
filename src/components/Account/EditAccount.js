@@ -14,7 +14,7 @@ import hedgehog from '@/assets/images/hedgehog.jpg';
 
 function EditAccount() {
   const dispatch = useDispatch();
-  const { pseudo, email, password, confirmedpassword } = useSelector((state) => state.account);
+  const { pseudo_name, email, password, confirmedpassword } = useSelector((state) => state.account);
 
   const handleChange = (value, field) => {
     dispatch(changeField(value, field));
@@ -35,7 +35,7 @@ function EditAccount() {
           name="pseudo"
           placeholder="Modifier mon pseudo"
           onChange={handleChange}
-          value={pseudo}
+          value={pseudo_name}
           Icon={BsPerson}
         />
         <div className="description_input"> Mon adresse e-mail </div>

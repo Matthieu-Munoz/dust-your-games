@@ -13,7 +13,7 @@ import hedgehog from '@/assets/images/hedgehog.jpg';
 
 function UserAccount() {
   const dispatch = useDispatch();
-  const { pseudo, email } = useSelector((state) => state.account);
+  const { pseudo_name, email } = useSelector((state) => state.account);
 
 
   return (
@@ -24,15 +24,15 @@ function UserAccount() {
           <div className="useraccount__picture__yellowcircle" />
           <img className="useraccount__picture__img" src={hedgehog} alt="avatar" />
         </div>
-        <h2 className="useraccount__title">Bonjour {pseudo}</h2>
+        <h2 className="useraccount__title">Bonjour {pseudo_name}</h2>
         <div className="useraccount__email">
-          { email }
+          {email}
         </div>
-          <Button
-            name="gérer mon compte"
-            classname="secondary"
-            onclick={() => dispatch(toggleEditAccount(true))}
-          />
+        <Button
+          name="gérer mon compte"
+          classname="secondary"
+          onclick={() => dispatch(toggleEditAccount(true))}
+        />
       </div>
       <div className="useraccount__statistics">
         <div className="useraccount__statistics__gamenumber">

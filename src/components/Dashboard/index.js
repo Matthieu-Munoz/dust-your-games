@@ -30,19 +30,19 @@ function Dashboard() {
         <div className="dashboard__cards">
           <div className="dashboard__card dashboard__card--games">
             <Image cloudName="dyg" publicId="dashboard_games_ku2j4f.png" className="dashboard__card__img" >
-              <Transformation quality="80" width="800" crop="scale" />
+              <Transformation quality="80" width="250" crop="scale" />
             </Image>
             <h3 className="dashboard__card__title">Liste de jeux</h3>
           </div>
           <div className="dashboard__card dashboard__card--dust">
             <Image cloudName="dyg" publicId="dashboard_dust_ljmzor.png" className="dashboard__card__img" >
-              <Transformation quality="80" width="800" crop="scale" />
+              <Transformation quality="80" width="250" crop="scale" />
             </Image>
             <h3 className="dashboard__card__title">Dépoussiérage</h3>
           </div>
           <div className="dashboard__card dashboard__card--friends">
             <Image cloudName="dyg" publicId="dashboard_friends_dyriwm.png" className="dashboard__card__img" >
-              <Transformation quality="80" width="800" crop="scale" />
+              <Transformation quality="80" width="250" crop="scale" />
             </Image>
             <h3 className="dashboard__card__title">Liste d'amis</h3>
           </div>
