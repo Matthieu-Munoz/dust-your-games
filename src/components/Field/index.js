@@ -79,7 +79,7 @@ function Field({
           {(Icon !== null) && <Icon className="field__icon" />}
           <select name={name} className="field__select">
             {options.map((option) => (
-              <option value={option.value} key={option.value}>{option.text}</option>
+              <option value={option.value} key={option.value} >{option.text}</option>
             ))}
           </select>
           {(SecondIcon !== null) && <SecondIcon className="field__icon field__icon--second" />}
@@ -93,7 +93,7 @@ Field.propTypes = {
   value: PropTypes.string,
   type: PropTypes.string,
   name: PropTypes.string.isRequired,
-  placeholder: PropTypes.string.isRequired,
+  placeholder: PropTypes.string,
   onChange: PropTypes.func.isRequired,
   Icon: PropTypes.any,
   SecondIcon: PropTypes.any,
@@ -106,6 +106,7 @@ Field.propTypes = {
 };
 
 Field.defaultProps = {
+  placeholder: '',
   value: '',
   type: 'text',
   Icon: null,
