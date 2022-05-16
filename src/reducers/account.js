@@ -1,12 +1,10 @@
 import {
-    TOGGLE_EDIT_ACCOUNT, CHANGE_FIELD
+    TOGGLE_EDIT_ACCOUNT, CHANGE_FIELD, SAVE_USER_ACCOUNT
 } from '@/actions/account';
 
 export const initialState = {
     // user pseudo
-    pseudo: '',
-    // user birthday
-    birthday: '',
+    pseudo_name: '',
     // user email
     email: '',
     // user password
@@ -27,6 +25,11 @@ const reducer = (state = initialState, action = {}) => {
             return {
                 ...state,
                 [action.field]: action.value,
+            };
+        case SAVE_USER_ACCOUNT:
+            return {
+                ...state,
+                ...action.user,
             };
         default:
             return state;

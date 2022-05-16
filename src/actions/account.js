@@ -11,5 +11,8 @@ export const changeField = (value, field) => ({
     field,
 });
 
-
-
+export const SAVE_USER_ACCOUNT = 'SAVE_USER_ACCOUNT';
+export const saveUserAccount = (user) => ({
+    type: SAVE_USER_ACCOUNT,
+    user,
+});

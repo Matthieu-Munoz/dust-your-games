@@ -4,6 +4,7 @@ import {
   LOGIN, LOGOUT, saveUser, REGISTER
 } from '../actions/user';
 import { toggleLoading, toggleLoginForm } from '../actions/home'
+import { saveUserAccount } from '@/actions/account';
 
 const axiosInstance = axios.create({
   baseURL: 'https://api.dustyourgames.com/api/',
@@ -48,16 +49,16 @@ const dygApiMiddleWare = (store) => (next) => (action) => {
           },
         )
         .then((response) => {
-          const { data: user } = response;
+          console.log(response);
+          const user = response.data.user;
           axiosInstance.defaults.headers.common.Authorization = `Bearer ${user.token}`;
-          console.log(user);
           store.dispatch(saveUser(user));
+          store.dispatch(saveUserAccount(user));
         })
         .catch(() => {
           console.log('oups...');
         });
-      //! à supprimer 
-      store.dispatch(saveUser({ logged: true }));
+
       next(action);
       break;
     }

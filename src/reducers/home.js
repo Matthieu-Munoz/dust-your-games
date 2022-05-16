@@ -8,9 +8,9 @@ export const initialState = {
     // user birthday
     birthday: '',
     // user email
-    email: '',
+    email: 'test@test.test',
     // user password
-    password: '',
+    password: 'test',
     // user confirmedpassword
     confirmedpassword: '',
     isLoginForm: true,

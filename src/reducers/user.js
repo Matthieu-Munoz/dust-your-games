@@ -3,16 +3,18 @@ import {
 } from '@/actions/user';
 
 export const initialState = {
+    // user id
+    id: 0,
     // user email
     email: '',
     // user pseudo
     pseudo_name: '',
     // user birthday
     year_of_birth: '',
+    // user image
+    image: null,
     // is the user logged in
     logged: false,
-    // token to use in request
-    token: null,
 };
 
 const reducer = (state = initialState, action = {}) => {
@@ -21,6 +23,7 @@ const reducer = (state = initialState, action = {}) => {
             return {
                 ...state,
                 ...action.user,
+                logged: true,
             };
         case LOGOUT:
             return {
