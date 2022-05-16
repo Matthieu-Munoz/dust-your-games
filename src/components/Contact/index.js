@@ -1,140 +1,60 @@
 // Dependencies
+import { useDispatch, useSelector } from 'react-redux';
 import { GrMail } from "react-icons/gr";
-import { FaGithub } from "react-icons/fa";
-import { FaLinkedin } from "react-icons/fa";
-import { BsQuestionCircle } from "react-icons/bs";
+import { FaGithub, FaLinkedin, FaTeamspeak } from "react-icons/fa";
+import { BsQuestionCircle, BsPerson } from "react-icons/bs";
 import { AiOutlineMail } from "react-icons/ai";
-import { BsPerson } from "react-icons/bs";
 import { HiOutlineSelector } from "react-icons/hi"
-
 // React-Redux
 import Field from "@/components/Field";
 import Button from '../Button';
-
+import { changeInputValue, isSubmitForm } from '@/actions/contact';
+import team from "@/data/team";
 // Styles
 import "./contact.scss"
 
-// Locals
-import alicePicture from '@/assets/images/alice.png';
-import manuPicture from '@/assets/images/manu.png';
-import medhyPicture from '@/assets/images/medhy.png';
-import mehdiPicture from '@/assets/images/mehdi.png';
-import matthieuPicture from '@/assets/images/matthieu.png';
-
 function Contact() {
+
+  const dispatch = useDispatch();
+  const { pseudo, email, objet, message } = useSelector((state) => state.contact);
+
   const handleChangeField = (value, name) => {
-    console.log(value, name);
-  };
+    dispatch(changeInputValue(value, name));
+  }
+
+  const handleFormSubmit = (evt) => {
+    evt.preventDefault();
+    dispatch(isSubmitForm(false))
+  }
+
   return (
     <div className="contact">
       <div className="contact__team">
         <h2 className="contact__team__title">L'équipe</h2>
         <div className="contact__team__ctn">
-          <div className="contact__team__card">
-            <div className="contact__team__picture">
-              <div className="contact__team__picture__border" />
-              <img className="contact__team__picture__img" src={matthieuPicture} alt="matthieu" />
+          {team.map((item) => (  
+            <div className="contact__team__card" key={item.id}>
+              <div className="contact__team__picture"> 
+                <div className="contact__team__picture__border" />
+                <img className="contact__team__picture__img" src={item.picture} alt={item.name} />
+              </div>
+              <div className="contact__team__description">
+                {item.name} <br />
+                {item.job}
+              </div>
+              <div className="contact__team__links">
+                <a href={item.socials.mail} target="blank" className="contact__team__link">
+                  <GrMail className="contact__team__link" />
+                </a>
+                <a href={item.socials.github} target="blank" className="contact__team__link">
+                  <FaGithub className="contact__team__link" />
+                </a>
+                <a href={item.socials.linkedin} target="blank" className="contact__team__link">
+                  <FaLinkedin className="contact__team__link" />
+                </a>
+              </div>
             </div>
-            <div className="contact__team__description">
-              Matthieu M. <br />
-              Développeur React.js
-            </div>
-            <div className="contact__team__links">
-              <a href="/" className="contact__team__link">
-                <GrMail className="contact__team__link" />
-              </a>
-              <a href="/" className="contact__team__link">
-                <FaGithub className="contact__team__link" />
-              </a>
-              <a href="/" className="contact__team__link">
-                <FaLinkedin className="contact__team__link" />
-              </a>
-            </div>
-          </div>
-          <div className="contact__team__card">
-            <div className="contact__team__picture">
-              <div className="contact__team__picture__border" />
-              <img className="contact__team__picture__img" src={alicePicture} alt="alice" />
-            </div>
-            <div className="contact__team__description">
-              Alice C. <br />
-              Développeuse React.js
-            </div>
-            <div className="contact__team__links">
-              <a href="/" className="contact__team__link">
-                <GrMail className="contact__team__link" />
-              </a>
-              <a href="/" className="contact__team__link">
-                <FaGithub className="contact__team__link" />
-              </a>
-              <a href="/" className="contact__team__link">
-                <FaLinkedin className="contact__team__link" />
-              </a>
-            </div>
-          </div>
-          <div className="contact__team__card">
-            <div className="contact__team__picture">
-              <div className="contact__team__picture__border" />
-              <img className="contact__team__picture__img" src={manuPicture} alt="manu" />
-            </div>
-            <div className="contact__team__description">
-              Manu S. <br />
-              Développeur React.js
-            </div>
-            <div className="contact__team__links">
-              <a href="/" className="contact__team__link">
-                <GrMail className="contact__team__link" />
-              </a>
-              <a href="/" className="contact__team__link">
-                <FaGithub className="contact__team__link" />
-              </a>
-              <a href="/" className="contact__team__link">
-                <FaLinkedin className="contact__team__link" />
-              </a>
-            </div>
-          </div>
-          <div className="contact__team__card">
-            <div className="contact__team__picture">
-              <div className="contact__team__picture__border" />
-              <img className="contact__team__picture__img" src={medhyPicture} alt="medhy" />
-            </div>
-            <div className="contact__team__description">
-              Medhy D. <br />
-              Développeur Symfony
-            </div>
-            <div className="contact__team__links">
-              <a href="/" className="contact__team__link">
-                <GrMail className="contact__team__link" />
-              </a>
-              <a href="/" className="contact__team__link">
-                <FaGithub className="contact__team__link" />
-              </a>
-              <a href="/" className="contact__team__link">
-                <FaLinkedin className="contact__team__link" />
-              </a>
-            </div>
-          </div>
-          <div className="contact__team__card">
-            <div className="contact__team__picture">
-              <div className="contact__team__picture__border" />
-              <img className="contact__team__picture__img" src={mehdiPicture} alt="mehdi" />
-            </div>
-            <div className="contact__team__description">
-              Mehdi B. <br />
-              Développeur Symfony
-            </div>
-            <div className="contact__team__links">
-              <a href="/" className="contact__team__link">
-                <GrMail className="contact__team__link" />
-              </a>
-              <a href="/" className="contact__team__link">
-                <FaGithub className="contact__team__link" />
-              </a>
-              <a href="/" className="contact__team__link">
-                <FaLinkedin className="contact__team__link" />
-              </a>
-            </div>
-          </div>
+          ))}
         </div>
       </div>
       <div className="contact__separator" />
@@ -146,7 +66,7 @@ function Contact() {
             type="text"
             placeholder="pseudo"
             onChange={handleChangeField}
-            value={''}
+            value={pseudo}
             Icon={BsPerson}
           />
           <Field
@@ -154,19 +74,19 @@ function Contact() {
             type="email"
             placeholder="e-mail"
             onChange={handleChangeField}
-            value={''}
+            value={email}
             Icon={AiOutlineMail}
           />
           <Field
             name="objet"
             onChange={handleChangeField}
-            value={''}
+            value={objet}
             Icon={BsQuestionCircle}
             SecondIcon={HiOutlineSelector}
             options={[
-              { value: "", text: "AU SUJET DE..." },
-              { value: "1", text: "Choisir une option" },
+              { value: "1", text: "AU SUJET DE..." },
               { value: "2", text: "Choisir une option" },
+              { value: "3", text: "Choisir une option" },
             ]}
             field="select"
           />
@@ -174,13 +94,15 @@ function Contact() {
             name="message"
             placeholder="Votre message..."
             field="textarea"
+            value={message}
             onChange={handleChangeField}
           />
           <Button
             name="envoyer"
             classname="primary"
             type="submit"
-            onclick={() => console.log}
+            Icon={FaTeamspeak}
+            onclick={handleFormSubmit}
           />
           {/*<div className="information">
         N'hésitez pas à nous envoyer un message.

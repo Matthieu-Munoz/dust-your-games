@@ -13,7 +13,7 @@ const team = [
         socials: {
             mail: "mailto:matthieu.munoz.pro@gmail.com",
             github: "https://github.com/Matthieu-Munoz",
-            Linkedin: "https://www.linkedin.com/in/matthieu-munoz-798b33184/",
+            linkedin: "https://www.linkedin.com/in/matthieu-munoz-798b33184/",
         },
     },
     {
@@ -22,9 +22,9 @@ const team = [
         job: 'Développeuse React.js',
         picture: alicePicture,
         socials: {
-            mail: "",
+            mail: "mailto:choukroun.alice@gmail.com",
             github: "https://github.com/AliceCkn",
-            Linkedin: "https://www.linkedin.com/in/alice-c-929b2bb2/",
+            linkedin: "https://www.linkedin.com/in/alice-c-929b2bb2/",
         },
     },
     {
@@ -33,9 +33,9 @@ const team = [
         job: 'Développeur React.js',
         picture: manuPicture,
         socials: {
-            mail: "",
+            mail: "mailto:manu85874@gmail.com",
             github: "https://github.com/Manus76110",
-            Linkedin: "https://www.linkedin.com/in/manuel-sanchez-119337235/",
+            linkedin: "https://www.linkedin.com/in/manuel-sanchez-119337235/",
         },
     },
     {
@@ -44,9 +44,9 @@ const team = [
         job: 'Développeur Symfony',
         picture: medhyPicture,
         socials: {
-            mail: "",
+            mail: "mailto:mr.medhy.daas@gmail.com",
             github: "https://github.com/Med57",
-            Linkedin: "https://www.linkedin.com/in/medhy-daas-203387173/",
+            linkedin: "https://www.linkedin.com/in/medhy-daas-203387173/",
         },
     },
     {
@@ -55,9 +55,9 @@ const team = [
         job: 'Développeur Symfony',
         picture: mehdiPicture,
         socials: {
-            mail: "",
+            mail: "mailto:mehdi.bourdin@hotmail.fr",
             github: "https://github.com/MehdiBourdin",
-            Linkedin: "https://www.linkedin.com/in/mehdi-bourdin-646336235/",
+            linkedin: "https://www.linkedin.com/in/mehdi-bourdin-646336235/",
         },
     },
 ];
