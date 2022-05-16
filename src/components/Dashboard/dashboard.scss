@@ -44,6 +44,7 @@
     margin: 0.5em;
     background-color: vars.$grey-blue;
     border-radius: 0.5em;
+    cursor: pointer;
     // Linked to the background-image : Size to control the size of the image, repeat to control how many times it repeats inside the div
 
     &__img {

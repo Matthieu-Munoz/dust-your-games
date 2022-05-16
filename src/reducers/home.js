@@ -1,5 +1,5 @@
 import {
-    TOGGLE_LOGIN_FORM, CHANGE_HOME_FIELD, TOGGLE_LOADING
+    TOGGLE_LOGIN_FORM, CHANGE_HOME_FIELD
 } from '@/actions/home';
 
 export const initialState = {
@@ -8,13 +8,12 @@ export const initialState = {
     // user birthday
     birthday: '',
     // user email
-    email: 'test@test.test',
+    email: '',
     // user password
-    password: 'test',
+    password: '',
     // user confirmedpassword
     confirmedpassword: '',
     isLoginForm: true,
-    loading: false,
 };
 
 const reducer = (state = initialState, action = {}) => {
@@ -32,11 +31,6 @@ const reducer = (state = initialState, action = {}) => {
             return {
                 ...state,
                 [action.field]: action.value,
-            };
-        case TOGGLE_LOADING:
-            return {
-                ...state,
-                loading: !state.loading,
             };
         default:
             return state;

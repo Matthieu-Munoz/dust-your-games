@@ -13,6 +13,7 @@ import Error from '../Error';
 import Modal from '../Modal';
 import Header from '../Header';
 import { loadTheme, toggleMenu } from '@/actions/app';
+import { fetchUser } from '@/actions/user';
 // import Footer from '../Footer';
 // Styles
 import './app.scss';
@@ -20,10 +21,10 @@ import './app.scss';
 function App() {
   // To dispatch action to the store
   const dispatch = useDispatch();
-
   // Load the theme from localStorage when the app initialize
   useEffect(
     () => {
+      dispatch(fetchUser());
       dispatch(loadTheme());
     },
     [dispatch],
@@ -61,7 +62,6 @@ function App() {
   return (
     <div className={themeClass}>
       <div className={appClass} onClick={(evt) => handleMenu(evt, menuOpen)}>
-
         <Modal />
         <Header />
         <Routes>
@@ -71,7 +71,6 @@ function App() {
           <Route path="/account" element={<Account />} />
           <Route path="*" element={<Error />} />
         </Routes>
-        {/* <Footer /> */}
       </div>
     </div>
   );

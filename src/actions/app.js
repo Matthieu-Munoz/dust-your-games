@@ -30,3 +30,9 @@ export const TOGGLE_PASSWORD = 'TOGGLE_PASSWORD';
 export const togglePassword = () => ({
     type: TOGGLE_PASSWORD,
 });
+
+export const TOGGLE_LOADING = 'TOGGLE_LOADING';
+export const toggleLoading = (value) => ({
+    type: TOGGLE_LOADING,
+    value,
+});

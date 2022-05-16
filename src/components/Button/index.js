@@ -35,7 +35,7 @@ Button.defaultProps = {
     type: 'button',
     classname: '',
     style: {},
-    onclick: '',
+    onclick: () => console.log('click'),
 };
 
 export default Button;

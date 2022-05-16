@@ -4,8 +4,6 @@ import {
 
 export const initialState = {
     games: [],
-    loading: true,
-
 };
 
 const reducer = (state = initialState, action = {}) => {
@@ -14,7 +12,6 @@ const reducer = (state = initialState, action = {}) => {
             return {
                 ...state,
                 games: action.games,
-                loading: false,
             }
         default:
             return state;

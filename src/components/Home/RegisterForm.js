@@ -88,10 +88,10 @@ function RegisterForm() {
         classname="primary"
         onclick={handleRegister}
       />
-      <div className="userform__seperator">
-        <div className="userform__seperator__lign" />
+      <div className="userform__separator">
+        <div className="userform__separator__line" />
         ou
-        <div className="userform__seperator__lign" />
+        <div className="userform__separator__line" />
       </div>
       <Button
         name="Se connecter"

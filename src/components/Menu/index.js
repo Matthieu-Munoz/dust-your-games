@@ -102,7 +102,11 @@ function Menu() {
               </>
             )
         }
-
+        <footer className="footer">
+          <a href="/legals" className="footer__link">Mentions légales</a>
+          <div className="footer__separator" />
+          Copyright &copy; {new Date().toISOString().slice(0, 4)} Tous droits reservés
+        </footer>
       </div>
     </>
   );

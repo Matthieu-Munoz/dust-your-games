@@ -1,5 +1,5 @@
 import {
-    TOGGLE_THEME, SAVE_THEME, TOGGLE_MODAL, TOGGLE_MENU, TOGGLE_PASSWORD
+    TOGGLE_THEME, SAVE_THEME, TOGGLE_MODAL, TOGGLE_MENU, TOGGLE_PASSWORD, TOGGLE_LOADING
 } from '@/actions/app';
 
 export const initialState = {
@@ -7,6 +7,7 @@ export const initialState = {
     modalOpened: false,
     menuOpened: false,
     passwordVisible: false,
+    loading: false,
 };
 
 const reducer = (state = initialState, action = {}) => {
@@ -38,6 +39,11 @@ const reducer = (state = initialState, action = {}) => {
                 ...state,
                 passwordVisible: !state.passwordVisible,
             }
+        case TOGGLE_LOADING:
+            return {
+                ...state,
+                loading: action.value,
+            };
         default:
             return state;
     }

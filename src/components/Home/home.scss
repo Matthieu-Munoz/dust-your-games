@@ -50,7 +50,7 @@
     }
   }
 
-  &__seperator {
+  &__separator {
     display: flex;
     width: 60%;
     align-items: center;
@@ -58,7 +58,7 @@
       color: color-themes.ask("primary-text-color");
     }
 
-    &__lign {
+    &__line {
       background-color: vars.$red;
       width: 40%;
       height: 1px;
