@@ -1,0 +1,123 @@
+@use "@/styles/vars";
+@use "@/styles/color-themes";
+@use "@/styles/utils";
+@use "@/styles/responsive-breakpoints"as media;
+
+
+.dustresult {
+    width: 80%;
+    height: 51%;
+    border-radius: 1em;
+    background-color: rgb(41, 37, 58);
+
+    &__game {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    &__dust {
+        position: absolute;
+    }
+
+    &__sparkling {
+        position: absolute;
+        z-index: 2;
+
+        &--left {
+            left: 2em;
+            bottom: 10em;
+            height: 6em;
+            width: 6em;
+        }
+
+        &--right {
+            right: 2em;
+            top: 10em;
+            height: 5em;
+            width: 5em;
+        }
+    }
+
+    &__circle {
+        z-index: 1;
+        background-color: white;
+        border: 0.3em solid vars.$grey-blue;
+        border-radius: 50%;
+        width: 14em;
+        height: 14em;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        &__picture {
+            width: 70%;
+            height: 70%;
+        }
+    }
+
+    &__title {
+        text-transform: uppercase;
+        color: vars.$gold;
+        text-align: center;
+        font-size: 20px;
+        margin: 1em;
+        text-shadow: vars.$red 1.5px 1px;
+
+    }
+
+    &__statistics {
+        display: flex;
+        color: vars.$beige;
+        flex-direction: row;
+        justify-content: space-evenly;
+        margin: auto auto 1em;
+
+        &__people {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        &__time {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        &__icon--people {
+            height: 3em;
+            width: 3em;
+        }
+
+        &__icon--time {
+            height: 3em;
+            width: 3em;
+        }
+
+        &__people__number {
+            font-size: 1.5em;
+            padding-left: 0.2em;
+        }
+
+        &__time__number {
+            font-size: 1.5em;
+        }
+    }
+
+    &__buttons {
+        display: flex;
+        justify-content: space-around;
+
+    }
+
+    .appbutton--primary {
+        background-color: vars.$beige;
+        color: vars.$grey-blue;
+    }
+
+    .appbutton--secondary {
+        background-color: vars.$red;
+    }
+}

@@ -12,6 +12,7 @@ import GamesList from '../GamesList';
 import Error from '../Error';
 import Modal from '../Modal';
 import Header from '../Header';
+import DustResult from '../DustResult';
 import { loadTheme, toggleMenu } from '@/actions/app';
 import { fetchUser } from '@/actions/user';
 // import Footer from '../Footer';
@@ -69,6 +70,7 @@ function App() {
           <Route path="/contact" element={<Contact />} />
           <Route path="/games" element={<GamesList />} />
           <Route path="/account" element={<Account />} />
+          <Route path="/result" element={<DustResult />} />
           <Route path="*" element={<Error />} />
         </Routes>
       </div>
