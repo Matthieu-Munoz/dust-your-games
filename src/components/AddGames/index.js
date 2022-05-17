@@ -17,7 +17,7 @@ function AddGames() {
                     placeholder="Rechercher un jeu"
                 />
             </div>
-{/*             <div>
+            <div className='addgames--scroll'>
                 <div className="addgames__results"> résultats : </div>
                 <div className="addgames__pictures">
                     {games.map((item) => (
@@ -30,9 +30,9 @@ function AddGames() {
                         </div>
                     ))}
                 </div>
-            </div> */}
-            <Singlegame />
-        </div>
+            </div>
+            {/* <Singlegame /> */}
+        </div >
     );
 }
 
