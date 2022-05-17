@@ -15,7 +15,14 @@
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
-    margin: auto;
+
+    &--scroll {
+      width: 100%;
+      height: 100%;
+      overflow-y: scroll;
+      display: flex;
+      justify-content: center;
+    }
 
     &__game {
       width: 110px;
@@ -44,6 +51,9 @@
     @include color-themes.themed() {
       background-color: color-themes.ask("secondary-color");
       border-top: 1px solid color-themes.ask("primary-color");
+    }
+    &__logo {
+      display: none;
     }
     &__btns {
       height: 100%;
@@ -240,6 +250,9 @@
   .games {
     &__side {
       z-index: 2;
+      .games__side--openned .games__side__filter--scroll {
+        width: 80%;
+      }
     }
   }
 }
@@ -250,33 +263,82 @@
     padding: 0;
     overflow: hidden;
     display: flex;
-    &__list--scroll {
-      width: 100%;
-      height: 100%;
-      padding-top: 3em;
-      overflow-y: scroll;
-    }
+
     &__list {
       width: 400px;
       height: 100%;
+      &--scroll {
+        padding-top: 4em;
+      }
     }
     &__side {
       z-index: 0;
       order: -1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
       position: relative;
       bottom: unset;
       width: 400px;
       height: 100%;
       border: none !important;
+      &__logo {
+        display: block;
+        width: 120px;
+        height: 120px;
+        margin-top: -120px;
+        background-size: contain;
+        @include color-themes.themed() {
+          background-image: color-themes.ask("logo-full-inverted");
+        }
+      }
+      &__btns {
+        height: auto;
+        position: relative;
+      }
+
+      &--openned {
+        height: 100%;
+        border-radius: unset;
+        .games__side__filter--scroll {
+          overflow-y: auto;
+        }
+        .games__side {
+          &__btns {
+            opacity: 1;
+            width: 100%;
+            height: auto;
+            position: relative;
+            transform: translateX(0);
+          }
+
+          &__filter {
+            position: relative;
+            padding: 1em;
+            height: auto;
+            &__btns {
+              display: none;
+            }
+          }
+        }
+      }
     }
   }
 }
+
 // Style when on tablet and bigger
 @include media.responsive("desktop") {
   .games {
     &__list {
-      width: 500px;
-      margin-left: 5em;
+      width: 650px;
+      margin-right: 4.8em;
+
+      &__game {
+        width: 150px;
+        height: 150px;
+        margin: 0.35em;
+      }
     }
   }
 }

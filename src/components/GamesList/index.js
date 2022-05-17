@@ -1,6 +1,7 @@
 // Dependencies
 import { useDispatch, useSelector } from "react-redux";
 import { Navigate } from "react-router-dom";
+import { Image, Transformation } from 'cloudinary-react';
 import classNames from "classnames";
 //Icons
 import { AiOutlineAppstoreAdd, AiOutlineCheckCircle, AiFillCaretDown, AiFillCaretUp } from "react-icons/ai";
@@ -40,6 +41,7 @@ function GamesList() {
         </div>
       </div>
       <div className={sideClass}>
+        <div className="games__side__logo" />
         <div className="games__side__btns">
           <div className="games__side__btn">
             <AiOutlineAppstoreAdd className="games__side__btn__icon" />

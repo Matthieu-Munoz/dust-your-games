@@ -1,26 +1,30 @@
-@use '@/styles/vars';
+@use "@/styles/vars";
 
 // Inside the variable $theme is stored the two theme states of our application : light and dark
-$themes: (light: (
+$themes: (
+  light: (
     logo-full: url("../../assets/images/logo_dyg-light.png"),
+    logo-full-inverted: url("../../assets/images/logo_dyg-dark.png"),
     logo-text: url("../../assets/images/logo_dyg_baseline-light.png"),
     transparent-primary-color: vars.$beige-transparent,
     primary-color: vars.$beige,
     secondary-color: vars.$grey-blue,
     primary-alter-color: vars.$alter-beige,
     secondary-alter-color: vars.$alter-grey-blue,
-    theme-toggle: toggleOff .2s normal forwards,
+    theme-toggle: toggleOff 0.2s normal forwards,
     primary-text-color: vars.$off-white,
     secondary-text-color: vars.$grey-blue,
   ),
-  dark: (logo-full: url("../../assets/images/logo_dyg-dark.png"),
+  dark: (
+    logo-full: url("../../assets/images/logo_dyg-dark.png"),
+    logo-full-inverted: url("../../assets/images/logo_dyg-light.png"),
     logo-text: url("../../assets/images/logo_dyg_baseline-dark.png"),
     transparent-primary-color: vars.$grey-blue-transparent,
     primary-color: vars.$grey-blue,
     secondary-color: vars.$beige,
     primary-alter-color: vars.$alter-grey-blue,
     secondary-alter-color: vars.$alter-beige,
-    theme-toggle: toggleOn .2s normal forwards,
+    theme-toggle: toggleOn 0.2s normal forwards,
     primary-text-color: vars.$grey-blue,
     secondary-text-color: vars.$off-white,
   ),
@@ -29,16 +33,18 @@ $themes: (light: (
 // Mixin and Function provided by https://medium.com/@katiemctigue/how-to-create-a-dark-mode-in-sass-609f131a3995
 // No need to be modify
 @mixin themed() {
-
-  @each $theme,
-  $map in $themes {
+  @each $theme, $map in $themes {
     .theme--#{$theme} & {
       $theme-map: () !global;
 
-      @each $key,
-      $submap in $map {
-        $value: map-get(map-get($themes, $theme), '#{$key}');
-        $theme-map: map-merge($theme-map, ($key: $value)) !global;
+      @each $key, $submap in $map {
+        $value: map-get(map-get($themes, $theme), "#{$key}");
+        $theme-map: map-merge(
+          $theme-map,
+          (
+            $key: $value,
+          )
+        ) !global;
       }
 
       @content;

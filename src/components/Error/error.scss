@@ -37,13 +37,14 @@
       transform: rotate(19deg) translate(-39px, 0px);
       transition: transform 0.2s ease-in-out;
     }
-    &--rocket {
+    &--man {
       bottom: 0;
       right: 0;
       width: 12em;
       height: 12em;
-      transform: rotate(278deg) translate(-67px, 150px);
-      transition: transform 0.2s ease-in-out;
+      opacity: 0;
+      transform: rotate(322deg);
+      transition: 0.2s ease-in-out;
     }
 
     &--left {
@@ -63,9 +64,10 @@
       z-index: 2;
       width: 9em;
       height: 9em;
-      &:hover + .error__picture--rocket {
-        transform: rotate(326deg) translate(-28px, -151px);
-        transition: transform 0.2s ease-in-out;
+      &:hover + .error__picture--man {
+        opacity: 1;
+        transform: rotate(350deg) translate(-74px, -86px);
+        transition: 0.2s ease-in-out;
       }
     }
   }

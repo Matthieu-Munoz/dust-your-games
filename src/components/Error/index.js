@@ -31,7 +31,7 @@ function Error() {
       <img src={leftBlob} className="error__picture error__picture--left" alt="" />
       <img src={pugs} className="error__picture error__picture--pugs" alt="" />
       <img src={rightBlob} className="error__picture error__picture--right" alt="" />
-      <Image cloudName="dyg" publicId="Dust_your_games_9_vsm8ns.png" className="error__picture error__picture--rocket" >
+      <Image cloudName="dyg" publicId="logo_dyg-dark_hxqygx.png" className="error__picture error__picture--man" >
         <Transformation quality="80" width="250" crop="scale" />
       </Image>
     </div>

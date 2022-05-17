@@ -44,7 +44,7 @@ function App() {
   const currentTheme = useSelector((state) => state.app.darkTheme);
   const themeClass = classNames('theme', { 'theme--dark': currentTheme }, { 'theme--light': !currentTheme });
   const userLoggedIn = useSelector((state) => state.user.logged);
-  const appClass = classNames('app', { 'app--login': (location.pathname === "/" && !userLoggedIn) });
+  const appClass = classNames('app', { 'app--login': (location.pathname === "/" && !userLoggedIn) }, { 'app--games': (location.pathname === "/games") });
 
   const menuOpen = useSelector((state) => state.app.menuOpened)
   /**
