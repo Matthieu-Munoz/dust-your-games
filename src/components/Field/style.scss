@@ -25,6 +25,12 @@
       right: 0.25em;
       left: auto;
     }
+
+    &--error {
+      right: -1.5em;
+      left: unset;
+      color: vars.$red;
+    }
   }
 
   &__input {

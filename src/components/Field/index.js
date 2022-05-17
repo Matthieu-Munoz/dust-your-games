@@ -2,6 +2,7 @@
 import { useSelector, useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import TextareaAutosize from 'react-autosize-textarea';
+import { AiOutlineExclamationCircle } from 'react-icons/ai';
 import { BiShow, BiHide } from "react-icons/bi";
 // React-Redux
 // Styles
@@ -18,12 +19,12 @@ function Field({
   SecondIcon,
   field,
   options,
-  min,
   max,
+  error,
+  tip,
 }) {
   const dispatch = useDispatch();
   const { passwordVisible } = useSelector((state) => state.app);
-
   const handlePassword = () => {
     dispatch(togglePassword());
   }
@@ -34,33 +35,42 @@ function Field({
   return (
     <>
       {(field === "password") && (
-        <div className="field">
-          {(Icon !== null) && <Icon className="field__icon" />}
-          <input
-            name={name}
-            className="field__input"
-            type={passwordVisible ? "text" : "password"}
-            placeholder={placeholder}
-            value={value}
-            onChange={handleChange}
-            min={min}
-            max={max}
-          />
-          {passwordVisible ? <BiHide className="field__icon field__icon--second" onClick={handlePassword} /> : <BiShow className="field__icon field__icon--second" onClick={handlePassword} />}
-        </div>
+        <>
+          <div className="field">
+            {(Icon !== null) && <Icon className="field__icon" />}
+            <input
+              name={name}
+              className="field__input"
+              type={passwordVisible ? "text" : "password"}
+              placeholder={placeholder}
+              value={value}
+              onChange={handleChange}
+              max={max}
+              required
+            />
+            {passwordVisible ? <BiHide className="field__icon field__icon--second" onClick={handlePassword} /> : <BiShow className="field__icon field__icon--second" onClick={handlePassword} />}
+            {error && <AiOutlineExclamationCircle className="field__icon field__icon--error" data-type="error" data-tip={tip} />}
+          </div>
+        </>
+
       )}
       {(field === "input") && (
-        <div className="field">
-          {(Icon !== null) && <Icon className="field__icon" />}
-          <input
-            name={name}
-            className="field__input"
-            type={type}
-            placeholder={placeholder}
-            value={value}
-            onChange={handleChange} />
-          {(SecondIcon !== null) && <SecondIcon className="field__icon field__icon--second" />}
-        </div>
+        <>
+          <div className="field">
+            {(Icon !== null) && <Icon className="field__icon" />}
+            <input
+              name={name}
+              className="field__input"
+              type={type}
+              placeholder={placeholder}
+              value={value}
+              onChange={handleChange}
+              required
+            />
+            {(SecondIcon !== null) && <SecondIcon className="field__icon field__icon--second" />}
+            {error && <AiOutlineExclamationCircle className="field__icon field__icon--error" data-type="error" data-tip={tip} />}
+          </div>
+        </>
       )}
       {(field === "textarea") && (
         <div className="field">
@@ -69,6 +79,7 @@ function Field({
             name={name}
             placeholder={placeholder}
             className="field__textarea"
+            required
             style={{ maxHeight: 100, resize: 'none' }}
           />
           {(SecondIcon !== null) && <SecondIcon className="field__icon field__icon--second" />}
@@ -77,7 +88,7 @@ function Field({
       {(field === "select") && (
         <div className="field">
           {(Icon !== null) && <Icon className="field__icon" />}
-          <select name={name} className="field__select">
+          <select name={name} className="field__select" required>
             {options.map((option) => (
               <option value={option.value} key={option.value} >{option.text}</option>
             ))}
@@ -103,6 +114,9 @@ Field.propTypes = {
       value: PropTypes.string,
       text: PropTypes.string,
     })),
+  max: PropTypes.string,
+  error: PropTypes.bool,
+  tip: PropTypes.string,
 };
 
 Field.defaultProps = {
@@ -113,6 +127,9 @@ Field.defaultProps = {
   SecondIcon: null,
   field: "input",
   options: [{ value: "", text: "Choisir une option" },],
+  max: "",
+  error: false,
+  tip: "Une erreur est survenue",
 };
 
 export default Field;

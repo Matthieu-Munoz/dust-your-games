@@ -3,7 +3,7 @@ import axios from 'axios';
 import {
   LOGIN, LOGOUT, saveUser, REGISTER, FETCH_USER
 } from '../actions/user';
-import { toggleLoading } from '../actions/app'
+import { closeAlert, sendAlert, toggleLoading } from '../actions/app'
 import { toggleLoginForm } from '../actions/home'
 import { saveUserAccount } from '@/actions/account';
 // Utilities
@@ -41,11 +41,21 @@ const dygApiMiddleWare = (store) => (next) => (action) => {
           },
         )
         .then((response) => {
-          store.dispatch(toggleLoading(false))
-          store.dispatch(toggleLoginForm(true));
+          if (response.status === 200) {
+            store.dispatch(toggleLoading(false))
+            store.dispatch(toggleLoginForm(true));
+            store.dispatch(sendAlert('check', `INscription réussi : vous pouvez vous connecter !`));
+            setTimeout(() => {
+              store.dispatch(closeAlert());
+            }, 2800);
+          }
         })
         .catch(() => {
-          console.log('oups...');
+          store.dispatch(toggleLoading(false))
+          store.dispatch(sendAlert('error', 'Une erreur est survenu.'));
+          setTimeout(() => {
+            store.dispatch(closeAlert());
+          }, 2800);
         });
       next(action);
       break;
@@ -63,20 +73,34 @@ const dygApiMiddleWare = (store) => (next) => (action) => {
           },
         )
         .then((response) => {
-          const user = response.data.user;
-          axiosInstance.defaults.headers.common.Authorization = `Bearer ${user.token}`;
-          setWithExpiry("user", response.data, 129600000);
-          store.dispatch(saveUser(user));
-          store.dispatch(saveUserAccount(user));
+          if (response.status === 200) {
+            const user = response.data.user;
+            axiosInstance.defaults.headers.common.Authorization = `Bearer ${user.token}`;
+            setWithExpiry("user", response.data, 129600000);
+            store.dispatch(saveUser(user));
+            store.dispatch(saveUserAccount(user));
+            store.dispatch(sendAlert('check', `Connexion réussi : bienvenue ${response.data.user.pseudo_name}`));
+            setTimeout(() => {
+              store.dispatch(closeAlert());
+            }, 2800);
+          }
         })
         .catch(() => {
-          console.log('oups...');
+          store.dispatch(toggleLoading(false))
+          store.dispatch(sendAlert('error', 'Une erreur est survenu, vérifiez vos identifiants.'));
+          setTimeout(() => {
+            store.dispatch(closeAlert());
+          }, 2800);
         });
 
       next(action);
       break;
     }
     case LOGOUT:
+      store.dispatch(sendAlert('check', `Déconnexion réussi, à bientot !`));
+      setTimeout(() => {
+        store.dispatch(closeAlert());
+      }, 2800);
       axiosInstance.defaults.headers.common.Authorization = null;
       localStorage.removeItem('user')
       next(action);

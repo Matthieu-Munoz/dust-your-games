@@ -1,7 +1,6 @@
 // Dependencies
 import { useDispatch, useSelector } from "react-redux";
 import { Navigate } from "react-router-dom";
-import { Image, Transformation } from 'cloudinary-react';
 import classNames from "classnames";
 //Icons
 import { AiOutlineAppstoreAdd, AiOutlineCheckCircle, AiFillCaretDown, AiFillCaretUp } from "react-icons/ai";

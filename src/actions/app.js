@@ -36,3 +36,23 @@ export const toggleLoading = (value) => ({
     type: TOGGLE_LOADING,
     value,
 });
+
+export const SEND_ALERT = 'SEND_ALERT';
+export const sendAlert = (alertType, message) => ({
+    type: SEND_ALERT,
+    alertType,
+    message,
+});
+
+export const CLOSE_ALERT = 'CLOSE_ALERT';
+export const closeAlert = () => ({
+    type: CLOSE_ALERT,
+});
+
+export const TOGGLE_ERROR = 'TOGGLE_ERROR';
+export const toggleError = (name, value) => ({
+    type: TOGGLE_ERROR,
+    name,
+    value,
+});
+

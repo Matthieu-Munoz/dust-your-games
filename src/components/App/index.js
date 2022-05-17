@@ -12,6 +12,7 @@ import GamesList from '../GamesList';
 import Error from '../Error';
 import Modal from '../Modal';
 import Header from '../Header';
+import Alerts from '../Alerts';
 import { loadTheme, toggleMenu } from '@/actions/app';
 import { fetchUser } from '@/actions/user';
 // import Footer from '../Footer';
@@ -45,6 +46,8 @@ function App() {
   const themeClass = classNames('theme', { 'theme--dark': currentTheme }, { 'theme--light': !currentTheme });
   const userLoggedIn = useSelector((state) => state.user.logged);
   const appClass = classNames('app', { 'app--login': (location.pathname === "/" && !userLoggedIn) }, { 'app--games': (location.pathname === "/games") });
+  const status = useSelector((state) => state.app.alert.status);
+
 
   const menuOpen = useSelector((state) => state.app.menuOpened)
   /**
@@ -62,6 +65,7 @@ function App() {
   return (
     <div className={themeClass}>
       <div className={appClass} onClick={(evt) => handleMenu(evt, menuOpen)}>
+        {status && <Alerts />}
         <Modal />
         <Header />
         <Routes>
