@@ -1,13 +1,11 @@
 // Dependencies
 import { useDispatch, useSelector } from "react-redux";
 import { Navigate } from "react-router-dom";
-import Select from 'react-select'
-import makeAnimated from 'react-select/animated';
 import classNames from "classnames";
 //Icons
-import { AiOutlineAppstoreAdd, AiOutlineCheckCircle } from "react-icons/ai";
-import { BiFilterAlt, BiSort } from "react-icons/bi";
-import { BsSortAlphaDown, BsSortAlphaUp, BsSortDownAlt, BsSortDown, BsSearch } from "react-icons/bs";
+import { AiOutlineAppstoreAdd, AiOutlineCheckCircle, AiFillCaretDown, AiFillCaretUp } from "react-icons/ai";
+import { BiFilterAlt, BiSort, BiCategoryAlt } from "react-icons/bi";
+import { BsSortAlphaDown, BsSortAlphaUp, BsSortDownAlt, BsSortDown, BsSearch, BsHourglassSplit, BsFillPeopleFill, BsCalendarDate } from "react-icons/bs";
 import { GiPerspectiveDiceSixFacesRandom } from "react-icons/gi";
 // Local | React-Redux
 import gamesList from "@/data/games";
@@ -21,16 +19,6 @@ function GamesList() {
   const logged = useSelector((state) => state.user.logged);
   const { menuToggled } = useSelector((state) => state.games);
   const menuClass = classNames('games__side', { 'games__side--openned': menuToggled });;
-
-  const options = [
-    { value: 'chocolate', label: 'Chocolate' },
-    { value: 'strawberry', label: 'Strawberry' },
-    { value: 'vanilla', label: 'Vanilla' },
-    { value: 'test', label: 'Test1' },
-    { value: 'test2', label: 'Test2' }
-  ]
-
-  const animatedComponents = makeAnimated();
 
   if (!logged) {
     return <Navigate to="/" replace />;
@@ -82,39 +70,26 @@ function GamesList() {
           // value={email}
           // onChange={handleChange}
           />
-          <Select
-            closeMenuOnSelect={false}
-            components={animatedComponents}
-            defaultValue={[options[4], options[5]]}
-            isMulti
-            options={options}
-            className="games__filter__selector categories"
-          />
-          <Select
-            closeMenuOnSelect={false}
-            components={animatedComponents}
-            defaultValue={[options[4], options[5]]}
-            isMulti
-            options={options}
-            className="games__filter__selector categories"
-          />
-          <Select
-            closeMenuOnSelect={false}
-            components={animatedComponents}
-            defaultValue={[options[4], options[5]]}
-            isMulti
-            options={options}
-            className="games__filter__selector categories"
-          />
-          <Select
-            closeMenuOnSelect={false}
-            components={animatedComponents}
-            defaultValue={[options[4], options[5]]}
-            isMulti
-            options={options}
-            className="games__filter__selector categories"
-          />
-
+          <div className="games__filter__type">
+            <BiCategoryAlt className="games__filter__type__icon" />
+            <div className="games__filter__type__name">Catégories</div>
+            <AiFillCaretDown className="games__filter__type__icon" />
+          </div>
+          <div className="games__filter__type">
+            <BsHourglassSplit className="games__filter__type__icon" />
+            <div className="games__filter__type__name">Durée</div>
+            <AiFillCaretDown className="games__filter__type__icon" />
+          </div>
+          <div className="games__filter__type">
+            <BsFillPeopleFill className="games__filter__type__icon" />
+            <div className="games__filter__type__name">Joueurs</div>
+            <AiFillCaretDown className="games__filter__type__icon" />
+          </div>
+          <div className="games__filter__type">
+            <BsCalendarDate className="games__filter__type__icon" />
+            <div className="games__filter__type__name">Age</div>
+            <AiFillCaretDown className="games__filter__type__icon" />
+          </div>
         </div>
       </div>
     </div>

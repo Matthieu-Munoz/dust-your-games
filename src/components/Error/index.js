@@ -1,6 +1,7 @@
 // Dependencies
 import { useNavigate } from 'react-router-dom';
-// React-Redux
+import { Image, Transformation } from 'cloudinary-react';
+// Local | React-Redux
 import Button from "../Button";
 // Styles
 import "./error.scss"
@@ -30,6 +31,9 @@ function Error() {
       <img src={leftBlob} className="error__picture error__picture--left" alt="" />
       <img src={pugs} className="error__picture error__picture--pugs" alt="" />
       <img src={rightBlob} className="error__picture error__picture--right" alt="" />
+      <Image cloudName="dyg" publicId="Dust_your_games_9_vsm8ns.png" className="error__picture error__picture--rocket" >
+        <Transformation quality="80" width="250" crop="scale" />
+      </Image>
     </div>
   );
 }
