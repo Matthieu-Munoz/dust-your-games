@@ -2,3 +2,186 @@
 @use "@/styles/color-themes";
 @use "@/styles/utils";
 @use "@/styles/responsive-breakpoints" as media;
+
+.games {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 70px;
+  padding: 1.5em 0;
+  overflow: auto;
+  &__list {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    &__game {
+      width: 110px;
+      height: 110px;
+      box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
+      border-radius: 10px;
+      border: 6px solid vars.$grey-blue;
+      margin: 0.2em;
+
+      &__img {
+        width: 100%;
+        height: 100%;
+        border-radius: 0.5em;
+        background-color: white;
+        box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25) inset;
+      }
+    }
+  }
+
+  &__side {
+    position: fixed;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 8.5em;
+    transition: 0.2s ease-in-out;
+    @include color-themes.themed() {
+      background-color: color-themes.ask("secondary-color");
+      border-top: 1px solid color-themes.ask("primary-color");
+    }
+    &__btns {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transform: translateX(0);
+      transition: 0.2s ease-in-out;
+    }
+    &__btn {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      width: 100px;
+      height: 120px;
+      border-radius: 0.5em;
+      margin: 0 0.5em;
+      @include color-themes.themed() {
+        background-color: color-themes.ask("primary-color");
+        color: color-themes.ask("secondary-color");
+      }
+      &__icon {
+        width: 60px;
+        height: 90px;
+      }
+      &__name {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 30px;
+        background-color: vars.$red;
+        color: vars.$off-white;
+        font-size: 0.8em;
+        border-bottom-left-radius: 0.5em;
+        border-bottom-right-radius: 0.5em;
+      }
+    }
+    .games__filter {
+      position: absolute;
+      bottom: -200%;
+    }
+
+    &--openned {
+      height: 27.5em;
+      border-top-left-radius: 3.5em;
+      border-top-right-radius: 3.5em;
+      @include color-themes.themed() {
+        border: 2px solid color-themes.ask("primary-color");
+        border-bottom: none;
+      }
+      transition: 0.2s ease-in-out;
+
+      .games__side__btns {
+        transform: translateX(-100%);
+        transition: 0.2s ease-in-out;
+        position: absolute;
+      }
+
+      .games__filter {
+        position: relative;
+        bottom: auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+        padding: 3em 2em;
+
+        &__btns {
+          position: absolute;
+          top: -1.8em;
+          display: flex;
+          width: 250px;
+          height: 4em;
+          justify-content: space-around;
+          align-items: center;
+        }
+        &__btn {
+          width: 4em;
+          height: 4em;
+          padding: 0.5em;
+          border-radius: 2em;
+          border: 2px solid vars.$red;
+          @include color-themes.themed() {
+            color: color-themes.ask("secondary-color");
+            background-color: color-themes.ask("primary-color");
+          }
+
+          &--filter {
+            border: 2px solid vars.$gold;
+          }
+        }
+        &__sorting {
+          width: 260px;
+          height: 3em;
+          display: flex;
+          justify-content: space-around;
+          align-items: center;
+          margin-bottom: 1em;
+          &__btn {
+            width: 3em;
+            height: 3em;
+            padding: 0.5em;
+            border-radius: 2em;
+            @include color-themes.themed() {
+              color: color-themes.ask("secondary-color");
+              background-color: color-themes.ask("primary-color");
+            }
+          }
+        }
+        .field {
+          margin-bottom: 0.5em;
+          @include color-themes.themed() {
+            color: color-themes.ask("secondary-text-color");
+            background-color: color-themes.ask("primary-color");
+            &__input::placeholder {
+              color: color-themes.ask("secondary-text-color");
+            }
+          }
+        }
+        &__selector {
+          width: 100%;
+          margin-bottom: 0.5em;
+          .css-1s2u09g-control {
+            @include color-themes.themed() {
+              color: color-themes.ask("secondary-text-color");
+              background-color: color-themes.ask("primary-color");
+            }
+          }
+        }
+      }
+    }
+  }
+}
