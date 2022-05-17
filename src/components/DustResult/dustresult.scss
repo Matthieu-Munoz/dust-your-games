@@ -23,30 +23,31 @@
 
     &__sparkling {
         position: absolute;
-        z-index: 2;
+        z-index: 1;
 
         &--left {
-            left: 2em;
-            bottom: 10em;
+            left: -2em;
+            top: -2em;
             height: 6em;
             width: 6em;
         }
 
         &--right {
-            right: 2em;
-            top: 10em;
+            right: 0;
+            bottom: -1em;
             height: 5em;
             width: 5em;
         }
     }
 
     &__circle {
-        z-index: 1;
+        z-index: 0;
+        position: relative;
+        width: 14em;
+        height: 14em;
         background-color: white;
         border: 0.3em solid vars.$grey-blue;
         border-radius: 50%;
-        width: 14em;
-        height: 14em;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -109,7 +110,6 @@
     &__buttons {
         display: flex;
         justify-content: space-around;
-
     }
 
     .appbutton--primary {
@@ -119,5 +119,31 @@
 
     .appbutton--secondary {
         background-color: vars.$red;
+    }
+
+    &__close {
+        position: absolute;
+        color: vars.$beige;
+        width: 2.4em;
+        height: 2.4em;
+        right: 2.6em;
+        top: 13em;
+        transform: scale(1);
+        transition: transform 0.1s ease-in-out;
+    }
+}
+
+
+// Style when on tablet and bigger
+@include media.responsive("desktop") {
+    .dustresult {
+        width: 35em;
+        height: 26em;
+
+        &__close {
+            position: absolute;
+            left: 63em;
+            top: 8em;
+        }
     }
 }

@@ -1,6 +1,7 @@
 // Dependencies
 import { BsPeopleFill } from "react-icons/bs";
 import { CgSandClock } from "react-icons/cg";
+import { IoClose } from "react-icons/io5";
 
 // React-Redux
 import Button from '../Button';
@@ -18,13 +19,14 @@ function DustResult() {
 
     return (
         <div className="dustresult">
+            <IoClose className="dustresult__close" />
             <div className="dustresult__game">
                 <img className="dustresult__dust" src={dust} alt="dust" />
                 <div className="dustresult__circle">
                     <img className="dustresult__circle__picture" src={`https://res.cloudinary.com/dyg/image/fetch/c_scale,h_200,q_80,w_200/${gameImage}`} alt="game" />
+                    <img className="dustresult__sparkling dustresult__sparkling--left" src={sparklingleft} alt="sparklingleft" />
+                    <img className="dustresult__sparkling dustresult__sparkling--right" src={sparklingright} alt="sparklingright" />
                 </div>
-                <img className="dustresult__sparkling dustresult__sparkling--left" src={sparklingleft} alt="sparklingleft" />
-                <img className="dustresult__sparkling dustresult__sparkling--right" src={sparklingright} alt="sparklingright" />
             </div>
             <div className="dustresult__information">
                 <h2 className="dustresult__title">Nom du jeu</h2>
@@ -38,7 +40,7 @@ function DustResult() {
                     <div className="dustresult__statistics__time">
                         <CgSandClock className="dustresult__statistics__icon--time" />
                         <div className="dustresult__statistics__time__number">
-                        ±45
+                            ±45
                         </div>
                     </div>
                 </div>
