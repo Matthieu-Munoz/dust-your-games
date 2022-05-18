@@ -1,6 +1,7 @@
 // Dependencies
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import ReactTooltip from 'react-tooltip';
 // React-Redux
 import LoginForm from "./LoginForm";
 import RegisterForm from "./RegisterForm";
@@ -20,6 +21,7 @@ function Home() {
         <div className="home">
           <Link to="/" className='presentation__logo presentation__logo--mobile' />
           <div className="userform">
+            <ReactTooltip effect="solid" place="right" eventOff="click" />
             {(isLoginForm) ? <LoginForm /> : <RegisterForm />}
           </div>
           <div className="presentation">

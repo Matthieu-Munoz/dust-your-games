@@ -7,12 +7,13 @@ import Field from "@/components/Field";
 import Button from '../Button';
 import { toggleLoginForm, changeHomeField } from '../../actions/home';
 import { register } from '@/actions/user';
+import { toggleError } from '@/actions/app';
 // Styles
 
 function RegisterForm() {
   const dispatch = useDispatch();
 
-  const { pseudo_name, birthday, email, password, confirmedpassword } = useSelector((state) => state.home);
+  const { pseudo_name, birthday, email, password, confirmedpassword, emailError, passwordError } = useSelector((state) => state.home);
 
   const handleChange = (value, field) => {
     dispatch(changeHomeField(value, field));
@@ -30,10 +31,29 @@ function RegisterForm() {
     return max
   }
 
+  const formValidation = () => {
+    const passwordValidREgex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/;
+    const emailValidREgex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+    dispatch(toggleError('email', false));
+    dispatch(toggleError('password', false));
+    let check = true;
+    if (!email.match(emailValidREgex)) {
+      check = false;
+      dispatch(toggleError('email', true));
+    }
+    if (!password.match(passwordValidREgex) && (password === confirmedpassword)) {
+      check = false;
+      dispatch(toggleError('password', true));
+    }
+    return check;
+  };
+
   // Handle when the user click the register button
   const handleRegister = (evt) => {
     evt.preventDefault();
-    dispatch(register())
+    if (formValidation()) {
+      dispatch(register())
+    }
   }
 
   return (
@@ -48,6 +68,7 @@ function RegisterForm() {
       <div className="field">
         <BsCalendarDate className="field__icon" />
         <input
+
           name="birthday"
           className="field__input"
           type="date"
@@ -63,6 +84,8 @@ function RegisterForm() {
         Icon={AiOutlineMail}
         value={email}
         onChange={handleChange}
+        error={emailError}
+        tip="Merci de saisir un email valide"
       />
       <Field
         name="password"
@@ -72,6 +95,8 @@ function RegisterForm() {
         field="password"
         value={password}
         onChange={handleChange}
+        error={passwordError}
+        tip="Merci de saisir un mot de passe valide"
       />
       <Field
         name="confirmedpassword"

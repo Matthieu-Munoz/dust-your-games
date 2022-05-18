@@ -1,3 +1,10 @@
+/**
+ * Set an item in localStorage composed of a key, its value and a ttl
+ * The expiry is set from the current date + the ttl
+ * @param {string} key to find inside the localStorage
+ * @param {any} value to store inside the localStorage
+ * @param {int} ttl expiry time to keep inside the localStorage
+ */
 export function setWithExpiry(key, value, ttl) {
     const now = new Date()
 
@@ -9,7 +16,13 @@ export function setWithExpiry(key, value, ttl) {
     }
     localStorage.setItem(key, JSON.stringify(item))
 }
-
+/**
+ * Get an item in localStorage with its key
+ * If its expiry date is reached, return null.
+ * Otherwise return the item
+ * @param {string} key to find inside the localStorage
+ * @returns 
+ */
 export function getWithExpiry(key) {
     const itemStr = localStorage.getItem(key)
     // if the item doesn't exist, return null

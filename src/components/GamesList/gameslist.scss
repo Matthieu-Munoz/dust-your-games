@@ -2,3 +2,343 @@
 @use "@/styles/color-themes";
 @use "@/styles/utils";
 @use "@/styles/responsive-breakpoints" as media;
+
+.games {
+  width: 100%;
+  height: 100%;
+  margin-top: 70px;
+  padding: 1.5em 0;
+  overflow: auto;
+
+  &__list {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    &--scroll {
+      width: 100%;
+      height: 100%;
+      overflow-y: scroll;
+      display: flex;
+      justify-content: center;
+    }
+
+    &__game {
+      width: 110px;
+      height: 110px;
+      box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.45);
+      border-radius: 10px;
+      border: 6px solid vars.$grey-blue;
+      margin: 0.2em;
+
+      &__img {
+        width: 100%;
+        height: 100%;
+        border-radius: 0.5em;
+        background-color: white;
+        box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.45) inset;
+      }
+    }
+  }
+
+  &__side {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 8.5em;
+    transition: 0.2s ease-in-out;
+    @include color-themes.themed() {
+      background-color: color-themes.ask("secondary-color");
+      border-top: 1px solid color-themes.ask("primary-color");
+    }
+    &__logo {
+      display: none;
+    }
+    &__btns {
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      opacity: 1;
+      transform: translateX(0);
+      transition: 0.2s ease-in-out;
+    }
+    &__btn {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100px;
+      border-radius: 0.5em;
+      margin: 0 0.5em;
+      @include color-themes.themed() {
+        background-color: color-themes.ask("primary-color");
+        color: color-themes.ask("secondary-color");
+      }
+      &__icon {
+        width: 60px;
+        height: 90px;
+      }
+      &__name {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 30px;
+        background-color: vars.$red;
+        color: vars.$off-white;
+        font-size: 0.75em;
+        border-bottom-left-radius: 0.5em;
+        border-bottom-right-radius: 0.5em;
+      }
+    }
+
+    &__filter {
+      position: absolute;
+      bottom: -500%;
+    }
+
+    &--openned {
+      height: 27.5em;
+      border-top-left-radius: 3.5em;
+      border-top-right-radius: 3.5em;
+      @include color-themes.themed() {
+        border: 2px solid color-themes.ask("primary-color");
+        border-bottom: none;
+      }
+      transition: 0.2s ease-in-out;
+
+      .games__side {
+        &__btns {
+          opacity: 0;
+          transform: translateX(-100%);
+          transition: 0.2s ease-in-out;
+          position: absolute;
+        }
+
+        &__filter {
+          bottom: auto;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          width: 100%;
+          height: 100%;
+          padding: 3em 2em 0 2em;
+
+          &__btns {
+            position: absolute;
+            top: -1.8em;
+            display: flex;
+            width: 250px;
+            justify-content: space-around;
+          }
+          &__btn {
+            width: 4em;
+            height: 4em;
+            padding: 0.5em;
+            border-radius: 2em;
+            border: 2px solid vars.$red;
+            @include color-themes.themed() {
+              color: color-themes.ask("secondary-color");
+              background-color: color-themes.ask("primary-color");
+            }
+
+            &--filter {
+              border: 2px solid vars.$gold;
+            }
+          }
+
+          &--scroll {
+            overflow-y: scroll;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+          }
+
+          &__sorting {
+            width: 260px;
+            height: 3em;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            margin-bottom: 1em;
+
+            &__btn {
+              width: 3em;
+              height: 3em;
+              padding: 0.5em;
+              border-radius: 2em;
+              @include color-themes.themed() {
+                color: color-themes.ask("secondary-color");
+                background-color: color-themes.ask("primary-color");
+              }
+            }
+          }
+
+          .field {
+            padding: 0.2em;
+            margin-bottom: 0.5em;
+            @include color-themes.themed() {
+              color: color-themes.ask("secondary-text-color");
+              background-color: color-themes.ask("primary-color");
+              &__input::placeholder {
+                color: color-themes.ask("secondary-text-color");
+              }
+            }
+          }
+
+          &__ctn {
+            width: 100%;
+            margin-bottom: 0.5em;
+          }
+
+          &__type {
+            z-index: 2;
+            position: relative;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            width: 100%;
+            border-radius: 0.2em;
+            padding: 0.2em;
+            box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.3);
+            @include color-themes.themed() {
+              color: color-themes.ask("secondary-text-color");
+              background-color: color-themes.ask("primary-color");
+            }
+
+            &__icon {
+              width: 1.8em;
+              height: 1.8em;
+              margin: 0 0.3em;
+            }
+
+            &__name {
+              width: 100%;
+              text-transform: uppercase;
+              margin: 0 0.25em;
+              font-size: 0.8em;
+            }
+            &__items {
+              border-bottom-left-radius: 0.25em;
+              border-bottom-right-radius: 0.25em;
+              transform: translateY(-0.2em);
+              padding: 0.7em 0.5em;
+              box-shadow: 0px 4px 4px rgb(0 0 0 / 30%);
+              @include color-themes.themed() {
+                color: color-themes.ask("secondary-text-color");
+                background-color: color-themes.ask("primary-color");
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+// Style when on tablet and bigger
+@include media.responsive("528px") {
+  .games {
+    &__list {
+      width: 500px;
+    }
+  }
+}
+// Style when on tablet and bigger
+@include media.responsive("tablet") {
+  .games {
+    &__side {
+      z-index: 2;
+      .games__side--openned .games__side__filter--scroll {
+        width: 80%;
+      }
+    }
+  }
+}
+// Style when on tablet and bigger
+@include media.responsive("900px") {
+  .games {
+    margin-top: 0;
+    padding: 0;
+    overflow: hidden;
+    display: flex;
+
+    &__list {
+      width: 400px;
+      height: 100%;
+      &--scroll {
+        padding-top: 4em;
+      }
+    }
+    &__side {
+      z-index: 0;
+      order: -1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      bottom: unset;
+      width: 400px;
+      height: 100%;
+      border: none !important;
+      &__logo {
+        display: block;
+        width: 120px;
+        height: 120px;
+        margin-top: -120px;
+        background-size: contain;
+        @include color-themes.themed() {
+          background-image: color-themes.ask("logo-full-inverted");
+        }
+      }
+      &__btns {
+        height: auto;
+        position: relative;
+      }
+
+      &--openned {
+        height: 100%;
+        border-radius: unset;
+        .games__side__filter--scroll {
+          overflow-y: auto;
+        }
+        .games__side {
+          &__btns {
+            opacity: 1;
+            width: 100%;
+            height: auto;
+            position: relative;
+            transform: translateX(0);
+          }
+
+          &__filter {
+            position: relative;
+            padding: 1em;
+            height: auto;
+            &__btns {
+              display: none;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+// Style when on tablet and bigger
+@include media.responsive("desktop") {
+  .games {
+    &__list {
+      width: 650px;
+      margin-right: 4.8em;
+
+      &__game {
+        width: 150px;
+        height: 150px;
+        margin: 0.35em;
+      }
+    }
+  }
+}

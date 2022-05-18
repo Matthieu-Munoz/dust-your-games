@@ -1,0 +1,121 @@
+$fromTop: 20px;
+$width: 500px;
+
+#notification {
+  visibility: hidden;
+  max-width: 50px;
+  height: 50px;
+  margin: auto;
+  text-align: center;
+  border-radius: 2px;
+  position: fixed;
+  z-index: 1999;
+  top: $fromTop;
+  white-space: normal;
+  overflow: hidden;
+
+  #notification__icons {
+    margin: auto;
+    width: 50px;
+    height: 50px;
+    float: left;
+    text-align: center;
+    padding-top: 16px;
+    padding-bottom: 16px;
+    box-sizing: border-box;
+    overflow: hidden;
+  }
+
+  #notification__messages {
+    text-align: center;
+    vertical-align: middle;
+    line-height: 50px;
+    padding: 0px;
+    margin: auto;
+    vertical-align: center;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+}
+
+.notification-check {
+  background-color: hsl(103, 36%, 84%);
+  color: hsl(103, 14%, 43%);
+
+  #error_icon,
+  #error_message {
+    display: none;
+  }
+}
+
+.notification-error {
+  background-color: hsl(0, 51%, 81%);
+  color: hsl(0, 51%, 43%);
+
+  #check_icon,
+  #check_message {
+    display: none;
+  }
+}
+
+#notification.show {
+  visibility: visible;
+  -webkit-animation: fadein 0.5s, expand 0.5s 0.5s, stay 3s 1s, shrink 0.5s 2s,
+    fadeout 0.5s 2.5s;
+  animation: fadein 0.5s, expand 0.5s 0.5s, stay 3s 1s, shrink 0.5s 4s,
+    fadeout 0.5s 2.5s;
+}
+
+@keyframes fadein {
+  from {
+    top: 0;
+    opacity: 0;
+  }
+
+  to {
+    top: $fromTop;
+    opacity: 1;
+  }
+}
+
+@keyframes expand {
+  from {
+    min-width: 50px;
+  }
+
+  to {
+    min-width: $width;
+  }
+}
+
+@keyframes stay {
+  from {
+    min-width: $width;
+  }
+
+  to {
+    min-width: $width;
+  }
+}
+
+@keyframes shrink {
+  from {
+    min-width: $width;
+  }
+
+  to {
+    min-width: 50px;
+  }
+}
+
+@keyframes fadeout {
+  from {
+    top: $fromTop;
+    opacity: 1;
+  }
+
+  to {
+    top: -60px;
+    opacity: 0;
+  }
+}

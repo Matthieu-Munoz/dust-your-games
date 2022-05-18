@@ -6,6 +6,7 @@ import homeReducer from './home';
 import accountReducer from './account';
 import dashboardReducer from './dashboard';
 import contactReducer from './contact';
+import gamesReducer from './games';
 
 const rootReducer = combineReducers({
   user: userReducer,
@@ -14,6 +15,7 @@ const rootReducer = combineReducers({
   account: accountReducer,
   dashboard: dashboardReducer,
   contact: contactReducer,
+  games: gamesReducer,
 });
 
 export default rootReducer;
