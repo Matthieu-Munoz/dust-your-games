@@ -53,4 +53,10 @@ export const loginCheck = () => ({
 });
 
 
+export const LOGIN_CHECK = 'LOGIN_CHECK';
+export const loginCheck = () => ({
+    type: LOGIN_CHECK,
+});
+
+
 

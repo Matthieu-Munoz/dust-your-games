@@ -1,11 +1,7 @@
 import axios from 'axios';
 // Actions
 import {
-<<<<<<< HEAD
-  LOGIN, LOGOUT, saveUser, REGISTER, EDIT_USER, DELETE_USER, LOGIN_CHECK, loginConfirm, loginCheck
-=======
-  LOGIN, LOGOUT, saveUser, REGISTER, FETCH_USER, LOGIN_CHECK
->>>>>>> starting login check
+  LOGIN, LOGOUT, saveUser, REGISTER, EDIT_USER, DELETE_USER, LOGIN_CHECK, loginConfirm
 } from '../actions/user';
 import { closeAlert, sendAlert, toggleLoading } from '../actions/app'
 import { toggleLoginForm } from '../actions/home'
