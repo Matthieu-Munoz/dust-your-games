@@ -7,13 +7,15 @@ import Field from "@/components/Field";
 import { toggleLoginForm, changeHomeField } from '@/actions/home';
 import { login } from '@/actions/user';
 import Button from '../Button';
+import { toggleError } from '@/actions/app';
 // Styles
 
 function LoginForm() {
     const dispatch = useDispatch();
     // We select and save Email and Password from the user state 
     // This is the only two properties which are needed in this component
-    const { email, password } = useSelector((state) => state.home);
+    const { email, password, emailError, passwordError } = useSelector((state) => state.home);
+
     // can also be written as:
     // const email = useSelector((state) => state.user.email);
     // const password = useSelector((state) => state.user.password);
@@ -22,10 +24,29 @@ function LoginForm() {
         dispatch(changeHomeField(value, field));
     }
 
+    const formValidation = () => {
+        const passwordValidREgex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/;
+        const emailValidREgex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+        dispatch(toggleError('email', false));
+        dispatch(toggleError('password', false));
+        let check = true;
+        if (!email.match(emailValidREgex)) {
+            check = false;
+            dispatch(toggleError('email', true));
+        }
+        // if (!password.match(passwordValidREgex)) {
+        //     check = false;
+        //     dispatch(toggleError('password', true));
+        // }
+        return check;
+    };
+
     // Handle when the user click the login button
     const handleLogin = (evt) => {
         evt.preventDefault();
-        dispatch(login())
+        if (formValidation()) {
+            dispatch(login());
+        }
     }
 
     return (
@@ -36,6 +57,8 @@ function LoginForm() {
                 Icon={BsPerson}
                 value={email}
                 onChange={handleChange}
+                error={emailError}
+                tip="Merci de saisir un email valide"
             />
             <Field
                 name="password"
@@ -45,6 +68,8 @@ function LoginForm() {
                 field="password"
                 value={password}
                 onChange={handleChange}
+                error={passwordError}
+                tip="Merci de saisir un mot de passe valide"
             />
             <a className="userform__ctn__link" href="lien">Mot de passe oublié ?</a>
             <Button

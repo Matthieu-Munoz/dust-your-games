@@ -1,0 +1,204 @@
+@use "@/styles/vars";
+@use "@/styles/color-themes";
+@use "@/styles/utils";
+@use "@/styles/responsive-breakpoints"as media;
+
+.addgames {
+  width: 300px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+
+  &__input {
+    width: 90%;
+    margin-top: 4em;
+    align-self: center;
+    margin-top: 5em;
+
+    .field {
+
+      &__input {
+        color: vars.$off-white;
+
+        &::placeholder {
+          color: vars.$off-white;
+        }
+      }
+    }
+  }
+
+  &--scroll {
+    height: 400px;
+    overflow-y: auto;
+  }
+
+  &__results {
+    color: vars.$off-white;
+    display: flex;
+    justify-content: center;
+    font-size: 0.8em;
+    text-transform: uppercase;
+    margin-top: 4em;
+    font-weight: 600;
+  }
+
+  &__pictures {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    &__game {
+      width: 100px;
+      height: 100px;
+      box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.45);
+      border-radius: 10px;
+      border: 6px solid vars.$grey-blue;
+      margin: 0.2em;
+
+      &__img {
+        width: 100%;
+        height: 100%;
+        border-radius: 0.5em;
+        background-color: white;
+        box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.45) inset;
+      }
+    }
+  }
+}
+
+// Style when on tablet and bigger
+@include media.responsive("tablet") {
+  .addgames {
+    width: 500px;
+    // height: 80%;
+
+    &__input {
+      margin-top: 3em;
+      width: 80%;
+    }
+
+    &__results {
+      margin-top: 2em;
+      margin-bottom: 1em;
+    }
+
+    &__close {
+      margin-right: 6.3em;
+    }
+
+    &__pictures {
+      margin: auto;
+      width: 90%;
+    }
+  }
+}
+
+// Style when on tablet and bigger
+@include media.responsive("desktop") {
+  .addgames {
+    width: 600px;
+    // height: 70%;
+    // margin-top: 1vh;
+
+    &__input {
+      width: 70%;
+      margin-top: 2em;
+    }
+
+    &__close {
+      margin-right: 30em;
+    }
+
+    &__results {
+      margin-bottom: 2em;
+    }
+
+    &__pictures {
+      width: 70%;
+      margin: auto;
+    }
+  }
+}
+
+.singlegame {
+  width: 85%;
+  height: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 1em;
+  margin: auto;
+  background-color: vars.$grey-blue;
+
+
+  &__text {
+    color: vars.$off-white;
+    width: 70%;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 0.8em;
+    margin-top: 2em;
+    margin-bottom: 2em;
+  }
+
+  &__img {
+    @include color-themes.themed() {
+      border: solid 8px color-themes.ask("secondary-color");
+    }
+
+    border-radius: 1em;
+  }
+
+  &__btn {
+    display: flex;
+  }
+
+  .appbutton {
+    width: 6em;
+    margin-top: 1.5em;
+    margin-left: 1em;
+    margin-right: 1em;
+
+    &--secondary {
+      background-color: vars.$beige;
+      color: vars.$grey-blue;
+
+      &:hover {
+        background-color: vars.$alter-beige;
+      }
+    }
+  }
+}
+
+@include media.responsive("tablet") {
+  .singlegame {
+    height: 70%;
+  }
+}
+
+// Style when on tablet and bigger
+@include media.responsive("desktop") {
+  .singlegame {
+    width: 60%;
+    height: 70%;
+
+    &__text {
+      width: 60%;
+      font-size: 1em;
+    }
+
+    &__img {
+      width: 8em;
+    }
+
+    .appbutton {
+      width: 6em;
+      margin-top: 1.5em;
+      margin-left: 2em;
+      margin-right: 2em;
+    }
+  }
+}

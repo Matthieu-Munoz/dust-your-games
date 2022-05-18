@@ -1,13 +1,19 @@
 import {
-    TOGGLE_THEME, SAVE_THEME, TOGGLE_MODAL, TOGGLE_MENU, TOGGLE_PASSWORD, TOGGLE_LOADING
+    TOGGLE_THEME, SAVE_THEME, TOGGLE_MODAL, TOGGLE_MENU, TOGGLE_PASSWORD, TOGGLE_LOADING, SEND_ALERT, CLOSE_ALERT
 } from '@/actions/app';
 
 export const initialState = {
     darkTheme: true,
     modalOpened: false,
+    modalComponent: '',
     menuOpened: false,
     passwordVisible: false,
     loading: false,
+    alert: {
+        status: false,
+        type: '',
+        message: '',
+    },
 };
 
 const reducer = (state = initialState, action = {}) => {
@@ -28,6 +34,7 @@ const reducer = (state = initialState, action = {}) => {
             return {
                 ...state,
                 modalOpened: !state.modalOpened,
+                modalComponent: action.component
             };
         case TOGGLE_MENU:
             return {
@@ -43,6 +50,23 @@ const reducer = (state = initialState, action = {}) => {
             return {
                 ...state,
                 loading: action.value,
+            };
+        case SEND_ALERT:
+            return {
+                ...state,
+                alert: {
+                    status: !state.alert.status,
+                    type: action.alertType,
+                    message: action.message,
+                },
+            };
+        case CLOSE_ALERT:
+            return {
+                ...state,
+                alert: {
+                    ...state.alert,
+                    status: !state.alert.status,
+                },
             };
         default:
             return state;

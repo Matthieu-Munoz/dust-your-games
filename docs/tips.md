@@ -251,7 +251,7 @@ export const changeHomeField = (value, field) => ({
       };
 ```
 
-- On applique ces changements dans notre composant avec la fonction handleChange : 
+- On applique ces changements dans notre composant avec la fonction handleChange :
 
 ```js
    const handleChange = (value, field) => {
