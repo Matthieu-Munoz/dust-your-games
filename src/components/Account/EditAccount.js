@@ -8,7 +8,7 @@ import { WidgetLoader, Widget } from 'react-cloudinary-upload-widget';
 // Local | React-Redux
 import { deleteUser, editUser } from '@/actions/user';
 import Field from "@/components/Field";
-import { toggleEditAccount, changeField } from '@/actions/account';
+import { toggleEditAccount, changeField, toggleAccountError } from '@/actions/account';
 import Button from '../Button';
 // styles
 import "./account.scss"
@@ -20,20 +20,49 @@ import 'react-confirm-alert/src/react-confirm-alert.css';
 
 function EditAccount() {
   const dispatch = useDispatch();
-  const { pseudo_name, email, password, confirmedpassword } = useSelector((state) => state.account);
+  const { pseudo_name, email, password, confirmedpassword, pseudoError, emailError, passwordError } = useSelector((state) => state.account);
   let { image } = useSelector((state) => state.user);
   if (image === null) {
     image = 'default-avatar_ld0jlt.png'
   }
 
+  const formValidation = () => {
+    const pseudoValidREgex = /^[a-zA-Z]{1,20}\d{0,3}$/;
+    const passwordValidREgex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/;
+    const emailValidREgex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+    dispatch(toggleAccountError('pseudo', false));
+    dispatch(toggleAccountError('email', false));
+    dispatch(toggleAccountError('password', false));
+    let check = true;
+    if (!pseudo_name.match(pseudoValidREgex) || pseudo_name.length < 3 || pseudo_name.length > 12) {
+      check = false;
+      dispatch(toggleAccountError('pseudo', true));
+    }
+    if (!email.match(emailValidREgex)) {
+      check = false;
+      dispatch(toggleAccountError('email', true));
+    }
+    if (password !== '') {
+      if (!password.match(passwordValidREgex) || (password !== confirmedpassword)) {
+        check = false;
+        dispatch(toggleAccountError('password', true));
+      }
+    }
+    return check;
+  };
+
   const handleChange = (value, field) => {
     dispatch(changeField(value, field));
   }
 
+  // Handle when the user click the login button
   const handleEdit = (evt) => {
     evt.preventDefault();
-    dispatch(editUser())
+    if (formValidation()) {
+      dispatch(editUser());
+    }
   }
+
   const handleDelete = (evt) => {
     confirmAlert({
       title: 'Vous êtes sur le point de supprimer votre compte',
@@ -49,7 +78,6 @@ function EditAccount() {
       ]
     });
   };
-
 
   return (
     <form className="useraccount useraccount--register">
@@ -72,7 +100,6 @@ function EditAccount() {
         cropping={true}
         multiple={false}
         autoClose={true} // will close the widget after success. Default true
-        // onSuccess={successCallBack}
         // onFailure={failureCallBack}
         widgetStyles={{
           palette: {
@@ -114,6 +141,7 @@ function EditAccount() {
           onChange={handleChange}
           value={pseudo_name}
           Icon={BsPerson}
+          error={pseudoError}
         />
         <div className="description_input"> Mon adresse e-mail </div>
         <Field
@@ -123,6 +151,7 @@ function EditAccount() {
           onChange={handleChange}
           value={email}
           Icon={AiOutlineMail}
+          error={emailError}
         />
         <div className="description_input"> Mon mot de passe </div>
         <Field
@@ -133,6 +162,7 @@ function EditAccount() {
           field="password"
           value={password}
           Icon={AiOutlineLock}
+          error={passwordError}
         />
         <div className="description_input"> Confirmer mon mot de passe </div>
         <Field

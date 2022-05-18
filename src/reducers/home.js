@@ -1,6 +1,5 @@
-import { TOGGLE_ERROR } from '@/actions/app';
 import {
-    TOGGLE_LOGIN_FORM, CHANGE_HOME_FIELD
+    TOGGLE_LOGIN_FORM, CHANGE_HOME_FIELD, TOGGLE_HOME_ERROR
 } from '@/actions/home';
 
 export const initialState = {
@@ -15,6 +14,7 @@ export const initialState = {
     // user confirmedpassword
     confirmedpassword: '',
     isLoginForm: true,
+    pseudoError: false,
     emailError: false,
     passwordError: false,
 };
@@ -35,7 +35,7 @@ const reducer = (state = initialState, action = {}) => {
                 ...state,
                 [action.field]: action.value,
             };
-        case TOGGLE_ERROR:
+        case TOGGLE_HOME_ERROR:
             return {
                 ...state,
                 [`${action.name}Error`]: action.value,

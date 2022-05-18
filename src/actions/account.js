@@ -17,3 +17,10 @@ export const saveUserAccount = (user) => ({
     type: SAVE_USER_ACCOUNT,
     user,
 });
+// Used to toggle value (true/false) of an error
+export const TOGGLE_ACCOUNT_ERROR = 'TOGGLE_ACCOUNT_ERROR';
+export const toggleAccountError = (name, value) => ({
+    type: TOGGLE_ACCOUNT_ERROR,
+    name,
+    value,
+});

@@ -14,8 +14,7 @@ import Modal from '../Modal';
 import Header from '../Header';
 import Alerts from '../Alerts';
 import { loadTheme, toggleMenu } from '@/actions/app';
-import { fetchUser, loginCheck } from '@/actions/user';
-// import Footer from '../Footer';
+import { loginCheck } from '@/actions/user';
 // Styles
 import './app.scss';
 import Loader from '../Loader';

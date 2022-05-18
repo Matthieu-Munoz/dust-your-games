@@ -1,7 +1,7 @@
 import axios from 'axios';
 // Actions
 import {
-  LOGIN, LOGOUT, saveUser, REGISTER, EDIT_USER, DELETE_USER, LOGIN_CHECK, loginConfirm, loginCheck
+  LOGIN, LOGOUT, saveUser, REGISTER, EDIT_USER, DELETE_USER, LOGIN_CHECK, loginConfirm
 } from '../actions/user';
 import { closeAlert, sendAlert, toggleLoading } from '../actions/app'
 import { toggleLoginForm } from '../actions/home'
@@ -70,7 +70,7 @@ const dygApiMiddleWare = (store) => (next) => (action) => {
           if (response.status === 201) {
             store.dispatch(toggleLoading(false))
             store.dispatch(toggleLoginForm(true));
-            store.dispatch(sendAlert('check', `INscription réussi : vous pouvez vous connecter !`));
+            store.dispatch(sendAlert('check', `Inscription réussi : vous pouvez vous connecter !`));
             setTimeout(() => {
               store.dispatch(closeAlert());
             }, 2800);
@@ -181,7 +181,6 @@ const dygApiMiddleWare = (store) => (next) => (action) => {
     case DELETE_USER: {
       store.dispatch(toggleLoading(true))
       const { user: { id } } = store.getState();
-
       axiosInstance
         .delete(
           `${id}/profil/delete`,

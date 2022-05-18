@@ -5,15 +5,15 @@ import { AiOutlineLock, AiOutlineMail } from "react-icons/ai";
 // React-Redux
 import Field from "@/components/Field";
 import Button from '../Button';
-import { toggleLoginForm, changeHomeField } from '../../actions/home';
+import { toggleLoginForm, changeHomeField, toggleHomeError } from '../../actions/home';
 import { register } from '@/actions/user';
-import { toggleError } from '@/actions/app';
+import ReactTooltip from 'react-tooltip';
 // Styles
 
 function RegisterForm() {
   const dispatch = useDispatch();
 
-  const { pseudo_name, birthday, email, password, confirmedpassword, emailError, passwordError } = useSelector((state) => state.home);
+  const { pseudo_name, birthday, email, password, confirmedpassword, pseudoError, emailError, passwordError } = useSelector((state) => state.home);
 
   const handleChange = (value, field) => {
     dispatch(changeHomeField(value, field));
@@ -32,18 +32,24 @@ function RegisterForm() {
   }
 
   const formValidation = () => {
+    const pseudoValidREgex = /^[a-zA-Z]{1,20}\d{0,3}$/;
     const passwordValidREgex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/;
     const emailValidREgex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-    dispatch(toggleError('email', false));
-    dispatch(toggleError('password', false));
+    dispatch(toggleHomeError('pseudo', false));
+    dispatch(toggleHomeError('email', false));
+    dispatch(toggleHomeError('password', false));
     let check = true;
+    if (!pseudo_name.match(pseudoValidREgex) || pseudo_name.length < 3 || pseudo_name.length > 12) {
+      check = false;
+      dispatch(toggleHomeError('pseudo', true));
+    }
     if (!email.match(emailValidREgex)) {
       check = false;
-      dispatch(toggleError('email', true));
+      dispatch(toggleHomeError('email', true));
     }
-    if (!password.match(passwordValidREgex) && (password === confirmedpassword)) {
+    if (!password.match(passwordValidREgex) || (password !== confirmedpassword)) {
       check = false;
-      dispatch(toggleError('password', true));
+      dispatch(toggleHomeError('password', true));
     }
     return check;
   };
@@ -58,12 +64,15 @@ function RegisterForm() {
 
   return (
     <form className="userform__ctn userform__ctn--register">
+      <ReactTooltip className="userform__tooltip" effect="solid" place="right" type="error" multiline={true} />
       <Field
         name="pseudo_name"
         placeholder="Identifiant"
         Icon={BsPerson}
         value={pseudo_name}
         onChange={handleChange}
+        error={pseudoError}
+        tip="Merci de saisir un pseudo valide, <br/> il doit contenir au minimum 3 caractères, au maximun 16 <br/> et maximun 3 chiffres"
       />
       <div className="field">
         <BsCalendarDate className="field__icon" />
@@ -96,7 +105,7 @@ function RegisterForm() {
         value={password}
         onChange={handleChange}
         error={passwordError}
-        tip="Merci de saisir un mot de passe valide"
+        tip="Merci de saisir un mot de passe valide, <br /> il doit contenir au minimum 8 caractères : <br /> au moins une minuscule et une majuscule et un chiffre."
       />
       <Field
         name="confirmedpassword"

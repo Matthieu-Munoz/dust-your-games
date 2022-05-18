@@ -50,13 +50,7 @@ export const CLOSE_ALERT = 'CLOSE_ALERT';
 export const closeAlert = () => ({
     type: CLOSE_ALERT,
 });
-// Used to toggle value (true/false) of an error
-export const TOGGLE_ERROR = 'TOGGLE_ERROR';
-export const toggleError = (name, value) => ({
-    type: TOGGLE_ERROR,
-    name,
-    value,
-});
+
 
 
 

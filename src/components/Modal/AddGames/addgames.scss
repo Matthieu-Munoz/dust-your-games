@@ -1,7 +1,7 @@
 @use "@/styles/vars";
 @use "@/styles/color-themes";
 @use "@/styles/utils";
-@use "@/styles/responsive-breakpoints"as media;
+@use "@/styles/responsive-breakpoints" as media;
 
 .addgames {
   width: 300px;
@@ -10,7 +10,6 @@
   flex-direction: column;
   align-items: center;
 
-
   &__input {
     width: 90%;
     margin-top: 4em;
@@ -18,7 +17,6 @@
     margin-top: 3em;
 
     .field {
-
       &__input {
         color: vars.$off-white;
 
@@ -92,6 +90,10 @@
     &__pictures {
       margin: auto;
       width: 90%;
+      &__game {
+        width: 110px;
+        height: 110px;
+      }
     }
   }
 }
@@ -119,6 +121,10 @@
     &__pictures {
       width: 70%;
       margin: auto;
+      &__game {
+        width: 120px;
+        height: 120px;
+      }
     }
   }
 }
@@ -133,18 +139,19 @@
   margin: auto;
   background-color: vars.$grey-blue;
 
-
   &__text {
     color: vars.$off-white;
     width: 70%;
     text-align: center;
     text-transform: uppercase;
     font-size: 0.8em;
-    margin-top: 2em;
-    margin-bottom: 2em;
+    margin-top: 1em;
+    margin-bottom: 1em;
   }
 
   &__img {
+    width: 200px;
+    height: 200px;
     @include color-themes.themed() {
       border: solid 8px color-themes.ask("secondary-color");
     }
@@ -191,7 +198,7 @@
     }
 
     &__img {
-      width: 8em;
+      width: 200px;
     }
 
     .appbutton {

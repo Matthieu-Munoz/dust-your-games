@@ -2,12 +2,14 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { BsPerson } from "react-icons/bs";
 import { AiOutlineLock } from "react-icons/ai";
+import ReactTooltip from 'react-tooltip';
 // React-Redux
 import Field from "@/components/Field";
 import { toggleLoginForm, changeHomeField } from '@/actions/home';
 import { login } from '@/actions/user';
 import Button from '../Button';
-import { toggleError } from '@/actions/app';
+import { toggleHomeError } from '@/actions/home';
+import { useEffect } from 'react';
 // Styles
 
 function LoginForm() {
@@ -27,23 +29,24 @@ function LoginForm() {
     const formValidation = () => {
         const passwordValidREgex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/;
         const emailValidREgex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-        dispatch(toggleError('email', false));
-        dispatch(toggleError('password', false));
+        dispatch(toggleHomeError('email', false));
+        dispatch(toggleHomeError('password', false));
         let check = true;
         if (!email.match(emailValidREgex)) {
             check = false;
-            dispatch(toggleError('email', true));
+            dispatch(toggleHomeError('email', true));
         }
-        // if (!password.match(passwordValidREgex)) {
-        //     check = false;
-        //     dispatch(toggleError('password', true));
-        // }
+        if (!password.match(passwordValidREgex)) {
+            check = false;
+            dispatch(toggleHomeError('password', true));
+        }
         return check;
     };
 
     // Handle when the user click the login button
     const handleLogin = (evt) => {
         evt.preventDefault();
+        ReactTooltip.rebuild();
         if (formValidation()) {
             dispatch(login());
         }
@@ -51,6 +54,7 @@ function LoginForm() {
 
     return (
         <form className="userform__ctn userform__ctn--login">
+            <ReactTooltip className="userform__tooltip" effect="solid" place="right" type="error" multiline={true} />
             <Field
                 name="email"
                 placeholder="Identifiant"
@@ -69,7 +73,7 @@ function LoginForm() {
                 value={password}
                 onChange={handleChange}
                 error={passwordError}
-                tip="Merci de saisir un mot de passe valide"
+                tip="Merci de saisir un mot de passe valide, <br /> il doit contenir au minimum 8 caractères : <br /> au moins une minuscule et une majuscule et un chiffre."
             />
             <a className="userform__ctn__link" href="lien">Mot de passe oublié ?</a>
             <Button

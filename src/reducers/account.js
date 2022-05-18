@@ -1,7 +1,7 @@
 import {
-    TOGGLE_EDIT_ACCOUNT, CHANGE_FIELD, SAVE_USER_ACCOUNT,
+    TOGGLE_EDIT_ACCOUNT, CHANGE_FIELD, SAVE_USER_ACCOUNT, TOGGLE_ACCOUNT_ERROR,
 } from '@/actions/account';
-import { DELETE_USER } from '@/actions/user';
+import { DELETE_USER, EDIT_USER } from '@/actions/user';
 
 export const initialState = {
     // user pseudo
@@ -15,6 +15,9 @@ export const initialState = {
     // user confirmedpassword
     confirmedpassword: '',
     isEdit: false,
+    pseudoError: false,
+    emailError: false,
+    passwordError: false,
 };
 
 const reducer = (state = initialState, action = {}) => {
@@ -33,10 +36,23 @@ const reducer = (state = initialState, action = {}) => {
             return {
                 ...state,
                 ...action.user,
+                password: '',
+                confirmedpassword: '',
+            };
+        case TOGGLE_ACCOUNT_ERROR:
+            return {
+                ...state,
+                [`${action.name}Error`]: action.value,
+            };
+        case EDIT_USER:
+            return {
+                ...state,
+                isEdit: false,
             };
         case DELETE_USER:
             return {
                 ...state,
+                isEdit: false,
                 pseudo_name: '',
                 image: null,
                 email: '',

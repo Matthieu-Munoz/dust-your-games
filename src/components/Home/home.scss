@@ -21,6 +21,10 @@
   align-items: center;
   justify-content: center;
 
+  &__tooltip {
+    z-index: 999;
+  }
+
   @include color-themes.themed() {
     background-color: color-themes.ask("secondary-color");
   }

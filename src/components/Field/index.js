@@ -49,7 +49,7 @@ function Field({
               required
             />
             {passwordVisible ? <BiHide className="field__icon field__icon--second" onClick={handlePassword} /> : <BiShow className="field__icon field__icon--second" onClick={handlePassword} />}
-            {error && <AiOutlineExclamationCircle className="field__icon field__icon--error" data-type="error" data-tip={tip} />}
+            {error && <AiOutlineExclamationCircle className="field__icon field__icon--error" data-tip={tip} />}
           </div>
         </>
 
@@ -68,7 +68,7 @@ function Field({
               required
             />
             {(SecondIcon !== null) && <SecondIcon className="field__icon field__icon--second" />}
-            {error && <AiOutlineExclamationCircle className="field__icon field__icon--error" data-type="error" data-tip={tip} />}
+            {error && <AiOutlineExclamationCircle className="field__icon field__icon--error" data-tip={tip} />}
           </div>
         </>
       )}
@@ -105,7 +105,7 @@ Field.propTypes = {
   type: PropTypes.string,
   name: PropTypes.string.isRequired,
   placeholder: PropTypes.string,
-  onChange: PropTypes.func.isRequired,
+  onChange: PropTypes.any,
   Icon: PropTypes.any,
   SecondIcon: PropTypes.any,
   field: PropTypes.string,
@@ -129,7 +129,7 @@ Field.defaultProps = {
   options: [{ value: "", text: "Choisir une option" },],
   max: "",
   error: false,
-  tip: "Une erreur est survenue",
+  tip: 'Merci de verifier cette information',
 };
 
 export default Field;

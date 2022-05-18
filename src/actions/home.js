@@ -11,7 +11,13 @@ export const changeHomeField = (value, field) => ({
     value,
     field,
 });
-
+// Used to toggle value (true/false) of an error
+export const TOGGLE_HOME_ERROR = 'TOGGLE_HOME_ERROR';
+export const toggleHomeError = (name, value) => ({
+    type: TOGGLE_HOME_ERROR,
+    name,
+    value,
+});
 
 
 
