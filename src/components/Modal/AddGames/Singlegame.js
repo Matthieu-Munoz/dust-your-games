@@ -1,6 +1,6 @@
 // React-Redux
 import games from "@/data/game1";
-import Button from "../Button";
+import Button from "../../Button";
 // styles
 import "./addgames.scss"
 

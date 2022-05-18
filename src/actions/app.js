@@ -17,8 +17,9 @@ export const saveTheme = (theme) => ({
 });
 // Used to show/hide a modal
 export const TOGGLE_MODAL = 'TOGGLE_MODAL';
-export const toggleModal = () => ({
+export const toggleModal = (component) => ({
     type: TOGGLE_MODAL,
+    component,
 });
 // Used to show/hide the menu
 export const TOGGLE_MENU = 'TOGGLE_MENU';

@@ -7,12 +7,13 @@ import {
 } from '@/actions/app';
 // Styles
 import "./modal.scss"
+import AddGames from './AddGames';
 
 function Modal() {
     const dispatch = useDispatch();
-    const modalOpened = useSelector((state) => state.app.modalOpened);
+    const { modalOpened, modalComponent } = useSelector((state) => state.app);
     const handleModalToggle = () => {
-        dispatch(toggleModal())
+        dispatch(toggleModal(''))
     }
     return (
         <>
@@ -20,8 +21,9 @@ function Modal() {
                 <>
                     <div className="modal">
                         <AiOutlineClose className="modal__close" onClick={handleModalToggle} />
+                        {(modalComponent === 'addgames') && <AddGames />}
                     </div>
-                    <div id="modal_background" onClick={handleModalToggle} />
+                    <div id="modal_background" onClick={{/*handleModalToggle*/ }} />
                 </>
             }
         </>

@@ -10,7 +10,6 @@ import Singlegame from "./Singlegame";
 function AddGames() {
     return (
         <div className="addgames">
-            <IoClose className="addgames__close" />
             <div className="addgames__input">
                 <Field
                     name="search"
@@ -32,7 +31,7 @@ function AddGames() {
                 </div>
             </div>
             {/* <Singlegame /> */}
-        </div >
+        </div>
     );
 }
 

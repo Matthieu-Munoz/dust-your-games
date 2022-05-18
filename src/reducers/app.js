@@ -5,6 +5,7 @@ import {
 export const initialState = {
     darkTheme: true,
     modalOpened: false,
+    modalComponent: '',
     menuOpened: false,
     passwordVisible: false,
     loading: false,
@@ -33,6 +34,7 @@ const reducer = (state = initialState, action = {}) => {
             return {
                 ...state,
                 modalOpened: !state.modalOpened,
+                modalComponent: action.component
             };
         case TOGGLE_MENU:
             return {

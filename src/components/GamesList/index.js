@@ -9,6 +9,9 @@ import { BsSortAlphaDown, BsSortAlphaUp, BsSortDownAlt, BsSortDown, BsSearch, Bs
 import { GiPerspectiveDiceSixFacesRandom } from "react-icons/gi";
 // Local | React-Redux
 import gamesList from "@/data/games";
+import {
+  toggleModal
+} from '@/actions/app';
 import { toggleFilterMenu, toggleFilter } from "@/actions/games";
 // Styles
 import "./gameslist.scss"
@@ -41,7 +44,7 @@ function GamesList() {
       </div>
       <div className={sideClass}>
         <div className="games__side__logo" />
-        <div className="games__side__btns">
+        <div className="games__side__btns" onClick={() => dispatch(toggleModal('addgames'))}>
           <div className="games__side__btn">
             <AiOutlineAppstoreAdd className="games__side__btn__icon" />
             <div className="games__side__btn__name">Ajouter un jeu</div>
