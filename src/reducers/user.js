@@ -4,7 +4,7 @@ import {
 
 export const initialState = {
     // user id
-    id: 0,
+    id: null,
     // user email
     email: '',
     // user pseudo

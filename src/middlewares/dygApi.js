@@ -1,7 +1,7 @@
 import axios from 'axios';
 // Actions
 import {
-  LOGIN, LOGOUT, saveUser, REGISTER, FETCH_USER
+  LOGIN, LOGOUT, saveUser, REGISTER, FETCH_USER, LOGIN_CHECK
 } from '../actions/user';
 import { closeAlert, sendAlert, toggleLoading } from '../actions/app'
 import { toggleLoginForm } from '../actions/home'
@@ -105,6 +105,28 @@ const dygApiMiddleWare = (store) => (next) => (action) => {
       localStorage.removeItem('user')
       next(action);
       break;
+    case LOGIN_CHECK: {
+      store.dispatch(toggleLoading(true))
+      const { user: { id } } = store.getState();
+      axiosInstance
+        .get(
+          `${id}/test`,
+        )
+        .then((response) => {
+          store.dispatch(toggleLoading(false))
+          console.log(response);
+        })
+        .catch(() => {
+          store.dispatch(toggleLoading(false))
+          store.dispatch(sendAlert('error', 'Une erreur est survenu, vérifiez vos identifiants.'));
+          setTimeout(() => {
+            store.dispatch(closeAlert());
+          }, 2800);
+        });
+
+      next(action);
+      break;
+    }
     default:
       next(action);
   }
