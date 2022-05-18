@@ -1,0 +1,39 @@
+// React-Redux
+import Field from "@/components/Field";
+import games from "@/data/games9";
+// Dependencies
+import { IoClose } from "react-icons/io5";
+// styles
+import "./addgames.scss"
+import Singlegame from "./Singlegame";
+
+function AddGames() {
+    return (
+        <div className="addgames">
+            <IoClose className="addgames__close" />
+            <div className="addgames__input">
+                <Field
+                    name="search"
+                    placeholder="Rechercher un jeu"
+                />
+            </div>
+            <div className='addgames--scroll'>
+                <div className="addgames__results"> résultats : </div>
+                <div className="addgames__pictures">
+                    {games.map((item) => (
+                        <div key={item.id} className="addgames__pictures__game">
+                            <img
+                                className="addgames__pictures__game__img"
+                                src={`https://res.cloudinary.com/dyg/image/fetch/c_scale,h_150,w_150,q_80/${item.image_url}`}
+                                alt={item.handle}
+                            />
+                        </div>
+                    ))}
+                </div>
+            </div>
+            {/* <Singlegame /> */}
+        </div >
+    );
+}
+
+export default AddGames;
