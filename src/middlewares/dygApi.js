@@ -1,7 +1,7 @@
 import axios from 'axios';
 // Actions
 import {
-  LOGIN, LOGOUT, saveUser, REGISTER, EDIT_USER, DELETE_USER, LOGIN_CHECK, loginConfirm, loginCheck
+  LOGIN, LOGOUT, saveUser, REGISTER, EDIT_USER, DELETE_USER, LOGIN_CHECK, loginConfirm
 } from '../actions/user';
 import { closeAlert, sendAlert, toggleLoading } from '../actions/app'
 import { toggleLoginForm } from '../actions/home'
@@ -210,7 +210,6 @@ const dygApiMiddleWare = (store) => (next) => (action) => {
       next(action);
       break;
     }
-
     default:
       next(action);
   }
