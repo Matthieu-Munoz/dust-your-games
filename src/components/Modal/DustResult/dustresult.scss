@@ -5,9 +5,8 @@
 
 .dustresult {
   padding: 1em;
-  width: 80%;
+  width: 300px;
   border-radius: 1em;
-  background-color: rgb(41, 37, 58);
 
   &__game {
     position: relative;
@@ -19,6 +18,7 @@
   &__dust {
     position: absolute;
     pointer-events: none;
+    height: 35em;
   }
 
   &__sparkling {
@@ -124,5 +124,9 @@
 @include media.responsive("desktop") {
   .dustresult {
     width: 35em;
+
+    &__dust {
+      height: 45em;
+    }
   }
 }
