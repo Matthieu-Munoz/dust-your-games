@@ -12,11 +12,9 @@
   flex-direction: column;
   align-items: center;
   padding: 2em;
-
-  @include color-themes.themed() {
-    background-color: color-themes.ask("secondary-color");
-    color: color-themes.ask("primary-text-color");
-  }
+  background-color: vars.$grey-blue;
+  color: vars.$off-white;
+  
 
   &__close {
     position: absolute;

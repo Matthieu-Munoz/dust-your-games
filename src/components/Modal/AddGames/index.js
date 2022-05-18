@@ -1,11 +1,11 @@
 // React-Redux
 import Field from "@/components/Field";
 import games from "@/data/games9";
+import Singlegame from "./Singlegame";
 // Dependencies
-import { IoClose } from "react-icons/io5";
+
 // styles
 import "./addgames.scss"
-import Singlegame from "./Singlegame";
 
 function AddGames() {
     return (
@@ -16,7 +16,7 @@ function AddGames() {
                     placeholder="Rechercher un jeu"
                 />
             </div>
-            <div className='addgames--scroll'>
+{/*             <div className='addgames--scroll'>
                 <div className="addgames__results"> résultats : </div>
                 <div className="addgames__pictures">
                     {games.map((item) => (
@@ -29,8 +29,8 @@ function AddGames() {
                         </div>
                     ))}
                 </div>
-            </div>
-            {/* <Singlegame /> */}
+            </div> */}
+             <Singlegame /> 
         </div>
     );
 }
