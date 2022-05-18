@@ -47,4 +47,10 @@ export const deleteUser = () => ({
 });
 
 
+export const LOGIN_CHECK = 'LOGIN_CHECK';
+export const loginCheck = () => ({
+    type: LOGIN_CHECK,
+});
+
+
 
