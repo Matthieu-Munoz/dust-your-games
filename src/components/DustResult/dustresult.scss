@@ -5,8 +5,8 @@
 
 
 .dustresult {
+    padding: 1em;
     width: 80%;
-    height: 51%;
     border-radius: 1em;
     background-color: rgb(41, 37, 58);
 
@@ -65,8 +65,7 @@
         font-size: 20px;
         margin: 1em;
         text-shadow: vars.$red 1.5px 1px;
-
-    }
+        }
 
     &__statistics {
         display: flex;
@@ -112,38 +111,24 @@
         justify-content: space-around;
     }
 
-    .appbutton--primary {
-        background-color: vars.$beige;
-        color: vars.$grey-blue;
-    }
 
     .appbutton--secondary {
-        background-color: vars.$red;
-    }
-
-    &__close {
-        position: absolute;
-        color: vars.$beige;
-        width: 2.4em;
-        height: 2.4em;
-        right: 2.6em;
-        top: 13em;
-        transform: scale(1);
-        transition: transform 0.1s ease-in-out;
+        background-color: vars.$beige;
+        color: vars.$grey-blue;
+        &:hover {
+            background-color: vars.$alter-beige;
+        }
     }
 }
+
 
 
 // Style when on tablet and bigger
 @include media.responsive("desktop") {
     .dustresult {
         width: 35em;
-        height: 26em;
 
-        &__close {
-            position: absolute;
-            left: 63em;
-            top: 8em;
-        }
+
     }
+
 }

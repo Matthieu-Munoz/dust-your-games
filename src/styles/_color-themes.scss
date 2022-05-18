@@ -1,7 +1,8 @@
 @use '@/styles/vars';
 
 // Inside the variable $theme is stored the two theme states of our application : light and dark
-$themes: (light: (
+$themes: (
+  light: (
     logo-full: url("../../assets/images/logo_dyg-light.png"),
     logo-text: url("../../assets/images/logo_dyg_baseline-light.png"),
     transparent-primary-color: vars.$beige-transparent,

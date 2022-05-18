@@ -1,7 +1,6 @@
 // Dependencies
 import { BsPeopleFill } from "react-icons/bs";
 import { CgSandClock } from "react-icons/cg";
-import { IoClose } from "react-icons/io5";
 
 // React-Redux
 import Button from '../Button';
@@ -19,7 +18,6 @@ function DustResult() {
 
     return (
         <div className="dustresult">
-            <IoClose className="dustresult__close" />
             <div className="dustresult__game">
                 <img className="dustresult__dust" src={dust} alt="dust" />
                 <div className="dustresult__circle">
@@ -47,13 +45,13 @@ function DustResult() {
                 <div className="dustresult__buttons">
                     <Button
                         name="relancer"
-                        classname="primary"
+                        classname="secondary"
                         type="button"
                         style={{ width: '40%', marginTop: '1em', fontSize: '0.8em' }}
                     />
                     <Button
                         name="choisir"
-                        classname="secondary"
+                        classname="primary"
                         type="button"
                         style={{ width: '40%', marginTop: '1em', fontSize: '0.8em' }}
                     />
