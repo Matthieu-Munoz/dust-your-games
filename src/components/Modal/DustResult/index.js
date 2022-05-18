@@ -3,7 +3,7 @@ import { BsPeopleFill } from "react-icons/bs";
 import { CgSandClock } from "react-icons/cg";
 
 // React-Redux
-import Button from '../Button';
+import Button from '@/components/Button';
 
 // Styles
 import "./dustresult.scss"

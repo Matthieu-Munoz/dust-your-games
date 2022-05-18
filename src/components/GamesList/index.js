@@ -44,8 +44,8 @@ function GamesList() {
       </div>
       <div className={sideClass}>
         <div className="games__side__logo" />
-        <div className="games__side__btns" onClick={() => dispatch(toggleModal('addgames'))}>
-          <div className="games__side__btn">
+        <div className="games__side__btns">
+          <div className="games__side__btn" onClick={() => dispatch(toggleModal('addgames'))}>
             <AiOutlineAppstoreAdd className="games__side__btn__icon" />
             <div className="games__side__btn__name">Ajouter un jeu</div>
           </div>
@@ -53,7 +53,7 @@ function GamesList() {
             <BiFilterAlt className="games__side__btn__icon" />
             <div className="games__side__btn__name">Filtrer</div>
           </div>
-          <div className="games__side__btn">
+          <div className="games__side__btn" onClick={() => dispatch(toggleModal('dustresult'))}>
             <GiPerspectiveDiceSixFacesRandom className="games__side__btn__icon" />
             <div className="games__side__btn__name">Dépoussiérage</div>
           </div>

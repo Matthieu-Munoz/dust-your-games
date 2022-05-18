@@ -1,6 +1,6 @@
 // Dependencies
 import { useSelector, useDispatch } from 'react-redux';
-import { AiOutlineClose } from "react-icons/ai";
+import { IoClose } from "react-icons/io5";
 // React-Redux
 import {
     toggleModal
@@ -8,6 +8,7 @@ import {
 // Styles
 import "./modal.scss"
 import AddGames from './AddGames';
+import DustResult from './DustResult';
 
 function Modal() {
     const dispatch = useDispatch();
@@ -20,10 +21,11 @@ function Modal() {
             {modalOpened &&
                 <>
                     <div className="modal">
-                        <AiOutlineClose className="modal__close" onClick={handleModalToggle} />
+                        <IoClose className="modal__close" onClick={handleModalToggle} />
                         {(modalComponent === 'addgames') && <AddGames />}
+                        {(modalComponent === 'dustresult') && <DustResult />}
                     </div>
-                    <div id="modal_background" onClick={{/*handleModalToggle*/ }} />
+                    <div id="modal_background" onClick={handleModalToggle} />
                 </>
             }
         </>
