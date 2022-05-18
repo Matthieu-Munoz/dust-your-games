@@ -14,18 +14,18 @@ import Modal from '../Modal';
 import Header from '../Header';
 import Alerts from '../Alerts';
 import { loadTheme, toggleMenu } from '@/actions/app';
-import { fetchUser } from '@/actions/user';
+import { fetchUser, loginCheck } from '@/actions/user';
 // import Footer from '../Footer';
 // Styles
 import './app.scss';
+import Loader from '../Loader';
 
 function App() {
   // To dispatch action to the store
   const dispatch = useDispatch();
-  // Load the theme from localStorage when the app initialize
   useEffect(
     () => {
-      dispatch(fetchUser());
+      dispatch(loginCheck());
       dispatch(loadTheme());
     },
     [dispatch],
@@ -37,19 +37,20 @@ function App() {
     () => {
       window.scrollTo({ top: 0, behavior: 'smooth' });
       dispatch(toggleMenu(false))
+
     },
     [location, dispatch],
   );
 
+  const { loading } = useSelector((state) => state.app);
   // Use the state to determine the current theme and apply the class accordingly
   const currentTheme = useSelector((state) => state.app.darkTheme);
   const themeClass = classNames('theme', { 'theme--dark': currentTheme }, { 'theme--light': !currentTheme });
-  const userLoggedIn = useSelector((state) => state.user.logged);
+  const userLoggedIn = useSelector((state) => state.user.loginChecked);
   const appClass = classNames('app', { 'app--login': (location.pathname === "/" && !userLoggedIn) }, { 'app--games': (location.pathname === "/games") });
   const status = useSelector((state) => state.app.alert.status);
-
-
   const menuOpen = useSelector((state) => state.app.menuOpened)
+
   /**
    * Close the menu when anything BUT the menu/burgerIcon is clicked
    * @param {*} evt 
@@ -65,16 +66,23 @@ function App() {
   return (
     <div className={themeClass}>
       <div className={appClass} onClick={(evt) => handleMenu(evt, menuOpen)}>
-        {status && <Alerts />}
-        <Modal />
-        <Header />
-        <Routes>
-          <Route path="/" element={(!userLoggedIn) ? <Home /> : <Dashboard />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/games" element={<GamesList />} />
-          <Route path="/account" element={<Account />} />
-          <Route path="*" element={<Error />} />
-        </Routes>
+        <>
+          {loading && <Loader />}
+          {!loading &&
+            <>
+              {status && <Alerts />}
+              <Modal />
+              <Header />
+              <Routes>
+                <Route path="/" element={(!userLoggedIn) ? <Home /> : <Dashboard />} />
+                <Route path="/contact" element={<Contact />} />
+                <Route path="/games" element={<GamesList />} />
+                <Route path="/account" element={<Account />} />
+                <Route path="*" element={<Error />} />
+              </Routes>
+            </>
+          }
+        </>
       </div>
     </div>
   );

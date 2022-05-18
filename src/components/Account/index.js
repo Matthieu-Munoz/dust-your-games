@@ -1,20 +1,30 @@
 // Dependencies
-import { useSelector } from 'react-redux';
-// React-Redux
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+// Local | React-Redux
 import UserAccount from "./UserAccount";
 import EditAccount from "./EditAccount"
-import { Navigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import { fetchUser } from '@/actions/user';
 // Styles
 import "./account.scss"
 
 function Account() {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   // Control if the edit mode of the account is toggled
   const isEdit = useSelector((state) => state.account.isEdit);
-  const logged = useSelector((state) => state.user.logged);
+  const loginChecked = useSelector((state) => state.user.loginChecked);
 
-  if (!logged) {
-    return <Navigate to="/" replace />;
-  }
+  useEffect(
+    () => {
+      dispatch(fetchUser())
+      if (!loginChecked) {
+        navigate('../', { replace: true });
+      }
+    },
+    [],
+  );
   return (
     <div className="account">
       {(!isEdit) ? <UserAccount /> : <EditAccount />}

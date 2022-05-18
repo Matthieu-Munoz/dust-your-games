@@ -9,12 +9,14 @@ import Button from '../Button';
 // Styles
 import "./account.scss"
 // Locals
-import hedgehog from '@/assets/images/hedgehog.jpg';
 
 function UserAccount() {
   const dispatch = useDispatch();
   const { pseudo_name, email } = useSelector((state) => state.account);
-
+  let { image } = useSelector((state) => state.user);
+  if (image === null) {
+    image = 'default-avatar_ld0jlt.png'
+  }
 
   return (
     <div className="useraccount">
@@ -22,7 +24,7 @@ function UserAccount() {
         <div className="useraccount__picture">
           <div className="useraccount__picture__redcircle" />
           <div className="useraccount__picture__yellowcircle" />
-          <img className="useraccount__picture__img" src={hedgehog} alt="avatar" />
+          <img className="useraccount__picture__img" src={`https://res.cloudinary.com/dyg/c_scale,h_150,q_80,w_150/${image}`} alt="avatar" />
         </div>
         <h2 className="useraccount__title">Bonjour {pseudo_name}</h2>
         <div className="useraccount__email">

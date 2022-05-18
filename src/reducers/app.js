@@ -8,7 +8,7 @@ export const initialState = {
     modalComponent: '',
     menuOpened: false,
     passwordVisible: false,
-    loading: false,
+    loading: true,
     alert: {
         status: false,
         type: '',

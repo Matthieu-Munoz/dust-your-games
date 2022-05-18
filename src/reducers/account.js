@@ -1,10 +1,13 @@
 import {
-    TOGGLE_EDIT_ACCOUNT, CHANGE_FIELD, SAVE_USER_ACCOUNT
+    TOGGLE_EDIT_ACCOUNT, CHANGE_FIELD, SAVE_USER_ACCOUNT,
 } from '@/actions/account';
+import { DELETE_USER } from '@/actions/user';
 
 export const initialState = {
     // user pseudo
     pseudo_name: '',
+    // User image
+    image: null,
     // user email
     email: '',
     // user password
@@ -30,6 +33,15 @@ const reducer = (state = initialState, action = {}) => {
             return {
                 ...state,
                 ...action.user,
+            };
+        case DELETE_USER:
+            return {
+                ...state,
+                pseudo_name: '',
+                image: null,
+                email: '',
+                password: '',
+                confirmedpassword: '',
             };
         default:
             return state;

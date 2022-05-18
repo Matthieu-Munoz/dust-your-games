@@ -1,10 +1,12 @@
 import {
+    DELETE_USER,
+    LOGIN_CONFIRM,
     LOGOUT, SAVE_USER,
 } from '@/actions/user';
 
 export const initialState = {
     // user id
-    id: 0,
+    id: null,
     // user email
     email: '',
     // user pseudo
@@ -14,7 +16,7 @@ export const initialState = {
     // user image
     image: null,
     // is the user logged in
-    logged: false,
+    loginChecked: false,
 };
 
 const reducer = (state = initialState, action = {}) => {
@@ -23,13 +25,31 @@ const reducer = (state = initialState, action = {}) => {
             return {
                 ...state,
                 ...action.user,
-                logged: true,
+            };
+        case LOGIN_CONFIRM:
+            return {
+                ...state,
+                loginChecked: action.value,
             };
         case LOGOUT:
             return {
                 ...state,
-                logged: false,
+                id: null,
+                loginChecked: false,
                 pseudo: null,
+                email: '',
+                pseudo_name: '',
+                year_of_birth: '',
+                image: null,
+            };
+        case DELETE_USER:
+            return {
+                ...state,
+                id: null,
+                email: '',
+                pseudo_name: '',
+                year_of_birth: '',
+                image: null,
             };
         default:
             return state;

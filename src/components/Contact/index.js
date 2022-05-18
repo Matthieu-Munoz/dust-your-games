@@ -6,7 +6,7 @@ import { BsQuestionCircle, BsPerson } from "react-icons/bs";
 import { AiOutlineMail } from "react-icons/ai";
 import { HiOutlineSelector } from "react-icons/hi"
 import { Image, Transformation } from 'cloudinary-react';
-// React-Redux
+// Local | React-Redux
 import Field from "@/components/Field";
 import Button from '../Button';
 import { changeInputValue, isSubmitForm } from '@/actions/contact';
@@ -15,7 +15,6 @@ import team from "@/data/team";
 import "./contact.scss"
 
 function Contact() {
-
   const dispatch = useDispatch();
   const { pseudo, email, objet, message } = useSelector((state) => state.contact);
 
@@ -113,7 +112,6 @@ function Contact() {
       </div> */}
         </form>
       </div>
-
     </div>
   );
 }

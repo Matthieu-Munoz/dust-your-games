@@ -7238,6 +7238,16 @@ react-autosize-textarea@^7.1.0:
     line-height "^0.3.1"
     prop-types "^15.5.6"
 
+react-cloudinary-upload-widget@^1.6.0:
+  version "1.6.0"
+  resolved "https://registry.yarnpkg.com/react-cloudinary-upload-widget/-/react-cloudinary-upload-widget-1.6.0.tgz#2be52a17f74d7f03ca5f93e6f40c6623401e6214"
+  integrity sha512-U3i0/EQ0gaXATHN1xH1QWshj3dpv4j4gixUaaeEsO6/RdUK6B107aCKpEV+zfg9wl458Km3ao7DPG7hdYpgJkA==
+
+react-confirm-alert@^3.0.1:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/react-confirm-alert/-/react-confirm-alert-3.0.1.tgz#99d106a316af644e48233f3933aced429ae89c3c"
+  integrity sha512-NqWA5lHt50vgxFxzNYxEioGi813Z6ywlCdfjVSw6PP1oyZH84c3H6kO8b4nPgamrOHNAoLL+xekA8CXMDg9WuQ==
+
 react-dev-utils@^12.0.1:
   version "12.0.1"
   resolved "https://registry.yarnpkg.com/react-dev-utils/-/react-dev-utils-12.0.1.tgz#ba92edb4a1f379bd46ccd6bcd4e7bc398df33e73"

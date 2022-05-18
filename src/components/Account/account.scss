@@ -1,7 +1,7 @@
 @use "@/styles/vars";
 @use "@/styles/color-themes";
 @use "@/styles/utils";
-@use "@/styles/responsive-breakpoints"as media;
+@use "@/styles/responsive-breakpoints" as media;
 
 .useraccount {
   display: flex;
@@ -121,7 +121,6 @@
   }
 }
 
-
 // Style when on tablet and bigger
 @include media.responsive("tablet") {
   .useraccount {
@@ -139,6 +138,7 @@
       &__img {
         width: 13em;
         height: 13em;
+        pointer-events: none;
       }
     }
 
@@ -212,6 +212,20 @@
   width: 22em;
   position: relative;
 
+  #cloudinary_upload_button {
+    z-index: 2;
+    bottom: 10em;
+    left: 13em;
+    background-color: vars.$red;
+    color: vars.$off-white;
+    transform: scale(1.3);
+    transition: transform 0.1s ease-in-out;
+
+    &:hover {
+      @include utils.hover(vars.$alter-red, 1.35);
+    }
+  }
+
   .useraccount {
     &__close {
       position: absolute;
@@ -232,30 +246,12 @@
 
     &__picture {
       bottom: 0;
-
-      &__edit {
-        position: absolute;
-        background-color: vars.$red;
-        color: vars.$off-white;
-        border-radius: 1em;
-        padding: 0.2em;
-        width: 2em;
-        height: 2em;
-        bottom: 0.5em;
-        right: 0.5em;
-        transform: scale(1);
-        transition: transform 0.1s ease-in-out;
-
-        &:hover {
-          @include utils.hover(vars.$alter-red, 1.05);
-        }
-      }
     }
 
     &__info__edit {
       width: 100%;
     }
-    
+
     &__buttons {
       display: flex;
       flex-direction: column;
@@ -318,7 +314,7 @@
           width: 10em;
           height: 10em;
         }
-        &__edit{
+        &__edit {
           right: 0;
           top: 1em;
           pointer-events: visible;
@@ -336,7 +332,6 @@
         left: 0;
         bottom: 2.7em;
       }
-  
     }
   }
 }

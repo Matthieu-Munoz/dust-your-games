@@ -13,7 +13,7 @@ import "./menu.scss"
 function Menu() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const isLoggedIn = useSelector((state) => state.user.logged);
+  const isLoggedIn = useSelector((state) => state.user.loginChecked);
   const menuStatus = useSelector((state) => state.app.menuOpened);
   const menuCssClass = classNames('menu', { 'open': menuStatus });
   const burgerCssClass = classNames('burger burger-squeeze', { 'open': menuStatus });
@@ -66,7 +66,7 @@ function Menu() {
                 <Button
                   name="Se déconnecter"
                   classname="primary"
-                  style={{ width: '170px', marginTop: '1em' }}
+                  style={{ width: '165px', marginTop: '1em' }}
                   onclick={() => {
                     navigate('../', { replace: true });
                     dispatch(logout());
@@ -94,7 +94,7 @@ function Menu() {
                 <Button
                   name="Se Connecter"
                   classname="primary"
-                  style={{ width: '170px', marginTop: '1em' }}
+                  style={{ width: '160px', marginTop: '1em' }}
                   onclick={() => {
                     navigate('../', { replace: true });
                   }}

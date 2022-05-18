@@ -1,6 +1,7 @@
 // Dependencies
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import classNames from "classnames";
 //Icons
 import { AiOutlineAppstoreAdd, AiOutlineCheckCircle, AiFillCaretDown, AiFillCaretUp } from "react-icons/ai";
@@ -9,24 +10,33 @@ import { BsSortAlphaDown, BsSortAlphaUp, BsSortDownAlt, BsSortDown, BsSearch, Bs
 import { GiPerspectiveDiceSixFacesRandom } from "react-icons/gi";
 // Local | React-Redux
 import gamesList from "@/data/games";
+import Field from "../Field";
+import { fetchUser } from "@/actions/user";
 import {
   toggleModal
 } from '@/actions/app';
 import { toggleFilterMenu, toggleFilter } from "@/actions/games";
 // Styles
 import "./gameslist.scss"
-import Field from "../Field";
 
 function GamesList() {
   const dispatch = useDispatch();
-  const logged = useSelector((state) => state.user.logged);
+  const navigate = useNavigate();
+
+  const loginChecked = useSelector((state) => state.user.loginChecked);
   const { menuToggled } = useSelector((state) => state.games);
   const { check, sortAlpha, sortNum, sortDir, categories, times, players, age, } = useSelector((state) => state.games.toggles);
-  const sideClass = classNames('games__side', { 'games__side--openned': menuToggled });;
+  const sideClass = classNames('games__side', { 'games__side--openned': menuToggled });
 
-  if (!logged) {
-    return <Navigate to="/" replace />;
-  }
+  useEffect(
+    () => {
+      dispatch(fetchUser())
+      if (!loginChecked) {
+        navigate('../', { replace: true });
+      }
+    },
+    [],
+  );
   return (
     <div className="games">
       <div className="games__list--scroll">
