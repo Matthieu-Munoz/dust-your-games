@@ -140,7 +140,6 @@ const dygApiMiddleWare = (store) => (next) => (action) => {
       store.dispatch(toggleLoading(true))
       const { account: { pseudo_name, image, email, password } } = store.getState();
       const { user: { id } } = store.getState();
-      console.log(password);
       axiosInstance
         .patch(
           `${id}/profil/edit`,
