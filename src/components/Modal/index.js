@@ -1,21 +1,30 @@
 // Dependencies
+import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { IoClose } from "react-icons/io5";
-// React-Redux
+// Local | React-Redux
 import {
     toggleModal
 } from '@/actions/app';
-// Styles
-import "./modal.scss"
+import { fetchGames } from '@/actions/games';
 import AddGames from './AddGames';
 import DustResult from './DustResult';
+// Styles
+import "./modal.scss"
 
 function Modal() {
     const dispatch = useDispatch();
+    useEffect(
+        () => {
+            dispatch(fetchGames());
+        },
+        [dispatch],
+    );
     const { modalOpened, modalComponent } = useSelector((state) => state.app);
     const handleModalToggle = () => {
         dispatch(toggleModal(''))
     }
+
     return (
         <>
             {modalOpened &&

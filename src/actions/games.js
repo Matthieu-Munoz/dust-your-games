@@ -17,6 +17,12 @@ export const changeField = (value, field) => ({
     value,
     field,
 });
+export const FETCH_GAMES = 'FETCH_GAMES';
+export const fetchGames = () => ({
+    type: FETCH_GAMES,
+});
+
+
 // Search a game un BGA API
 export const SEARCH_GAME = 'SEARCH_GAME';
 export const searchGame = (value) => ({
@@ -33,3 +39,9 @@ export const selectGame = (value) => ({
     type: SELECT_GAME,
     value,
 });
+export const SAVE_GAME = 'SAVE_GAME';
+export const saveGame = (game) => ({
+    type: SAVE_GAME,
+    game,
+});
+

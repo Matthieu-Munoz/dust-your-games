@@ -26,6 +26,8 @@ const reducer = (state = initialState, action = {}) => {
             return {
                 ...state,
                 isEdit: action.isEdit,
+                password: '',
+                confirmedpassword: '',
             }
         case CHANGE_FIELD:
             return {

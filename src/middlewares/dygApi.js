@@ -8,6 +8,7 @@ import { toggleLoginForm } from '../actions/home'
 import { saveUserAccount } from '@/actions/account';
 // Utilities
 import { setWithExpiry, getWithExpiry } from '@/utils/localStorage';
+import { FETCH_GAMES, SAVE_GAME } from '@/actions/games';
 
 const axiosInstance = axios.create({
   baseURL: 'https://api.dustyourgames.com/api/',
@@ -139,6 +140,7 @@ const dygApiMiddleWare = (store) => (next) => (action) => {
       store.dispatch(toggleLoading(true))
       const { account: { pseudo_name, image, email, password } } = store.getState();
       const { user: { id } } = store.getState();
+      console.log(password);
       axiosInstance
         .patch(
           `${id}/profil/edit`,
@@ -153,12 +155,10 @@ const dygApiMiddleWare = (store) => (next) => (action) => {
           if (response.status === 201) {
             store.dispatch(toggleLoading(false))
             const user = {
+              id: id,
               pseudo_name,
               image,
-              email,
-              password,
             }
-            setWithExpiry("user", user, 64800000);
             store.dispatch(saveUser(user));
             store.dispatch(saveUserAccount(user));
             store.dispatch(sendAlert('check', `Votre profil a bien été modifié.`));
@@ -205,11 +205,65 @@ const dygApiMiddleWare = (store) => (next) => (action) => {
             store.dispatch(closeAlert());
           }, 2800);
         });
-
       next(action);
       break;
     }
-
+    // case FETCH_GAMES: {
+    //   store.dispatch(toggleLoading(true))
+    //   const { user: { id } } = store.getState();
+    //   axiosInstance
+    //     .get(
+    //       `${id}/games`,
+    //     )
+    //     .then((response) => {
+    //       console.log(response);
+    //     })
+    //     .catch(() => {
+    //       store.dispatch(toggleLoading(false))
+    //       store.dispatch(sendAlert('error', 'Une erreur est survenu, merci de réessayer.'));
+    //       setTimeout(() => {
+    //         store.dispatch(closeAlert());
+    //       }, 2800);
+    //     });
+    //   next(action);
+    //   break;
+    // }
+    case SAVE_GAME: {
+      store.dispatch(toggleLoading(true))
+      const { games: { selectedGame, searchGames } } = store.getState();
+      const { user: { id } } = store.getState();
+      const game = searchGames.filter(obj => {
+        return obj.id === selectedGame;
+      });
+      axiosInstance
+        .post(
+          `${id}/add`,
+          {
+            "name": game[0].handle,
+            "image": game[0].image_url,
+            "min_player": game[0].min_players,
+            "max_player": game[0].max_players,
+            "min_playtime": game[0].min_playtime,
+            "max_playtime": game[0].max_playtime,
+            "description": game[0].description,
+            "category": "temp",
+            "editor": game[0].primary_publisher.name,
+            "designor": game[0].primary_designer.name
+          }
+        )
+        .then((response) => {
+          console.log(response);
+        })
+        .catch(() => {
+          store.dispatch(toggleLoading(false))
+          store.dispatch(sendAlert('error', 'Une erreur est survenu, merci de réessayer.'));
+          setTimeout(() => {
+            store.dispatch(closeAlert());
+          }, 2800);
+        });
+      next(action);
+      break;
+    }
     default:
       next(action);
   }

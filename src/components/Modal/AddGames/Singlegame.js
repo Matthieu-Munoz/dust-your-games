@@ -1,5 +1,5 @@
 // React-Redux
-import { selectGame } from "@/actions/games";
+import { saveGame, selectGame } from "@/actions/games";
 import { useDispatch, useSelector } from "react-redux";
 import Button from "../../Button";
 // styles
@@ -34,6 +34,7 @@ function Singlegame() {
         <Button
           name="oui"
           classname="secondary"
+          onclick={() => dispatch(saveGame())}
         />
         <Button
           name="non"

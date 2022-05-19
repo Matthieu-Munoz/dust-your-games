@@ -57,6 +57,7 @@ function RegisterForm() {
   // Handle when the user click the register button
   const handleRegister = (evt) => {
     evt.preventDefault();
+    ReactTooltip.rebuild();
     if (formValidation()) {
       dispatch(register())
     }

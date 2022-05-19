@@ -1,4 +1,10 @@
+@use "@/styles/vars";
+@use "@/styles/color-themes";
+@use "@/styles/utils";
+@use "@/styles/responsive-breakpoints" as media;
+
 $fromTop: 20px;
+$widthMobil: 300px;
 $width: 500px;
 
 #notification {
@@ -84,23 +90,23 @@ $width: 500px;
   }
 
   to {
-    min-width: $width;
+    min-width: $widthMobil;
   }
 }
 
 @keyframes stay {
   from {
-    min-width: $width;
+    min-width: $widthMobil;
   }
 
   to {
-    min-width: $width;
+    min-width: $widthMobil;
   }
 }
 
 @keyframes shrink {
   from {
-    min-width: $width;
+    min-width: $widthMobil;
   }
 
   to {
@@ -117,5 +123,62 @@ $width: 500px;
   to {
     top: -60px;
     opacity: 0;
+  }
+}
+
+// Style when on tablet and bigger
+@include media.responsive("tablet") {
+  @keyframes fadein {
+    from {
+      top: 0;
+      opacity: 0;
+    }
+
+    to {
+      top: $fromTop;
+      opacity: 1;
+    }
+  }
+
+  @keyframes expand {
+    from {
+      min-width: 50px;
+    }
+
+    to {
+      min-width: $width;
+    }
+  }
+
+  @keyframes stay {
+    from {
+      min-width: $width;
+    }
+
+    to {
+      min-width: $width;
+    }
+  }
+
+  @keyframes shrink {
+    from {
+      min-width: $width;
+    }
+
+    to {
+      min-width: 50px;
+    }
+  }
+
+  @keyframes fadeout {
+    from {
+      top: $fromTop;
+      opacity: 1;
+    }
+
+    to {
+      top: -60px;
+      opacity: 0;
+    }
   }
 }
