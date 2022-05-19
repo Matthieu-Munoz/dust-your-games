@@ -6,7 +6,6 @@ import {
   FETCH_TOP_GAMES, saveTopGames,
 } from '@/actions/dashboard';
 import { toggleLoading } from '../actions/app'
-import { saveSearchGames, SEARCH_GAME } from '@/actions/games';
 
 
 const axiosInstance = axios.create({
@@ -33,22 +32,6 @@ const boardgameatlasApiMiddleWare = (store) => (next) => (action) => {
             console.log('oups...');
           });
       };
-      next(action);
-      break;
-    }
-    case SEARCH_GAME: {
-      const { games: { searchInput } } = store.getState();
-      axiosInstance
-        .get(
-          `order_by=rank&name=${searchInput}`
-        )
-        .then((response) => {
-          store.dispatch(saveSearchGames(response.data.games));
-        })
-        .catch(() => {
-          console.log('oups...');
-        });
-
       next(action);
       break;
     }
