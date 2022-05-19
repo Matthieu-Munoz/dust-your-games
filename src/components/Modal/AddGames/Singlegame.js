@@ -1,24 +1,16 @@
 // React-Redux
-import { saveGame, selectGame } from "@/actions/games";
-import { useDispatch, useSelector } from "react-redux";
+import games from "@/data/game1";
 import Button from "../../Button";
 // styles
 import "./addgames.scss"
 
 
 function Singlegame() {
-  const dispatch = useDispatch();
-  const { searchGames, selectedGame } = useSelector((state) => state.games);
-  const game = searchGames.filter(obj => {
-    return obj.id === selectedGame;
-  });
-  const handleCancel = () => {
-    dispatch(selectGame(null));
-  }
+
   return (
     <div className="singlegame">
 
-      {game && game.map((item) => (
+      {games.map((item) => (
         <>
           <div className="singlegame__text">Voulez-vous ajouter {item.name} à votre liste ?  </div>
           <div key={item.id} className="singlegame__picture">
@@ -34,12 +26,10 @@ function Singlegame() {
         <Button
           name="oui"
           classname="secondary"
-          onclick={() => dispatch(saveGame())}
         />
         <Button
           name="non"
           classname="primary"
-          onclick={handleCancel}
         />
       </div>
     </div>
