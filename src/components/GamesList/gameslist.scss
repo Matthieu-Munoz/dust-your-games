@@ -25,6 +25,7 @@
     }
 
     &__game {
+      position: relative;
       width: 110px;
       height: 110px;
       box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.45);
@@ -38,6 +39,23 @@
         border-radius: 0.5em;
         background-color: white;
         box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.45) inset;
+      }
+
+      &__overlay {
+        position: absolute;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: vars.$off-white;
+        &__bg {
+          width: 100%;
+          height: 100%;
+          opacity: 0.5;
+          background-color: vars.$grey-blue;
+        }
       }
     }
   }

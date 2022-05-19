@@ -15,7 +15,7 @@ import { fetchUser } from "@/actions/user";
 import {
   toggleModal
 } from '@/actions/app';
-import { toggleFilterMenu, toggleFilter } from "@/actions/games";
+import { toggleFilterMenu, toggleFilter, fetchGames } from "@/actions/games";
 // Styles
 import "./gameslist.scss"
 
@@ -27,7 +27,12 @@ function GamesList() {
   const { menuToggled } = useSelector((state) => state.games);
   const { check, sortAlpha, sortNum, sortDir, categories, times, players, age, } = useSelector((state) => state.games.toggles);
   const sideClass = classNames('games__side', { 'games__side--openned': menuToggled });
-
+  useEffect(
+    () => {
+      // dispatch(fetchGames());
+    },
+    [dispatch],
+  );
   useEffect(
     () => {
       dispatch(fetchUser())
@@ -35,7 +40,7 @@ function GamesList() {
         navigate('../', { replace: true });
       }
     },
-    [],
+    [dispatch],
   );
   return (
     <div className="games">
@@ -48,6 +53,10 @@ function GamesList() {
                 src={`https://res.cloudinary.com/dyg/image/fetch/c_scale,h_150,q_80,w_150/${game.image_url}`}
                 alt={game.handle}
               />
+              <div className="games__list__game__overlay">
+                {game.name}
+                <div className="games__list__game__overlay__bg" />
+              </div>
             </div>
           ))}
         </div>
