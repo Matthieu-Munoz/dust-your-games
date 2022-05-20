@@ -1,132 +1,128 @@
 @use "@/styles/vars";
 @use "@/styles/color-themes";
 @use "@/styles/utils";
-@use "@/styles/responsive-breakpoints" as media;
+@use "@/styles/responsive-breakpoints"as media;
 
-.dustresult {
-  padding: 1em;
-  width: 300px;
-  border-radius: 1em;
 
-  &__game {
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  &__dust {
-    position: absolute;
-    pointer-events: none;
-    height: 35em;
-  }
-
-  &__sparkling {
-    position: absolute;
-    z-index: 1;
-
-    &--left {
-      left: -2em;
-      top: -2em;
-      height: 6em;
-      width: 6em;
-    }
-
-    &--right {
-      right: 0;
-      bottom: -1em;
-      height: 5em;
-      width: 5em;
-    }
-  }
-
-  &__circle {
+.gamedesc {
+    width: 310px;
+    border-radius: 1em;
     z-index: 0;
-    position: relative;
-    width: 14em;
-    height: 14em;
-    background-color: white;
-    border: 0.3em solid vars.$grey-blue;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
 
-    &__picture {
-      width: 70%;
-      height: 70%;
+    &__game {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        &__img {
+            position: relative;
+            display: flex;
+            width: 200px;
+            height: 200px;
+            background-color: white;
+            box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.45);
+            border-radius: 10px;
+            border: 6px solid vars.$beige;
+            margin: 0.2em;
+        }
+
+        &__information {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            &__title {
+                width: 100%;
+                text-transform: uppercase;
+                color: vars.$gold;
+                text-align: center;
+                font-size: 20px;
+                margin: 0.8em 0;
+                text-shadow: vars.$red 1.5px 1px;
+            }
+
+            &__statistics {
+                width: 100%;
+                display: flex;
+                color: vars.$beige;
+                flex-direction: row;
+                justify-content: space-evenly;
+                margin: auto auto 1em;
+
+                &__people {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                }
+
+                &__time {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                }
+
+                &__icon--people {
+                    height: 3em;
+                    width: 3em;
+                }
+
+                &__icon--time {
+                    height: 3em;
+                    width: 3em;
+                }
+
+                &__people__number {
+                    font-size: 1.5em;
+                    padding-left: 0.3em;
+                }
+
+                &__time__number {
+                    font-size: 1.5em;
+
+                }
+            }
+        }
+
+        &__buttons {
+            display: flex;
+            justify-content: space-around;
+            width: 100%;
+            margin-top: 0.5em;
+        }
     }
-  }
 
-  &__title {
-    text-transform: uppercase;
-    color: vars.$gold;
-    text-align: center;
-    font-size: 20px;
-    margin: 1em;
-    text-shadow: vars.$red 1.5px 1px;
-  }
 
-  &__statistics {
-    display: flex;
-    color: vars.$beige;
-    flex-direction: row;
-    justify-content: space-evenly;
-    margin: auto auto 1em;
 
-    &__people {
-      display: flex;
-      align-items: center;
-      justify-content: center;
+    &--scroll {
+        overflow-y: auto;
+        height: 7em;
+        margin: 1.1em 0 0.5em 0;
     }
 
-    &__time {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
 
-    &__icon--people {
-      height: 3em;
-      width: 3em;
-    }
+    .appbutton--secondary {
+        background-color: vars.$beige;
+        color: vars.$grey-blue;
 
-    &__icon--time {
-      height: 3em;
-      width: 3em;
+        &:hover {
+            background-color: vars.$alter-beige;
+        }
     }
+}
 
-    &__people__number {
-      font-size: 1.5em;
-      padding-left: 0.2em;
+// Style when on tablet and bigger
+@include media.responsive("tablet") {
+    .gamedesc {
+        width: 27em;
     }
-
-    &__time__number {
-      font-size: 1.5em;
-    }
-  }
-
-  &__buttons {
-    display: flex;
-    justify-content: space-around;
-  }
-
-  .appbutton--secondary {
-    background-color: vars.$beige;
-    color: vars.$grey-blue;
-    &:hover {
-      background-color: vars.$alter-beige;
-    }
-  }
 }
 
 // Style when on tablet and bigger
 @include media.responsive("desktop") {
-  .dustresult {
-    width: 35em;
-
-    &__dust {
-      height: 45em;
+    .gamedesc {
+        width: 35em;
     }
-  }
 }
