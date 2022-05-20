@@ -1,11 +1,12 @@
 // import axios from 'axios';
-import axios from 'axios';
+import axios, { Axios } from 'axios';
 
 import { setWithExpiry, getWithExpiry } from '@/utils/localStorage';
 import {
   FETCH_TOP_GAMES, saveTopGames,
 } from '@/actions/dashboard';
-import { toggleLoading } from '../actions/app'
+import { toggleLoading, toggleModalLoading } from '../actions/app'
+import { fetchCategories, fetchGames, FETCH_CATEGORIES, saveCategories, saveSearchGames, SEARCH_GAME } from '@/actions/games';
 
 
 const axiosInstance = axios.create({
@@ -16,8 +17,8 @@ const boardgameatlasApiMiddleWare = (store) => (next) => (action) => {
     case FETCH_TOP_GAMES: {
       let storageGames = getWithExpiry("topgames");
       if (storageGames != null) {
-        store.dispatch(toggleLoading(false))
         store.dispatch(saveTopGames(storageGames));
+        store.dispatch(fetchGames());
       } else {
         axiosInstance
           .get(
@@ -25,13 +26,53 @@ const boardgameatlasApiMiddleWare = (store) => (next) => (action) => {
           )
           .then((response) => {
             setWithExpiry("topgames", response.data.games, 43200000);
+            store.dispatch(fetchGames());
             store.dispatch(saveTopGames(response.data.games));
-            store.dispatch(toggleLoading(false))
           })
           .catch(() => {
             console.log('oups...');
           });
       };
+      next(action);
+      break;
+    }
+    case FETCH_CATEGORIES: {
+      let storageCategories = getWithExpiry("gameCategories");
+      if (storageCategories != null) {
+        store.dispatch(toggleLoading(false))
+        store.dispatch(saveCategories(storageCategories));
+      } else {
+        axios({
+          method: 'get',
+          url: 'https://api.boardgameatlas.com/api/game/categories?&client_id=Hm47mIyylB',
+        })
+          .then((response) => {
+            store.dispatch(toggleLoading(false))
+            setWithExpiry("gameCategories", response.data.categories, 43200000);
+            store.dispatch(saveCategories(response.data.categories));
+          })
+          .catch(() => {
+            console.log('oups...');
+          });
+      };
+      next(action);
+      break;
+    }
+    case SEARCH_GAME: {
+      store.dispatch(toggleModalLoading(true))
+      const { games: { addgame } } = store.getState();
+      axiosInstance
+        .get(
+          `order_by=rank&name=${addgame.searchInput}`
+        )
+        .then((response) => {
+          store.dispatch(toggleModalLoading(false))
+          store.dispatch(saveSearchGames(response.data.games));
+        })
+        .catch(() => {
+          console.log('oups...');
+        });
+
       next(action);
       break;
     }

@@ -1,5 +1,5 @@
 import {
-    TOGGLE_THEME, SAVE_THEME, TOGGLE_MODAL, TOGGLE_MENU, TOGGLE_PASSWORD, TOGGLE_LOADING, SEND_ALERT, CLOSE_ALERT
+    TOGGLE_THEME, SAVE_THEME, TOGGLE_MODAL, TOGGLE_MENU, TOGGLE_PASSWORD, TOGGLE_LOADING, SEND_ALERT, CLOSE_ALERT, TOGGLE_MODAL_LOADING
 } from '@/actions/app';
 
 export const initialState = {
@@ -9,6 +9,7 @@ export const initialState = {
     menuOpened: false,
     passwordVisible: false,
     loading: true,
+    modalLoading: false,
     alert: {
         status: false,
         type: '',
@@ -50,6 +51,11 @@ const reducer = (state = initialState, action = {}) => {
             return {
                 ...state,
                 loading: action.value,
+            };
+        case TOGGLE_MODAL_LOADING:
+            return {
+                ...state,
+                modalLoading: action.value,
             };
         case SEND_ALERT:
             return {

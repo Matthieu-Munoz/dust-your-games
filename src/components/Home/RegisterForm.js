@@ -65,7 +65,7 @@ function RegisterForm() {
 
   return (
     <form className="userform__ctn userform__ctn--register">
-      <ReactTooltip className="userform__tooltip" effect="solid" place="right" type="error" multiline={true} />
+      <ReactTooltip id="tooltip" effect="solid" place="right" type="error" multiline={true} />
       <Field
         name="pseudo_name"
         placeholder="Identifiant"

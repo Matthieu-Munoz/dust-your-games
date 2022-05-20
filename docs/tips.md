@@ -32,7 +32,7 @@ If you have only one component to condition :
 
 ```JSX
 {
-  if (isLoggedIn) {
+  if (condition) {
     return <Component1 />;
   }
 }
@@ -41,14 +41,14 @@ If you have only one component to condition :
 **equals to**
 
 ```JSX
-  {(currentTheme) && <Component1 />}
+  {(condition) && <Component1 />}
 ```
 
 For two different components :
 
 ```JSX
 {
-  if (isLoggedIn) {
+  if (condition) {
     return <Component1 />;
   }
   return <Component2 />;
@@ -58,7 +58,7 @@ For two different components :
 **equals to**
 
 ```JSX
-  {(currentTheme) ? <Component1 /> : <Component2 />}
+  {(condition) ? <Component1 /> : <Component2 />}
 ```
 
 

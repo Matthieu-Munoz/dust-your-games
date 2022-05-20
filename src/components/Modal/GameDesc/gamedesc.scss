@@ -1,0 +1,132 @@
+@use "@/styles/vars";
+@use "@/styles/color-themes";
+@use "@/styles/utils";
+@use "@/styles/responsive-breakpoints" as media;
+
+.dustresult {
+  padding: 1em;
+  width: 300px;
+  border-radius: 1em;
+
+  &__game {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__dust {
+    position: absolute;
+    pointer-events: none;
+    height: 35em;
+  }
+
+  &__sparkling {
+    position: absolute;
+    z-index: 1;
+
+    &--left {
+      left: -2em;
+      top: -2em;
+      height: 6em;
+      width: 6em;
+    }
+
+    &--right {
+      right: 0;
+      bottom: -1em;
+      height: 5em;
+      width: 5em;
+    }
+  }
+
+  &__circle {
+    z-index: 0;
+    position: relative;
+    width: 14em;
+    height: 14em;
+    background-color: white;
+    border: 0.3em solid vars.$grey-blue;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &__picture {
+      width: 70%;
+      height: 70%;
+    }
+  }
+
+  &__title {
+    text-transform: uppercase;
+    color: vars.$gold;
+    text-align: center;
+    font-size: 20px;
+    margin: 1em;
+    text-shadow: vars.$red 1.5px 1px;
+  }
+
+  &__statistics {
+    display: flex;
+    color: vars.$beige;
+    flex-direction: row;
+    justify-content: space-evenly;
+    margin: auto auto 1em;
+
+    &__people {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    &__time {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    &__icon--people {
+      height: 3em;
+      width: 3em;
+    }
+
+    &__icon--time {
+      height: 3em;
+      width: 3em;
+    }
+
+    &__people__number {
+      font-size: 1.5em;
+      padding-left: 0.2em;
+    }
+
+    &__time__number {
+      font-size: 1.5em;
+    }
+  }
+
+  &__buttons {
+    display: flex;
+    justify-content: space-around;
+  }
+
+  .appbutton--secondary {
+    background-color: vars.$beige;
+    color: vars.$grey-blue;
+    &:hover {
+      background-color: vars.$alter-beige;
+    }
+  }
+}
+
+// Style when on tablet and bigger
+@include media.responsive("desktop") {
+  .dustresult {
+    width: 35em;
+
+    &__dust {
+      height: 45em;
+    }
+  }
+}

@@ -52,7 +52,6 @@ function Field({
             {error && <AiOutlineExclamationCircle className="field__icon field__icon--error" data-tip={tip} />}
           </div>
         </>
-
       )}
       {(field === "input") && (
         <>

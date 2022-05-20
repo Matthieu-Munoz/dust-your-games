@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Image, Transformation } from 'cloudinary-react';
 import { useNavigate } from 'react-router-dom';
 // Local | React-Redux
+import { dustAll } from '@/actions/games';
 import {
   fetchTopGames,
 } from '@/actions/dashboard';
@@ -35,7 +36,7 @@ function Dashboard() {
           </Image>
           <h3 className="dashboard__card__title">Liste de jeux</h3>
         </div>
-        <div className="dashboard__card dashboard__card--dust">
+        <div className="dashboard__card dashboard__card--dust" onClick={() => dispatch(dustAll())}>
           <Image cloudName="dyg" publicId="dashboard_dust_ljmzor.png" className="dashboard__card__img" >
             <Transformation quality="80" width="250" crop="scale" />
           </Image>

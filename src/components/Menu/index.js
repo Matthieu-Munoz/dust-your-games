@@ -68,7 +68,7 @@ function Menu() {
                   classname="primary"
                   style={{ width: '165px', marginTop: '1em' }}
                   onclick={() => {
-                    navigate('../', { replace: true });
+                    navigate('/', { replace: true });
                     dispatch(logout());
                   }}
                 />
@@ -96,7 +96,7 @@ function Menu() {
                   classname="primary"
                   style={{ width: '160px', marginTop: '1em' }}
                   onclick={() => {
-                    navigate('../', { replace: true });
+                    navigate('/', { replace: true });
                   }}
                 />
               </>

@@ -1,25 +1,20 @@
 // Dependencies
-import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { IoClose } from "react-icons/io5";
 // Local | React-Redux
 import {
     toggleModal
 } from '@/actions/app';
-import { fetchGames } from '@/actions/games';
 import AddGames from './AddGames';
 import DustResult from './DustResult';
+import GameDesc from './GameDesc';
 // Styles
 import "./modal.scss"
 
 function Modal() {
     const dispatch = useDispatch();
-    useEffect(
-        () => {
-            dispatch(fetchGames());
-        },
-        [dispatch],
-    );
+
+
     const { modalOpened, modalComponent } = useSelector((state) => state.app);
     const handleModalToggle = () => {
         dispatch(toggleModal(''))
@@ -33,8 +28,10 @@ function Modal() {
                         <IoClose className="modal__close" onClick={handleModalToggle} />
                         {(modalComponent === 'addgames') && <AddGames />}
                         {(modalComponent === 'dustresult') && <DustResult />}
+                        {(modalComponent === 'gameDesc') && <GameDesc />}
                     </div>
                     <div id="modal_background" onClick={handleModalToggle} />
+
                 </>
             }
         </>
