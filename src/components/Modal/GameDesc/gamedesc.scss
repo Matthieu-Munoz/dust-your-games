@@ -7,6 +7,7 @@
 .gamedesc {
     width: 310px;
     border-radius: 1em;
+    z-index: 0;
 
     &__game {
         position: relative;
@@ -115,17 +116,13 @@
 // Style when on tablet and bigger
 @include media.responsive("tablet") {
     .gamedesc {
-      width: 27em;
+        width: 27em;
     }
-  }
+}
 
 // Style when on tablet and bigger
 @include media.responsive("desktop") {
     .gamedesc {
-      width: 35em;
+        width: 35em;
     }
-  }
-
-
-  
-  
+}
