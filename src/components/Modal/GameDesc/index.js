@@ -10,36 +10,31 @@ import "./gamedesc.scss"
 
 function GameDesc() {
     const dispatch = useDispatch();
-
     const { modalLoading } = useSelector((state) => state.app);
     const { games, selectedGame } = useSelector((state) => state.games);
-    const game = games.filter(currentGame => {
+    const gameFiltered = games.filter(currentGame => {
         return currentGame.game.id === selectedGame;
     });
+    // Dans la variable game, il y a le jeu cliqué.
+    const game = gameFiltered[0].game
+
 
     return (
-        <div className="singlegame">
+        <div className="gamedesc">
             {modalLoading && <ModalLoader />}
             {!modalLoading &&
                 <>
-                    {game && game.map((item) => (
-                        <div className="singlegame__ctn" key={item.game.name}>
-                            <div className="singlegame__picture">
-                                <img
-                                    className="singlegame__img"
-                                    src={`https://res.cloudinary.com/dyg/image/fetch/c_scale,h_150,w_150,q_80/${item.game.image}`}
-                                    alt={item.game.name}
-                                />
-                            </div>
-                        </div>
-                    ))}
-                    <div className="singlegame__btn">
-                        <Button
-                            name="Supprimer"
-                            classname="primary"
-                            onclick={() => dispatch(deleteGame())}
-                        />
-                    </div>
+                    {/* // votre code ici */}
+                    <img
+                        className="gamedesc__img"
+                        src={`https://res.cloudinary.com/dyg/image/fetch/c_scale,h_150,w_150,q_80/${game.image}`}
+                        alt={game.name}
+                    />
+                    <Button
+                        name="Supprimer"
+                        classname="primary"
+                        onclick={() => dispatch(deleteGame())}
+                    />
                 </>
             }
         </div>
