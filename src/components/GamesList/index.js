@@ -6,7 +6,7 @@ import classNames from "classnames";
 //Icons
 import { AiOutlineAppstoreAdd, AiOutlineCheckCircle, AiFillCaretDown, AiFillCaretUp } from "react-icons/ai";
 import { BiFilterAlt, BiSort, BiCategoryAlt } from "react-icons/bi";
-import { BsSortAlphaDown, BsSortAlphaUp, BsSortDownAlt, BsSortDown, BsSearch, BsHourglassSplit, BsFillPeopleFill, BsCalendarDate } from "react-icons/bs";
+import { BsSortAlphaDown, BsSortAlphaUp, BsSortDownAlt, BsSortDown, BsSearch, BsHourglassSplit, BsFillPeopleFill } from "react-icons/bs";
 import { GiPerspectiveDiceSixFacesRandom } from "react-icons/gi";
 // Local | React-Redux
 import Field from "../Field";
@@ -14,7 +14,7 @@ import { fetchUser } from "@/actions/user";
 import {
   toggleModal
 } from '@/actions/app';
-import { toggleFilterMenu, toggleFilter, selectGame, dustAll, fetchCategories, changeField, saveGames, saveFilteredGames } from "@/actions/games";
+import { toggleFilterMenu, toggleFilter, selectGame, dustAll, fetchCategories, changeField } from "@/actions/games";
 // Styles
 import "./gameslist.scss"
 

@@ -1,12 +1,12 @@
 // import axios from 'axios';
-import axios, { Axios } from 'axios';
+import axios from 'axios';
 
 import { setWithExpiry, getWithExpiry } from '@/utils/localStorage';
 import {
   FETCH_TOP_GAMES, saveTopGames,
 } from '@/actions/dashboard';
 import { toggleLoading, toggleModalLoading } from '../actions/app'
-import { fetchCategories, fetchGames, FETCH_CATEGORIES, saveCategories, saveSearchGames, SEARCH_GAME } from '@/actions/games';
+import { fetchGames, FETCH_CATEGORIES, saveCategories, saveSearchGames, SEARCH_GAME } from '@/actions/games';
 
 
 const axiosInstance = axios.create({
