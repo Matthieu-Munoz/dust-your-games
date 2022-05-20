@@ -34,7 +34,7 @@ function GameDesc() {
                             alt={game.name}
                         />
                         <div className='gamedesc--scroll'>
-                            <div className="gamedesc__desc">
+                            <div className="gamedesc__game__desc">
                                 Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise
                                 en page avant impression. Le Lorem Ipsum est le faux texte standard de l'imprimerie depuis
                                 les années 1500, quand un imprimeur anonyme assembla ensemble des morceaux de texte pour
@@ -45,24 +45,24 @@ function GameDesc() {
                                 en page de texte, comme Aldus PageMaker.
                             </div>
                         </div>
-                        <div className="gamedesc__information">
-                            <h2 className="gamedesc__title">{game.name}</h2>
-                            <div className="gamedesc__statistics">
-                                <div className="gamedesc__statistics__people">
-                                    <BsPeopleFill className="gamedesc__statistics__icon--people" />
-                                    <div className="gamedesc__statistics__people__number">
+                        <div className="gamedesc__game__information">
+                            <h2 className="gamedesc__game__information__title">{game.name}</h2>
+                            <div className="gamedesc__game__information__statistics">
+                                <div className="gamedesc__game__information__statistics__people">
+                                    <BsPeopleFill className="gamedesc__game__information__statistics__icon--people" />
+                                    <div className="gamedesc__game__information__statistics__people__number">
                                         {game.min_player}-{game.max_player}
                                     </div>
                                 </div>
-                                <div className="gamedesc__statistics__time">
-                                    <CgSandClock className="gamedesc__statistics__icon--time" />
-                                    <div className="gamedesc__statistics__time__number">
+                                <div className="gamedesc__game__information__statistics__time">
+                                    <CgSandClock className="gamedesc__game__information__statistics__icon--time" />
+                                    <div className="gamedesc__game__information__statistics__time__number">
                                         ±{game.play_time}
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div className="gamedesc__buttons">
+                        <div className="gamedesc__game__buttons">
                             <Button
                                 name="Supprimer ce jeu"
                                 classname="secondary"

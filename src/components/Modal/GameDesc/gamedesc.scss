@@ -27,7 +27,73 @@
             margin: 0.2em;
         }
 
+        &__information {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            &__title {
+                width: 100%;
+                text-transform: uppercase;
+                color: vars.$gold;
+                text-align: center;
+                font-size: 20px;
+                margin: 0.8em 0;
+                text-shadow: vars.$red 1.5px 1px;
+            }
+
+            &__statistics {
+                width: 100%;
+                display: flex;
+                color: vars.$beige;
+                flex-direction: row;
+                justify-content: space-evenly;
+                margin: auto auto 1em;
+
+                &__people {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                }
+
+                &__time {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                }
+
+                &__icon--people {
+                    height: 3em;
+                    width: 3em;
+                }
+
+                &__icon--time {
+                    height: 3em;
+                    width: 3em;
+                }
+
+                &__people__number {
+                    font-size: 1.5em;
+                    padding-left: 0.3em;
+                }
+
+                &__time__number {
+                    font-size: 1.5em;
+
+                }
+            }
+        }
+
+        &__buttons {
+            display: flex;
+            justify-content: space-around;
+            width: 100%;
+            margin-top: 0.5em;
+        }
     }
+
+
 
     &--scroll {
         overflow-y: auto;
@@ -35,69 +101,6 @@
         margin: 1.1em 0 0.5em 0;
     }
 
-    &__information {
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-
-    &__title {
-        width: 100%;
-        text-transform: uppercase;
-        color: vars.$gold;
-        text-align: center;
-        font-size: 20px;
-        margin: 0.8em 0;
-        text-shadow: vars.$red 1.5px 1px;
-    }
-
-    &__statistics {
-        width: 100%;
-        display: flex;
-        color: vars.$beige;
-        flex-direction: row;
-        justify-content: space-evenly;
-        margin: auto auto 1em;
-
-        &__people {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        &__time {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        &__icon--people {
-            height: 3em;
-            width: 3em;
-        }
-
-        &__icon--time {
-            height: 3em;
-            width: 3em;
-        }
-
-        &__people__number {
-            font-size: 1.5em;
-            padding-left: 0.3em;
-        }
-
-        &__time__number {
-            font-size: 1.5em;
-        }
-    }
-
-    &__buttons {
-        display: flex;
-        justify-content: space-around;
-        width: 100%;
-        margin-top: 0.5em;
-    }
 
     .appbutton--secondary {
         background-color: vars.$beige;
@@ -107,5 +110,22 @@
             background-color: vars.$alter-beige;
         }
     }
-
 }
+
+// Style when on tablet and bigger
+@include media.responsive("tablet") {
+    .gamedesc {
+      width: 27em;
+    }
+  }
+
+// Style when on tablet and bigger
+@include media.responsive("desktop") {
+    .gamedesc {
+      width: 35em;
+    }
+  }
+
+
+  
+  
