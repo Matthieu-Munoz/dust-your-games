@@ -1,4 +1,5 @@
 // React-Redux
+
 import { saveGame, selectSearchGame } from "@/actions/games";
 import { useDispatch, useSelector } from "react-redux";
 import Button from "../../Button";
@@ -21,7 +22,6 @@ function Singlegame() {
 
   return (
     <div className="singlegame">
-
       {game && game.map((item) => (
         <div className="singlegame__ctn" key={item.id}>
           <div className="singlegame__text">Voulez-vous ajouter {item.name} à votre liste ?  </div>
@@ -38,12 +38,10 @@ function Singlegame() {
         <Button
           name="oui"
           classname="secondary"
-          onclick={() => dispatch(saveGame())}
         />
         <Button
           name="non"
           classname="primary"
-          onclick={handleCancel}
         />
       </div>
     </div>

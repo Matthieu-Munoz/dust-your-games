@@ -1,5 +1,4 @@
 // Dependencies
-import { useDispatch, useSelector } from "react-redux";
 // React-Redux
 import Field from "@/components/Field";
 import Singlegame from "./Singlegame";
@@ -7,7 +6,6 @@ import ModalLoader from "@/components/Loader/ModalLoader";
 import { changeSearchField, searchGame, selectSearchGame } from "@/actions/games";
 // styles
 import "./addgames.scss"
-
 function AddGames() {
     const dispatch = useDispatch();
     // We defined three variables to be used throughout the component

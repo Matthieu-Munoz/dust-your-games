@@ -8,6 +8,7 @@ import {
 import { toggleLoading, toggleModalLoading } from '../actions/app'
 import { fetchCategories, fetchGames, FETCH_CATEGORIES, saveCategories, saveSearchGames, SEARCH_GAME } from '@/actions/games';
 
+
 const axiosInstance = axios.create({
   baseURL: 'https://api.boardgameatlas.com/api/search?client_id=Hm47mIyylB&',
 });
