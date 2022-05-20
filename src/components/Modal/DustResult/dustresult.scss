@@ -9,6 +9,7 @@
   border-radius: 1em;
 
   &__game {
+    pointer-events: none;
     position: relative;
     display: flex;
     align-items: center;
@@ -18,7 +19,6 @@
 
   &__dust {
     position: absolute;
-    pointer-events: none;
     height: 35em;
   }
 

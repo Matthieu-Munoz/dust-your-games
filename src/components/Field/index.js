@@ -22,6 +22,7 @@ function Field({
   max,
   error,
   tip,
+  innerRef,
 }) {
   const dispatch = useDispatch();
   const { passwordVisible } = useSelector((state) => state.app);
@@ -65,6 +66,7 @@ function Field({
               value={value}
               onChange={handleChange}
               required
+              ref={(innerRef) && innerRef}
             />
             {(SecondIcon !== null) && <SecondIcon className="field__icon field__icon--second" />}
             {error && <AiOutlineExclamationCircle className="field__icon field__icon--error" data-tip={tip} />}
@@ -116,6 +118,7 @@ Field.propTypes = {
   max: PropTypes.string,
   error: PropTypes.bool,
   tip: PropTypes.string,
+  innerRef: PropTypes.any,
 };
 
 Field.defaultProps = {
@@ -129,6 +132,7 @@ Field.defaultProps = {
   max: "",
   error: false,
   tip: 'Merci de verifier cette information',
+  innerRef: null,
 };
 
 export default Field;

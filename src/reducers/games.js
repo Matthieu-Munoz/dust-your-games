@@ -1,24 +1,25 @@
 import {
-    TOGGLE_FILTER_MENU, TOGGLE_FILTER, SAVE_SEARCH_GAMES, CHANGE_SEARCH_FIELD, SAVE_GAMES, SELECT_SEARCH_GAME, SELECT_GAME, SAVE_DUST_GAME, SAVE_CATEGORIES, CHANGE_FIELD, SAVE_FILTERED_GAMES
+    TOGGLE_FILTER_MENU, TOGGLE_FILTER, SAVE_SEARCH_GAMES, CHANGE_SEARCH_FIELD, SAVE_GAMES, SELECT_SEARCH_GAME, SELECT_GAME, SAVE_DUST_GAME, SAVE_CATEGORIES, CHANGE_FIELD, SAVE_FILTERED_GAMES, SAVE_BGA_CATEGORIES, CHECK_GAMES, CHECK_ONE_GAME
 } from '@/actions/games';
 
 export const initialState = {
     games: [],
     filteredGames: [],
+    bgaCategories: [],
     categories: [],
     selectedGame: null,
     menuToggled: false,
     searchInput: '',
     toggles: {
-        check: false,
-        sortAlpha: false,
-        sortNum: false,
-        sortDir: false,
-        categories: false,
-        times: false,
-        players: false,
-        age: false,
+        checkFilter: false,
+        sortAlphaFilter: false,
+        sortNumFilter: false,
+        sortDirFilter: false,
+        categoriesFilter: false,
+        timesFilter: false,
+        playersFilter: false,
     },
+    checkedGames: [],
     addgame: {
         searchInput: '',
         searchGames: [],
@@ -80,6 +81,7 @@ const reducer = (state = initialState, action = {}) => {
             return {
                 ...state,
                 games: action.games,
+                checkedGames: action.games,
             }
         case SAVE_FILTERED_GAMES:
             return {
@@ -91,10 +93,25 @@ const reducer = (state = initialState, action = {}) => {
                 ...state,
                 dustgame: action.game,
             }
+        case SAVE_BGA_CATEGORIES:
+            return {
+                ...state,
+                bgaCategories: (action.values) ? action.values : [],
+            }
         case SAVE_CATEGORIES:
             return {
                 ...state,
                 categories: (action.values) ? action.values : [],
+            }
+        case CHECK_GAMES:
+            return {
+                ...state,
+                checkedGames: action.games,
+            }
+        case CHECK_ONE_GAME:
+            console.log(action.game);
+            return {
+                ...state,
             }
         default:
             return state;
