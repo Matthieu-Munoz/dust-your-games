@@ -3,7 +3,7 @@ import axios from 'axios';
 import {
   LOGIN, LOGOUT, saveUser, REGISTER, EDIT_USER, DELETE_USER, LOGIN_CHECK, loginConfirm
 } from '../actions/user';
-import { DELETE_GAME, DUST_ALL, fetchCategories, fetchGames, FETCH_GAMES, saveDustGame, saveGames, SAVE_GAME } from '@/actions/games';
+import { DELETE_GAME, DUST_ALL, fetchGames, FETCH_GAMES, saveDustGame, saveGames, SAVE_GAME } from '@/actions/games';
 import { closeAlert, sendAlert, toggleLoading, toggleModal, toggleModalLoading } from '../actions/app'
 import { toggleLoginForm } from '../actions/home'
 import { saveUserAccount } from '@/actions/account';
@@ -276,7 +276,8 @@ const dygApiMiddleWare = (store) => (next) => (action) => {
           if (response.status === 201) {
             store.dispatch(fetchGames())
             store.dispatch(toggleModalLoading(false))
-            store.dispatch(sendAlert('check', `Ce jeu a bien était ajouté à votre liste`));
+            store.dispatch(toggleModal(''));
+            store.dispatch(sendAlert('check', `Ce jeu a bien été ajouté à votre liste`));
             setTimeout(() => {
               store.dispatch(closeAlert());
             }, 2800);
@@ -302,8 +303,9 @@ const dygApiMiddleWare = (store) => (next) => (action) => {
         )
         .then((response) => {
           if (response.status === 202) {
-            store.dispatch(toggleModalLoading(false))
-            store.dispatch(fetchGames())
+            store.dispatch(toggleModalLoading(false));
+            store.dispatch(fetchGames());
+            store.dispatch(toggleModal(''));
             store.dispatch(sendAlert('check', `Le jeu a bien été supprimé.`));
             setTimeout(() => {
               store.dispatch(closeAlert());

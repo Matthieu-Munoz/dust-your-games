@@ -1,12 +1,14 @@
 import {
-    TOGGLE_FILTER_MENU, TOGGLE_FILTER, SAVE_SEARCH_GAMES, CHANGE_SEARCH_FIELD, SAVE_GAMES, SELECT_SEARCH_GAME, SELECT_GAME, SAVE_DUST_GAME, SAVE_CATEGORIES
+    TOGGLE_FILTER_MENU, TOGGLE_FILTER, SAVE_SEARCH_GAMES, CHANGE_SEARCH_FIELD, SAVE_GAMES, SELECT_SEARCH_GAME, SELECT_GAME, SAVE_DUST_GAME, SAVE_CATEGORIES, CHANGE_FIELD, SAVE_FILTERED_GAMES
 } from '@/actions/games';
 
 export const initialState = {
     games: [],
+    filteredGames: [],
     categories: [],
     selectedGame: null,
     menuToggled: false,
+    searchInput: '',
     toggles: {
         check: false,
         sortAlpha: false,
@@ -39,6 +41,11 @@ const reducer = (state = initialState, action = {}) => {
                     ...state.addgame,
                     [action.field]: action.value,
                 },
+            }
+        case CHANGE_FIELD:
+            return {
+                ...state,
+                [action.field]: action.value,
             }
         case SAVE_SEARCH_GAMES:
             return {
@@ -73,6 +80,11 @@ const reducer = (state = initialState, action = {}) => {
             return {
                 ...state,
                 games: action.games,
+            }
+        case SAVE_FILTERED_GAMES:
+            return {
+                ...state,
+                filteredGames: action.games,
             }
         case SAVE_DUST_GAME:
             return {

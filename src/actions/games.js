@@ -79,6 +79,11 @@ export const saveCategories = (values) => ({
     type: SAVE_CATEGORIES,
     values,
 });
+export const SAVE_FILTERED_GAMES = 'SAVE_FILTERED_GAMES';
+export const saveFilteredGames = (games) => ({
+    type: SAVE_FILTERED_GAMES,
+    games,
+});
 
 
 

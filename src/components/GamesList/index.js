@@ -14,7 +14,7 @@ import { fetchUser } from "@/actions/user";
 import {
   toggleModal
 } from '@/actions/app';
-import { toggleFilterMenu, toggleFilter, selectGame, dustAll, fetchCategories } from "@/actions/games";
+import { toggleFilterMenu, toggleFilter, selectGame, dustAll, fetchCategories, changeField, saveGames, saveFilteredGames } from "@/actions/games";
 // Styles
 import "./gameslist.scss"
 
@@ -23,10 +23,9 @@ function GamesList() {
   const navigate = useNavigate();
 
   const loginChecked = useSelector((state) => state.user.loginChecked);
-  const { menuToggled, games } = useSelector((state) => state.games);
-  const { check, sortAlpha, sortNum, sortDir, categories, times, players, age, } = useSelector((state) => state.games.toggles);
+  const { menuToggled, games, searchInput } = useSelector((state) => state.games);
+  const { check, sortAlpha, sortNum, sortDir, categories, times, players } = useSelector((state) => state.games.toggles);
   const sideClass = classNames('games__side', { 'games__side--openned': menuToggled });
-  const gamesList = games
 
   useEffect(
     () => {
@@ -35,36 +34,36 @@ function GamesList() {
       if (!loginChecked) {
         navigate('../', { replace: true });
       }
-    },
-    [dispatch],
+    }, [],
   );
+
+  const handleChange = (value, field) => {
+    dispatch(changeField(value, field));
+  }
 
   const handleGameSelection = (name) => {
     dispatch(toggleModal('gameDesc'));
     dispatch(selectGame(name));
   };
 
-  // const getSearchGame = () => {
-  //   const { search } = this.state;
-  //   let filteredCurrencies = currencies;
+  const filterGames = (games, query) => {
+    if (!query) {
+      return games;
+    }
+    return games.filter((ite) => {
+      const gameName = ite.game.name.toLowerCase();
+      return gameName.includes(query.toLowerCase());
+    });
+  };
 
-  //   if (search.length > 0) {
-  //     filteredCurrencies = currencies.filter((item) => {
-  //       const nameLowerCase = item.name.toLowerCase();
-  //       const inputSearchLowerCase = search.toLowerCase();
-  //       return nameLowerCase.includes(inputSearchLowerCase);
-  //     });
-  //   }
-
-  //   return filteredCurrencies;
-  // }
+  const gamesList = filterGames(games, searchInput);
 
   return (
     <div className="games">
       <div className="games__list--scroll">
         <div className="games__list">
           {gamesList && gamesList.map((ite) => (
-            <div key={ite.game.name} className="games__list__game" onClick={() => handleGameSelection(ite.game.name)}>
+            <div key={ite.game.name} className="games__list__game" onClick={() => handleGameSelection(ite.game.id)}>
               <img
                 className="games__list__game__img"
                 src={`https://res.cloudinary.com/dyg/image/fetch/c_scale,h_150,q_80,w_150/${ite.game.image}`}
@@ -110,11 +109,11 @@ function GamesList() {
               <BiSort className="games__side__filter__sorting__btn" onClick={() => dispatch(toggleFilter('sortDir', !sortDir))} />
             </div>
             <Field
-              name="search"
+              name="searchInput"
               placeholder="Rechercher"
               Icon={BsSearch}
-            // value={email}
-            // onChange={handleChange}
+              value={searchInput}
+              onChange={handleChange}
             />
             <div className="games__side__filter__ctn" >
               <div className="games__side__filter__type" onClick={() => dispatch(toggleFilter('categories', !categories))}>

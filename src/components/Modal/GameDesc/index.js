@@ -1,13 +1,11 @@
 // Dependencies
-import { confirmAlert } from 'react-confirm-alert';
 import { useDispatch, useSelector } from "react-redux";
 // React-Redux
 import Button from '@/components/Button';
-
+import ModalLoader from '@/components/Loader/ModalLoader';
+import { deleteGame } from "@/actions/games";
 // Styles
 import "./gamedesc.scss"
-import { deleteGame } from "@/actions/games";
-import ModalLoader from '@/components/Loader/ModalLoader';
 
 
 function GameDesc() {
@@ -16,9 +14,8 @@ function GameDesc() {
     const { modalLoading } = useSelector((state) => state.app);
     const { games, selectedGame } = useSelector((state) => state.games);
     const game = games.filter(currentGame => {
-        return currentGame.game.name === selectedGame;
+        return currentGame.game.id === selectedGame;
     });
-
 
     return (
         <div className="singlegame">

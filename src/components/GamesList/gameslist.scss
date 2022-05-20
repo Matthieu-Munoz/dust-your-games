@@ -214,18 +214,6 @@
             }
           }
 
-          .field {
-            padding: 0.2em;
-            margin-bottom: 0.5em;
-            @include color-themes.themed() {
-              color: color-themes.ask("secondary-text-color");
-              background-color: color-themes.ask("primary-color");
-              &__input::placeholder {
-                color: color-themes.ask("secondary-text-color");
-              }
-            }
-          }
-
           &__ctn {
             width: 100%;
             margin-bottom: 0.5em;
@@ -269,6 +257,20 @@
                 background-color: color-themes.ask("primary-color");
               }
             }
+          }
+        }
+      }
+    }
+    .field {
+      padding: 0.2em;
+      margin-bottom: 0.5em;
+      @include color-themes.themed() {
+        color: color-themes.ask("secondary-text-color");
+        background-color: color-themes.ask("primary-color");
+        &__input {
+          color: color-themes.ask("secondary-text-color") !important;
+          &::placeholder {
+            color: color-themes.ask("secondary-text-color");
           }
         }
       }
