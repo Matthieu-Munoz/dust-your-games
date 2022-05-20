@@ -6,7 +6,7 @@ import { CgSandClock } from "react-icons/cg";
 // React-Redux
 import Button from '@/components/Button';
 import ModalLoader from '@/components/Loader/ModalLoader';
-import { deleteGame } from "@/actions/games";
+import { deleteGame, manualConfirmDust } from "@/actions/games";
 // Styles
 import "./gamedesc.scss"
 
@@ -19,7 +19,7 @@ function GameDesc() {
         return currentGame.game.id === selectedGame;
     });
     const game = gameFiltered[0].game
-
+    console.log(selectedGame);
     return (
         <div className="gamedesc">
             {modalLoading && <ModalLoader />}
@@ -32,7 +32,7 @@ function GameDesc() {
                             alt={game.name}
                         />
                         <div className='gamedesc--scroll'>
-                            <div className="gamedesc__game__desc" dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(game.description)}}>
+                            <div className="gamedesc__game__desc" dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(game.description) }}>
                             </div>
                         </div>
                         <div className="gamedesc__game__information">
@@ -41,7 +41,7 @@ function GameDesc() {
                                 <div className="gamedesc__game__information__statistics__people">
                                     <BsPeopleFill className="gamedesc__game__information__statistics__icon--people" />
                                     <div className="gamedesc__game__information__statistics__people__number">
-                                        {game.min_player}-{game.max_player}
+                                        {(game.min_player === game.max_player) ? game.min_player : `${game.min_player} - ${game.max_player}`}
                                     </div>
                                 </div>
                                 <div className="gamedesc__game__information__statistics__time">
@@ -63,7 +63,7 @@ function GameDesc() {
                                 name="Choisir ce jeu"
                                 classname="primary"
                                 style={{ width: '45%', fontSize: '0.85em' }}
-                                onclick={() => dispatch(deleteGame())}
+                                onclick={() => dispatch(manualConfirmDust())}
                             />
                         </div>
                     </div>

@@ -36,14 +36,14 @@ function Singlegame() {
       ))}
       <div className="singlegame__btn">
         <Button
-          name="oui"
+          name="non"
           classname="secondary"
-          onclick={() => dispatch(saveGame())}
+          onclick={handleCancel}
         />
         <Button
-          name="non"
+          name="oui"
           classname="primary"
-          onclick={handleCancel}
+          onclick={() => dispatch(saveGame())}
         />
       </div>
     </div>

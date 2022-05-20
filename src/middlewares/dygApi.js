@@ -3,7 +3,7 @@ import axios from 'axios';
 import {
   LOGIN, LOGOUT, saveUser, REGISTER, EDIT_USER, DELETE_USER, LOGIN_CHECK, loginConfirm
 } from '../actions/user';
-import { CONFIRM_DUST, DELETE_GAME, DUST_ALL, fetchGames, FETCH_GAMES, saveCategories, saveDustGame, saveGames, SAVE_GAME, selectSearchGame } from '@/actions/games';
+import { CONFIRM_DUST, DELETE_GAME, DUST_ALL, fetchGames, FETCH_GAMES, MANUAL_CONFIRM_DUST, saveCategories, saveDustGame, saveGames, SAVE_GAME, selectSearchGame } from '@/actions/games';
 import { closeAlert, sendAlert, toggleLoading, toggleModal, toggleModalLoading } from '../actions/app'
 import { toggleLoginForm } from '../actions/home'
 import { saveUserAccount } from '@/actions/account';
@@ -368,9 +368,39 @@ const dygApiMiddleWare = (store) => (next) => (action) => {
           }
         )
         .then((response) => {
-          console.log(response);
           if (response.status === 200) {
             store.dispatch(fetchGames());
+            store.dispatch(sendAlert('check', `Le jeu a bien été dépoussiéré !`));
+            setTimeout(() => {
+              store.dispatch(closeAlert());
+            }, 2800);
+          }
+        })
+        .catch(() => {
+          store.dispatch(toggleLoading(false))
+          store.dispatch(sendAlert('error', 'Une erreur est survenue, veuillez réessayer.'));
+          setTimeout(() => {
+            store.dispatch(closeAlert());
+          }, 2800);
+        });
+      next(action);
+      break;
+    }
+    case MANUAL_CONFIRM_DUST: {
+      const { user: { id } } = store.getState();
+      const { games: { selectedGame } } = store.getState();
+      axiosInstance
+        .patch(
+          `${id}/games/adjustweight`,
+          {
+            "game":
+              { "id": selectedGame }
+          }
+        )
+        .then((response) => {
+          if (response.status === 200) {
+            store.dispatch(fetchGames());
+            store.dispatch(toggleModal(''));
             store.dispatch(sendAlert('check', `Le jeu a bien été dépoussiéré !`));
             setTimeout(() => {
               store.dispatch(closeAlert());

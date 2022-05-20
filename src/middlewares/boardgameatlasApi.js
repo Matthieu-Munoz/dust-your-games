@@ -6,7 +6,7 @@ import {
   FETCH_TOP_GAMES, saveTopGames,
 } from '@/actions/dashboard';
 import { toggleLoading, toggleModalLoading } from '../actions/app'
-import { fetchGames, FETCH_CATEGORIES, saveBGACategories, saveCategories, saveSearchGames, SEARCH_GAME } from '@/actions/games';
+import { fetchGames, FETCH_CATEGORIES, saveBGACategories, saveSearchGames, SEARCH_GAME } from '@/actions/games';
 
 
 const axiosInstance = axios.create({

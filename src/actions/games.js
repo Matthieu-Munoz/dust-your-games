@@ -92,6 +92,10 @@ export const CONFIRM_DUST = 'CONFIRM_DUST';
 export const confirmDust = () => ({
     type: CONFIRM_DUST,
 });
+export const MANUAL_CONFIRM_DUST = 'MANUAL_CONFIRM_DUST';
+export const manualConfirmDust = () => ({
+    type: MANUAL_CONFIRM_DUST,
+});
 
 export const CHECK_GAMES = 'CHECK_GAMES';
 export const checkGames = (games) => ({

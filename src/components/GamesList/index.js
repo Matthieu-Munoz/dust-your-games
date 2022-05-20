@@ -76,12 +76,11 @@ function GamesList() {
         <h2 className="games__list__title">Votre liste de jeux</h2>
         <div className="games__list">
           {gamesList && gamesList.map((ite) => (
-            <div key={ite.game.name} className="games__list__game">
+            <div key={ite.game.name} className="games__list__game" onClick={() => handleGameSelection(ite.game.id)}>
               <img
                 className="games__list__game__img"
                 src={`https://res.cloudinary.com/dyg/image/fetch/c_scale,h_150,q_80,w_150/${ite.game.image}`}
                 alt={ite.game.name}
-                onClick={() => handleGameSelection(ite.game.id)}
               />
               <div className="games__list__game__overlay">
                 <div className="games__list__game__overlay--bg" />
