@@ -13,11 +13,11 @@ import Error from '../Error';
 import Modal from '../Modal';
 import Header from '../Header';
 import Alerts from '../Alerts';
+import Loader from '../Loader';
 import { loadTheme, toggleMenu } from '@/actions/app';
 import { loginCheck } from '@/actions/user';
 // Styles
 import './app.scss';
-import Loader from '../Loader';
 
 function App() {
   // To dispatch action to the store

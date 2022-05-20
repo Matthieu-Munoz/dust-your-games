@@ -15,4 +15,8 @@
   @include color-themes.themed() {
     background-color: color-themes.ask("primary-color");
   }
+
+  #tooltip {
+    z-index: 999;
+  }
 }

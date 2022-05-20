@@ -3,8 +3,8 @@ import axios from 'axios';
 import {
   LOGIN, LOGOUT, saveUser, REGISTER, EDIT_USER, DELETE_USER, LOGIN_CHECK, loginConfirm
 } from '../actions/user';
-import { FETCH_GAMES, SAVE_GAME } from '@/actions/games';
-import { closeAlert, sendAlert, toggleLoading } from '../actions/app'
+import { DELETE_GAME, DUST_ALL, fetchCategories, fetchGames, FETCH_GAMES, saveDustGame, saveGames, SAVE_GAME } from '@/actions/games';
+import { closeAlert, sendAlert, toggleLoading, toggleModal, toggleModalLoading } from '../actions/app'
 import { toggleLoginForm } from '../actions/home'
 import { saveUserAccount } from '@/actions/account';
 // Utilities
@@ -32,6 +32,7 @@ const dygApiMiddleWare = (store) => (next) => (action) => {
             if (response.status === 200) {
               store.dispatch(toggleLoading(false))
               store.dispatch(loginConfirm(true));
+              store.dispatch(fetchGames());
             }
           })
           .catch(() => {
@@ -108,6 +109,7 @@ const dygApiMiddleWare = (store) => (next) => (action) => {
             store.dispatch(loginConfirm(true));
             store.dispatch(saveUser(user));
             store.dispatch(saveUserAccount(user));
+            store.dispatch(fetchGames())
             store.dispatch(sendAlert('check', `Connexion réussie : bienvenue ${response.data.user.pseudo_name}`));
             setTimeout(() => {
               store.dispatch(toggleLoading(false))
@@ -208,14 +210,15 @@ const dygApiMiddleWare = (store) => (next) => (action) => {
       break;
     }
     case FETCH_GAMES: {
-      store.dispatch(toggleLoading(true))
       const { user: { id } } = store.getState();
       axiosInstance
         .get(
           `${id}/games`,
         )
         .then((response) => {
-          console.log(response);
+          if (response.status === 200) {
+            store.dispatch(saveGames(response.data))
+          }
         })
         .catch(() => {
           store.dispatch(toggleLoading(false))
@@ -228,12 +231,27 @@ const dygApiMiddleWare = (store) => (next) => (action) => {
       break;
     }
     case SAVE_GAME: {
-      store.dispatch(toggleLoading(true))
-      const { games: { selectedGame, searchGames } } = store.getState();
+      store.dispatch(toggleModalLoading(true))
+      const { games: { addgame, categories } } = store.getState();
       const { user: { id } } = store.getState();
-      const game = searchGames.filter(obj => {
-        return obj.id === selectedGame;
+      const game = addgame.searchGames.filter(obj => {
+        return obj.id === addgame.selectedGame;
       });
+      const category = []
+      game[0].categories.forEach(currentCategory => {
+        categories.forEach(current => {
+          if (current.id === currentCategory.id) {
+            category.push(current)
+          }
+        });
+      });
+      for (const key in category) {
+        for (const ite in category[key]) {
+          if (ite === 'id' || ite === 'url') {
+            delete category[key][ite];
+          }
+        }
+      }
       axiosInstance
         .post(
           `${id}/add`,
@@ -244,28 +262,80 @@ const dygApiMiddleWare = (store) => (next) => (action) => {
             "max_player": game[0].max_players,
             "min_playtime": game[0].min_playtime,
             "max_playtime": game[0].max_playtime,
-            "description": "test",
-            "category": [
-              {
-                "name": "Strategie"
-              },
-              {
-                "name": "Jeu de "
-              }
-            ],
+            "description": game[0].description,
+            "category": category,
             "editor": {
-              "name": game[0].primary_publisher.name,
+              "name": (game[0].primary_publisher.name) ? (game[0].primary_publisher.name) : 'Inconnu',
             },
             "designor": {
-              "name": game[0].primary_designer.name
+              "name": (game[0].primary_designer.name) ? (game[0].primary_designer.name) : 'Inconnu',
             }
           }
         )
         .then((response) => {
-          console.log(response);
+          if (response.status === 201) {
+            store.dispatch(fetchGames())
+            store.dispatch(toggleModalLoading(false))
+            store.dispatch(sendAlert('check', `Ce jeu a bien était ajouté à votre liste`));
+            setTimeout(() => {
+              store.dispatch(closeAlert());
+            }, 2800);
+          }
         })
         .catch(() => {
-          store.dispatch(toggleLoading(false))
+          store.dispatch(toggleModalLoading(false))
+          store.dispatch(sendAlert('error', 'Une erreur est survenue, veuillez réessayer.'));
+          setTimeout(() => {
+            store.dispatch(closeAlert());
+          }, 2800);
+        });
+      next(action);
+      break;
+    }
+    case DELETE_GAME: {
+      store.dispatch(toggleModalLoading(true))
+      const { user: { id } } = store.getState();
+      const { games: { selectedGame } } = store.getState();
+      axiosInstance
+        .delete(
+          `${id}/games/${selectedGame}/delete`,
+        )
+        .then((response) => {
+          if (response.status === 202) {
+            store.dispatch(toggleModalLoading(false))
+            store.dispatch(fetchGames())
+            store.dispatch(sendAlert('check', `Le jeu a bien été supprimé.`));
+            setTimeout(() => {
+              store.dispatch(closeAlert());
+            }, 2800);
+          }
+        })
+        .catch(() => {
+          store.dispatch(toggleModalLoading(false))
+          store.dispatch(sendAlert('error', 'Une erreur est survenue, veuillez réessayer.'));
+          setTimeout(() => {
+            store.dispatch(closeAlert());
+          }, 2800);
+        });
+      next(action);
+      break;
+    }
+    case DUST_ALL: {
+      store.dispatch(toggleLoading(true))
+      const { user: { id } } = store.getState();
+      axiosInstance
+        .get(
+          `${id}/games/dust`,
+        )
+        .then((response) => {
+          if (response.status === 200) {
+            store.dispatch(toggleLoading(false))
+            store.dispatch(saveDustGame(response.data))
+            store.dispatch(toggleModal('dustresult'))
+          }
+        })
+        .catch(() => {
+          store.dispatch(toggleModalLoading(false))
           store.dispatch(sendAlert('error', 'Une erreur est survenue, veuillez réessayer.'));
           setTimeout(() => {
             store.dispatch(closeAlert());

@@ -9,13 +9,12 @@ import { BiFilterAlt, BiSort, BiCategoryAlt } from "react-icons/bi";
 import { BsSortAlphaDown, BsSortAlphaUp, BsSortDownAlt, BsSortDown, BsSearch, BsHourglassSplit, BsFillPeopleFill, BsCalendarDate } from "react-icons/bs";
 import { GiPerspectiveDiceSixFacesRandom } from "react-icons/gi";
 // Local | React-Redux
-import gamesList from "@/data/games";
 import Field from "../Field";
 import { fetchUser } from "@/actions/user";
 import {
   toggleModal
 } from '@/actions/app';
-import { toggleFilterMenu, toggleFilter, fetchGames } from "@/actions/games";
+import { toggleFilterMenu, toggleFilter, selectGame, dustAll, fetchCategories } from "@/actions/games";
 // Styles
 import "./gameslist.scss"
 
@@ -24,17 +23,14 @@ function GamesList() {
   const navigate = useNavigate();
 
   const loginChecked = useSelector((state) => state.user.loginChecked);
-  const { menuToggled } = useSelector((state) => state.games);
+  const { menuToggled, games } = useSelector((state) => state.games);
   const { check, sortAlpha, sortNum, sortDir, categories, times, players, age, } = useSelector((state) => state.games.toggles);
   const sideClass = classNames('games__side', { 'games__side--openned': menuToggled });
+  const gamesList = games
+
   useEffect(
     () => {
-      // dispatch(fetchGames());
-    },
-    [dispatch],
-  );
-  useEffect(
-    () => {
+      dispatch(fetchCategories())
       dispatch(fetchUser())
       if (!loginChecked) {
         navigate('../', { replace: true });
@@ -42,20 +38,43 @@ function GamesList() {
     },
     [dispatch],
   );
+
+  const handleGameSelection = (name) => {
+    dispatch(toggleModal('gameDesc'));
+    dispatch(selectGame(name));
+  };
+
+  // const getSearchGame = () => {
+  //   const { search } = this.state;
+  //   let filteredCurrencies = currencies;
+
+  //   if (search.length > 0) {
+  //     filteredCurrencies = currencies.filter((item) => {
+  //       const nameLowerCase = item.name.toLowerCase();
+  //       const inputSearchLowerCase = search.toLowerCase();
+  //       return nameLowerCase.includes(inputSearchLowerCase);
+  //     });
+  //   }
+
+  //   return filteredCurrencies;
+  // }
+
   return (
     <div className="games">
       <div className="games__list--scroll">
         <div className="games__list">
-          {gamesList && gamesList.map((game) => (
-            <div key={game.id} className="games__list__game">
+          {gamesList && gamesList.map((ite) => (
+            <div key={ite.game.name} className="games__list__game" onClick={() => handleGameSelection(ite.game.name)}>
               <img
                 className="games__list__game__img"
-                src={`https://res.cloudinary.com/dyg/image/fetch/c_scale,h_150,q_80,w_150/${game.image_url}`}
-                alt={game.handle}
+                src={`https://res.cloudinary.com/dyg/image/fetch/c_scale,h_150,q_80,w_150/${ite.game.image}`}
+                alt={ite.game.name}
               />
               <div className="games__list__game__overlay">
-                {game.name}
-                <div className="games__list__game__overlay__bg" />
+                <div className="games__list__game__overlay--bg" />
+                <div className="games__list__game__overlay--text">
+                  {ite.game.name}
+                </div>
               </div>
             </div>
           ))}
@@ -68,11 +87,11 @@ function GamesList() {
             <AiOutlineAppstoreAdd className="games__side__btn__icon" />
             <div className="games__side__btn__name">Ajouter un jeu</div>
           </div>
-          <div className="games__side__btn" onClick={() => dispatch(toggleFilterMenu())}>
+          <div className="games__side__btn games__side__btn--filter" onClick={() => dispatch(toggleFilterMenu())}>
             <BiFilterAlt className="games__side__btn__icon" />
             <div className="games__side__btn__name">Filtrer</div>
           </div>
-          <div className="games__side__btn" onClick={() => dispatch(toggleModal('dustresult'))}>
+          <div className="games__side__btn" onClick={() => dispatch(dustAll())}>
             <GiPerspectiveDiceSixFacesRandom className="games__side__btn__icon" />
             <div className="games__side__btn__name">Dépoussiérage</div>
           </div>
@@ -128,18 +147,6 @@ function GamesList() {
                 {players ? <AiFillCaretUp className="games__side__filter__type__icon" /> : <AiFillCaretDown className="games__side__filter__type__icon" />}
               </div>
               {players && <div className="games__side__filter__type__items">
-                <div className="games__side__filter__type__item">Aventure</div>
-                <div className="games__side__filter__type__item">Fantasie</div>
-                <div className="games__side__filter__type__item">Escape Game</div>
-              </div>}
-            </div>
-            <div className="games__side__filter__ctn" >
-              <div className="games__side__filter__type" onClick={() => dispatch(toggleFilter('age', !age))}>
-                <BsCalendarDate className="games__side__filter__type__icon" />
-                <div className="games__side__filter__type__name">Age</div>
-                {age ? <AiFillCaretUp className="games__side__filter__type__icon" /> : <AiFillCaretDown className="games__side__filter__type__icon" />}
-              </div>
-              {age && <div className="games__side__filter__type__items">
                 <div className="games__side__filter__type__item">Aventure</div>
                 <div className="games__side__filter__type__item">Fantasie</div>
                 <div className="games__side__filter__type__item">Escape Game</div>

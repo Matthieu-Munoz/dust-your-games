@@ -9,7 +9,6 @@ import { toggleLoginForm, changeHomeField } from '@/actions/home';
 import { login } from '@/actions/user';
 import Button from '../Button';
 import { toggleHomeError } from '@/actions/home';
-import { useEffect } from 'react';
 // Styles
 
 function LoginForm() {
@@ -54,7 +53,7 @@ function LoginForm() {
 
     return (
         <form className="userform__ctn userform__ctn--login">
-            <ReactTooltip className="userform__tooltip" effect="solid" place="right" type="error" multiline={true} />
+            <ReactTooltip id="tooltip" effect="solid" place="right" type="error" multiline={true} />
             <Field
                 name="email"
                 placeholder="Identifiant"

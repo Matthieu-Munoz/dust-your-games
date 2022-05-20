@@ -5,6 +5,7 @@ import { BsPerson } from "react-icons/bs";
 import { IoClose } from "react-icons/io5";
 import { AiOutlineLock, AiOutlineMail, AiOutlineEdit } from "react-icons/ai";
 import { WidgetLoader, Widget } from 'react-cloudinary-upload-widget';
+import ReactTooltip from 'react-tooltip';
 // Local | React-Redux
 import { deleteUser, editUser } from '@/actions/user';
 import Field from "@/components/Field";
@@ -58,6 +59,7 @@ function EditAccount() {
   // Handle when the user click the login button
   const handleEdit = (evt) => {
     evt.preventDefault();
+    ReactTooltip.rebuild();
     if (formValidation()) {
       dispatch(editUser());
     }
@@ -81,6 +83,7 @@ function EditAccount() {
 
   return (
     <form className="useraccount useraccount--register">
+      <ReactTooltip id="tooltip" effect="solid" place="left" type="error" multiline={true} />
       <WidgetLoader />
       <Widget
         sources={["local", "url", "camera", "google_drive", "dropbox"]}
@@ -142,6 +145,7 @@ function EditAccount() {
           value={pseudo_name}
           Icon={BsPerson}
           error={pseudoError}
+          tip="IUJSDFGHBQDBGB"
         />
         <div className="description_input"> Mon adresse e-mail </div>
         <Field

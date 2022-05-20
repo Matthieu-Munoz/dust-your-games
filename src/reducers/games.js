@@ -1,11 +1,10 @@
 import {
-    TOGGLE_FILTER_MENU, TOGGLE_FILTER, CHANGE_FIELD, SAVE_SEARCH_GAMES, SELECT_GAME
+    TOGGLE_FILTER_MENU, TOGGLE_FILTER, SAVE_SEARCH_GAMES, CHANGE_SEARCH_FIELD, SAVE_GAMES, SELECT_SEARCH_GAME, SELECT_GAME, SAVE_DUST_GAME, SAVE_CATEGORIES
 } from '@/actions/games';
 
 export const initialState = {
-    searchInput: '',
     games: [],
-    searchGames: [],
+    categories: [],
     selectedGame: null,
     menuToggled: false,
     toggles: {
@@ -17,26 +16,45 @@ export const initialState = {
         times: false,
         players: false,
         age: false,
-
-    }
+    },
+    addgame: {
+        searchInput: '',
+        searchGames: [],
+        selectedGame: null,
+    },
+    dustgame: [],
 };
 
 const reducer = (state = initialState, action = {}) => {
     switch (action.type) {
-        case CHANGE_FIELD:
-            return {
-                ...state,
-                [action.field]: action.value,
-            }
         case TOGGLE_FILTER_MENU:
             return {
                 ...state,
                 menuToggled: !state.menuToggled,
             }
+        case CHANGE_SEARCH_FIELD:
+            return {
+                ...state,
+                addgame: {
+                    ...state.addgame,
+                    [action.field]: action.value,
+                },
+            }
         case SAVE_SEARCH_GAMES:
             return {
                 ...state,
-                searchGames: action.games,
+                addgame: {
+                    ...state.addgame,
+                    searchGames: action.games,
+                }
+            }
+        case SELECT_SEARCH_GAME:
+            return {
+                ...state,
+                addgame: {
+                    ...state.addgame,
+                    selectedGame: action.value,
+                }
             }
         case SELECT_GAME:
             return {
@@ -50,6 +68,21 @@ const reducer = (state = initialState, action = {}) => {
                     ...state.toggles,
                     [action.selector]: action.value,
                 }
+            }
+        case SAVE_GAMES:
+            return {
+                ...state,
+                games: action.games,
+            }
+        case SAVE_DUST_GAME:
+            return {
+                ...state,
+                dustgame: action.game,
+            }
+        case SAVE_CATEGORIES:
+            return {
+                ...state,
+                categories: (action.values) ? action.values : [],
             }
         default:
             return state;

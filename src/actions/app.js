@@ -38,6 +38,12 @@ export const toggleLoading = (value) => ({
     type: TOGGLE_LOADING,
     value,
 });
+// Used to display or hide the loader
+export const TOGGLE_MODAL_LOADING = 'TOGGLE_MODAL_LOADING';
+export const toggleModalLoading = (value) => ({
+    type: TOGGLE_MODAL_LOADING,
+    value,
+});
 // Used to send an alert message with a type and a message
 export const SEND_ALERT = 'SEND_ALERT';
 export const sendAlert = (alertType, message) => ({
