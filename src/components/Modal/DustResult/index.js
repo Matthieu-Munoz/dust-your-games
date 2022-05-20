@@ -5,14 +5,14 @@ import { CgSandClock } from "react-icons/cg";
 // React-Redux
 import Button from '@/components/Button';
 import ModalLoader from "@/components/Loader/ModalLoader";
+import { confirmDust, dustAll } from "@/actions/games";
+import { toggleModal } from "@/actions/app";
 // Styles
 import "./dustresult.scss"
 // Locals
 import dust from '@/assets/images/dust.png';
 import sparklingleft from '@/assets/images/sparkling-left.png';
 import sparklingright from '@/assets/images/sparkling-right.png';
-import { dustAll } from "@/actions/games";
-import { toggleModal } from "@/actions/app";
 
 function DustResult() {
     const dispatch = useDispatch();
@@ -22,6 +22,10 @@ function DustResult() {
     const handleRelaunch = () => {
         dispatch(toggleModal(''));
         dispatch(dustAll());
+    }
+    const handleConfirm = () => {
+        dispatch(toggleModal(''));
+        dispatch(confirmDust());
     }
 
     return (
@@ -66,6 +70,7 @@ function DustResult() {
                                 classname="primary"
                                 type="button"
                                 style={{ width: '40%', marginTop: '1em', fontSize: '0.8em' }}
+                                onclick={handleConfirm}
                             />
                         </div>
                     </div>

@@ -3,7 +3,7 @@ import axios from 'axios';
 import {
   LOGIN, LOGOUT, saveUser, REGISTER, EDIT_USER, DELETE_USER, LOGIN_CHECK, loginConfirm
 } from '../actions/user';
-import { DELETE_GAME, DUST_ALL, fetchGames, FETCH_GAMES, saveDustGame, saveGames, SAVE_GAME } from '@/actions/games';
+import { CONFIRM_DUST, DELETE_GAME, DUST_ALL, fetchGames, FETCH_GAMES, saveCategories, saveDustGame, saveGames, SAVE_GAME, selectSearchGame } from '@/actions/games';
 import { closeAlert, sendAlert, toggleLoading, toggleModal, toggleModalLoading } from '../actions/app'
 import { toggleLoginForm } from '../actions/home'
 import { saveUserAccount } from '@/actions/account';
@@ -217,7 +217,17 @@ const dygApiMiddleWare = (store) => (next) => (action) => {
         )
         .then((response) => {
           if (response.status === 200) {
+            const category = []
+            response.data.forEach(currentGame => {
+              currentGame.game.category.forEach(currentCategory => {
+                const found = category.find(element => element.name === currentCategory.name);
+                if (!found) {
+                  category.push(currentCategory)
+                }
+              });
+            });
             store.dispatch(saveGames(response.data))
+            store.dispatch(saveCategories(category))
           }
         })
         .catch(() => {
@@ -232,14 +242,14 @@ const dygApiMiddleWare = (store) => (next) => (action) => {
     }
     case SAVE_GAME: {
       store.dispatch(toggleModalLoading(true))
-      const { games: { addgame, categories } } = store.getState();
+      const { games: { addgame, bgaCategories } } = store.getState();
       const { user: { id } } = store.getState();
       const game = addgame.searchGames.filter(obj => {
         return obj.id === addgame.selectedGame;
       });
       const category = []
       game[0].categories.forEach(currentCategory => {
-        categories.forEach(current => {
+        bgaCategories.forEach(current => {
           if (current.id === currentCategory.id) {
             category.push(current)
           }
@@ -276,7 +286,7 @@ const dygApiMiddleWare = (store) => (next) => (action) => {
           if (response.status === 201) {
             store.dispatch(fetchGames())
             store.dispatch(toggleModalLoading(false))
-            store.dispatch(toggleModal(''));
+            store.dispatch(selectSearchGame(null));
             store.dispatch(sendAlert('check', `Ce jeu a bien été ajouté à votre liste`));
             setTimeout(() => {
               store.dispatch(closeAlert());
@@ -346,9 +356,41 @@ const dygApiMiddleWare = (store) => (next) => (action) => {
       next(action);
       break;
     }
+    case CONFIRM_DUST: {
+      const { user: { id } } = store.getState();
+      const { games: { dustgame } } = store.getState();
+      axiosInstance
+        .patch(
+          `${id}/games/adjustweight`,
+          {
+            "game":
+              { "id": dustgame.id }
+          }
+        )
+        .then((response) => {
+          console.log(response);
+          if (response.status === 200) {
+            store.dispatch(fetchGames());
+            store.dispatch(sendAlert('check', `Le jeu a bien été dépoussiéré !`));
+            setTimeout(() => {
+              store.dispatch(closeAlert());
+            }, 2800);
+          }
+        })
+        .catch(() => {
+          store.dispatch(toggleLoading(false))
+          store.dispatch(sendAlert('error', 'Une erreur est survenue, veuillez réessayer.'));
+          setTimeout(() => {
+            store.dispatch(closeAlert());
+          }, 2800);
+        });
+      next(action);
+      break;
+    }
     default:
       next(action);
   }
+
 };
 
 export default dygApiMiddleWare;

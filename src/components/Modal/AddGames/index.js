@@ -1,4 +1,5 @@
 // Dependencies
+import { useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 // React-Redux
 import Field from "@/components/Field";
@@ -15,6 +16,15 @@ function AddGames() {
     // selectedGame : null by default, equals to the id of a game if clicked
     const { searchInput, searchGames, selectedGame } = useSelector((state) => state.games.addgame);
     const { modalLoading } = useSelector((state) => state.app);
+
+    const inputRef = useRef(null);
+
+    useEffect(() => {
+        if (selectedGame !== null && searchGames === []) {
+            inputRef.current.focus();
+        }
+    });
+
     // Handle the search input value
     const handleChange = (value, field) => {
         dispatch(changeSearchField(value, field));
@@ -40,6 +50,7 @@ function AddGames() {
 
                     <form className="addgames__input" onSubmit={handleSearchSubmit}>
                         <Field
+                            innerRef={inputRef}
                             name="searchInput"
                             placeholder="Rechercher un jeu"
                             onChange={handleChange}

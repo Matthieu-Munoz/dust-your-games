@@ -6,7 +6,7 @@ import {
   FETCH_TOP_GAMES, saveTopGames,
 } from '@/actions/dashboard';
 import { toggleLoading, toggleModalLoading } from '../actions/app'
-import { fetchGames, FETCH_CATEGORIES, saveCategories, saveSearchGames, SEARCH_GAME } from '@/actions/games';
+import { fetchGames, FETCH_CATEGORIES, saveBGACategories, saveCategories, saveSearchGames, SEARCH_GAME } from '@/actions/games';
 
 
 const axiosInstance = axios.create({
@@ -40,7 +40,7 @@ const boardgameatlasApiMiddleWare = (store) => (next) => (action) => {
       let storageCategories = getWithExpiry("gameCategories");
       if (storageCategories != null) {
         store.dispatch(toggleLoading(false))
-        store.dispatch(saveCategories(storageCategories));
+        store.dispatch(saveBGACategories(storageCategories));
       } else {
         axios({
           method: 'get',
@@ -49,7 +49,7 @@ const boardgameatlasApiMiddleWare = (store) => (next) => (action) => {
           .then((response) => {
             store.dispatch(toggleLoading(false))
             setWithExpiry("gameCategories", response.data.categories, 43200000);
-            store.dispatch(saveCategories(response.data.categories));
+            store.dispatch(saveBGACategories(response.data.categories));
           })
           .catch(() => {
             console.log('oups...');

@@ -47,7 +47,6 @@ export const saveDustGame = (game) => ({
     type: SAVE_DUST_GAME,
     game,
 });
-
 export const SELECT_GAME = 'SELECT_GAME';
 export const selectGame = (value) => ({
     type: SELECT_GAME,
@@ -74,6 +73,11 @@ export const FETCH_CATEGORIES = 'FETCH_CATEGORIES';
 export const fetchCategories = () => ({
     type: FETCH_CATEGORIES,
 });
+export const SAVE_BGA_CATEGORIES = 'SAVE_BGA_CATEGORIES';
+export const saveBGACategories = (values) => ({
+    type: SAVE_BGA_CATEGORIES,
+    values,
+});
 export const SAVE_CATEGORIES = 'SAVE_CATEGORIES';
 export const saveCategories = (values) => ({
     type: SAVE_CATEGORIES,
@@ -84,6 +88,20 @@ export const saveFilteredGames = (games) => ({
     type: SAVE_FILTERED_GAMES,
     games,
 });
+export const CONFIRM_DUST = 'CONFIRM_DUST';
+export const confirmDust = () => ({
+    type: CONFIRM_DUST,
+});
 
+export const CHECK_GAMES = 'CHECK_GAMES';
+export const checkGames = (games) => ({
+    type: CHECK_GAMES,
+    games,
+});
+export const CHECK_ONE_GAME = 'CHECK_ONE_GAME';
+export const checkOneGame = (game) => ({
+    type: CHECK_ONE_GAME,
+    game,
+});
 
 
