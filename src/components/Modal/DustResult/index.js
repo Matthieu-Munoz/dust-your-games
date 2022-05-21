@@ -66,7 +66,7 @@ function DustResult() {
                                 onclick={handleRelaunch}
                             />
                             <Button
-                                name="choisir"
+                                name="confirmer"
                                 classname="primary"
                                 type="button"
                                 style={{ width: '40%', marginTop: '1em', fontSize: '0.8em' }}

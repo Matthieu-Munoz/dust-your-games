@@ -109,10 +109,9 @@ const dygApiMiddleWare = (store) => (next) => (action) => {
             store.dispatch(loginConfirm(true));
             store.dispatch(saveUser(user));
             store.dispatch(saveUserAccount(user));
-            store.dispatch(fetchGames())
             store.dispatch(sendAlert('check', `Connexion réussie : bienvenue ${response.data.user.pseudo_name}`));
+            store.dispatch(toggleLoading(false))
             setTimeout(() => {
-              store.dispatch(toggleLoading(false))
               store.dispatch(closeAlert());
             }, 2800);
           }
@@ -228,6 +227,7 @@ const dygApiMiddleWare = (store) => (next) => (action) => {
             });
             store.dispatch(saveGames(response.data))
             store.dispatch(saveCategories(category))
+            store.dispatch(toggleLoading(false))
           }
         })
         .catch(() => {
