@@ -71,7 +71,7 @@ function LoginForm() {
                 error={passwordError}
                 tip="Merci de saisir un mot de passe valide."
                 info={true}
-                infoTip={<div>Merci de saisir un mot de passe valide, <br /> il doit contenir au minimum 8 caractères : <br /> au moins une minuscule et une majuscule et un chiffre.</div>}
+                infoTip={<div>Votre mot de passe doit contenir<br />au minimum 8 caractères<br />composées d'au moins : <br />- au moins une minuscule<br />- une majuscule <br />- un chiffre</div>}
             />
             <a className="userform__ctn__link" href="lien">Mot de passe oublié ?</a>
             <Button

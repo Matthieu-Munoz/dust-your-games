@@ -1,12 +1,15 @@
 import {
-    TOGGLE_FILTER_MENU, TOGGLE_FILTER, SAVE_SEARCH_GAMES, CHANGE_SEARCH_FIELD, SAVE_GAMES, SELECT_SEARCH_GAME, SELECT_GAME, SAVE_DUST_GAME, SAVE_CATEGORIES, CHANGE_FIELD, SAVE_FILTERED_GAMES, SAVE_BGA_CATEGORIES, CHECK_GAMES, CHECK_ONE_GAME
+    TOGGLE_FILTER_MENU, TOGGLE_FILTER, SAVE_SEARCH_GAMES, CHANGE_SEARCH_FIELD, SAVE_GAMES, SELECT_SEARCH_GAME, SELECT_GAME, SAVE_DUST_GAME, SAVE_CATEGORIES, CHANGE_FIELD, SAVE_FILTERED_GAMES, SAVE_BGA_CATEGORIES, CHECK_GAME, RESET_SEARCH_GAMES
 } from '@/actions/games';
 
 export const initialState = {
     games: [],
     filteredGames: [],
+    checkedGames: [],
     bgaCategories: [],
     categories: [],
+    times: [],
+    players: [],
     selectedGame: null,
     menuToggled: false,
     searchInput: '',
@@ -19,7 +22,6 @@ export const initialState = {
         timesFilter: false,
         playersFilter: false,
     },
-    checkedGames: [],
     addgame: {
         searchInput: '',
         searchGames: [],
@@ -41,6 +43,15 @@ const reducer = (state = initialState, action = {}) => {
                 addgame: {
                     ...state.addgame,
                     [action.field]: action.value,
+                },
+            }
+        case RESET_SEARCH_GAMES:
+            return {
+                ...state,
+                addgame: {
+                    searchInput: '',
+                    searchGames: [],
+                    selectedGame: null,
                 },
             }
         case CHANGE_FIELD:
@@ -81,6 +92,9 @@ const reducer = (state = initialState, action = {}) => {
                 }
             }
         case SAVE_GAMES:
+            action.games.forEach(element => {
+                element.checked = false;
+            })
             return {
                 ...state,
                 games: action.games,
@@ -106,13 +120,12 @@ const reducer = (state = initialState, action = {}) => {
                 ...state,
                 categories: (action.values) ? action.values : [],
             }
-        case CHECK_GAMES:
-            return {
-                ...state,
-                checkedGames: action.games,
-            }
-        case CHECK_ONE_GAME:
-            console.log(action.game);
+        case CHECK_GAME:
+            state.checkedGames.forEach(element => {
+                if (element.game.id === action.gameId) {
+                    element.checked = !element.checked;
+                }
+            })
             return {
                 ...state,
             }

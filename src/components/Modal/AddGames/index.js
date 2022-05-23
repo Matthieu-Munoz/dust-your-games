@@ -5,7 +5,8 @@ import { useDispatch, useSelector } from "react-redux";
 import Field from "@/components/Field";
 import Singlegame from "./Singlegame";
 import ModalLoader from "@/components/Loader/ModalLoader";
-import { changeSearchField, searchGame, selectSearchGame } from "@/actions/games";
+import { changeSearchField, resetSearchGames, searchGame, selectSearchGame } from "@/actions/games";
+import { IoIosBackspace } from "react-icons/io";
 // styles
 import "./addgames.scss"
 function AddGames() {
@@ -20,7 +21,7 @@ function AddGames() {
     const inputRef = useRef(null);
 
     useEffect(() => {
-        if (selectedGame !== null && searchGames === []) {
+        if (!selectedGame && !searchInput) {
             inputRef.current.focus();
         }
     });
@@ -47,8 +48,7 @@ function AddGames() {
             {modalLoading && <ModalLoader />}
             {!modalLoading &&
                 <>
-
-                    <form className="addgames__input" onSubmit={handleSearchSubmit}>
+                    <form className="addgames__input" onSubmit={handleSearchSubmit} onFocus={() => dispatch(selectSearchGame(null))}>
                         <Field
                             innerRef={inputRef}
                             name="searchInput"
@@ -56,6 +56,7 @@ function AddGames() {
                             onChange={handleChange}
                             value={searchInput}
                         />
+                        <IoIosBackspace className="addgames__input__back" onClick={() => dispatch(resetSearchGames())} />
                     </form>
                     {!selectedGame ?
                         <div className='addgames--scroll'>
@@ -65,7 +66,7 @@ function AddGames() {
                                     <div key={item.id} className="addgames__pictures__game" onClick={() => handleGameSelect(item.id)}>
                                         <img
                                             className="addgames__pictures__game__img"
-                                            src={`https://res.cloudinary.com/dyg/image/fetch/c_scale,h_150,w_150,q_80/${item.image_url}`}
+                                            src={item.image_url}
                                             alt={item.handle}
                                         />
                                         <div className="addgames__pictures__game__overlay">

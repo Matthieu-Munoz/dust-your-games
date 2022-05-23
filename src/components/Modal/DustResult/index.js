@@ -5,7 +5,7 @@ import { CgSandClock } from "react-icons/cg";
 // React-Redux
 import Button from '@/components/Button';
 import ModalLoader from "@/components/Loader/ModalLoader";
-import { confirmDust, dustAll } from "@/actions/games";
+import { confirmDust, dustAll, dustBy } from "@/actions/games";
 import { toggleModal } from "@/actions/app";
 // Styles
 import "./dustresult.scss"
@@ -17,11 +17,13 @@ import sparklingright from '@/assets/images/sparkling-right.png';
 function DustResult() {
     const dispatch = useDispatch();
     const { modalLoading } = useSelector((state) => state.app);
-    const { dustgame } = useSelector((state) => state.games);
+    const { dustgame, checkedGames } = useSelector((state) => state.games);
+    const { checkFilter } = useSelector((state) => state.games.toggles);
+
 
     const handleRelaunch = () => {
         dispatch(toggleModal(''));
-        dispatch(dustAll());
+        !checkFilter ? dispatch(dustAll()) : dispatch(dustBy(checkedGames));
     }
     const handleConfirm = () => {
         dispatch(toggleModal(''));

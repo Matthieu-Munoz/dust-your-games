@@ -10,6 +10,7 @@ import DustResult from './DustResult';
 import GameDesc from './GameDesc';
 // Styles
 import "./modal.scss"
+import { resetSearchGames } from '@/actions/games';
 
 function Modal() {
     const dispatch = useDispatch();
@@ -17,7 +18,8 @@ function Modal() {
 
     const { modalOpened, modalComponent } = useSelector((state) => state.app);
     const handleModalToggle = () => {
-        dispatch(toggleModal(''))
+        dispatch(toggleModal(''));
+        dispatch(resetSearchGames());
     }
 
     return (
