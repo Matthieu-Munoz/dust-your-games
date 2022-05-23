@@ -66,13 +66,13 @@ function Menu() {
                 <Button
                   name="Fonctionnement"
                   classname="secondary"
-                  style={{ width: '165px', marginTop: '1em' }}
+                  style={{ width: '180px', marginTop: '1em' }}
                   onclick={() => dispatch(toggleModal('intro'))}
                 />
                 <Button
                   name="Se déconnecter"
                   classname="primary"
-                  style={{ width: '165px', marginTop: '1em' }}
+                  style={{ width: '180px', marginTop: '1em' }}
                   onclick={() => {
                     navigate('/', { replace: true });
                     dispatch(logout());
@@ -100,7 +100,7 @@ function Menu() {
                 <Button
                   name="Se Connecter"
                   classname="primary"
-                  style={{ width: '160px', marginTop: '1em' }}
+                  style={{ width: '180px', marginTop: '1em' }}
                   onclick={() => {
                     navigate('/', { replace: true });
                   }}

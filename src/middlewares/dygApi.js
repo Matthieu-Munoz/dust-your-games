@@ -1,7 +1,7 @@
 import axios from 'axios';
 // Actions
 import {
-  LOGIN, LOGOUT, saveUser, REGISTER, EDIT_USER, DELETE_USER, LOGIN_CHECK, loginConfirm
+  LOGIN, LOGOUT, saveUser, REGISTER, EDIT_USER, DELETE_USER, LOGIN_CHECK, loginConfirm, FORCED_LOGOUT, forcedLogout
 } from '../actions/user';
 import { CONFIRM_DUST, DELETE_GAME, DUST_ALL, DUST_BY, fetchGames, FETCH_GAMES, MANUAL_CONFIRM_DUST, resetSearchGames, saveCategories, saveDustGame, saveGames, SAVE_GAME, selectSearchGame } from '@/actions/games';
 import { closeAlert, sendAlert, toggleLoading, toggleModal, toggleModalLoading } from '../actions/app'
@@ -142,6 +142,16 @@ const dygApiMiddleWare = (store) => (next) => (action) => {
       localStorage.removeItem('user')
       next(action);
       break;
+    case FORCED_LOGOUT:
+      store.dispatch(sendAlert('check', `Vous avez été déconnécté.`));
+      setTimeout(() => {
+        store.dispatch(closeAlert());
+      }, 2800);
+      axiosInstance.defaults.headers.common.Authorization = null;
+      localStorage.removeItem('token')
+      localStorage.removeItem('user')
+      next(action);
+      break;
     case EDIT_USER: {
       store.dispatch(toggleLoading(true))
       const { account: { pseudo_name, image, email, password } } = store.getState();
@@ -162,6 +172,7 @@ const dygApiMiddleWare = (store) => (next) => (action) => {
             const user = {
               id: id,
               pseudo_name,
+              email,
               image,
             }
             store.dispatch(saveUser(user));
@@ -176,6 +187,7 @@ const dygApiMiddleWare = (store) => (next) => (action) => {
           store.dispatch(toggleLoading(false))
           store.dispatch(sendAlert('error', 'Une erreur est survenue, veuillez réessayer.'));
           setTimeout(() => {
+            store.dispatch(forcedLogout())
             store.dispatch(closeAlert());
           }, 2800);
         });
@@ -240,6 +252,7 @@ const dygApiMiddleWare = (store) => (next) => (action) => {
           store.dispatch(sendAlert('error', 'Une erreur est survenue, veuillez réessayer.'));
           setTimeout(() => {
             store.dispatch(closeAlert());
+            store.dispatch(forcedLogout())
           }, 2800);
         });
       next(action);
@@ -272,20 +285,20 @@ const dygApiMiddleWare = (store) => (next) => (action) => {
           `${id}/add`,
           {
             "name": game[0].name,
-            "image": game[0].image_url,
-            "min_player": game[0].min_players,
-            "max_player": game[0].max_players,
-            "min_playtime": game[0].min_playtime,
-            "max_playtime": game[0].max_playtime,
-            "description": game[0].description,
-            "category": category,
+            "image": game[0].image_url ? game[0].image_url : 'https://res.cloudinary.com/dyg/image/upload/v1653338209/t%C3%A9l%C3%A9chargement_whni6b.png',
+            "min_player": game[0].min_players ? game[0].min_players : 0,
+            "max_player": game[0].max_players ? game[0].max_players : 0,
+            "min_playtime": game[0].min_playtime ? game[0].min_playtime : 0,
+            "max_playtime": game[0].max_playtime ? game[0].max_playtime : 0,
+            "description": game[0].description ? game[0].description : 'non communiquée',
+            "category": category ? category : [{ name: 'Inconnu', }],
             "editor": {
-              "name": (game[0].primary_publisher.name) ? (game[0].primary_publisher.name) : 'Inconnu',
+              "name": game[0].primary_publisher.name ? game[0].primary_publisher.name : 'Inconnu',
             },
             "designor": {
-              "name": (game[0].primary_designer.name) ? (game[0].primary_designer.name) : 'Inconnu',
+              "name": game[0].primary_designer.name ? game[0].primary_designer.name : 'Inconnu',
             },
-            "weight": addgame.dustValue,
+            "weight": addgame.dustValue ? addgame.dustValue : 5,
           }
         )
         .then((response) => {

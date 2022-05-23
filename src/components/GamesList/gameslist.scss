@@ -171,10 +171,14 @@
     &__filter {
       position: absolute;
       bottom: -500%;
-      .games__side__filter__sorting__btn--active {
+      &__sorting__btn--active {
         background-color: vars.$red !important;
-        transform: rotateZ(180deg) !important;
+        transform: rotateZ(360deg) !important;
         transition: all 0.2s ease-in-out;
+      }
+      &__sorting__btn--disable {
+        pointer-events: none;
+        background-color: vars.$grey-blue-transparent !important;
       }
     }
 
@@ -390,6 +394,7 @@
 
       &__logo {
         display: block;
+        cursor: pointer;
         width: 120px;
         height: 120px;
         margin-top: -120px;

@@ -24,6 +24,11 @@ export const LOGOUT = 'LOGOUT';
 export const logout = () => ({
     type: LOGOUT,
 });
+export const FORCED_LOGOUT = 'FORCED_LOGOUT';
+export const forcedLogout = () => ({
+    type: FORCED_LOGOUT,
+});
+
 // Handle user registering with the dyg API (middleware)
 export const REGISTER = 'REGISTER';
 export const register = () => ({

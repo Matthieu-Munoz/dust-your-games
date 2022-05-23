@@ -1,5 +1,5 @@
 import {
-    TOGGLE_FILTER_MENU, TOGGLE_FILTER, SAVE_SEARCH_GAMES, CHANGE_SEARCH_FIELD, SAVE_GAMES, SELECT_SEARCH_GAME, SELECT_GAME, SAVE_DUST_GAME, SAVE_CATEGORIES, CHANGE_FIELD, SAVE_FILTERED_GAMES, SAVE_BGA_CATEGORIES, CHECK_GAME, RESET_SEARCH_GAMES, CHANGE_DUST_VALUE
+    TOGGLE_FILTER_MENU, TOGGLE_FILTER, SAVE_SEARCH_GAMES, CHANGE_SEARCH_FIELD, SAVE_GAMES, SELECT_SEARCH_GAME, SELECT_GAME, SAVE_DUST_GAME, SAVE_CATEGORIES, CHANGE_FIELD, SAVE_FILTERED_GAMES, SAVE_BGA_CATEGORIES, CHECK_GAME, RESET_SEARCH_GAMES, CHANGE_DUST_VALUE, CONFIRM_DUST
 } from '@/actions/games';
 
 export const initialState = {
@@ -58,6 +58,7 @@ const reducer = (state = initialState, action = {}) => {
             return {
                 ...state,
                 addgame: {
+                    dustValue: 5,
                     searchInput: '',
                     searchGames: [],
                     selectedGame: null,
@@ -99,6 +100,19 @@ const reducer = (state = initialState, action = {}) => {
                     playersFilter: false,
                     [action.selector]: action.value,
                 }
+            }
+        case CONFIRM_DUST:
+            return {
+                ...state,
+                toggles: {
+                    checkFilter: false,
+                    sortAlphaFilter: false,
+                    sortNumFilter: false,
+                    sortDirFilter: false,
+                    categoriesFilter: false,
+                    timesFilter: false,
+                    playersFilter: false,
+                },
             }
         case SAVE_GAMES:
             action.games.forEach(element => {

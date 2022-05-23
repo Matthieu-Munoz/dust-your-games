@@ -28,7 +28,10 @@ function GamesList() {
   const { menuToggled, games, checkedGames, searchInput, categories } = useSelector((state) => state.games);
   const { checkFilter, sortAlphaFilter, sortNumFilter, sortDirFilter, categoriesFilter, timesFilter, playersFilter } = useSelector((state) => state.games.toggles);
   const sideClass = classNames('games__side', { 'games__side--openned': menuToggled });
+  const orderFilterClass = classNames('games__side__filter__sorting__btn', { 'games__side__filter__sorting__btn--disable': !checkFilter });
   const CheckIconFilter = (!checkFilter) ? AiOutlineCheckCircle : AiOutlineCloseCircle;
+  const AlpaIconFilter = (!sortAlphaFilter) ? BsSortAlphaDown : BsSortAlphaUp;
+  const SortkIconFilter = (!sortNumFilter) ? BsSortDownAlt : BsSortDown;
   let gamesList = games;
 
   useEffect(
@@ -38,15 +41,18 @@ function GamesList() {
       if (!loginChecked) {
         navigate('../', { replace: true });
       }
+      // eslint-disable-next-line
     }, [],
   );
 
   const handleChange = (value, field) => {
     dispatch(changeField(value, field));
   }
+
   const handleCheckingGames = () => {
     dispatch(toggleFilter('checkFilter', !checkFilter))
     if (checkFilter) {
+      dispatch(toggleFilter('sortDirFilter', false))
       dispatch(sendAlert('check', 'Sélection manuelle désactivée.'));
       setTimeout(() => {
         dispatch(closeAlert());
@@ -58,7 +64,6 @@ function GamesList() {
       }, 2800);
     }
   }
-
 
   const handleGameSelection = (name) => {
     dispatch(toggleModal('gameDesc'));
@@ -114,42 +119,46 @@ function GamesList() {
                   {ite.game.name}
                 </div>
               </div>
-              {(ite.weight === 7) && <img
-                className="games__list__game__dusting games__list__game__dusting--dust7"
-                src={`https://res.cloudinary.com/dyg/image/upload/c_scale,h_150,q_80,w_150/gameDust_ehkwqd.png`}
-                alt="game dust"
-              />}
-              {(ite.weight === 8) && <img
-                className="games__list__game__dusting games__list__game__dusting--dust8"
-                src={`https://res.cloudinary.com/dyg/image/upload/c_scale,h_150,q_80,w_150/gameDust_ehkwqd.png`}
-                alt="game dust"
-              />}
-              {(ite.weight === 9) && <img
-                className="games__list__game__dusting games__list__game__dusting--dust9"
-                src={`https://res.cloudinary.com/dyg/image/upload/c_scale,h_150,q_80,w_150/gameDust_ehkwqd.png`}
-                alt="game dust"
-              />}
-              {(ite.weight === 3) && <img
-                className="games__list__game__dusting games__list__game__dusting--star1"
-                src={`https://res.cloudinary.com/dyg/image/upload/c_scale,h_150,q_80,w_150/stars1_grnmgb.png`}
-                alt="game dust"
-              />}
-              {(ite.weight === 2) && <img
-                className="games__list__game__dusting games__list__game__dusting--star2"
-                src={`https://res.cloudinary.com/dyg/image/upload/c_scale,h_150,q_80,w_150/stars2_doxaem.png`}
-                alt="game dust"
-              />}
-              {(ite.weight <= 1) && <img
-                className="games__list__game__dusting games__list__game__dusting--star3"
-                src={`https://res.cloudinary.com/dyg/image/upload/c_scale,h_150,q_80,w_150/stars3_yzsh69.png`}
-                alt="game dust"
-              />}
+              {!checkFilter &&
+                <>
+                  {(ite.weight === 7) && <img
+                    className="games__list__game__dusting games__list__game__dusting--dust7"
+                    src={`https://res.cloudinary.com/dyg/image/upload/c_scale,h_150,q_80,w_150/gameDust_ehkwqd.png`}
+                    alt="game dust"
+                  />}
+                  {(ite.weight === 8) && <img
+                    className="games__list__game__dusting games__list__game__dusting--dust8"
+                    src={`https://res.cloudinary.com/dyg/image/upload/c_scale,h_150,q_80,w_150/gameDust_ehkwqd.png`}
+                    alt="game dust"
+                  />}
+                  {(ite.weight === 9) && <img
+                    className="games__list__game__dusting games__list__game__dusting--dust9"
+                    src={`https://res.cloudinary.com/dyg/image/upload/c_scale,h_150,q_80,w_150/gameDust_ehkwqd.png`}
+                    alt="game dust"
+                  />}
+                  {(ite.weight === 3) && <img
+                    className="games__list__game__dusting games__list__game__dusting--star1"
+                    src={`https://res.cloudinary.com/dyg/image/upload/c_scale,h_150,q_80,w_150/stars1_grnmgb.png`}
+                    alt="game dust"
+                  />}
+                  {(ite.weight === 2) && <img
+                    className="games__list__game__dusting games__list__game__dusting--star2"
+                    src={`https://res.cloudinary.com/dyg/image/upload/c_scale,h_150,q_80,w_150/stars2_doxaem.png`}
+                    alt="game dust"
+                  />}
+                  {(ite.weight <= 1) && <img
+                    className="games__list__game__dusting games__list__game__dusting--star3"
+                    src={`https://res.cloudinary.com/dyg/image/upload/c_scale,h_150,q_80,w_150/stars3_yzsh69.png`}
+                    alt="game dust"
+                  />}
+                </>
+              }
             </div>
           ))}
         </div>
       </div>
       <div className={sideClass}>
-        <div className="games__side__logo" />
+        <div className="games__side__logo" onClick={() => { navigate('/', { replace: true }) }} />
         <div className="games__side__btns">
           <div className="games__side__btn" onClick={() => dispatch(toggleModal('addgames'))}>
             <AiOutlineAppstoreAdd className="games__side__btn__icon" />
@@ -173,9 +182,9 @@ function GamesList() {
           <div className="games__side__filter--scroll">
             <div className="games__side__filter__sorting">
               <CheckIconFilter className={`games__side__filter__sorting__btn ${checkFilter && "games__side__filter__sorting__btn--active"}`} onClick={handleCheckingGames} />
-              <BsSortAlphaDown className="games__side__filter__sorting__btn games__side__filter__sorting__btn" onClick={() => dispatch(toggleFilter('sortAlphaFilter', !sortAlphaFilter))} />
-              <BsSortDownAlt className="games__side__filter__sorting__btn" onClick={() => dispatch(toggleFilter('sortNumFilter', !sortNumFilter))} />
-              <BiSort className={`games__side__filter__sorting__btn ${sortDirFilter && "games__side__filter__sorting__btn--active"}`} onClick={() => dispatch(toggleFilter('sortDirFilter', !sortDirFilter))} />
+              <AlpaIconFilter className={orderFilterClass} onClick={() => dispatch(toggleFilter('sortAlphaFilter', !sortAlphaFilter))} />
+              <SortkIconFilter className={orderFilterClass} onClick={() => dispatch(toggleFilter('sortNumFilter', !sortNumFilter))} />
+              <BiSort className={`${orderFilterClass} ${sortDirFilter && "games__side__filter__sorting__btn--active"}`} onClick={() => dispatch(toggleFilter('sortDirFilter', !sortDirFilter))} />
             </div>
             <Field
               name="searchInput"
