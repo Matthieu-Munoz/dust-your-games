@@ -446,6 +446,14 @@
         height: 60%;
         padding: 1em 2em 0 2em;
 
+        &--scroll {
+          overflow-y: scroll;
+          width: 100%;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+        }
+
         &__btns {
           display: none;
         }
