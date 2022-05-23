@@ -74,6 +74,9 @@ const reducer = (state = initialState, action = {}) => {
                 ...state,
                 toggles: {
                     ...state.toggles,
+                    categoriesFilter: false,
+                    timesFilter: false,
+                    playersFilter: false,
                     [action.selector]: action.value,
                 }
             }

@@ -5,7 +5,6 @@ import { BsPerson } from "react-icons/bs";
 import { IoClose } from "react-icons/io5";
 import { AiOutlineLock, AiOutlineMail, AiOutlineEdit } from "react-icons/ai";
 import { WidgetLoader, Widget } from 'react-cloudinary-upload-widget';
-import ReactTooltip from 'react-tooltip';
 // Local | React-Redux
 import { deleteUser, editUser } from '@/actions/user';
 import Field from "@/components/Field";
@@ -59,7 +58,6 @@ function EditAccount() {
   // Handle when the user click the login button
   const handleEdit = (evt) => {
     evt.preventDefault();
-    ReactTooltip.rebuild();
     if (formValidation()) {
       dispatch(editUser());
     }
@@ -83,7 +81,6 @@ function EditAccount() {
 
   return (
     <form className="useraccount useraccount--register">
-      <ReactTooltip id="tooltip" effect="solid" place="left" type="error" multiline={true} />
       <WidgetLoader />
       <Widget
         sources={["local", "url", "camera", "google_drive", "dropbox"]}
@@ -156,6 +153,7 @@ function EditAccount() {
           value={email}
           Icon={AiOutlineMail}
           error={emailError}
+          tip="Merci de saisir un email valide."
         />
         <div className="description_input"> Mon mot de passe </div>
         <Field
@@ -167,6 +165,9 @@ function EditAccount() {
           value={password}
           Icon={AiOutlineLock}
           error={passwordError}
+          tip="Merci de saisir un mot de passe valide."
+          info={true}
+          infoTip={<div>Merci de saisir un mot de passe valide, <br /> il doit contenir au minimum 8 caractères : <br /> au moins une minuscule et une majuscule et un chiffre.</div>}
         />
         <div className="description_input"> Confirmer mon mot de passe </div>
         <Field

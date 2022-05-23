@@ -2,7 +2,6 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { BsPerson } from "react-icons/bs";
 import { AiOutlineLock } from "react-icons/ai";
-import ReactTooltip from 'react-tooltip';
 // React-Redux
 import Field from "@/components/Field";
 import { toggleLoginForm, changeHomeField } from '@/actions/home';
@@ -45,7 +44,6 @@ function LoginForm() {
     // Handle when the user click the login button
     const handleLogin = (evt) => {
         evt.preventDefault();
-        ReactTooltip.rebuild();
         if (formValidation()) {
             dispatch(login());
         }
@@ -53,15 +51,14 @@ function LoginForm() {
 
     return (
         <form className="userform__ctn userform__ctn--login">
-            <ReactTooltip id="tooltip" effect="solid" place="right" type="error" multiline={true} />
             <Field
                 name="email"
-                placeholder="Identifiant"
+                placeholder="Email"
                 Icon={BsPerson}
                 value={email}
                 onChange={handleChange}
                 error={emailError}
-                tip="Merci de saisir un email valide"
+                tip="Merci de saisir un email valide."
             />
             <Field
                 name="password"
@@ -72,7 +69,9 @@ function LoginForm() {
                 value={password}
                 onChange={handleChange}
                 error={passwordError}
-                tip="Merci de saisir un mot de passe valide, <br /> il doit contenir au minimum 8 caractères : <br /> au moins une minuscule et une majuscule et un chiffre."
+                tip="Merci de saisir un mot de passe valide."
+                info={true}
+                infoTip={<div>Merci de saisir un mot de passe valide, <br /> il doit contenir au minimum 8 caractères : <br /> au moins une minuscule et une majuscule et un chiffre.</div>}
             />
             <a className="userform__ctn__link" href="lien">Mot de passe oublié ?</a>
             <Button

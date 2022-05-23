@@ -4,12 +4,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Image, Transformation } from 'cloudinary-react';
 import { useNavigate } from 'react-router-dom';
 // Local | React-Redux
-import { dustAll } from '@/actions/games';
+import { dustAll, selectGame } from '@/actions/games';
 import {
   fetchTopGames,
 } from '@/actions/dashboard';
 // Styles
 import "./dashboard.scss";
+import { changeModalSource, toggleModal } from '@/actions/app';
 // Locals
 
 function Dashboard() {
@@ -22,6 +23,12 @@ function Dashboard() {
     },
     [dispatch],
   );
+
+  const handleGameSelection = (id) => {
+    dispatch(toggleModal('gameDesc'));
+    dispatch(changeModalSource('dashboard'));
+    dispatch(selectGame(id));
+  };
 
   const topGames = useSelector((state) => state.dashboard.games);
 
@@ -55,7 +62,7 @@ function Dashboard() {
         <div className="dashboard__widget__scrollctn">
           <div className="dashboard__widget__games">
             {topGames && topGames.map((topGame) => (
-              <div key={topGame.id} className="dashboard__widget__game">
+              <div key={topGame.id} className="dashboard__widget__game" onClick={() => handleGameSelection(topGame.id)}>
                 <img
                   className="dashboard__widget__game__img"
                   src={`https://res.cloudinary.com/dyg/image/fetch/c_scale,h_150,q_60,w_150/${topGame.image_url}`}

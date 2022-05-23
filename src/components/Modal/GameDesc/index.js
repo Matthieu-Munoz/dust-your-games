@@ -13,13 +13,37 @@ import "./gamedesc.scss"
 
 function GameDesc() {
     const dispatch = useDispatch();
-    const { modalLoading } = useSelector((state) => state.app);
+    const { modalLoading, modalSource } = useSelector((state) => state.app);
     const { games, selectedGame } = useSelector((state) => state.games);
-    const gameFiltered = games.filter(currentGame => {
-        return currentGame.game.id === selectedGame;
-    });
-    const game = gameFiltered[0].game
-    console.log(selectedGame);
+    const topGames = useSelector((state) => state.dashboard.games);
+    let game;
+    let fromDyg = true;
+    if (modalSource === 'dashboard') {
+        const gameFiltered = topGames.filter(currentGame => {
+            return currentGame.id === selectedGame;
+        });
+        fromDyg = false
+        game = {
+            name: gameFiltered[0].name,
+            image: gameFiltered[0].image_url,
+            description: gameFiltered[0].description,
+            min_player: gameFiltered[0].min_players,
+            max_player: gameFiltered[0].max_players,
+            play_time: ((gameFiltered[0].min_playtime + gameFiltered[0].max_playtime) / 2)
+        }
+    } else {
+        const gameFiltered = games.filter(currentGame => {
+            return currentGame.game.id === selectedGame;
+        });
+        game = {
+            name: gameFiltered[0].game.name,
+            image: gameFiltered[0].game.image,
+            description: gameFiltered[0].game.description,
+            min_player: gameFiltered[0].game.min_player,
+            max_player: gameFiltered[0].game.max_player,
+            play_time: gameFiltered[0].game.play_time
+        }
+    }
     return (
         <div className="gamedesc">
             {modalLoading && <ModalLoader />}
@@ -52,7 +76,7 @@ function GameDesc() {
                                 </div>
                             </div>
                         </div>
-                        <div className="gamedesc__game__buttons">
+                        {fromDyg && <div className="gamedesc__game__buttons">
                             <Button
                                 name="Supprimer ce jeu"
                                 classname="secondary"
@@ -65,7 +89,7 @@ function GameDesc() {
                                 style={{ width: '45%', fontSize: '0.85em' }}
                                 onclick={() => dispatch(manualConfirmDust())}
                             />
-                        </div>
+                        </div>}
                     </div>
                 </>
             }

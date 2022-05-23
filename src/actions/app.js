@@ -56,6 +56,11 @@ export const CLOSE_ALERT = 'CLOSE_ALERT';
 export const closeAlert = () => ({
     type: CLOSE_ALERT,
 });
+export const CHANGE_MODAL_SOURCE = 'CHANGE_MODAL_SOURCE';
+export const changeModalSource = (value) => ({
+    type: CHANGE_MODAL_SOURCE,
+    value,
+});
 
 
 

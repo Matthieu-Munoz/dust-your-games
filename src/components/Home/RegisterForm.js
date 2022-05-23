@@ -7,7 +7,6 @@ import Field from "@/components/Field";
 import Button from '../Button';
 import { toggleLoginForm, changeHomeField, toggleHomeError } from '../../actions/home';
 import { register } from '@/actions/user';
-import ReactTooltip from 'react-tooltip';
 // Styles
 
 function RegisterForm() {
@@ -18,6 +17,7 @@ function RegisterForm() {
   const handleChange = (value, field) => {
     dispatch(changeHomeField(value, field));
   }
+
   /**
    * Get the current date, substract 13 years wich is our age limit
    * @returns max years for registration
@@ -57,7 +57,6 @@ function RegisterForm() {
   // Handle when the user click the register button
   const handleRegister = (evt) => {
     evt.preventDefault();
-    ReactTooltip.rebuild();
     if (formValidation()) {
       dispatch(register())
     }
@@ -65,7 +64,6 @@ function RegisterForm() {
 
   return (
     <form className="userform__ctn userform__ctn--register">
-      <ReactTooltip id="tooltip" effect="solid" place="right" type="error" multiline={true} />
       <Field
         name="pseudo_name"
         placeholder="Identifiant"
@@ -75,18 +73,15 @@ function RegisterForm() {
         error={pseudoError}
         tip="Merci de saisir un pseudo valide, <br/> il doit contenir au minimum 3 caractères, au maximun 16 <br/> et maximun 3 chiffres"
       />
-      <div className="field">
-        <BsCalendarDate className="field__icon" />
-        <input
-
-          name="birthday"
-          className="field__input"
-          type="date"
-          placeholder="Date de naissance"
-          max={getDate()}
-          value={birthday}
-          onChange={(evt) => handleChange(evt.target.value, 'birthday')} />
-      </div>
+      <Field
+        name="birthday"
+        type="date"
+        placeholder="Date de naissance"
+        Icon={BsCalendarDate}
+        value={birthday}
+        onChange={handleChange}
+        max={getDate()}
+      />
       <Field
         name="email"
         type="email"

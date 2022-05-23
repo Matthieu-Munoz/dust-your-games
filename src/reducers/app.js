@@ -1,15 +1,16 @@
 import {
-    TOGGLE_THEME, SAVE_THEME, TOGGLE_MODAL, TOGGLE_MENU, TOGGLE_PASSWORD, TOGGLE_LOADING, SEND_ALERT, CLOSE_ALERT, TOGGLE_MODAL_LOADING
+    TOGGLE_THEME, SAVE_THEME, TOGGLE_MODAL, TOGGLE_MENU, TOGGLE_PASSWORD, TOGGLE_LOADING, SEND_ALERT, CLOSE_ALERT, TOGGLE_MODAL_LOADING, CHANGE_MODAL_SOURCE
 } from '@/actions/app';
 
 export const initialState = {
     darkTheme: true,
     modalOpened: false,
     modalComponent: '',
+    modalLoading: false,
+    modalSource: '',
     menuOpened: false,
     passwordVisible: false,
     loading: true,
-    modalLoading: false,
     alert: {
         status: false,
         type: '',
@@ -37,6 +38,16 @@ const reducer = (state = initialState, action = {}) => {
                 modalOpened: !state.modalOpened,
                 modalComponent: action.component
             };
+        case TOGGLE_MODAL_LOADING:
+            return {
+                ...state,
+                modalLoading: action.value,
+            };
+        case CHANGE_MODAL_SOURCE:
+            return {
+                ...state,
+                modalSource: action.value,
+            };
         case TOGGLE_MENU:
             return {
                 ...state,
@@ -51,11 +62,6 @@ const reducer = (state = initialState, action = {}) => {
             return {
                 ...state,
                 loading: action.value,
-            };
-        case TOGGLE_MODAL_LOADING:
-            return {
-                ...state,
-                modalLoading: action.value,
             };
         case SEND_ALERT:
             return {

@@ -1,6 +1,7 @@
 import {
     TOGGLE_LOGIN_FORM, CHANGE_HOME_FIELD, TOGGLE_HOME_ERROR
 } from '@/actions/home';
+import { LOGIN } from '@/actions/user';
 
 export const initialState = {
     // user pseudo
@@ -34,6 +35,11 @@ const reducer = (state = initialState, action = {}) => {
             return {
                 ...state,
                 [action.field]: action.value,
+            };
+        case LOGIN:
+            return {
+                ...state,
+                password: '',
             };
         case TOGGLE_HOME_ERROR:
             return {
