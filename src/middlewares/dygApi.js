@@ -3,7 +3,7 @@ import axios from 'axios';
 import {
   LOGIN, LOGOUT, saveUser, REGISTER, EDIT_USER, DELETE_USER, LOGIN_CHECK, loginConfirm
 } from '../actions/user';
-import { CONFIRM_DUST, DELETE_GAME, DUST_ALL, fetchGames, FETCH_GAMES, MANUAL_CONFIRM_DUST, saveCategories, saveDustGame, saveGames, SAVE_GAME, selectSearchGame } from '@/actions/games';
+import { CONFIRM_DUST, DELETE_GAME, DUST_ALL, DUST_BY, fetchGames, FETCH_GAMES, MANUAL_CONFIRM_DUST, saveCategories, saveDustGame, saveGames, SAVE_GAME, selectSearchGame } from '@/actions/games';
 import { closeAlert, sendAlert, toggleLoading, toggleModal, toggleModalLoading } from '../actions/app'
 import { toggleLoginForm } from '../actions/home'
 import { saveUserAccount } from '@/actions/account';
@@ -102,7 +102,6 @@ const dygApiMiddleWare = (store) => (next) => (action) => {
         )
         .then((response) => {
           if (response.status === 200) {
-            console.log(response.data.user);
             const user = response.data.user;
             axiosInstance.defaults.headers.common.Authorization = `Bearer ${response.data.token}`;
             setWithExpiry("token", response.data.token, 64800000);
@@ -280,7 +279,8 @@ const dygApiMiddleWare = (store) => (next) => (action) => {
             },
             "designor": {
               "name": (game[0].primary_designer.name) ? (game[0].primary_designer.name) : 'Inconnu',
-            }
+            },
+            "weight": 5
           }
         )
         .then((response) => {
@@ -339,6 +339,42 @@ const dygApiMiddleWare = (store) => (next) => (action) => {
       axiosInstance
         .get(
           `${id}/games/dust`,
+        )
+        .then((response) => {
+          if (response.status === 200) {
+            store.dispatch(toggleLoading(false))
+            store.dispatch(saveDustGame(response.data))
+            store.dispatch(toggleModal('dustresult'))
+          }
+        })
+        .catch(() => {
+          store.dispatch(toggleModalLoading(false))
+          store.dispatch(sendAlert('error', 'Une erreur est survenue, veuillez réessayer.'));
+          setTimeout(() => {
+            store.dispatch(closeAlert());
+          }, 2800);
+        });
+      next(action);
+      break;
+    }
+    case DUST_BY: {
+      store.dispatch(toggleLoading(true))
+      const { user: { id } } = store.getState();
+      const game = [];
+      let i = 0;
+      action.games.forEach(current => {
+        if (current.checked) {
+          game[i] = { "id": current.game.id }
+          i++
+        }
+      });
+      axiosInstance
+        .post(
+          `${id}/games/dustby`,
+          {
+            "game": game,
+          }
+
         )
         .then((response) => {
           if (response.status === 200) {

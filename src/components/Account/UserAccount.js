@@ -12,8 +12,7 @@ import "./account.scss"
 
 function UserAccount() {
   const dispatch = useDispatch();
-  const { pseudo_name, email } = useSelector((state) => state.account);
-  let { image } = useSelector((state) => state.user);
+  let { pseudo_name, email, nb_games, image } = useSelector((state) => state.account);
   if (image === null) {
     image = 'default-avatar_ld0jlt.png'
   }
@@ -40,7 +39,7 @@ function UserAccount() {
         <div className="useraccount__statistics__gamenumber">
           <FaChessPawn className="useraccount__statistics__gamenumber__icon" />
           <div className="useraccount__statistics__gamenumber__number">
-            42
+            {nb_games}
           </div>
         </div>
         <div className="useraccount__statistics__separator" />

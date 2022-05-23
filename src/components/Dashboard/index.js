@@ -49,7 +49,7 @@ function Dashboard() {
           </Image>
           <h3 className="dashboard__card__title">Dépoussiérage</h3>
         </div>
-        <div className="dashboard__card dashboard__card--friends" onClick={() => dispatch(toggleModal('intro'))}>
+        <div className="dashboard__card dashboard__card--friends" onClick={() => dispatch(toggleModal('friendslist'))}>
           <Image cloudName="dyg" publicId="dashboard_friends_dyriwm.png" className="dashboard__card__img" >
             <Transformation quality="80" width="250" crop="scale" />
           </Image>

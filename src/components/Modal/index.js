@@ -9,8 +9,10 @@ import AddGames from './AddGames';
 import DustResult from './DustResult';
 import GameDesc from './GameDesc';
 import Intro from './Intro';
+import FriendsList from './FriendsList';
 // Styles
 import "./modal.scss"
+import { resetSearchGames } from '@/actions/games';
 
 function Modal() {
     const dispatch = useDispatch();
@@ -18,7 +20,8 @@ function Modal() {
 
     const { modalOpened, modalComponent } = useSelector((state) => state.app);
     const handleModalToggle = () => {
-        dispatch(toggleModal(''))
+        dispatch(toggleModal(''));
+        dispatch(resetSearchGames());
     }
 
     return (
@@ -31,6 +34,7 @@ function Modal() {
                         {(modalComponent === 'dustresult') && <DustResult />}
                         {(modalComponent === 'gameDesc') && <GameDesc />}
                         {(modalComponent === 'intro') && <Intro />}
+                        {(modalComponent === 'friendslist') && <FriendsList />}
                     </div>
                     <div id="modal_background" onClick={handleModalToggle} />
 

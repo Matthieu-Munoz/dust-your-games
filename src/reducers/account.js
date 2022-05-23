@@ -8,16 +8,19 @@ export const initialState = {
     pseudo_name: '',
     // User image
     image: null,
+    // User image
+    nb_games: 0,
     // user email
     email: '',
     // user password
     password: '',
     // user confirmedpassword
-    confirmedpassword: '',
+    confirmedPassword: '',
     isEdit: false,
     pseudoError: false,
     emailError: false,
     passwordError: false,
+    confirmedPasswordError: false,
 };
 
 const reducer = (state = initialState, action = {}) => {
@@ -57,6 +60,7 @@ const reducer = (state = initialState, action = {}) => {
                 isEdit: false,
                 pseudo_name: '',
                 image: null,
+                nb_games: 0,
                 email: '',
                 password: '',
                 confirmedpassword: '',

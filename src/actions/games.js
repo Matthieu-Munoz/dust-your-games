@@ -27,6 +27,7 @@ export const FETCH_GAMES = 'FETCH_GAMES';
 export const fetchGames = () => ({
     type: FETCH_GAMES,
 });
+// Addgames modal
 // Search a game un BGA API
 export const SEARCH_GAME = 'SEARCH_GAME';
 export const searchGame = () => ({
@@ -42,6 +43,11 @@ export const selectSearchGame = (value) => ({
     type: SELECT_SEARCH_GAME,
     value,
 });
+export const RESET_SEARCH_GAMES = 'RESET_SEARCH_GAMES';
+export const resetSearchGames = () => ({
+    type: RESET_SEARCH_GAMES,
+});
+
 export const SAVE_DUST_GAME = 'SAVE_DUST_GAME';
 export const saveDustGame = (game) => ({
     type: SAVE_DUST_GAME,
@@ -69,6 +75,12 @@ export const DUST_ALL = 'DUST_ALL';
 export const dustAll = () => ({
     type: DUST_ALL,
 });
+export const DUST_BY = 'DUST_BY';
+export const dustBy = (games) => ({
+    type: DUST_BY,
+    games,
+});
+
 export const FETCH_CATEGORIES = 'FETCH_CATEGORIES';
 export const fetchCategories = () => ({
     type: FETCH_CATEGORIES,
@@ -96,16 +108,10 @@ export const MANUAL_CONFIRM_DUST = 'MANUAL_CONFIRM_DUST';
 export const manualConfirmDust = () => ({
     type: MANUAL_CONFIRM_DUST,
 });
-
-export const CHECK_GAMES = 'CHECK_GAMES';
-export const checkGames = (games) => ({
-    type: CHECK_GAMES,
-    games,
-});
-export const CHECK_ONE_GAME = 'CHECK_ONE_GAME';
-export const checkOneGame = (game) => ({
-    type: CHECK_ONE_GAME,
-    game,
+export const CHECK_GAME = 'CHECK_GAME';
+export const checkGame = (gameId) => ({
+    type: CHECK_GAME,
+    gameId,
 });
 
 

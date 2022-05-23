@@ -20,7 +20,7 @@ import 'react-confirm-alert/src/react-confirm-alert.css';
 
 function EditAccount() {
   const dispatch = useDispatch();
-  const { pseudo_name, email, password, confirmedpassword, pseudoError, emailError, passwordError } = useSelector((state) => state.account);
+  const { pseudo_name, email, password, confirmedPassword, pseudoError, emailError, passwordError, confirmedPasswordError } = useSelector((state) => state.account);
   let { image } = useSelector((state) => state.user);
   if (image === null) {
     image = 'default-avatar_ld0jlt.png'
@@ -43,9 +43,13 @@ function EditAccount() {
       dispatch(toggleAccountError('email', true));
     }
     if (password !== '') {
-      if (!password.match(passwordValidREgex) || (password !== confirmedpassword)) {
+      if (!password.match(passwordValidREgex)) {
         check = false;
         dispatch(toggleAccountError('password', true));
+      }
+      if ((password !== confirmedPassword)) {
+        check = false;
+        dispatch(toggleAccountError('confirmedPassword', true));
       }
     }
     return check;
@@ -167,7 +171,7 @@ function EditAccount() {
           error={passwordError}
           tip="Merci de saisir un mot de passe valide."
           info={true}
-          infoTip={<div>Merci de saisir un mot de passe valide, <br /> il doit contenir au minimum 8 caractères : <br /> au moins une minuscule et une majuscule et un chiffre.</div>}
+          infoTip={<div>Votre mot de passe doit contenir<br />au minimum 8 caractères<br />composées d'au moins : <br />- au moins une minuscule<br />- une majuscule <br />- un chiffre</div>}
         />
         <div className="description_input"> Confirmer mon mot de passe </div>
         <Field
@@ -176,8 +180,10 @@ function EditAccount() {
           placeholder="confirmer mon mot de passe"
           onChange={handleChange}
           field="password"
-          value={confirmedpassword}
+          value={confirmedPassword}
           Icon={AiOutlineLock}
+          error={confirmedPasswordError}
+          tip="Les mots de passe doivent être identiques."
         />
       </div>
       <div className="useraccount__buttons">
