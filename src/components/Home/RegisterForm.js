@@ -12,7 +12,7 @@ import { register } from '@/actions/user';
 function RegisterForm() {
   const dispatch = useDispatch();
 
-  const { pseudo_name, birthday, email, password, confirmedpassword, pseudoError, emailError, passwordError } = useSelector((state) => state.home);
+  const { pseudo_name, birthday, email, password, confirmedPassword, pseudoError, emailError, passwordError, confirmedPasswordError } = useSelector((state) => state.home);
 
   const handleChange = (value, field) => {
     dispatch(changeHomeField(value, field));
@@ -47,9 +47,13 @@ function RegisterForm() {
       check = false;
       dispatch(toggleHomeError('email', true));
     }
-    if (!password.match(passwordValidREgex) || (password !== confirmedpassword)) {
+    if (!password.match(passwordValidREgex)) {
       check = false;
       dispatch(toggleHomeError('password', true));
+    }
+    if ((password !== confirmedPassword)) {
+      check = false;
+      dispatch(toggleHomeError('confirmedPassword', true));
     }
     return check;
   };
@@ -71,7 +75,9 @@ function RegisterForm() {
         value={pseudo_name}
         onChange={handleChange}
         error={pseudoError}
-        tip="Merci de saisir un pseudo valide, <br/> il doit contenir au minimum 3 caractères, au maximun 16 <br/> et maximun 3 chiffres"
+        tip="Merci de saisir un pseudo valide."
+        info={true}
+        infoTip={<div>Votre pseudo doit contenir : <br />- au minimum 3 caractères<br />- au maximun 16 caractères<br />- et maximun 3 chiffres</div>}
       />
       <Field
         name="birthday"
@@ -81,6 +87,8 @@ function RegisterForm() {
         value={birthday}
         onChange={handleChange}
         max={getDate()}
+        info={true}
+        infoTip={<div>L'utilisateur doit avoir au moins 13ans pour s'inscrire.</div>}
       />
       <Field
         name="email"
@@ -90,7 +98,7 @@ function RegisterForm() {
         value={email}
         onChange={handleChange}
         error={emailError}
-        tip="Merci de saisir un email valide"
+        tip="Merci de saisir un email valide."
       />
       <Field
         name="password"
@@ -101,16 +109,20 @@ function RegisterForm() {
         value={password}
         onChange={handleChange}
         error={passwordError}
-        tip="Merci de saisir un mot de passe valide, <br /> il doit contenir au minimum 8 caractères : <br /> au moins une minuscule et une majuscule et un chiffre."
+        tip="Merci de saisir un mot de passe valide."
+        info={true}
+        infoTip={<div>Votre mot de passe doit contenir<br />au minimum 8 caractères<br />composées d'au moins : <br />- au moins une minuscule<br />- une majuscule <br />- un chiffre</div>}
       />
       <Field
-        name="confirmedpassword"
+        name="confirmedPassword"
         type="password"
         placeholder="Confirmer le mot de passe"
         Icon={AiOutlineLock}
         field="password"
-        value={confirmedpassword}
+        value={confirmedPassword}
         onChange={handleChange}
+        error={confirmedPasswordError}
+        tip="Les mots de passe doivent être identiques."
       />
       <Button
         name="S'inscrire"

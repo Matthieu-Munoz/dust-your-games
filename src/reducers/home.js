@@ -18,6 +18,7 @@ export const initialState = {
     pseudoError: false,
     emailError: false,
     passwordError: false,
+    confirmedpasswordError: false,
 };
 
 const reducer = (state = initialState, action = {}) => {
@@ -29,7 +30,11 @@ const reducer = (state = initialState, action = {}) => {
                 pseudo_name: '',
                 birthday: '',
                 password: '',
-                confirmedpassword: '',
+                confirmedPassword: '',
+                pseudoError: false,
+                emailError: false,
+                passwordError: false,
+                confirmedPasswordError: false,
             }
         case CHANGE_HOME_FIELD:
             return {

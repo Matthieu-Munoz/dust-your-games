@@ -15,6 +15,8 @@ export const initialState = {
     year_of_birth: '',
     // user image
     image: null,
+    // user image
+    nb_games: 0,
     // is the user logged in
     loginChecked: false,
 };

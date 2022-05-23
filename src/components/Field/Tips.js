@@ -49,7 +49,7 @@ Tips.propTypes = {
   error: PropTypes.bool,
   tip: PropTypes.string,
   info: PropTypes.bool,
-  infoTip: PropTypes.string,
+  infoTip: PropTypes.any,
 };
 
 Tips.defaultProps = {

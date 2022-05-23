@@ -51,7 +51,7 @@ function Field({
               value={value}
               onChange={handleChange}
               max={max}
-              autocomplete="off"
+              autoComplete="off"
               required
             />
             {passwordVisible ? <BiHide className="field__icon field__icon--second" onClick={handlePassword} /> : <BiShow className="field__icon field__icon--second" onClick={handlePassword} />}
@@ -72,7 +72,7 @@ function Field({
               onChange={handleChange}
               max={max}
               required
-              ref={(innerRef) && innerRef}
+              ref={innerRef}
             />
             {(SecondIcon !== null) && <SecondIcon className="field__icon field__icon--second" />}
             <Tips error={error} tip={tip} info={info} infoTip={infoTip} />
@@ -127,7 +127,7 @@ Field.propTypes = {
   tip: PropTypes.string,
   innerRef: PropTypes.any,
   info: PropTypes.bool,
-  infoTip: PropTypes.string,
+  infoTip: PropTypes.any,
 };
 
 Field.defaultProps = {

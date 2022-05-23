@@ -12,9 +12,11 @@ import { GiPerspectiveDiceSixFacesRandom } from "react-icons/gi";
 import Field from "../Field";
 import { fetchUser } from "@/actions/user";
 import {
+  closeAlert,
+  sendAlert,
   toggleModal
 } from '@/actions/app';
-import { toggleFilterMenu, toggleFilter, selectGame, dustAll, fetchCategories, changeField, checkOneGame } from "@/actions/games";
+import { toggleFilterMenu, toggleFilter, selectGame, dustAll, fetchCategories, changeField, checkGame, dustBy } from "@/actions/games";
 // Styles
 import "./gameslist.scss"
 
@@ -27,7 +29,6 @@ function GamesList() {
   const { checkFilter, sortAlphaFilter, sortNumFilter, sortDirFilter, categoriesFilter, timesFilter, playersFilter } = useSelector((state) => state.games.toggles);
   const sideClass = classNames('games__side', { 'games__side--openned': menuToggled });
   const CheckIconFilter = (!checkFilter) ? AiOutlineCheckCircle : AiOutlineCloseCircle;
-  const CheckIconGame = (checkFilter) ? AiOutlineCheckCircle : AiOutlineCloseCircle;
   let gamesList = games;
 
   useEffect(
@@ -42,8 +43,22 @@ function GamesList() {
 
   const handleChange = (value, field) => {
     dispatch(changeField(value, field));
-    dispatch(toggleFilter('checkFilter', !checkFilter))
   }
+  const handleCheckingGames = () => {
+    dispatch(toggleFilter('checkFilter', !checkFilter))
+    if (checkFilter) {
+      dispatch(sendAlert('check', 'Sélection manuelle désactivée.'));
+      setTimeout(() => {
+        dispatch(closeAlert());
+      }, 2800);
+    } else {
+      dispatch(sendAlert('check', 'Sélection manuelle activée.'));
+      setTimeout(() => {
+        dispatch(closeAlert());
+      }, 2800);
+    }
+  }
+
 
   const handleGameSelection = (name) => {
     dispatch(toggleModal('gameDesc'));
@@ -60,15 +75,21 @@ function GamesList() {
     });
   };
 
-  // const filterGamesByCheck = (checkFilter) => {
-  //   if (!checkFilter) {
-  //     return games;
-  //   } else {
-  //     return filterGamesBySearch(games, searchInput)
-  //   }
-  // };
+  const sortGames = (games) => {
+    if (!sortDirFilter) {
+      return games;
+    } else {
+      const trueFirst = [...games].sort((a, b) => Number(b.checked) - Number(a.checked));
+      return trueFirst;
+    }
 
-  gamesList = filterGamesBySearch(checkedGames, searchInput);
+  };
+
+  if (checkFilter) {
+    gamesList = sortGames(filterGamesBySearch(checkedGames, searchInput));
+  } else {
+    gamesList = filterGamesBySearch(games, searchInput);
+  }
 
   return (
     <div className="games">
@@ -76,11 +97,16 @@ function GamesList() {
         <h2 className="games__list__title">Votre liste de jeux</h2>
         <div className="games__list">
           {gamesList && gamesList.map((ite) => (
-            <div key={ite.game.name} className="games__list__game" onClick={() => handleGameSelection(ite.game.id)}>
+            <div
+              key={ite.game.name}
+              className={checkFilter ? (ite.checked ? "games__list__game" : "games__list__game games__list__game--checked") : "games__list__game"}
+              onClick={() => { !checkFilter ? handleGameSelection(ite.game.id) : dispatch(checkGame(ite.game.id)) }}
+            >
               <img
                 className="games__list__game__img"
                 src={`https://res.cloudinary.com/dyg/image/fetch/c_scale,h_150,q_80,w_150/${ite.game.image}`}
                 alt={ite.game.name}
+                onClick={() => handleGameSelection(ite.game.id)}
               />
               <div className="games__list__game__overlay">
                 <div className="games__list__game__overlay--bg" />
@@ -88,12 +114,6 @@ function GamesList() {
                   {ite.game.name}
                 </div>
               </div>
-              {/* {checkFilter &&
-                <label className="games__list__game__check">
-                  <input type="checkbox" checked="checked" />
-                  <span class="games__list__game__check__checkmark"></span>
-                </label>
-              } */}
             </div>
           ))}
         </div>
@@ -109,7 +129,7 @@ function GamesList() {
             <BiFilterAlt className="games__side__btn__icon" />
             <div className="games__side__btn__name">Filtrer</div>
           </div>
-          <div className="games__side__btn" onClick={() => dispatch(dustAll())}>
+          <div className="games__side__btn" onClick={() => { !checkFilter ? dispatch(dustAll()) : dispatch(dustBy(checkedGames)) }}>
             <GiPerspectiveDiceSixFacesRandom className="games__side__btn__icon" />
             <div className="games__side__btn__name">Dépoussiérage</div>
           </div>
@@ -122,10 +142,10 @@ function GamesList() {
           </div>
           <div className="games__side__filter--scroll">
             <div className="games__side__filter__sorting">
-              <CheckIconFilter className="games__side__filter__sorting__btn" onClick={() => dispatch(toggleFilter('checkFilter', !checkFilter))} />
+              <CheckIconFilter className={`games__side__filter__sorting__btn ${checkFilter && "games__side__filter__sorting__btn--active"}`} onClick={handleCheckingGames} />
               <BsSortAlphaDown className="games__side__filter__sorting__btn games__side__filter__sorting__btn" onClick={() => dispatch(toggleFilter('sortAlphaFilter', !sortAlphaFilter))} />
               <BsSortDownAlt className="games__side__filter__sorting__btn" onClick={() => dispatch(toggleFilter('sortNumFilter', !sortNumFilter))} />
-              <BiSort className="games__side__filter__sorting__btn" onClick={() => dispatch(toggleFilter('sortDirFilter', !sortDirFilter))} />
+              <BiSort className={`games__side__filter__sorting__btn ${sortDirFilter && "games__side__filter__sorting__btn--active"}`} onClick={() => dispatch(toggleFilter('sortDirFilter', !sortDirFilter))} />
             </div>
             <Field
               name="searchInput"
@@ -154,9 +174,11 @@ function GamesList() {
                 {timesFilter ? <AiFillCaretUp className="games__side__filter__type__icon" /> : <AiFillCaretDown className="games__side__filter__type__icon" />}
               </div>
               {timesFilter && <div className="games__side__filter__type__items">
-                <div className="games__side__filter__type__item">Aventure</div>
-                <div className="games__side__filter__type__item">Fantasie</div>
-                <div className="games__side__filter__type__item">Escape Game</div>
+                <div className="games__side__filter__type__item">-10min</div>
+                <div className="games__side__filter__type__item">±20min</div>
+                <div className="games__side__filter__type__item">±30min</div>
+                <div className="games__side__filter__type__item">±45min</div>
+                <div className="games__side__filter__type__item">+60min</div>
               </div>}
             </div>
             <div className="games__side__filter__ctn" >
@@ -166,9 +188,7 @@ function GamesList() {
                 {playersFilter ? <AiFillCaretUp className="games__side__filter__type__icon" /> : <AiFillCaretDown className="games__side__filter__type__icon" />}
               </div>
               {playersFilter && <div className="games__side__filter__type__items">
-                <div className="games__side__filter__type__item">Aventure</div>
-                <div className="games__side__filter__type__item">Fantasie</div>
-                <div className="games__side__filter__type__item">Escape Game</div>
+                <input className="games__side__filter__type__item"></input>
               </div>}
             </div>
           </div>
