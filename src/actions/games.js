@@ -47,6 +47,11 @@ export const RESET_SEARCH_GAMES = 'RESET_SEARCH_GAMES';
 export const resetSearchGames = () => ({
     type: RESET_SEARCH_GAMES,
 });
+export const CHANGE_DUST_VALUE = 'CHANGE_DUST_VALUE';
+export const changeDustValue = (value) => ({
+    type: CHANGE_DUST_VALUE,
+    value,
+});
 
 export const SAVE_DUST_GAME = 'SAVE_DUST_GAME';
 export const saveDustGame = (game) => ({

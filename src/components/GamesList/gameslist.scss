@@ -39,8 +39,8 @@
       display: flex;
       justify-content: center;
       position: relative;
+      margin-bottom: 10em;
     }
-
     &__game {
       position: relative;
       display: flex;
@@ -94,6 +94,24 @@
       &:hover .games__list__game__overlay {
         opacity: 1;
         transition: opacity 0.2s ease-in-out;
+      }
+
+      &__dusting {
+        position: absolute;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+        transform: scale(1.3);
+        &--dust7 {
+          opacity: 0.5;
+        }
+        &--dust8 {
+          opacity: 0.75;
+        }
+        &--dust9 {
+          opacity: 0.9;
+        }
       }
     }
   }

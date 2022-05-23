@@ -3,7 +3,7 @@ import axios from 'axios';
 import {
   LOGIN, LOGOUT, saveUser, REGISTER, EDIT_USER, DELETE_USER, LOGIN_CHECK, loginConfirm
 } from '../actions/user';
-import { CONFIRM_DUST, DELETE_GAME, DUST_ALL, DUST_BY, fetchGames, FETCH_GAMES, MANUAL_CONFIRM_DUST, saveCategories, saveDustGame, saveGames, SAVE_GAME, selectSearchGame } from '@/actions/games';
+import { CONFIRM_DUST, DELETE_GAME, DUST_ALL, DUST_BY, fetchGames, FETCH_GAMES, MANUAL_CONFIRM_DUST, resetSearchGames, saveCategories, saveDustGame, saveGames, SAVE_GAME, selectSearchGame } from '@/actions/games';
 import { closeAlert, sendAlert, toggleLoading, toggleModal, toggleModalLoading } from '../actions/app'
 import { toggleLoginForm } from '../actions/home'
 import { saveUserAccount } from '@/actions/account';
@@ -111,6 +111,11 @@ const dygApiMiddleWare = (store) => (next) => (action) => {
             store.dispatch(saveUserAccount(user));
             store.dispatch(sendAlert('check', `Connexion réussie : bienvenue ${response.data.user.pseudo_name}`));
             store.dispatch(toggleLoading(false))
+            const firstIntro = localStorage.getItem('firstIntro')
+            if (firstIntro === null) {
+              localStorage.setItem('firstIntro', JSON.stringify(false))
+              store.dispatch(toggleModal('intro'))
+            }
             setTimeout(() => {
               store.dispatch(closeAlert());
             }, 2800);
@@ -280,13 +285,14 @@ const dygApiMiddleWare = (store) => (next) => (action) => {
             "designor": {
               "name": (game[0].primary_designer.name) ? (game[0].primary_designer.name) : 'Inconnu',
             },
-            "weight": 5
+            "weight": addgame.dustValue,
           }
         )
         .then((response) => {
           if (response.status === 201) {
             store.dispatch(fetchGames())
             store.dispatch(toggleModalLoading(false))
+            store.dispatch(resetSearchGames());
             store.dispatch(selectSearchGame(null));
             store.dispatch(sendAlert('check', `Ce jeu a bien été ajouté à votre liste`));
             setTimeout(() => {

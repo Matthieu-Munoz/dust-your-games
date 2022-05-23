@@ -1,5 +1,5 @@
 import {
-    TOGGLE_FILTER_MENU, TOGGLE_FILTER, SAVE_SEARCH_GAMES, CHANGE_SEARCH_FIELD, SAVE_GAMES, SELECT_SEARCH_GAME, SELECT_GAME, SAVE_DUST_GAME, SAVE_CATEGORIES, CHANGE_FIELD, SAVE_FILTERED_GAMES, SAVE_BGA_CATEGORIES, CHECK_GAME, RESET_SEARCH_GAMES
+    TOGGLE_FILTER_MENU, TOGGLE_FILTER, SAVE_SEARCH_GAMES, CHANGE_SEARCH_FIELD, SAVE_GAMES, SELECT_SEARCH_GAME, SELECT_GAME, SAVE_DUST_GAME, SAVE_CATEGORIES, CHANGE_FIELD, SAVE_FILTERED_GAMES, SAVE_BGA_CATEGORIES, CHECK_GAME, RESET_SEARCH_GAMES, CHANGE_DUST_VALUE
 } from '@/actions/games';
 
 export const initialState = {
@@ -26,6 +26,7 @@ export const initialState = {
         searchInput: '',
         searchGames: [],
         selectedGame: null,
+        dustValue: 5,
     },
     dustgame: [],
 };
@@ -43,6 +44,14 @@ const reducer = (state = initialState, action = {}) => {
                 addgame: {
                     ...state.addgame,
                     [action.field]: action.value,
+                },
+            }
+        case CHANGE_DUST_VALUE:
+            return {
+                ...state,
+                addgame: {
+                    ...state.addgame,
+                    dustValue: action.value,
                 },
             }
         case RESET_SEARCH_GAMES:

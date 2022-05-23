@@ -1,5 +1,5 @@
 // React-Redux
-import { saveGame, selectSearchGame } from "@/actions/games";
+import { changeDustValue, saveGame, selectSearchGame } from "@/actions/games";
 import { useDispatch, useSelector } from "react-redux";
 import Button from "../../Button";
 // styles
@@ -9,11 +9,15 @@ import "./addgames.scss"
 function Singlegame() {
   const dispatch = useDispatch();
 
-  const { searchGames, selectedGame } = useSelector((state) => state.games.addgame);
+  const { searchGames, selectedGame, dustValue } = useSelector((state) => state.games.addgame);
 
   const game = searchGames.filter(currentGame => {
     return currentGame.id === selectedGame;
   });
+
+  const handleChange = (evt) => {
+    dispatch(changeDustValue(evt.target.value));
+  }
 
   const handleCancel = () => {
     dispatch(selectSearchGame(null));
@@ -34,6 +38,15 @@ function Singlegame() {
           </div>
         </div>
       ))}
+      <div className="singlegame__question">
+        <h3 className="singlegame__question__title">dernière sortie de ce jeu :</h3>
+        <div className="singlegame__question__answers">
+          <span className="singlegame__question__answers__span">Récent</span>
+          <span className="singlegame__question__answers__span">Normal</span>
+          <span className="singlegame__question__answers__span">Vieux</span>
+        </div>
+        <input value={dustValue} onChange={handleChange} className="singlegame__question__input" type="range" name="dustLevel" min={3} max={7} step={2} />
+      </div>
       <div className="singlegame__btn">
         <Button
           name="non"

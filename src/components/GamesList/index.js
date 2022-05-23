@@ -114,6 +114,36 @@ function GamesList() {
                   {ite.game.name}
                 </div>
               </div>
+              {(ite.weight === 7) && <img
+                className="games__list__game__dusting games__list__game__dusting--dust7"
+                src={`https://res.cloudinary.com/dyg/image/upload/c_scale,h_150,q_80,w_150/gameDust_ehkwqd.png`}
+                alt="game dust"
+              />}
+              {(ite.weight === 8) && <img
+                className="games__list__game__dusting games__list__game__dusting--dust8"
+                src={`https://res.cloudinary.com/dyg/image/upload/c_scale,h_150,q_80,w_150/gameDust_ehkwqd.png`}
+                alt="game dust"
+              />}
+              {(ite.weight === 9) && <img
+                className="games__list__game__dusting games__list__game__dusting--dust9"
+                src={`https://res.cloudinary.com/dyg/image/upload/c_scale,h_150,q_80,w_150/gameDust_ehkwqd.png`}
+                alt="game dust"
+              />}
+              {(ite.weight === 3) && <img
+                className="games__list__game__dusting games__list__game__dusting--star1"
+                src={`https://res.cloudinary.com/dyg/image/upload/c_scale,h_150,q_80,w_150/stars1_grnmgb.png`}
+                alt="game dust"
+              />}
+              {(ite.weight === 2) && <img
+                className="games__list__game__dusting games__list__game__dusting--star2"
+                src={`https://res.cloudinary.com/dyg/image/upload/c_scale,h_150,q_80,w_150/stars2_doxaem.png`}
+                alt="game dust"
+              />}
+              {(ite.weight <= 1) && <img
+                className="games__list__game__dusting games__list__game__dusting--star3"
+                src={`https://res.cloudinary.com/dyg/image/upload/c_scale,h_150,q_80,w_150/stars3_yzsh69.png`}
+                alt="game dust"
+              />}
             </div>
           ))}
         </div>

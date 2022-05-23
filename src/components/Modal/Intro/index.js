@@ -41,7 +41,7 @@ function Intro() {
                         <h3 className="cards__section__card__title">Liste d'amis</h3>
                     </div>
                     <p className="cards__section__text cards__section__text--friends">
-                        Accédez à votre liste d’amis. Connectez-vous à votre entourage et accédez à leurs jeux à tout moment pour plus de partage. Vous saurez enfin quoi offrir aux anniversaires
+                        Accédez à votre liste d’amis. Connectez-vous à votre entourage et accédez à leurs jeux à tout moment. Vous saurez enfin quoi offrir aux anniversaires
                     </p>
                 </div>
             </div>

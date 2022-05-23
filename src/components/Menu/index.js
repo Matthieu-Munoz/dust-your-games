@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { NavLink, useNavigate } from 'react-router-dom';
 import classNames from 'classnames';
 // React-Redux
-import { toggleMenu } from '@/actions/app';
+import { toggleMenu, toggleModal } from '@/actions/app';
 import ThemeToggle from '../ThemeToggle';
 import { logout } from '@/actions/user';
 import Button from '../Button';
@@ -63,6 +63,12 @@ function Menu() {
                 >
                   Contact
                 </NavLink>
+                <Button
+                  name="Fonctionnement"
+                  classname="secondary"
+                  style={{ width: '165px', marginTop: '1em' }}
+                  onclick={() => dispatch(toggleModal('intro'))}
+                />
                 <Button
                   name="Se déconnecter"
                   classname="primary"

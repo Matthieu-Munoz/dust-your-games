@@ -66,7 +66,7 @@ function AddGames() {
                                     <div key={item.id} className="addgames__pictures__game" onClick={() => handleGameSelect(item.id)}>
                                         <img
                                             className="addgames__pictures__game__img"
-                                            src={item.image_url}
+                                            src={`https://res.cloudinary.com/dyg/image/fetch/c_scale,h_150,w_150,q_60/${item.image_url}`}
                                             alt={item.handle}
                                         />
                                         <div className="addgames__pictures__game__overlay">

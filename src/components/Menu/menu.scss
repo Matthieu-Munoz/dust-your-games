@@ -50,6 +50,18 @@
       font-weight: 600;
     }
   }
+  .appbutton {
+    &--secondary {
+      @include color-themes.themed() {
+        background-color: color-themes.ask("secondary-color");
+        color: color-themes.ask("primary-text-color");
+
+        &:hover {
+          @include utils.hover(color-themes.ask("secondary-alter-color"), 1.01);
+        }
+      }
+    }
+  }
 
   .footer {
     opacity: 0;
