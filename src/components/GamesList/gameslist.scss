@@ -405,7 +405,7 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
+      justify-content: flex-end;
       position: relative;
       bottom: unset;
       width: 400px;
@@ -443,19 +443,11 @@
         flex-direction: column;
         align-items: center;
         width: 100%;
-        height: auto;
+        height: 60%;
         padding: 1em 2em 0 2em;
 
         &__btns {
           display: none;
-        }
-
-        &--scroll {
-          overflow-y: auto;
-          width: 100%;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
         }
 
         &__sorting {

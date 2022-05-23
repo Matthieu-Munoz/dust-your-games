@@ -2,12 +2,14 @@
 import { useSelector, useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import TextareaAutosize from 'react-autosize-textarea';
-import { AiOutlineExclamationCircle } from 'react-icons/ai';
+import Tips from './Tips';
+import { AiOutlineExclamationCircle, AiOutlineQuestionCircle } from 'react-icons/ai';
 import { BiShow, BiHide } from "react-icons/bi";
 // React-Redux
 // Styles
 import './style.scss';
 import { togglePassword } from '@/actions/app';
+import Tooltip from 'react-tooltip-lite';
 
 function Field({
   value,
@@ -23,6 +25,8 @@ function Field({
   error,
   tip,
   innerRef,
+  info,
+  infoTip,
 }) {
   const dispatch = useDispatch();
   const { passwordVisible } = useSelector((state) => state.app);
@@ -47,10 +51,11 @@ function Field({
               value={value}
               onChange={handleChange}
               max={max}
+              autocomplete="off"
               required
             />
             {passwordVisible ? <BiHide className="field__icon field__icon--second" onClick={handlePassword} /> : <BiShow className="field__icon field__icon--second" onClick={handlePassword} />}
-            {error && <AiOutlineExclamationCircle className="field__icon field__icon--error" data-tip={tip} />}
+            <Tips error={error} tip={tip} info={info} infoTip={infoTip} />
           </div>
         </>
       )}
@@ -65,11 +70,12 @@ function Field({
               placeholder={placeholder}
               value={value}
               onChange={handleChange}
+              max={max}
               required
               ref={(innerRef) && innerRef}
             />
             {(SecondIcon !== null) && <SecondIcon className="field__icon field__icon--second" />}
-            {error && <AiOutlineExclamationCircle className="field__icon field__icon--error" data-tip={tip} />}
+            <Tips error={error} tip={tip} info={info} infoTip={infoTip} />
           </div>
         </>
       )}
@@ -95,6 +101,7 @@ function Field({
             ))}
           </select>
           {(SecondIcon !== null) && <SecondIcon className="field__icon field__icon--second" />}
+          <Tips error={error} tip={tip} info={info} infoTip={infoTip} />
         </div>
       )}
     </>
@@ -119,6 +126,8 @@ Field.propTypes = {
   error: PropTypes.bool,
   tip: PropTypes.string,
   innerRef: PropTypes.any,
+  info: PropTypes.bool,
+  infoTip: PropTypes.string,
 };
 
 Field.defaultProps = {
@@ -133,6 +142,8 @@ Field.defaultProps = {
   error: false,
   tip: 'Merci de verifier cette information',
   innerRef: null,
+  info: false,
+  infoTip: "",
 };
 
 export default Field;

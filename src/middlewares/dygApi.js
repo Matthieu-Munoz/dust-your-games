@@ -102,6 +102,7 @@ const dygApiMiddleWare = (store) => (next) => (action) => {
         )
         .then((response) => {
           if (response.status === 200) {
+            console.log(response.data.user);
             const user = response.data.user;
             axiosInstance.defaults.headers.common.Authorization = `Bearer ${response.data.token}`;
             setWithExpiry("token", response.data.token, 64800000);
