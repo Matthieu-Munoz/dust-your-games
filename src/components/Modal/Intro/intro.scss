@@ -1,0 +1,117 @@
+@use "@/styles/vars";
+@use "@/styles/color-themes";
+@use "@/styles/utils";
+@use "@/styles/responsive-breakpoints"as media;
+
+.intro {
+    width: 310px;
+    border-radius: 1em;
+
+
+    &__title {
+        width: 100%;
+        text-transform: uppercase;
+        color: vars.$gold;
+        text-align: center;
+        font-size: 20px;
+        margin: 0.6em 0 0.8em 0;
+        text-shadow: vars.$red 1.5px 1px;
+    }
+
+    &__cards {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .cards__section {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        
+        &__card {
+            position: relative;
+            width: 7em;
+            height: 9em;
+            margin: 0.5em;
+            background-color: vars.$grey-blue;
+            border-radius: 0.5em;
+            cursor: pointer;
+            // Linked to the background-image : Size to control the size of the image, repeat to control how many times it repeats inside the div
+
+            &__img {
+                width: 100%;
+                height: 100%;
+                border-radius: 0.4em;
+            }
+
+            &--dust {
+                // Move the div position inside a flex container
+                border: 2px solid vars.$gold;
+            }
+
+            &--games {
+                border: 2px solid vars.$red;
+            }
+
+            &--friends {
+                border: 2px solid vars.$red;
+            }
+
+            &__title {
+                position: absolute;
+                bottom: 2.2em;
+                width: 100%;
+                height: 2.4em;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background-color: vars.$beige;
+                font-size: 0.6em;
+                text-transform: uppercase;
+                color: vars.$grey-blue;
+                box-shadow: inset 0px 0px 6px 3px rgba(0, 0, 0, 0.25);
+            }
+        }
+
+        &__text {
+            width: 50%;
+            font-size: 0.8em;
+            margin-left: 0.6em;
+        }
+    }
+}
+
+// Style when on tablet and bigger
+@include media.responsive("tablet") {
+    .intro {
+        width: 600px;
+    
+        &__cards {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+    
+        .cards__section {
+            flex-direction: column;
+            width: 30%;
+            
+            &__card {
+                width: 8.5em;
+                height: 10.5em;
+                &__title {
+                    bottom: 2.3em;
+                }
+
+            }
+    
+            &__text {
+                margin-top: 0.5em;
+                width: 98%;
+                text-align: center;
+            }
+        }
+    }
+}

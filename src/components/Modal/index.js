@@ -8,6 +8,7 @@ import {
 import AddGames from './AddGames';
 import DustResult from './DustResult';
 import GameDesc from './GameDesc';
+import Intro from './Intro';
 // Styles
 import "./modal.scss"
 
@@ -29,6 +30,7 @@ function Modal() {
                         {(modalComponent === 'addgames') && <AddGames />}
                         {(modalComponent === 'dustresult') && <DustResult />}
                         {(modalComponent === 'gameDesc') && <GameDesc />}
+                        {(modalComponent === 'intro') && <Intro />}
                     </div>
                     <div id="modal_background" onClick={handleModalToggle} />
 
