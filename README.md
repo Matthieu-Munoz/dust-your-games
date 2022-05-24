@@ -5,10 +5,10 @@
 
 ## Bienvenue ! 👋
 
-Voici notre projet dans le cadre d'une formation de développeur PHP/REACT.
+Voici notre projet dans le cadre d'une formation en développement web & web mobile SYMFONY/REACT.
 
 ### 🎲 Présentation du projet
-À quoi allons-nous jouer ce soir ? Qu’avons-nous sur nos étagères ? Depuis combien de temps ce jeu prend la poussière ? Autant de questions qui ne facilitent pas la vie des joueurs de jeux de société. 
+À quoi allons-nous jouer ce soir ? Qu’avons-nous sur nos étagères ? Depuis combien de temps ce jeu prend la poussière ? Autant de questions qui ne facilitent pas la vie des joueurs de jeux de société.
 
 C’est pourquoi aujourd’hui, nous vous proposons Dust Your Games : l’application qui va révolutionner notre façon d'organiser et d’utiliser nos jeux.
 Dust your Games est une ludothèque personnelle, un moyen de répertorier virtuellement nos jeux, mais pas seulement :
@@ -36,7 +36,7 @@ Pour déployer le projet en local :
 2. Ouvrir un terminal dans le répertoire du projet
 3. Faire un `yarn` pour installer toutes les dépendances
 4. Pour lancer un serveur de développement faire un `yarn start`
-5. Pour consulter le code, ouvrir dans Vscode à partir du terminal avec un `code . `
+5. Pour consulter le code, ouvrir dans VSCode à partir du terminal avec un `code . `
 
 Pour déployer le projet en ligne :
 
@@ -52,7 +52,7 @@ Pour déployer le projet en ligne :
 
 ### LocalStorage with expiration date : 
 
-Nous nous sommes retrouvés face au besoin de sauvegarder des infos utiles dans le localStorage mais celui-ci a une durée de vie infini (du moins jusqu'à ce que l'utilisateur le supprime).
+Nous nous sommes retrouvés face au besoin de sauvegarder des infos utiles dans le localStorage mais celui-ci a une durée de vie infinie (du moins jusqu'à ce que l'utilisateur le supprime).
 Nous avons donc mis en place [deux fonctions](./src/utils/localStorage.js) : `setWithExpiry` et `getWithExpiry`.
 La première `setWithExpiry` permet, en indiquant la clé, la valeur à sauvegarder et un temps à garder en storage (1s = 1000), de mettre en localStorage l'item donné.
 Il n'est pas nécessaire de jsonifier l'item, cette action est effectuée dans la fonction directement.
