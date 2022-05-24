@@ -1,5 +1,5 @@
 import {
-    TOGGLE_FILTER_MENU, TOGGLE_FILTER, SAVE_SEARCH_GAMES, CHANGE_SEARCH_FIELD, SAVE_GAMES, SELECT_SEARCH_GAME, SELECT_GAME, SAVE_DUST_GAME, SAVE_CATEGORIES, CHANGE_FIELD, SAVE_FILTERED_GAMES, SAVE_BGA_CATEGORIES, CHECK_GAME, RESET_SEARCH_GAMES, CHANGE_DUST_VALUE, CONFIRM_DUST
+    TOGGLE_FILTER_MENU, TOGGLE_FILTER, SAVE_SEARCH_GAMES, CHANGE_SEARCH_FIELD, SAVE_GAMES, SELECT_SEARCH_GAME, SELECT_GAME, SAVE_DUST_GAME, SAVE_CATEGORIES, CHANGE_FIELD, SAVE_FILTERED_GAMES, SAVE_BGA_CATEGORIES, CHECK_GAME, RESET_SEARCH_GAMES, CHANGE_DUST_VALUE, CONFIRM_DUST, SELECT_FILTER, UNCHECK_ALL
 } from '@/actions/games';
 
 export const initialState = {
@@ -8,8 +8,8 @@ export const initialState = {
     checkedGames: [],
     bgaCategories: [],
     categories: [],
-    times: [],
-    players: [],
+    selectedTime: null,
+    selectedPlayer: "",
     selectedGame: null,
     menuToggled: false,
     searchInput: '',
@@ -95,15 +95,19 @@ const reducer = (state = initialState, action = {}) => {
                 ...state,
                 toggles: {
                     ...state.toggles,
-                    categoriesFilter: false,
-                    timesFilter: false,
-                    playersFilter: false,
                     [action.selector]: action.value,
                 }
+            }
+        case SELECT_FILTER:
+            return {
+                ...state,
+                [action.filter]: action.value,
             }
         case CONFIRM_DUST:
             return {
                 ...state,
+                selectedTime: null,
+                selectedPlayer: "",
                 toggles: {
                     checkFilter: false,
                     sortAlphaFilter: false,
@@ -148,6 +152,13 @@ const reducer = (state = initialState, action = {}) => {
                 if (element.game.id === action.gameId) {
                     element.checked = !element.checked;
                 }
+            })
+            return {
+                ...state,
+            }
+        case UNCHECK_ALL:
+            state.checkedGames.forEach(element => {
+                element.checked = false;
             })
             return {
                 ...state,

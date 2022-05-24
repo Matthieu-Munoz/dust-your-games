@@ -400,10 +400,16 @@ const dygApiMiddleWare = (store) => (next) => (action) => {
     case DUST_BY: {
       store.dispatch(toggleLoading(true))
       const { user: { id } } = store.getState();
+      const { games: { toggles } } = store.getState();
       const game = [];
       let i = 0;
       action.games.forEach(current => {
-        if (current.checked) {
+        if (toggles.checkFilter) {
+          if (current.checked) {
+            game[i] = { "id": current.game.id }
+            i++
+          }
+        } else {
           game[i] = { "id": current.game.id }
           i++
         }

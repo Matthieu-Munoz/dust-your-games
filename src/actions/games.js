@@ -59,12 +59,25 @@ export const checkGame = (gameId) => ({
     type: CHECK_GAME,
     gameId,
 });
+export const UNCHECK_ALL = 'UNCHECK_ALL';
+export const uncheckAll = () => ({
+    type: UNCHECK_ALL,
+});
+
 // Select a game to open the info modal
 export const SELECT_GAME = 'SELECT_GAME';
 export const selectGame = (value) => ({
     type: SELECT_GAME,
     value,
 });
+// Select a filter
+export const SELECT_FILTER = 'SELECT_FILTER';
+export const selectFilter = (filter, value) => ({
+    type: SELECT_FILTER,
+    filter,
+    value,
+});
+
 // Save a game through our api in our BDD
 export const SAVE_GAME = 'SAVE_GAME';
 export const saveGame = () => ({

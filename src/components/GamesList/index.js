@@ -5,9 +5,10 @@ import { useNavigate } from "react-router-dom";
 import classNames from "classnames";
 //Icons
 import { AiOutlineAppstoreAdd, AiOutlineCheckCircle, AiOutlineCloseCircle, AiFillCaretDown, AiFillCaretUp } from "react-icons/ai";
-import { BiFilterAlt, BiSort, BiCategoryAlt } from "react-icons/bi";
+import { BiFilterAlt, BiSort } from "react-icons/bi";
 import { BsSortAlphaDown, BsSortAlphaUp, BsSortDownAlt, BsSortDown, BsSearch, BsHourglassSplit, BsFillPeopleFill } from "react-icons/bs";
 import { GiPerspectiveDiceSixFacesRandom } from "react-icons/gi";
+import { IoIosBackspace } from "react-icons/io";
 // Local | React-Redux
 import Field from "../Field";
 import { fetchUser } from "@/actions/user";
@@ -16,7 +17,7 @@ import {
   sendAlert,
   toggleModal
 } from '@/actions/app';
-import { toggleFilterMenu, toggleFilter, selectGame, dustAll, fetchCategories, changeField, checkGame, dustBy } from "@/actions/games";
+import { toggleFilterMenu, toggleFilter, selectGame, dustAll, fetchCategories, changeField, checkGame, dustBy, selectFilter, saveFilteredGames, uncheckAll } from "@/actions/games";
 // Styles
 import "./gameslist.scss"
 
@@ -25,13 +26,29 @@ function GamesList() {
   const navigate = useNavigate();
 
   const loginChecked = useSelector((state) => state.user.loginChecked);
-  const { menuToggled, games, checkedGames, searchInput, categories } = useSelector((state) => state.games);
-  const { checkFilter, sortAlphaFilter, sortNumFilter, sortDirFilter, categoriesFilter, timesFilter, playersFilter } = useSelector((state) => state.games.toggles);
+  const {
+    menuToggled,
+    games,
+    checkedGames,
+    searchInput,
+    selectedTime,
+    selectedPlayer,
+  } = useSelector((state) => state.games);
+  const {
+    checkFilter,
+    sortAlphaFilter,
+    sortNumFilter,
+    sortDirFilter,
+    timesFilter,
+    playersFilter,
+  } = useSelector((state) => state.games.toggles);
+
   const sideClass = classNames('games__side', { 'games__side--openned': menuToggled });
   const orderFilterClass = classNames('games__side__filter__sorting__btn', { 'games__side__filter__sorting__btn--disable': !checkFilter });
   const CheckIconFilter = (!checkFilter) ? AiOutlineCheckCircle : AiOutlineCloseCircle;
   const AlpaIconFilter = (!sortAlphaFilter) ? BsSortAlphaDown : BsSortAlphaUp;
   const SortkIconFilter = (!sortNumFilter) ? BsSortDownAlt : BsSortDown;
+
   let gamesList = games;
 
   useEffect(
@@ -48,10 +65,14 @@ function GamesList() {
   const handleChange = (value, field) => {
     dispatch(changeField(value, field));
   }
+  const handlePlayerInput = (value, field) => {
+    dispatch(selectFilter(field, value));
+  }
 
   const handleCheckingGames = () => {
     dispatch(toggleFilter('checkFilter', !checkFilter))
     if (checkFilter) {
+      dispatch(uncheckAll())
       dispatch(toggleFilter('sortDirFilter', false))
       dispatch(sendAlert('check', 'Sélection manuelle désactivée.'));
       setTimeout(() => {
@@ -70,6 +91,11 @@ function GamesList() {
     dispatch(selectGame(name));
   };
 
+  const handleDusting = (name) => {
+    dispatch(saveFilteredGames(gamesList));
+    (!checkFilter && !selectedTime && !selectedPlayer) ? dispatch(dustAll()) : dispatch(dustBy(gamesList))
+  };
+
   const filterGamesBySearch = (games, query) => {
     if (!query) {
       return games;
@@ -80,7 +106,7 @@ function GamesList() {
     });
   };
 
-  const sortGames = (games) => {
+  const sortGamesOrder = (games) => {
     if (!sortDirFilter) {
       return games;
     } else {
@@ -89,9 +115,62 @@ function GamesList() {
     }
 
   };
+  const sortGamesTime = (games) => {
+    if (!selectedTime) {
+      return games;
+    } else {
+      let found;
+      switch (selectedTime) {
+        case 10:
+          found = games.filter(element => element.game.play_time < 15);
+          break;
+        case 20:
+          found = games.filter(element => element.game.play_time >= 15 && element.game.play_time <= 24);
+          break;
+        case 30:
+          found = games.filter(element => element.game.play_time >= 25 && element.game.play_time <= 39);
+          break;
+        case 45:
+          found = games.filter(element => element.game.play_time >= 40 && element.game.play_time <= 54);
+          break;
+        case 60:
+          found = games.filter(element => element.game.play_time >= 55);
+          break;
+        default:
+          found = games.filter(element => element.game.play_time);
+          break;
+      }
+      return found;
+    }
+  };
+
+  const sortGamesPlayer = (games) => {
+    if (!selectedPlayer) {
+      return games;
+    } else {
+      const found = games.filter(element => parseInt(element.game.min_player, 10) <= parseInt(selectedPlayer, 10) && parseInt(element.game.max_player, 10) >= parseInt(selectedPlayer, 10));
+      return found;
+    }
+  };
 
   if (checkFilter) {
-    gamesList = sortGames(filterGamesBySearch(checkedGames, searchInput));
+    if (selectedTime) {
+      gamesList = sortGamesOrder(sortGamesTime(filterGamesBySearch(checkedGames, searchInput)));
+    } else if (selectedPlayer) {
+      gamesList = sortGamesOrder(sortGamesPlayer(filterGamesBySearch(checkedGames, searchInput)));
+    } else if (selectedPlayer && selectedTime) {
+      gamesList = sortGamesOrder(sortGamesTime(sortGamesPlayer(filterGamesBySearch(checkedGames, searchInput))));
+    } else {
+      gamesList = sortGamesOrder(filterGamesBySearch(checkedGames, searchInput));
+    }
+  } else if (selectedTime) {
+    if (selectedPlayer) {
+      gamesList = sortGamesTime(sortGamesPlayer(filterGamesBySearch(checkedGames, searchInput)));
+    } else {
+      gamesList = sortGamesTime(filterGamesBySearch(checkedGames, searchInput));
+    }
+  } else if (selectedPlayer) {
+    gamesList = sortGamesPlayer(filterGamesBySearch(checkedGames, searchInput));
   } else {
     gamesList = filterGamesBySearch(games, searchInput);
   }
@@ -168,7 +247,7 @@ function GamesList() {
             <BiFilterAlt className="games__side__btn__icon" />
             <div className="games__side__btn__name">Filtrer</div>
           </div>
-          <div className="games__side__btn" onClick={() => { !checkFilter ? dispatch(dustAll()) : dispatch(dustBy(checkedGames)) }}>
+          <div className="games__side__btn" onClick={handleDusting}>
             <GiPerspectiveDiceSixFacesRandom className="games__side__btn__icon" />
             <div className="games__side__btn__name">Dépoussiérage</div>
           </div>
@@ -193,7 +272,8 @@ function GamesList() {
               value={searchInput}
               onChange={handleChange}
             />
-            <div className="games__side__filter__ctn" >
+            {/*  Disable in current version
+             <div className="games__side__filter__ctn" >
               <div className="games__side__filter__type" onClick={() => dispatch(toggleFilter('categoriesFilter', !categoriesFilter))}>
                 <BiCategoryAlt className="games__side__filter__type__icon" />
                 <div className="games__side__filter__type__name">Catégories</div>
@@ -204,8 +284,7 @@ function GamesList() {
                   <div key={ite.name} className="games__side__filter__type__item">{ite.name}</div>
                 ))}
               </div>}
-
-            </div>
+            </div> */}
             <div className="games__side__filter__ctn" >
               <div className="games__side__filter__type" onClick={() => dispatch(toggleFilter('timesFilter', !timesFilter))}>
                 <BsHourglassSplit className="games__side__filter__type__icon" />
@@ -213,12 +292,73 @@ function GamesList() {
                 {timesFilter ? <AiFillCaretUp className="games__side__filter__type__icon" /> : <AiFillCaretDown className="games__side__filter__type__icon" />}
               </div>
               {timesFilter && <div className="games__side__filter__type__items">
-                <div className="games__side__filter__type__item">-10min</div>
-                <div className="games__side__filter__type__item">±20min</div>
-                <div className="games__side__filter__type__item">±30min</div>
-                <div className="games__side__filter__type__item">±45min</div>
-                <div className="games__side__filter__type__item">+60min</div>
-              </div>}
+                {selectedTime !== 10 ?
+                  <div
+                    className="games__side__filter__type__item games__side__filter__type__item--time"
+                    onClick={() => dispatch(selectFilter('selectedTime', 10))}
+                  >
+                    -10
+                  </div>
+                  :
+                  <AiOutlineCloseCircle
+                    className="games__side__filter__type__item games__side__filter__type__item--time games__side__filter__type__item--close"
+                    onClick={() => dispatch(selectFilter('selectedTime', null))}
+                  />
+                }
+                {selectedTime !== 20 ?
+                  <div
+                    className="games__side__filter__type__item games__side__filter__type__item--time"
+                    onClick={() => dispatch(selectFilter('selectedTime', 20))}
+                  >
+                    ±20
+                  </div>
+                  :
+                  <AiOutlineCloseCircle
+                    className="games__side__filter__type__item games__side__filter__type__item--time games__side__filter__type__item--close"
+                    onClick={() => dispatch(selectFilter('selectedTime', null))}
+                  />
+                }
+                {selectedTime !== 30 ?
+                  <div
+                    className="games__side__filter__type__item games__side__filter__type__item--time"
+                    onClick={() => dispatch(selectFilter('selectedTime', 30))}
+                  >
+                    ±30
+                  </div>
+                  :
+                  <AiOutlineCloseCircle
+                    className="games__side__filter__type__item games__side__filter__type__item--time games__side__filter__type__item--close"
+                    onClick={() => dispatch(selectFilter('selectedTime', null))}
+                  />
+                }
+                {selectedTime !== 45 ?
+                  <div
+                    className="games__side__filter__type__item games__side__filter__type__item--time"
+                    onClick={() => dispatch(selectFilter('selectedTime', 45))}
+                  >
+                    ±45
+                  </div>
+                  :
+                  <AiOutlineCloseCircle
+                    className="games__side__filter__type__item games__side__filter__type__item--time games__side__filter__type__item--close"
+                    onClick={() => dispatch(selectFilter('selectedTime', null))}
+                  />
+                }
+                {selectedTime !== 60 ?
+                  <div
+                    className="games__side__filter__type__item games__side__filter__type__item--time"
+                    onClick={() => dispatch(selectFilter('selectedTime', 60))}
+                  >
+                    +60
+                  </div>
+                  :
+                  <AiOutlineCloseCircle
+                    className="games__side__filter__type__item games__side__filter__type__item--time games__side__filter__type__item--close"
+                    onClick={() => dispatch(selectFilter('selectedTime', null))}
+                  />
+                }
+              </div>
+              }
             </div>
             <div className="games__side__filter__ctn" >
               <div className="games__side__filter__type" onClick={() => dispatch(toggleFilter('playersFilter', !playersFilter))}>
@@ -226,9 +366,17 @@ function GamesList() {
                 <div className="games__side__filter__type__name">Joueurs</div>
                 {playersFilter ? <AiFillCaretUp className="games__side__filter__type__icon" /> : <AiFillCaretDown className="games__side__filter__type__icon" />}
               </div>
-              {playersFilter && <div className="games__side__filter__type__items">
-                <input className="games__side__filter__type__item"></input>
-              </div>}
+              {playersFilter && <form className="games__side__filter__type__items">
+                <Field
+                  className="games__side__filter__type__item games__side__filter__type__item--player"
+                  name="selectedPlayer"
+                  placeholder="Nombre de jouer"
+                  type="number"
+                  value={selectedPlayer}
+                  onChange={handlePlayerInput}
+                />
+                <IoIosBackspace className="games__side__filter__type__item--back" onClick={() => dispatch(selectFilter('selectedPlayer', ""))} />
+              </form>}
             </div>
           </div>
         </div>
