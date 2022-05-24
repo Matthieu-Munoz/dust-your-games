@@ -65,9 +65,6 @@ function GamesList() {
   const handleChange = (value, field) => {
     dispatch(changeField(value, field));
   }
-  const handlePlayerInput = (value, field) => {
-    dispatch(selectFilter(field, value));
-  }
 
   const handleCheckingGames = () => {
     dispatch(toggleFilter('checkFilter', !checkFilter))
@@ -90,6 +87,13 @@ function GamesList() {
     dispatch(toggleModal('gameDesc'));
     dispatch(selectGame(name));
   };
+
+  const handleFilterSelect = (filter, value, reset = false) => {
+    dispatch(selectFilter(filter, value));
+    if (reset) {
+      dispatch(saveFilteredGames([]));
+    }
+  }
 
   const handleDusting = (name) => {
     dispatch(saveFilteredGames(gamesList));
@@ -295,66 +299,66 @@ function GamesList() {
                 {selectedTime !== 10 ?
                   <div
                     className="games__side__filter__type__item games__side__filter__type__item--time"
-                    onClick={() => dispatch(selectFilter('selectedTime', 10))}
+                    onClick={() => handleFilterSelect('selectedTime', 10)}
                   >
                     -10
                   </div>
                   :
                   <AiOutlineCloseCircle
                     className="games__side__filter__type__item games__side__filter__type__item--time games__side__filter__type__item--close"
-                    onClick={() => dispatch(selectFilter('selectedTime', null))}
+                    onClick={() => handleFilterSelect('selectedTime', null, true)}
                   />
                 }
                 {selectedTime !== 20 ?
                   <div
                     className="games__side__filter__type__item games__side__filter__type__item--time"
-                    onClick={() => dispatch(selectFilter('selectedTime', 20))}
+                    onClick={() => handleFilterSelect('selectedTime', 20)}
                   >
                     ±20
                   </div>
                   :
                   <AiOutlineCloseCircle
                     className="games__side__filter__type__item games__side__filter__type__item--time games__side__filter__type__item--close"
-                    onClick={() => dispatch(selectFilter('selectedTime', null))}
+                    onClick={() => handleFilterSelect('selectedTime', null, true)}
                   />
                 }
                 {selectedTime !== 30 ?
                   <div
                     className="games__side__filter__type__item games__side__filter__type__item--time"
-                    onClick={() => dispatch(selectFilter('selectedTime', 30))}
+                    onClick={() => handleFilterSelect('selectedTime', 30)}
                   >
                     ±30
                   </div>
                   :
                   <AiOutlineCloseCircle
                     className="games__side__filter__type__item games__side__filter__type__item--time games__side__filter__type__item--close"
-                    onClick={() => dispatch(selectFilter('selectedTime', null))}
+                    onClick={() => handleFilterSelect('selectedTime', null, true)}
                   />
                 }
                 {selectedTime !== 45 ?
                   <div
                     className="games__side__filter__type__item games__side__filter__type__item--time"
-                    onClick={() => dispatch(selectFilter('selectedTime', 45))}
+                    onClick={() => handleFilterSelect('selectedTime', 45)}
                   >
                     ±45
                   </div>
                   :
                   <AiOutlineCloseCircle
                     className="games__side__filter__type__item games__side__filter__type__item--time games__side__filter__type__item--close"
-                    onClick={() => dispatch(selectFilter('selectedTime', null))}
+                    onClick={() => handleFilterSelect('selectedTime', null, true)}
                   />
                 }
                 {selectedTime !== 60 ?
                   <div
                     className="games__side__filter__type__item games__side__filter__type__item--time"
-                    onClick={() => dispatch(selectFilter('selectedTime', 60))}
+                    onClick={() => handleFilterSelect('selectedTime', 60)}
                   >
                     +60
                   </div>
                   :
                   <AiOutlineCloseCircle
                     className="games__side__filter__type__item games__side__filter__type__item--time games__side__filter__type__item--close"
-                    onClick={() => dispatch(selectFilter('selectedTime', null))}
+                    onClick={() => handleFilterSelect('selectedTime', null, true)}
                   />
                 }
               </div>
@@ -373,9 +377,9 @@ function GamesList() {
                   placeholder="Nombre de jouer"
                   type="number"
                   value={selectedPlayer}
-                  onChange={handlePlayerInput}
+                  onChange={(value, field) => handleFilterSelect(field, value)}
                 />
-                <IoIosBackspace className="games__side__filter__type__item--back" onClick={() => dispatch(selectFilter('selectedPlayer', ""))} />
+                <IoIosBackspace className="games__side__filter__type__item--back" onClick={() => handleFilterSelect('selectedPlayer', "", true)} />
               </form>}
             </div>
           </div>

@@ -20,14 +20,17 @@ function DustResult() {
     const { dustgame, checkedGames, filteredGames } = useSelector((state) => state.games);
     const { checkFilter } = useSelector((state) => state.games.toggles);
 
-    // console.log(dustgame);
     const handleRelaunch = () => {
         dispatch(toggleModal(''));
-        if (filteredGames) {
+        console.log(filteredGames.length);
+        if (filteredGames.length > 0) {
+            console.log('filteredGames');
             dispatch(dustBy(filteredGames));
         } else if (checkFilter) {
+            console.log('checkFilter');
             dispatch(dustBy(checkedGames))
         } else {
+            console.log('dustAll');
             dispatch(dustAll())
         }
     }
@@ -35,7 +38,7 @@ function DustResult() {
         dispatch(toggleModal(''));
         dispatch(confirmDust());
     }
-
+    console.log(dustgame);
     return (
         <div className="dustresult">
             {modalLoading && <ModalLoader />}
