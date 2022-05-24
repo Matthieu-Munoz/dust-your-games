@@ -171,7 +171,7 @@ function EditAccount() {
           error={passwordError}
           tip="Merci de saisir un mot de passe valide."
           info={true}
-          infoTip={<div>Votre mot de passe doit contenir<br />au minimum 8 caractères<br />composées d'au moins : <br />- au moins une minuscule<br />- une majuscule <br />- un chiffre</div>}
+          infoTip={<div>Votre mot de passe doit contenir au minimum :<br />- 8 caractères<br />- une minuscule<br />- une majuscule <br />- un chiffre</div>}
         />
         <div className="description_input"> Confirmer mon mot de passe </div>
         <Field
