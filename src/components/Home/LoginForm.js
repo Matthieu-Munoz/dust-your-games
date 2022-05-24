@@ -5,6 +5,7 @@ import { AiOutlineLock } from "react-icons/ai";
 // React-Redux
 import Field from "@/components/Field";
 import { toggleHomeForm, changeHomeField, toggleHomeError } from '@/actions/home';
+import { togglePassword } from '@/actions/app';
 import { login } from '@/actions/user';
 import Button from '../Button';
 
@@ -43,6 +44,7 @@ function LoginForm() {
     const handleLogin = (evt) => {
         evt.preventDefault();
         if (formValidation()) {
+            dispatch(togglePassword(false));
             dispatch(login());
         }
     }
@@ -96,7 +98,10 @@ function LoginForm() {
                 name="S'inscrire"
                 classname="secondary"
                 style={{ width: '70%' }}
-                onclick={() => dispatch(toggleHomeForm('isRegisterForm', true))}
+                onclick={() => {
+                    dispatch(togglePassword(false));
+                    dispatch(toggleHomeForm('isRegisterForm', true))
+                }}
             />
         </form>
     );

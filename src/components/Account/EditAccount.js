@@ -9,6 +9,7 @@ import { WidgetLoader, Widget } from 'react-cloudinary-upload-widget';
 import { deleteUser, editUser } from '@/actions/user';
 import Field from "@/components/Field";
 import { toggleEditAccount, changeField, toggleAccountError } from '@/actions/account';
+import { togglePassword } from '@/actions/app';
 import Button from '../Button';
 // styles
 import "./account.scss"
@@ -63,6 +64,7 @@ function EditAccount() {
   const handleEdit = (evt) => {
     evt.preventDefault();
     if (formValidation()) {
+      dispatch(togglePassword(false));
       dispatch(editUser());
     }
   }
@@ -131,7 +133,13 @@ function EditAccount() {
         }}
         destroy={true}
       />
-      <IoClose className="useraccount__close" onClick={() => dispatch(toggleEditAccount(false))} />
+      <IoClose
+        className="useraccount__close"
+        onClick={() => {
+          dispatch(togglePassword(false));
+          dispatch(toggleEditAccount(false))
+        }}
+      />
       <div className="useraccount__picture">
         <div className="useraccount__picture__redcircle" />
         <div className="useraccount__picture__yellowcircle" />

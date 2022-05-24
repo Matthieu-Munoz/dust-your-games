@@ -6,6 +6,7 @@ import { AiOutlineLock, AiOutlineMail } from "react-icons/ai";
 import Field from "@/components/Field";
 import Button from '../Button';
 import { changeHomeField, toggleHomeError, toggleHomeForm } from '../../actions/home';
+import { togglePassword } from '@/actions/app';
 import { register } from '@/actions/user';
 // Styles
 
@@ -62,6 +63,7 @@ function RegisterForm() {
   const handleRegister = (evt) => {
     evt.preventDefault();
     if (formValidation()) {
+      dispatch(togglePassword(false));
       dispatch(register())
     }
   }
@@ -139,7 +141,10 @@ function RegisterForm() {
         name="Se connecter"
         classname="secondary"
         style={{ width: '70%' }}
-        onclick={() => dispatch(toggleHomeForm('isLoginForm', true))}
+        onclick={() => {
+          dispatch(togglePassword(false));
+          dispatch(toggleHomeForm('isLoginForm', true))
+        }}
       />
     </form>
   );

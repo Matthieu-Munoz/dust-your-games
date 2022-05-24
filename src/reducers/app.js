@@ -56,7 +56,7 @@ const reducer = (state = initialState, action = {}) => {
         case TOGGLE_PASSWORD:
             return {
                 ...state,
-                passwordVisible: !state.passwordVisible,
+                passwordVisible: action.value,
             }
         case TOGGLE_LOADING:
             return {

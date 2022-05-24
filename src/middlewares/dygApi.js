@@ -4,7 +4,7 @@ import {
   LOGIN, LOGOUT, saveUser, REGISTER, EDIT_USER, DELETE_USER, LOGIN_CHECK, loginConfirm, FORCED_LOGOUT, forcedLogout, PASSWORD_RECOVERY
 } from '../actions/user';
 import { CONFIRM_DUST, DELETE_GAME, DUST_ALL, DUST_BY, fetchGames, FETCH_GAMES, MANUAL_CONFIRM_DUST, resetSearchGames, saveCategories, saveDustGame, saveGames, SAVE_GAME, selectSearchGame } from '@/actions/games';
-import { closeAlert, sendAlert, toggleLoading, toggleModal, toggleModalLoading } from '../actions/app'
+import { closeAlert, sendAlert, toggleLoading, toggleModal, toggleModalLoading, togglePassword } from '../actions/app'
 import { toggleHomeForm } from '../actions/home'
 import { saveUserAccount } from '@/actions/account';
 // Utilities
@@ -140,6 +140,7 @@ const dygApiMiddleWare = (store) => (next) => (action) => {
       axiosInstance.defaults.headers.common.Authorization = null;
       localStorage.removeItem('token')
       localStorage.removeItem('user')
+      store.dispatch(togglePassword(false));
       next(action);
       break;
     case FORCED_LOGOUT:
@@ -150,6 +151,7 @@ const dygApiMiddleWare = (store) => (next) => (action) => {
       axiosInstance.defaults.headers.common.Authorization = null;
       localStorage.removeItem('token')
       localStorage.removeItem('user')
+      store.dispatch(togglePassword(false));
       next(action);
       break;
     case PASSWORD_RECOVERY:
