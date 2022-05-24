@@ -261,6 +261,7 @@ const dygApiMiddleWare = (store) => (next) => (action) => {
     case SAVE_GAME: {
       store.dispatch(toggleModalLoading(true))
       const { games: { addgame, bgaCategories } } = store.getState();
+      const { account: { nb_games } } = store.getState();
       const { user: { id } } = store.getState();
       const game = addgame.searchGames.filter(obj => {
         return obj.id === addgame.selectedGame;
@@ -303,6 +304,11 @@ const dygApiMiddleWare = (store) => (next) => (action) => {
         )
         .then((response) => {
           if (response.status === 201) {
+            const user = {
+              nb_games: nb_games + 1,
+            }
+            store.dispatch(saveUser(user));
+            store.dispatch(saveUserAccount(user));
             store.dispatch(fetchGames())
             store.dispatch(toggleModalLoading(false))
             store.dispatch(resetSearchGames());
@@ -335,6 +341,7 @@ const dygApiMiddleWare = (store) => (next) => (action) => {
     case DELETE_GAME: {
       store.dispatch(toggleModalLoading(true))
       const { user: { id } } = store.getState();
+      const { account: { nb_games } } = store.getState();
       const { games: { selectedGame } } = store.getState();
       axiosInstance
         .delete(
@@ -342,6 +349,11 @@ const dygApiMiddleWare = (store) => (next) => (action) => {
         )
         .then((response) => {
           if (response.status === 202) {
+            const user = {
+              nb_games: nb_games - 1,
+            }
+            store.dispatch(saveUser(user));
+            store.dispatch(saveUserAccount(user));
             store.dispatch(toggleModalLoading(false));
             store.dispatch(fetchGames());
             store.dispatch(toggleModal(''));
