@@ -28,6 +28,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    margin: 0.25em 0;
 
     &__card {
       position: relative;
@@ -36,8 +37,6 @@
       margin: 0.5em;
       background-color: vars.$grey-blue;
       border-radius: 0.5em;
-      cursor: pointer;
-      // Linked to the background-image : Size to control the size of the image, repeat to control how many times it repeats inside the div
 
       &__img {
         width: 100%;
@@ -76,7 +75,7 @@
 
     &__text {
       width: 50%;
-      font-size: 0.8em;
+      font-size: 0.9em;
       margin-left: 0.6em;
     }
   }

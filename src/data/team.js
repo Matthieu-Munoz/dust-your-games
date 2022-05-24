@@ -14,7 +14,7 @@ const team = [
         id: 2,
         name: 'Alice C.',
         job: 'Développeuse React.js',
-        picture: "alice_x4zonq.png",
+        picture: "alice.ac177a0b69b5f8d01863_uym2qt.png",
         socials: {
             mail: "mailto:choukroun.alice@gmail.com",
             github: "https://github.com/AliceCkn",

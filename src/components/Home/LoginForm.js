@@ -4,11 +4,10 @@ import { BsPerson } from "react-icons/bs";
 import { AiOutlineLock } from "react-icons/ai";
 // React-Redux
 import Field from "@/components/Field";
-import { toggleLoginForm, changeHomeField } from '@/actions/home';
+import { toggleHomeForm, changeHomeField, toggleHomeError } from '@/actions/home';
+import { togglePassword } from '@/actions/app';
 import { login } from '@/actions/user';
 import Button from '../Button';
-import { toggleHomeError } from '@/actions/home';
-// Styles
 
 function LoginForm() {
     const dispatch = useDispatch();
@@ -45,6 +44,7 @@ function LoginForm() {
     const handleLogin = (evt) => {
         evt.preventDefault();
         if (formValidation()) {
+            dispatch(togglePassword(false));
             dispatch(login());
         }
     }
@@ -71,9 +71,18 @@ function LoginForm() {
                 error={passwordError}
                 tip="Merci de saisir un mot de passe valide."
                 info={true}
-                infoTip={<div>Votre mot de passe doit contenir<br />au minimum 8 caractères<br />composées d'au moins : <br />- au moins une minuscule<br />- une majuscule <br />- un chiffre</div>}
+                infoTip={<div>Votre mot de passe doit contenir au minimum :<br />- 8 caractères<br />- une minuscule<br />- une majuscule <br />- un chiffre</div>}
             />
-            <a className="userform__ctn__link" href="lien">Mot de passe oublié ?</a>
+            <a
+                className="userform__ctn__link"
+                href="/"
+                onClick={(evt) => {
+                    evt.preventDefault();
+                    dispatch(toggleHomeForm('isPasswordRecovery', true));
+                }}
+            >
+                Mot de passe oublié ?
+            </a>
             <Button
                 name="Se connecter"
                 type="submit"
@@ -89,7 +98,10 @@ function LoginForm() {
                 name="S'inscrire"
                 classname="secondary"
                 style={{ width: '70%' }}
-                onclick={() => dispatch(toggleLoginForm(false))}
+                onclick={() => {
+                    dispatch(togglePassword(false));
+                    dispatch(toggleHomeForm('isRegisterForm', true))
+                }}
             />
         </form>
     );

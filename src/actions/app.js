@@ -29,8 +29,9 @@ export const toggleMenu = (value) => ({
 });
 // Used to show/hide the password inside and input
 export const TOGGLE_PASSWORD = 'TOGGLE_PASSWORD';
-export const togglePassword = () => ({
+export const togglePassword = (value) => ({
     type: TOGGLE_PASSWORD,
+    value,
 });
 // Used to display or hide the loader
 export const TOGGLE_LOADING = 'TOGGLE_LOADING';

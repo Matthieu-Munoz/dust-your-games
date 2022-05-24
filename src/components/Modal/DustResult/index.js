@@ -17,19 +17,28 @@ import sparklingright from '@/assets/images/sparkling-right.png';
 function DustResult() {
     const dispatch = useDispatch();
     const { modalLoading } = useSelector((state) => state.app);
-    const { dustgame, checkedGames } = useSelector((state) => state.games);
+    const { dustgame, checkedGames, filteredGames } = useSelector((state) => state.games);
     const { checkFilter } = useSelector((state) => state.games.toggles);
-
 
     const handleRelaunch = () => {
         dispatch(toggleModal(''));
-        !checkFilter ? dispatch(dustAll()) : dispatch(dustBy(checkedGames));
+        console.log(filteredGames.length);
+        if (filteredGames.length > 0) {
+            console.log('filteredGames');
+            dispatch(dustBy(filteredGames));
+        } else if (checkFilter) {
+            console.log('checkFilter');
+            dispatch(dustBy(checkedGames))
+        } else {
+            console.log('dustAll');
+            dispatch(dustAll())
+        }
     }
     const handleConfirm = () => {
         dispatch(toggleModal(''));
         dispatch(confirmDust());
     }
-
+    console.log(dustgame);
     return (
         <div className="dustresult">
             {modalLoading && <ModalLoader />}

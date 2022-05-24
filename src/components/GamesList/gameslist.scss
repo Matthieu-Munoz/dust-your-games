@@ -20,6 +20,7 @@
     align-content: flex-start;
     padding: 0.5em;
     margin-top: 2em;
+    width: 100%;
 
     &__title {
       position: absolute;
@@ -169,35 +170,52 @@
     }
 
     &__filter {
+      width: 350px;
       position: absolute;
       bottom: -500%;
-      .games__side__filter__sorting__btn--active {
+      &__sorting__btn--active {
         background-color: vars.$red !important;
-        transform: rotateZ(180deg) !important;
+        transform: rotateZ(360deg) !important;
         transition: all 0.2s ease-in-out;
+      }
+      &__sorting__btn--disable {
+        pointer-events: none;
+        background-color: vars.$grey-blue-transparent !important;
       }
     }
 
     &__filter__type__item {
-      height: 1.5em;
+      height: 2.5em;
+      width: 100%;
       display: flex;
       align-items: center;
-      justify-content: flex-start;
-      border-bottom: 1px solid white;
+      justify-content: center;
       cursor: pointer;
       transition: all 0.3s ease-in-out;
-      @include color-themes.themed() {
-        background-color: color-themes.ask("primary-color");
-      }
-      &:hover {
-        transition: all 0.3s ease-in-out;
-        @include color-themes.themed() {
-          background-color: color-themes.ask("primary-alter-color");
+
+      &--time {
+        background-color: vars.$red;
+        border-radius: 2em;
+        width: 2.5em;
+        &:hover {
+          background-color: vars.$alter-red;
         }
+      }
+      &--close {
+        padding: 0.5em;
+      }
+      &--back {
+        position: absolute;
+        top: 1.2em;
+        width: 1.5em;
+        height: 1.5em;
+        right: 1em;
       }
     }
 
     &--openned {
+      display: flex;
+      justify-content: center;
       height: 27.5em;
       border-top-left-radius: 3.5em;
       border-top-right-radius: 3.5em;
@@ -220,7 +238,6 @@
           display: flex;
           flex-direction: column;
           align-items: center;
-          width: 100%;
           height: 100%;
           padding: 3em 2em 0 2em;
 
@@ -310,6 +327,9 @@
               font-size: 0.8em;
             }
             &__items {
+              position: relative;
+              display: flex;
+              justify-content: space-around;
               border-bottom-left-radius: 0.25em;
               border-bottom-right-radius: 0.25em;
               transform: translateY(-0.2em);
@@ -318,6 +338,11 @@
               @include color-themes.themed() {
                 color: color-themes.ask("secondary-text-color");
                 background-color: color-themes.ask("primary-color");
+              }
+              .field {
+                &__input {
+                  text-indent: 0;
+                }
               }
             }
           }
@@ -390,6 +415,7 @@
 
       &__logo {
         display: block;
+        cursor: pointer;
         width: 120px;
         height: 120px;
         margin-top: -120px;
@@ -498,6 +524,8 @@
             font-size: 0.8em;
           }
           &__items {
+            display: flex;
+            justify-content: space-around;
             border-bottom-left-radius: 0.25em;
             border-bottom-right-radius: 0.25em;
             transform: translateY(-0.2em);
@@ -506,6 +534,11 @@
             @include color-themes.themed() {
               color: color-themes.ask("secondary-text-color");
               background-color: color-themes.ask("primary-color");
+            }
+            .field {
+              &__input {
+                text-indent: 0;
+              }
             }
           }
         }

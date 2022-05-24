@@ -3,13 +3,11 @@ import { useSelector, useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import TextareaAutosize from 'react-autosize-textarea';
 import Tips from './Tips';
-import { AiOutlineExclamationCircle, AiOutlineQuestionCircle } from 'react-icons/ai';
 import { BiShow, BiHide } from "react-icons/bi";
 // React-Redux
 // Styles
 import './style.scss';
 import { togglePassword } from '@/actions/app';
-import Tooltip from 'react-tooltip-lite';
 
 function Field({
   value,
@@ -31,7 +29,7 @@ function Field({
   const dispatch = useDispatch();
   const { passwordVisible } = useSelector((state) => state.app);
   const handlePassword = () => {
-    dispatch(togglePassword());
+    dispatch(togglePassword(!passwordVisible));
   }
   const handleChange = (evt) => {
     onChange(evt.target.value, name);

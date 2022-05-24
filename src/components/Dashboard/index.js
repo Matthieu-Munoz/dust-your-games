@@ -10,12 +10,15 @@ import {
 } from '@/actions/dashboard';
 // Styles
 import "./dashboard.scss";
-import { changeModalSource, toggleModal } from '@/actions/app';
+import { changeModalSource, closeAlert, sendAlert, toggleModal } from '@/actions/app';
 // Locals
 
 function Dashboard() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  const { games } = useSelector((state) => state.games);
+
 
   useEffect(
     () => {
@@ -28,6 +31,16 @@ function Dashboard() {
     dispatch(toggleModal('gameDesc'));
     dispatch(changeModalSource('dashboard'));
     dispatch(selectGame(id));
+  };
+  const handleDust = () => {
+    if (games.length < 1) {
+      dispatch(sendAlert('error', 'Commençons par ajouter un jeu !'));
+      setTimeout(() => {
+        dispatch(closeAlert());
+      }, 2800);
+    } else {
+      dispatch(dustAll())
+    }
   };
 
   const topGames = useSelector((state) => state.dashboard.games);
@@ -43,7 +56,7 @@ function Dashboard() {
           </Image>
           <h3 className="dashboard__card__title">Liste de jeux</h3>
         </div>
-        <div className="dashboard__card dashboard__card--dust" onClick={() => dispatch(dustAll())}>
+        <div className="dashboard__card dashboard__card--dust" onClick={handleDust}>
           <Image cloudName="dyg" publicId="dashboard_dust_ljmzor.png" className="dashboard__card__img" >
             <Transformation quality="80" width="250" crop="scale" />
           </Image>

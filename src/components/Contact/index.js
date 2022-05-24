@@ -87,8 +87,9 @@ function Contact() {
             SecondIcon={HiOutlineSelector}
             options={[
               { value: "1", text: "AU SUJET DE..." },
-              { value: "2", text: "Choisir une option" },
-              { value: "3", text: "Choisir une option" },
+              { value: "2", text: "Je n'arrive plus à acceder à mon compte" },
+              { value: "3", text: "Une question sur le fonctionnement" },
+              { value: "4", text: "Autre..." },
             ]}
             field="select"
           />

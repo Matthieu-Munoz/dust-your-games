@@ -9,6 +9,7 @@ import { WidgetLoader, Widget } from 'react-cloudinary-upload-widget';
 import { deleteUser, editUser } from '@/actions/user';
 import Field from "@/components/Field";
 import { toggleEditAccount, changeField, toggleAccountError } from '@/actions/account';
+import { togglePassword } from '@/actions/app';
 import Button from '../Button';
 // styles
 import "./account.scss"
@@ -63,6 +64,7 @@ function EditAccount() {
   const handleEdit = (evt) => {
     evt.preventDefault();
     if (formValidation()) {
+      dispatch(togglePassword(false));
       dispatch(editUser());
     }
   }
@@ -131,7 +133,13 @@ function EditAccount() {
         }}
         destroy={true}
       />
-      <IoClose className="useraccount__close" onClick={() => dispatch(toggleEditAccount(false))} />
+      <IoClose
+        className="useraccount__close"
+        onClick={() => {
+          dispatch(togglePassword(false));
+          dispatch(toggleEditAccount(false))
+        }}
+      />
       <div className="useraccount__picture">
         <div className="useraccount__picture__redcircle" />
         <div className="useraccount__picture__yellowcircle" />
@@ -171,11 +179,11 @@ function EditAccount() {
           error={passwordError}
           tip="Merci de saisir un mot de passe valide."
           info={true}
-          infoTip={<div>Votre mot de passe doit contenir<br />au minimum 8 caractères<br />composées d'au moins : <br />- au moins une minuscule<br />- une majuscule <br />- un chiffre</div>}
+          infoTip={<div>Votre mot de passe doit contenir au minimum :<br />- 8 caractères<br />- une minuscule<br />- une majuscule <br />- un chiffre</div>}
         />
         <div className="description_input"> Confirmer mon mot de passe </div>
         <Field
-          name="confirmedpassword"
+          name="confirmedPassword"
           type="password"
           placeholder="confirmer mon mot de passe"
           onChange={handleChange}

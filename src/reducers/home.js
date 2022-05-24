@@ -1,5 +1,5 @@
 import {
-    TOGGLE_LOGIN_FORM, CHANGE_HOME_FIELD, TOGGLE_HOME_ERROR
+    CHANGE_HOME_FIELD, TOGGLE_HOME_ERROR, TOGGLE_HOME_FORM
 } from '@/actions/home';
 import { LOGIN } from '@/actions/user';
 
@@ -15,6 +15,8 @@ export const initialState = {
     // user confirmedpassword
     confirmedpassword: '',
     isLoginForm: true,
+    isRegisterForm: false,
+    isPasswordRecovery: false,
     pseudoError: false,
     emailError: false,
     passwordError: false,
@@ -23,10 +25,9 @@ export const initialState = {
 
 const reducer = (state = initialState, action = {}) => {
     switch (action.type) {
-        case TOGGLE_LOGIN_FORM:
+        case TOGGLE_HOME_FORM:
             return {
                 ...state,
-                isLoginForm: action.isLoginForm,
                 pseudo_name: '',
                 birthday: '',
                 password: '',
@@ -35,6 +36,10 @@ const reducer = (state = initialState, action = {}) => {
                 emailError: false,
                 passwordError: false,
                 confirmedPasswordError: false,
+                isLoginForm: false,
+                isRegisterForm: false,
+                isPasswordRecovery: false,
+                [action.form]: action.value,
             }
         case CHANGE_HOME_FIELD:
             return {
