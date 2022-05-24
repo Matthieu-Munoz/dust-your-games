@@ -1,11 +1,11 @@
 import axios from 'axios';
 // Actions
 import {
-  LOGIN, LOGOUT, saveUser, REGISTER, EDIT_USER, DELETE_USER, LOGIN_CHECK, loginConfirm, FORCED_LOGOUT, forcedLogout
+  LOGIN, LOGOUT, saveUser, REGISTER, EDIT_USER, DELETE_USER, LOGIN_CHECK, loginConfirm, FORCED_LOGOUT, forcedLogout, PASSWORD_RECOVERY
 } from '../actions/user';
 import { CONFIRM_DUST, DELETE_GAME, DUST_ALL, DUST_BY, fetchGames, FETCH_GAMES, MANUAL_CONFIRM_DUST, resetSearchGames, saveCategories, saveDustGame, saveGames, SAVE_GAME, selectSearchGame } from '@/actions/games';
 import { closeAlert, sendAlert, toggleLoading, toggleModal, toggleModalLoading } from '../actions/app'
-import { toggleLoginForm } from '../actions/home'
+import { toggleHomeForm } from '../actions/home'
 import { saveUserAccount } from '@/actions/account';
 // Utilities
 import { setWithExpiry, getWithExpiry } from '@/utils/localStorage';
@@ -71,7 +71,7 @@ const dygApiMiddleWare = (store) => (next) => (action) => {
         .then((response) => {
           if (response.status === 201) {
             store.dispatch(toggleLoading(false))
-            store.dispatch(toggleLoginForm(true));
+            store.dispatch(toggleHomeForm('isLoginForm', true));
             store.dispatch(sendAlert('check', `Inscription réussie : vous pouvez vous connecter !`));
             setTimeout(() => {
               store.dispatch(closeAlert());
@@ -150,6 +150,36 @@ const dygApiMiddleWare = (store) => (next) => (action) => {
       axiosInstance.defaults.headers.common.Authorization = null;
       localStorage.removeItem('token')
       localStorage.removeItem('user')
+      next(action);
+      break;
+    case PASSWORD_RECOVERY:
+      store.dispatch(toggleLoading(true))
+      const { home: { email } } = store.getState();
+      axiosInstance
+        .post(
+          'passwordlost',
+          {
+            email,
+          },
+        )
+        .then((response) => {
+          if (response.status === 200) {
+            store.dispatch(toggleLoading(false))
+            store.dispatch(toggleHomeForm('isLoginForm', true));
+            store.dispatch(sendAlert('check', `Vos nouveaux identifiant vous ont été envoyés.`));
+            setTimeout(() => {
+              store.dispatch(closeAlert());
+            }, 2800);
+          }
+
+        })
+        .catch(() => {
+          store.dispatch(toggleLoading(false))
+          store.dispatch(sendAlert('error', 'Une erreur est survenue.'));
+          setTimeout(() => {
+            store.dispatch(closeAlert());
+          }, 2800);
+        });
       next(action);
       break;
     case EDIT_USER: {

@@ -35,9 +35,18 @@
     &--login {
       height: 250px;
     }
+    &--recovery {
+      height: 210px;
+    }
 
     &--register {
       height: 320px;
+    }
+
+    &__title {
+      font-size: 0.85em;
+      font-weight: 400;
+      text-align: center;
     }
 
     &__link {

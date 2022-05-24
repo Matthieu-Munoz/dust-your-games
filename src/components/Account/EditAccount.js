@@ -175,7 +175,7 @@ function EditAccount() {
         />
         <div className="description_input"> Confirmer mon mot de passe </div>
         <Field
-          name="confirmedpassword"
+          name="confirmedPassword"
           type="password"
           placeholder="confirmer mon mot de passe"
           onChange={handleChange}

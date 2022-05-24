@@ -34,6 +34,11 @@ export const REGISTER = 'REGISTER';
 export const register = () => ({
     type: REGISTER,
 });
+export const PASSWORD_RECOVERY = 'PASSWORD_RECOVERY';
+export const passwordRecovery = () => ({
+    type: PASSWORD_RECOVERY,
+});
+
 // Save user data from the dyg API (middleware) in user state
 export const SAVE_USER = 'SAVE_USER';
 export const saveUser = (user) => ({

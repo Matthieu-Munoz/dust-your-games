@@ -5,7 +5,7 @@ import { AiOutlineLock, AiOutlineMail } from "react-icons/ai";
 // React-Redux
 import Field from "@/components/Field";
 import Button from '../Button';
-import { toggleLoginForm, changeHomeField, toggleHomeError } from '../../actions/home';
+import { changeHomeField, toggleHomeError, toggleHomeForm } from '../../actions/home';
 import { register } from '@/actions/user';
 // Styles
 
@@ -139,7 +139,7 @@ function RegisterForm() {
         name="Se connecter"
         classname="secondary"
         style={{ width: '70%' }}
-        onclick={() => dispatch(toggleLoginForm(true))}
+        onclick={() => dispatch(toggleHomeForm('isLoginForm', true))}
       />
     </form>
   );

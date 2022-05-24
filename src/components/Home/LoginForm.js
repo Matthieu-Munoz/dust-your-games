@@ -4,11 +4,9 @@ import { BsPerson } from "react-icons/bs";
 import { AiOutlineLock } from "react-icons/ai";
 // React-Redux
 import Field from "@/components/Field";
-import { toggleLoginForm, changeHomeField } from '@/actions/home';
+import { toggleHomeForm, changeHomeField, toggleHomeError } from '@/actions/home';
 import { login } from '@/actions/user';
 import Button from '../Button';
-import { toggleHomeError } from '@/actions/home';
-// Styles
 
 function LoginForm() {
     const dispatch = useDispatch();
@@ -73,7 +71,16 @@ function LoginForm() {
                 info={true}
                 infoTip={<div>Votre mot de passe doit contenir au minimum :<br />- 8 caractères<br />- une minuscule<br />- une majuscule <br />- un chiffre</div>}
             />
-            <a className="userform__ctn__link" href="lien">Mot de passe oublié ?</a>
+            <a
+                className="userform__ctn__link"
+                href="/"
+                onClick={(evt) => {
+                    evt.preventDefault();
+                    dispatch(toggleHomeForm('isPasswordRecovery', true));
+                }}
+            >
+                Mot de passe oublié ?
+            </a>
             <Button
                 name="Se connecter"
                 type="submit"
@@ -89,7 +96,7 @@ function LoginForm() {
                 name="S'inscrire"
                 classname="secondary"
                 style={{ width: '70%' }}
-                onclick={() => dispatch(toggleLoginForm(false))}
+                onclick={() => dispatch(toggleHomeForm('isRegisterForm', true))}
             />
         </form>
     );

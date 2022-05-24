@@ -4,19 +4,22 @@ import { Link } from 'react-router-dom';
 // Local | React-Redux
 import LoginForm from "./LoginForm";
 import RegisterForm from "./RegisterForm";
+import PasswordRecovery from './PasswordRecovery';
 // Styles
 import "./home.scss"
 
 function Home() {
   // Control if the loginForm or the registerForm is displayed
-  const { isLoginForm } = useSelector((state) => state.home);
+  const { isLoginForm, isRegisterForm, isPasswordRecovery } = useSelector((state) => state.home);
 
 
   return (
     <div className="home">
       <Link to="/" className='presentation__logo presentation__logo--mobile' />
       <div className="userform">
-        {(isLoginForm) ? <LoginForm /> : <RegisterForm />}
+        {(isLoginForm) && <LoginForm />}
+        {(isRegisterForm) && <RegisterForm />}
+        {(isPasswordRecovery) && <PasswordRecovery />}
       </div>
       <div className="presentation">
         <div className='presentation__logo presentation__logo--desktop' />
