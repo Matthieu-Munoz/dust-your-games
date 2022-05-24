@@ -312,6 +312,15 @@ const dygApiMiddleWare = (store) => (next) => (action) => {
               store.dispatch(closeAlert());
             }, 2800);
           }
+          if (response.status === 200) {
+            store.dispatch(toggleModalLoading(false))
+            store.dispatch(resetSearchGames());
+            store.dispatch(selectSearchGame(null));
+            store.dispatch(sendAlert('error', `Ce jeu est déjà dans votre collection`));
+            setTimeout(() => {
+              store.dispatch(closeAlert());
+            }, 2800);
+          }
         })
         .catch(() => {
           store.dispatch(toggleModalLoading(false))

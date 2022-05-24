@@ -19,6 +19,13 @@ function Modal() {
 
 
     const { modalOpened, modalComponent } = useSelector((state) => state.app);
+
+    const handleModalKeyDown = (evt) => {
+        if (evt.key === "Escape") {
+            handleModalToggle();
+        }
+    }
+
     const handleModalToggle = () => {
         dispatch(toggleModal(''));
         dispatch(resetSearchGames());
@@ -28,7 +35,7 @@ function Modal() {
         <>
             {modalOpened &&
                 <>
-                    <div className="modal">
+                    <div className="modal" tabIndex="0" onKeyDown={handleModalKeyDown}>
                         <IoClose className="modal__close" onClick={handleModalToggle} />
                         {(modalComponent === 'addgames') && <AddGames />}
                         {(modalComponent === 'dustresult') && <DustResult />}

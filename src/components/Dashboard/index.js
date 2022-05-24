@@ -39,7 +39,6 @@ function Dashboard() {
         dispatch(closeAlert());
       }, 2800);
     } else {
-      console.log('alert');
       dispatch(dustAll())
     }
   };
