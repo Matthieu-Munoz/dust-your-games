@@ -165,7 +165,7 @@ const dygApiMiddleWare = (store) => (next) => (action) => {
           },
         )
         .then((response) => {
-          if (response.status === 200) {
+          if (response.status === 202) {
             store.dispatch(toggleLoading(false))
             store.dispatch(toggleHomeForm('isLoginForm', true));
             store.dispatch(sendAlert('check', `Vos nouveaux identifiant vous ont été envoyés.`));
@@ -173,14 +173,21 @@ const dygApiMiddleWare = (store) => (next) => (action) => {
               store.dispatch(closeAlert());
             }, 2800);
           }
-
         })
-        .catch(() => {
-          store.dispatch(toggleLoading(false))
-          store.dispatch(sendAlert('error', 'Une erreur est survenue.'));
-          setTimeout(() => {
-            store.dispatch(closeAlert());
-          }, 2800);
+        .catch((error) => {
+          if (error.response.status === 404) {
+            store.dispatch(toggleLoading(false))
+            store.dispatch(sendAlert('error', `Cet email n'existe pas`));
+            setTimeout(() => {
+              store.dispatch(closeAlert());
+            }, 2800);
+          } else {
+            store.dispatch(toggleLoading(false))
+            store.dispatch(sendAlert('error', 'Une erreur est survenue.'));
+            setTimeout(() => {
+              store.dispatch(closeAlert());
+            }, 2800);
+          }
         });
       next(action);
       break;
