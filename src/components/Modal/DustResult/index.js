@@ -22,15 +22,11 @@ function DustResult() {
 
     const handleRelaunch = () => {
         dispatch(toggleModal(''));
-        console.log(filteredGames.length);
         if (filteredGames.length > 0) {
-            console.log('filteredGames');
             dispatch(dustBy(filteredGames));
         } else if (checkFilter) {
-            console.log('checkFilter');
             dispatch(dustBy(checkedGames))
         } else {
-            console.log('dustAll');
             dispatch(dustAll())
         }
     }
