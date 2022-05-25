@@ -38,15 +38,15 @@ function PasswordRecovery() {
 
     return (
         <form className="userform__ctn userform__ctn--recovery">
-            <h3 className="userform__ctn__title">Merci de saisir l'email de votre compte, un nouveau mot de passe vous y sera envoyé.</h3>
+            <h3 className="userform__ctn__title">Merci de saisir l'e-mail de votre compte, un nouveau mot de passe vous sera envoyé.</h3>
             <Field
                 name="email"
-                placeholder="Email"
+                placeholder="e-mail"
                 Icon={BsPerson}
                 value={email}
                 onChange={handleChange}
                 error={emailError}
-                tip="Merci de saisir un email valide."
+                tip="Merci de saisir un e-mail valide."
             />
             <Button
                 name="Valider"

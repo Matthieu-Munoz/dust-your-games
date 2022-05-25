@@ -95,12 +95,12 @@ function RegisterForm() {
       <Field
         name="email"
         type="email"
-        placeholder="Email"
+        placeholder="e-mail"
         Icon={AiOutlineMail}
         value={email}
         onChange={handleChange}
         error={emailError}
-        tip="Merci de saisir un email valide."
+        tip="Merci de saisir un e-mail valide."
       />
       <Field
         name="password"

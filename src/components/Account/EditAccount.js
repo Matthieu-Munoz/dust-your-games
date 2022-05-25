@@ -165,7 +165,7 @@ function EditAccount() {
           value={email}
           Icon={AiOutlineMail}
           error={emailError}
-          tip="Merci de saisir un email valide."
+          tip="Merci de saisir un e-mail valide."
         />
         <div className="description_input"> Mon mot de passe </div>
         <Field

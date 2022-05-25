@@ -53,12 +53,12 @@ function LoginForm() {
         <form className="userform__ctn userform__ctn--login">
             <Field
                 name="email"
-                placeholder="Email"
+                placeholder="e-mail"
                 Icon={BsPerson}
                 value={email}
                 onChange={handleChange}
                 error={emailError}
-                tip="Merci de saisir un email valide."
+                tip="Merci de saisir un e-mail valide."
             />
             <Field
                 name="password"

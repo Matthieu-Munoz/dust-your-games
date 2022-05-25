@@ -177,7 +177,7 @@ const dygApiMiddleWare = (store) => (next) => (action) => {
         .catch((error) => {
           if (error.response.status === 404) {
             store.dispatch(toggleLoading(false))
-            store.dispatch(sendAlert('error', `Cet email n'existe pas`));
+            store.dispatch(sendAlert('error', `Cet e-mail n'existe pas`));
             setTimeout(() => {
               store.dispatch(closeAlert());
             }, 2800);
