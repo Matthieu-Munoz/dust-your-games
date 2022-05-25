@@ -13,6 +13,7 @@ import { IoIosBackspace } from "react-icons/io";
 import Field from "../Field";
 import { fetchUser } from "@/actions/user";
 import {
+  changeModalSource,
   closeAlert,
   sendAlert,
   toggleModal
@@ -84,6 +85,7 @@ function GamesList() {
   }
 
   const handleGameSelection = (name) => {
+    dispatch(changeModalSource(''));
     dispatch(toggleModal('gameDesc'));
     dispatch(selectGame(name));
   };
@@ -374,7 +376,7 @@ function GamesList() {
                 <Field
                   className="games__side__filter__type__item games__side__filter__type__item--player"
                   name="selectedPlayer"
-                  placeholder="Nombre de jouer"
+                  placeholder="Nombre de joueurs"
                   type="number"
                   value={selectedPlayer}
                   onChange={(value, field) => handleFilterSelect(field, value)}

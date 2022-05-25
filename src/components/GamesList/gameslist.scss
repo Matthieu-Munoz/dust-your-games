@@ -45,6 +45,7 @@
     &__game {
       position: relative;
       display: flex;
+      background-color: vars.$grey-blue;
       flex-basis: calc(calc(100% / 3) - 0.5em);
       box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.45);
       border-radius: 10px;
@@ -54,7 +55,7 @@
       &__img {
         width: 100%;
         height: 100%;
-        border-radius: 0.5em;
+        border-radius: 0.3em;
         background-color: white;
         box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.45) inset;
       }
@@ -173,14 +174,21 @@
       width: 350px;
       position: absolute;
       bottom: -500%;
-      &__sorting__btn--active {
-        background-color: vars.$red !important;
-        transform: rotateZ(360deg) !important;
-        transition: all 0.2s ease-in-out;
-      }
-      &__sorting__btn--disable {
-        pointer-events: none;
-        background-color: vars.$grey-blue-transparent !important;
+      &__sorting__btn {
+        cursor: pointer;
+        &--active {
+          background-color: vars.$red !important;
+          transform: rotateZ(360deg) !important;
+          transition: all 0.2s ease-in-out;
+        }
+        &--disable {
+          pointer-events: none;
+          @include color-themes.themed() {
+            background-color: color-themes.ask(
+              "transparent-primary-color"
+            ) !important;
+          }
+        }
       }
     }
 
@@ -342,6 +350,7 @@
               .field {
                 &__input {
                   text-indent: 0;
+                  width: 90%;
                 }
               }
             }

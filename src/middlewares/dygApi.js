@@ -1,7 +1,7 @@
 import axios from 'axios';
 // Actions
 import {
-  LOGIN, LOGOUT, saveUser, REGISTER, EDIT_USER, DELETE_USER, LOGIN_CHECK, loginConfirm, FORCED_LOGOUT, forcedLogout, PASSWORD_RECOVERY
+  LOGIN, LOGOUT, saveUser, REGISTER, EDIT_USER, DELETE_USER, LOGIN_CHECK, loginConfirm, FORCED_LOGOUT, forcedLogout, PASSWORD_RECOVERY, logout
 } from '../actions/user';
 import { CONFIRM_DUST, DELETE_GAME, DUST_ALL, DUST_BY, fetchGames, FETCH_GAMES, MANUAL_CONFIRM_DUST, resetSearchGames, saveCategories, saveDustGame, saveGames, SAVE_GAME, selectSearchGame } from '@/actions/games';
 import { closeAlert, sendAlert, toggleLoading, toggleModal, toggleModalLoading, togglePassword } from '../actions/app'
@@ -19,8 +19,8 @@ const dygApiMiddleWare = (store) => (next) => (action) => {
     case LOGIN_CHECK: {
       store.dispatch(toggleLoading(true))
       let storageToken = getWithExpiry("token");
-      let storageUser = getWithExpiry("user");
-      if (storageToken != null) {
+      let storageUser = JSON.parse(localStorage.getItem("user"));
+      if (storageToken != null && storageUser != null) {
         axiosInstance.defaults.headers.common.Authorization = `Bearer ${storageToken}`;
         store.dispatch(saveUser(storageUser));
         store.dispatch(saveUserAccount(storageUser));
@@ -47,8 +47,11 @@ const dygApiMiddleWare = (store) => (next) => (action) => {
             }, 2800);
           });
       } else {
+        store.dispatch(toggleLoading(false))
+        store.dispatch(logout())
+        store.dispatch(sendAlert('error', 'Merci de vous reconnecter.'));
         setTimeout(() => {
-          store.dispatch(toggleLoading(false))
+          store.dispatch(closeAlert());
         }, 2800);
       }
       next(action);
@@ -73,6 +76,13 @@ const dygApiMiddleWare = (store) => (next) => (action) => {
             store.dispatch(toggleLoading(false))
             store.dispatch(toggleHomeForm('isLoginForm', true));
             store.dispatch(sendAlert('check', `Inscription réussie : vous pouvez vous connecter !`));
+            setTimeout(() => {
+              store.dispatch(closeAlert());
+            }, 2800);
+          }
+          if (response.status === 200) {
+            store.dispatch(toggleLoading(false))
+            store.dispatch(sendAlert('error', `Cet utilisateur est déjà enregistré.`));
             setTimeout(() => {
               store.dispatch(closeAlert());
             }, 2800);
@@ -105,7 +115,6 @@ const dygApiMiddleWare = (store) => (next) => (action) => {
             const user = response.data.user;
             axiosInstance.defaults.headers.common.Authorization = `Bearer ${response.data.token}`;
             setWithExpiry("token", response.data.token, 64800000);
-            setWithExpiry("user", user, 64800000);
             store.dispatch(loginConfirm(true));
             store.dispatch(saveUser(user));
             store.dispatch(saveUserAccount(user));
@@ -333,10 +342,10 @@ const dygApiMiddleWare = (store) => (next) => (action) => {
             "description": game[0].description ? game[0].description : 'non communiquée',
             "category": category ? category : [{ name: 'Inconnu', }],
             "editor": {
-              "name": game[0].primary_publisher.name ? game[0].primary_publisher.name : 'Inconnu',
+              "name": (game[0].primary_publisher && game[0].primary_publisher.name) ? game[0].primary_publisher.name : 'Inconnu',
             },
             "designor": {
-              "name": game[0].primary_designer.name ? game[0].primary_designer.name : 'Inconnu',
+              "name": (game[0].primary_designer && game[0].primary_designer.name) ? game[0].primary_designer.name : 'Inconnu',
             },
             "weight": addgame.dustValue ? addgame.dustValue : 5,
           }

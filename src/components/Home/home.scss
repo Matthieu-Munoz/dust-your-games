@@ -47,6 +47,9 @@
       font-size: 0.85em;
       font-weight: 400;
       text-align: center;
+      @include color-themes.themed() {
+        color: color-themes.ask("primary-text-color");
+      }
     }
 
     &__link {

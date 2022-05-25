@@ -36,7 +36,9 @@
       top: -0.65em;
       right: -1.5em;
       left: unset;
-      color: vars.$alter-grey-blue;
+      @include color-themes.themed() {
+        color: color-themes.ask("primary-alter-color");
+      }
     }
   }
 
