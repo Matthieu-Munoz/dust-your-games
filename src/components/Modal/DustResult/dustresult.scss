@@ -1,7 +1,7 @@
-@use "@/styles/vars";
-@use "@/styles/color-themes";
-@use "@/styles/utils";
-@use "@/styles/responsive-breakpoints" as media;
+@use "Styles/vars";
+@use "Styles/color-themes";
+@use "Styles/utils";
+@use "Styles/responsive-breakpoints" as media;
 
 .dustresult {
   padding: 1em;
@@ -15,7 +15,6 @@
     align-items: center;
     justify-content: center;
   }
-
 
   &__dust {
     position: absolute;

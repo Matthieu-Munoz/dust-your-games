@@ -1,33 +1,28 @@
-import {
-    CHANGE_INPUT_VALUE,
-    SUBMIT_FORM
-} from '@/actions/contact';
+import { CHANGE_INPUT_VALUE, SUBMIT_FORM } from "Actions/contact";
 
 export const initialState = {
-    isSubmitForm: true,
-    pseudo: '',
-    email: '',
-    objet: '',
-    message: '',
+  isSubmitForm: true,
+  pseudo: "",
+  email: "",
+  objet: "",
+  message: "",
 };
 
 const reducer = (state = initialState, action = {}) => {
-    switch (action.type) {
-        case SUBMIT_FORM:
-            return {
-                ...state,
-             isSubmitForm: action.isSubmitForm,
-
-            }
-        case CHANGE_INPUT_VALUE:
-            return {
-                ...state,
-                [action.field]: action.value,
-            };
-        default:
-            return state;
-    }
+  switch (action.type) {
+    case SUBMIT_FORM:
+      return {
+        ...state,
+        isSubmitForm: action.isSubmitForm,
+      };
+    case CHANGE_INPUT_VALUE:
+      return {
+        ...state,
+        [action.field]: action.value,
+      };
+    default:
+      return state;
+  }
 };
-
 
 export default reducer;

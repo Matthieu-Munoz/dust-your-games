@@ -61,7 +61,6 @@ For two different components :
   {(condition) ? <Component1 /> : <Component2 />}
 ```
 
-
 ### Conditional css class
 
 We can use the dependency classNames to achieve a conditional css class
@@ -90,30 +89,28 @@ L'objectif est de mettre son contenu dans le state et donc de mettre à jour le 
 - En utilisant useSelector, on stocke la valeur courante désirée du state dans une variable
 - Cette variable sera la value de l'input
 
-
 un exemple avec un champs input pour un pseudo :
 
 ```jsx
 // Dependencies
-import { useSelector} from 'react-redux';
+import { useSelector } from "react-redux";
 
 function LoginForm() {
-    // On stocke dans la variable pseudo la valeur du state
-    const pseudo = useSelector((state) => state.user.pseudo);
-    return (
-      <div className="field">
-        <input
-          name="pseudo"
-          className="field__input"
-          type="text"
-          placeholder="pseudo"
-          value={pseudo}
-        />
-      </div>
-    );
+  // On stocke dans la variable pseudo la valeur du state
+  const pseudo = useSelector((state) => state.user.pseudo);
+  return (
+    <div className="field">
+      <input
+        name="pseudo"
+        className="field__input"
+        type="text"
+        placeholder="pseudo"
+        value={pseudo}
+      />
+    </div>
+  );
 }
 export default LoginForm;
-
 ```
 
 Ainsi, ce qu'il y a dans l'input correspondra à ce qu'il y a dans le state !
@@ -128,8 +125,8 @@ Maintenant que notre valeur est controlée, on va gérer son changement :
 
 ```js
 const handleChange = (evt) => {
-  console.log(evt)
-}
+  console.log(evt);
+};
 ```
 
 - Quand une touche est tapée, on provoque un changement et le console.log est affiché. La touche tapée est contenue dans la value de target :
@@ -138,10 +135,10 @@ const handleChange = (evt) => {
 const handleChange = (evt) => {
   // Ici on log uniquement la touche tapée
   console.log(evt.target.value);
-}
+};
 ```
 
-Pour le moment on est capable de récupérer ce que l'utilisateur rentre, pour autant on ne met pas encore à jour la value du state. Pour effectuer cette mise à jour, on aura besoin d'un peu de préparation : le couple action/reducer. 
+Pour le moment on est capable de récupérer ce que l'utilisateur rentre, pour autant on ne met pas encore à jour la value du state. Pour effectuer cette mise à jour, on aura besoin d'un peu de préparation : le couple action/reducer.
 
 <hr>
 
@@ -150,11 +147,11 @@ Pour le moment on est capable de récupérer ce que l'utilisateur rentre, pour a
 **Action**
 Une action est composée d'un duo 'action Type' et 'action Creator'.
 Le type correspond à une description textuelle de l'action.
-Le creator à une fonction pour effectuer un changement. 
+Le creator à une fonction pour effectuer un changement.
 
 ```js
 // Action TYPE
-export const CHANGE_INPUT_VALUE = 'CHANGE_INPUT_VALUE';
+export const CHANGE_INPUT_VALUE = "CHANGE_INPUT_VALUE";
 // Action CREATOR
 export const changeInputValue = (value) => ({
   type: CHANGE_INPUT_VALUE,
@@ -172,13 +169,13 @@ switch (action.type) {
   case CHANGE_INPUT_VALUE:
     return {
       // On recopie le state actuel
-        ...state,
-        // On le modifie avec la valeur transmise par notre action
-        pseudo: action.value,
+      ...state,
+      // On le modifie avec la valeur transmise par notre action
+      pseudo: action.value,
     };
   default:
-  return state;
-  }
+    return state;
+}
 ```
 
 <hr>
@@ -189,37 +186,36 @@ De retour dans notre composant, maintenant on veut appliquer le changement :
 - Il faut pour cela importer useDispatch de React-Redux ainsi que notre action Creator
 - On stock useDispatch dans une constante 'dispatch'
 - Dans notre fonction handleChange, on utilise le tout en faisant un `dispatch(changeInputValue(value))`
---> changeInputValue = l'action (la récupérer dans le fichier action)
+  --> changeInputValue = l'action (la récupérer dans le fichier action)
 - Ainsi notre composant fonctionnel ressemble à :
 
 ```jsx
 // Dependencies
-import { useSelector, useDispatch } from 'react-redux';
-import { changeHomeField} from '@/actions/user';
+import { useSelector, useDispatch } from "react-redux";
+import { changeHomeField } from "Actions/user";
 
 function LoginForm() {
-    const dispatch = useDispatch();
-    const pseudo = useSelector((state) => state.user);
+  const dispatch = useDispatch();
+  const pseudo = useSelector((state) => state.user);
 
-    const handleChange = (evt) => {
-      // On dispatch notre action avec la touche tapée
-      dispatch(changeInputValue(evt.target.value));
-    }
-    return (
-      <div className="field">
-        <input
-          name="pseudo"
-          className="field__input"
-          type="text"
-          placeholder="pseudo"
-          value={pseudo}
-          onChange={handleChange}
-        />
-      </div>
-    );
+  const handleChange = (evt) => {
+    // On dispatch notre action avec la touche tapée
+    dispatch(changeInputValue(evt.target.value));
+  };
+  return (
+    <div className="field">
+      <input
+        name="pseudo"
+        className="field__input"
+        type="text"
+        placeholder="pseudo"
+        value={pseudo}
+        onChange={handleChange}
+      />
+    </div>
+  );
 }
 export default LoginForm;
-
 ```
 
 ### Dans le cas de notre composant Field et de multiples inputs :
@@ -233,7 +229,7 @@ On va donc :
 - adapter notre action en précisant une variable field (elle contiendra une string correspondant à l'input ET au state : 'email' 'password' etc):
 
 ```js
-export const CHANGE_HOME_FIELD = 'CHANGE_HOME_FIELD';
+export const CHANGE_HOME_FIELD = "CHANGE_HOME_FIELD";
 export const changeHomeField = (value, field) => ({
   type: CHANGE_HOME_FIELD,
   value,
@@ -254,8 +250,7 @@ export const changeHomeField = (value, field) => ({
 - On applique ces changements dans notre composant avec la fonction handleChange :
 
 ```js
-   const handleChange = (value, field) => {
-        dispatch(changeHomeField(value, field));
-    }
+const handleChange = (value, field) => {
+  dispatch(changeHomeField(value, field));
+};
 ```
-
