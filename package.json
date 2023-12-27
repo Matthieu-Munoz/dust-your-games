@@ -8,7 +8,7 @@
   },
   "dependencies": {
     "@honkhonk/vite-plugin-svgr": "^1.1.0",
-    "axios": "^0.27.2",
+    "axios": "^1.6.3",
     "classnames": "^2.3.1",
     "dompurify": "^2.3.8",
     "prop-types": "^15.8.1",
