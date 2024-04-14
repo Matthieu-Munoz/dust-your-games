@@ -10,7 +10,7 @@
     "@honkhonk/vite-plugin-svgr": "^1.1.0",
     "axios": "^0.27.2",
     "classnames": "^2.3.1",
-    "dompurify": "^2.3.8",
+    "dompurify": "^2.4.9",
     "prop-types": "^15.8.1",
     "react": "^18.2.0",
     "react-autosize-textarea": "^7.1.0",
